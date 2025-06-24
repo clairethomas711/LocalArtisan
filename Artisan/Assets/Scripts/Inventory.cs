@@ -58,7 +58,7 @@ public class Inventory : MonoBehaviour
                 break;
 
             case itemType.Seed:
-                util.UseSeed(target, currentItem);
+                util.UseSeed(target, (Seed)currentItem);
                 break;
         }
     }
