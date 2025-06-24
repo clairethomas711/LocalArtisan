@@ -5,4 +5,5 @@ using System.Collections.Generic;
 public class Seed : InventorySlot
 {
     public List<GameObject> stages;
+    public InventorySlot product;
 }

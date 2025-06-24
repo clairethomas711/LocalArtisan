@@ -10,15 +10,16 @@ public class FarmManager : MonoBehaviour
 
     [SerializeField] private GameObject tileObject;
     [SerializeField] string path;
+    [SerializeField] Inventory playerInventory;
 
     [HideInInspector] public int currentDay;
 
     void Start() { currentDay = 1; }
 
-    // Update is called once per frame REMOVE THIS CODE
-    void Update()
+    public void AddInventoryItem(InventorySlot i)
     {
-
+        playerInventory.inventoryList.Add(i);
+        playerInventory.DisplayInventory();
     }
 
     public void NewDay()

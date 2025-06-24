@@ -12,6 +12,7 @@ public class TileBehavior : MonoBehaviour
     public TileState state;
     public GameObject seed;
     public GameObject plant;
+    private InventorySlot product;
     public int plantedDate;
 
     void Start()
@@ -23,7 +24,8 @@ public class TileBehavior : MonoBehaviour
     {
         if (seed != null && transform.childCount <= 0)
             Instantiate(seed, transform.position, transform.rotation, transform);
-
+        else if (seed == null && transform.childCount > 0)
+            Destroy(transform.GetChild(0).gameObject);
         else if (seed != null)
         {
             FarmManager fManager = transform.parent.gameObject.GetComponent<FarmManager>();
@@ -73,15 +75,25 @@ public class TileBehavior : MonoBehaviour
         UpdateVisuals();
     }
 
-    public void Plant(GameObject mesh1, GameObject mesh2)
+    public void Plant(GameObject mesh1, GameObject mesh2, InventorySlot p)
     {
         if ((state == TileState.Tilled || state == TileState.Watered) && seed == null)
         {
             seed = mesh1;
             plant = mesh2;
+            product = p;
             FarmManager fManager = transform.parent.gameObject.GetComponent<FarmManager>();
             plantedDate = fManager.currentDay;
             UpdateVisuals();
         }
+    }
+
+    public void Harvest()
+    {
+        FarmManager fManager = transform.parent.gameObject.GetComponent<FarmManager>();
+        fManager.AddInventoryItem(product);
+        state = TileState.Untilled;
+        seed = null;
+        UpdateVisuals();
     }
 }

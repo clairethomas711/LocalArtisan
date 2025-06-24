@@ -3611,6 +3611,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6610671251062233491, guid: 8e1a6953b6559a242884e08a277f6b84, type: 3}
   m_PrefabInstance: {fileID: 3424585080810709781}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &571349137 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5752909069962311485, guid: 8e1a6953b6559a242884e08a277f6b84, type: 3}
+  m_PrefabInstance: {fileID: 3424585080810709781}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4b8655a0c1857c4084108f6047b0d0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &577137411
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7726,6 +7737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileObject: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
   path: Assets/savegame.json
+  playerInventory: {fileID: 571349137}
   currentDay: 0
 --- !u!4 &1334321685
 Transform:

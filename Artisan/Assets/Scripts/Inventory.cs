@@ -19,7 +19,7 @@ public class Inventory : MonoBehaviour
         DisplayHighlight();
     }
 
-    void DisplayInventory() //UI Hotbar Display
+    public void DisplayInventory() //UI Hotbar Display
     {
         for (int i = 0; i < inventoryList.Count; i++)
         {
