@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 
-//Attached to the player, this stores the list of items the player has, controls navigation via the hotbar and handles input for item use.
+//Attached to the player, this stores the list of items the player has and controls held item navigation
 
 public class Inventory : MonoBehaviour
 {
@@ -10,9 +10,7 @@ public class Inventory : MonoBehaviour
     public GameObject inventoryPanel;
 
     int selectedItemLookup = 0;
-    InventorySlot currentItem;
-
-    ItemUtility util = new ItemUtility();
+    public InventorySlot currentItem;
 
     void Start()
     {
@@ -43,24 +41,6 @@ public class Inventory : MonoBehaviour
         Transform slot = inventoryPanel.transform.GetChild(selectedItemLookup);
         UnityEngine.UI.Image s = slot.gameObject.GetComponent<UnityEngine.UI.Image>();
         s.color = Color.green;
-    }
-
-    public void UseObject(GameObject target) //Called by PlayerStateManager when input received - should I just handle the input here?
-    {
-        switch (currentItem.itemType) //Need one case for each item enum type
-        {
-            case itemType.Hoe:
-                util.UseHoe(target);
-                break;
-
-            case itemType.WateringCan:
-                util.UseWateringCan(target);
-                break;
-
-            case itemType.Seed:
-                util.UseSeed(target, (Seed)currentItem);
-                break;
-        }
     }
 
     void OnScrollWheel(InputValue scrollValue)

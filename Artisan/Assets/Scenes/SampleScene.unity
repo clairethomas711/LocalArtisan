@@ -8468,6 +8468,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8068073526183931155, guid: d742a90c7b3fa2c459e556cf323f63dd, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d742a90c7b3fa2c459e556cf323f63dd, type: 3}
       propertyPath: m_Name
       value: FarmHouse
@@ -11347,6 +11351,10 @@ PrefabInstance:
       propertyPath: inventoryPanel
       value: 
       objectReference: {fileID: 1912207913}
+    - target: {fileID: 5752909069962311485, guid: 8e1a6953b6559a242884e08a277f6b84, type: 3}
+      propertyPath: 'inventoryList.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c249eff429ae3ba49bf4dbd6016c6df6, type: 2}
     - target: {fileID: 6610671251062233491, guid: 8e1a6953b6559a242884e08a277f6b84, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

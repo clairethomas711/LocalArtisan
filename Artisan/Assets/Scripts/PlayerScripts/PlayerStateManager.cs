@@ -54,22 +54,11 @@ public class PlayerStateManager : MonoBehaviour
             isTargeting = false;
     }
 
-    void OnUse()
-    {
-        if (target)
-            inv.UseObject(target);
-    }
-
     void OnInteract()
     {
-        print("E pressed");
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit))
+        if (target.TryGetComponent<Interactable>(out Interactable i))
         {
-            if (hit.collider.TryGetComponent<Interactable>(out Interactable i))
-            {
-                print("Found door");
-                i.Interact(farm);
-            }
+            i.Interact(inv.currentItem, farm);
         }
     }
 
@@ -98,7 +87,7 @@ public class PlayerStateManager : MonoBehaviour
     public void CheckTarget()
     {
         RaycastHit hit;
-        LayerMask mask = LayerMask.GetMask("Tile");
+        LayerMask mask = LayerMask.GetMask("Interactable");
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, 100, mask))
         {

@@ -70,6 +70,16 @@ public class FarmManager : MonoBehaviour
         }
     }
 
+    [System.Serializable]
+    private class Tile
+    {
+        public Vector3 gridLoc;
+        public TileBehavior.TileState state;
+        public string cropCode;
+        public string soilQuality;
+        public int plantedDate;
+    }
+
     private class FarmLayout
     {
         public int date;

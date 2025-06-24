@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
-    public abstract void Interact(FarmManager farm);
+    public abstract void Interact(InventorySlot heldItem, FarmManager farm);
 }
