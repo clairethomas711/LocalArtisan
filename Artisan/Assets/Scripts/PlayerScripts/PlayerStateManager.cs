@@ -56,10 +56,14 @@ public class PlayerStateManager : MonoBehaviour
 
     void OnInteract()
     {
-        if (target.TryGetComponent<Interactable>(out Interactable i))
+        if (target)
         {
-            i.Interact(inv.currentItem, farm);
+            if (target.TryGetComponent<Interactable>(out Interactable i))
+            {
+                i.Interact(inv.currentItem, farm);
+            }            
         }
+
     }
 
     // Helper Functions //

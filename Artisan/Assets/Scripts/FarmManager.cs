@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using TMPro;
 
 //A manager EXCLUSIVELY for the farm scene
 
@@ -11,15 +12,60 @@ public class FarmManager : MonoBehaviour
     [SerializeField] private GameObject tileObject;
     [SerializeField] string path;
     [SerializeField] Inventory playerInventory;
+    [SerializeField] TextMeshProUGUI moneyText;
 
     [HideInInspector] public int currentDay;
+    [HideInInspector] public int money;
 
     void Start() { currentDay = 1; }
 
     public void AddInventoryItem(InventorySlot i)
     {
+        for (int j = 0; j < playerInventory.inventoryList.Count; j++)
+        {
+            if (playerInventory.inventoryList[j].name == i.name) //Increase quantity
+            {
+                playerInventory.inventoryList[j].quantity++;
+                playerInventory.DisplayInventory();
+                return;
+            }
+        }
+        //If nothing with the same name found, add
         playerInventory.inventoryList.Add(i);
         playerInventory.DisplayInventory();
+    }
+
+    public void RemoveInventoryItem(InventorySlot i)
+    {
+        for (int j = 0; j < playerInventory.inventoryList.Count; j++)
+        {
+            if (playerInventory.inventoryList[j].name == i.name)
+            {
+                if (playerInventory.inventoryList[j].quantity > 1) //Decrease quantity
+                {
+                    playerInventory.inventoryList[j].quantity--;
+                    playerInventory.DisplayInventory();
+                    return;
+                }
+                else
+                {
+                    playerInventory.inventoryList.Remove(playerInventory.inventoryList[j]);
+                    playerInventory.DisplayInventory();
+                }
+            }
+        }
+    }
+
+    public void AddMoney(int amount)
+    {
+        money += amount;
+        moneyText.text = money.ToString();
+    }
+
+    public void SubtractMoney(int amount)
+    {
+        money -= amount;
+        moneyText.text = money.ToString();
     }
 
     public void NewDay()

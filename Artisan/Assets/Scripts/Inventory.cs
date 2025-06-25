@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
+using TMPro;
 
 //Attached to the player, this stores the list of items the player has and controls held item navigation
 
@@ -21,12 +22,34 @@ public class Inventory : MonoBehaviour
 
     public void DisplayInventory() //UI Hotbar Display
     {
+        //clear everything
+        for (int i = 0; i < inventoryPanel.transform.childCount; i++)
+        {
+            Transform slot = inventoryPanel.transform.GetChild(i);
+            //Image
+            UnityEngine.UI.Image s = slot.gameObject.GetComponent<UnityEngine.UI.Image>();
+            s.sprite = null;
+            //Quantity
+            TextMeshProUGUI text = slot.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            text.text = null;
+        }
+        //repopulate
         for (int i = 0; i < inventoryList.Count; i++)
         {
             Transform slot = inventoryPanel.transform.GetChild(i);
+            //Image
             UnityEngine.UI.Image s = slot.gameObject.GetComponent<UnityEngine.UI.Image>();
             s.sprite = inventoryList[i].sprite;
+            //Quantity
+            TextMeshProUGUI text = slot.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            text.text = inventoryList[i].quantity.ToString();
         }
+        ClearHighlight();
+        if (inventoryList.Count <= selectedItemLookup)
+            selectedItemLookup = inventoryList.Count - 1;
+
+        currentItem = inventoryList[selectedItemLookup];
+        DisplayHighlight();
     }
 
     void ClearHighlight() //UI Helper functions

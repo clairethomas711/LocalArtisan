@@ -44,7 +44,7 @@ public class Tile : Interactable
 
     private void UseSeed(Seed currentItem)
     {
-        tile.Plant(currentItem.stages[0], currentItem.stages[1], currentItem.product);
+        tile.Plant(currentItem);
     }
 
     private void UseHarvest()

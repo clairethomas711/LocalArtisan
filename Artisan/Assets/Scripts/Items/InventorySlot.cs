@@ -8,7 +8,9 @@ public class InventorySlot : ScriptableObject
     public string name;
     public itemType itemType;
     public Sprite sprite;
+    public int quantity = 1;
+    public int value;
 }
 
 //There NEEDS to be one of these for every item with a different "use" functionality
-public enum itemType { Hoe, WateringCan, Seed };
+public enum itemType { Hoe, WateringCan, Seed, Resource };

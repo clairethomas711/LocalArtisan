@@ -75,15 +75,16 @@ public class TileBehavior : MonoBehaviour
         UpdateVisuals();
     }
 
-    public void Plant(GameObject mesh1, GameObject mesh2, InventorySlot p)
+    public void Plant(Seed s)
     {
         if ((state == TileState.Tilled || state == TileState.Watered) && seed == null)
         {
-            seed = mesh1;
-            plant = mesh2;
-            product = p;
+            seed = s.stages[0];
+            plant = s.stages[1];
+            product = s.product;
             FarmManager fManager = transform.parent.gameObject.GetComponent<FarmManager>();
             plantedDate = fManager.currentDay;
+            fManager.RemoveInventoryItem(s);
             UpdateVisuals();
         }
     }
@@ -92,7 +93,7 @@ public class TileBehavior : MonoBehaviour
     {
         FarmManager fManager = transform.parent.gameObject.GetComponent<FarmManager>();
         fManager.AddInventoryItem(product);
-        state = TileState.Untilled;
+        state = TileState.Tilled;
         seed = null;
         UpdateVisuals();
     }
