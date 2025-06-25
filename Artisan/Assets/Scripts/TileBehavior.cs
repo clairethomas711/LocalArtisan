@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 //Attached to the Tile prefab object, stores the tile's current state and allows items to be used on it.
 
@@ -8,12 +9,12 @@ public class TileBehavior : MonoBehaviour
     [SerializeField] private Texture tilled;
     [SerializeField] private Texture watered;
 
-    public enum TileState { Untilled, Tilled, Watered, Grown };
-    public TileState state;
-    public GameObject seed;
-    public GameObject plant;
+    [HideInInspector] public enum TileState { Untilled, Tilled, Watered, Grown };
+    [HideInInspector] public TileState state;
+    [HideInInspector] public int growthScore;
     private InventorySlot product;
-    public int plantedDate;
+    public bool isPlanted = false;
+    List<GameObject> plantStages;
 
     void Start()
     {
@@ -22,17 +23,17 @@ public class TileBehavior : MonoBehaviour
 
     public void UpdateVisuals() //This should ALL be overhauled with a better seed system
     {
-        if (seed != null && transform.childCount <= 0)
-            Instantiate(seed, transform.position, transform.rotation, transform);
-        else if (seed == null && transform.childCount > 0)
+        if (isPlanted && transform.childCount <= 0)
+            Instantiate(plantStages[0], transform.position, transform.rotation, transform);
+        else if (!isPlanted && transform.childCount > 0)
             Destroy(transform.GetChild(0).gameObject);
-        else if (seed != null)
+        else if (isPlanted)
         {
             FarmManager fManager = transform.parent.gameObject.GetComponent<FarmManager>();
-            if (fManager.currentDay > plantedDate)
+            if (growthScore >= 3) 
             {
                 Destroy(transform.GetChild(0).gameObject);
-                Instantiate(plant, transform.position, transform.rotation, transform);
+                Instantiate(plantStages[1], transform.position, transform.rotation, transform);
                 state = TileState.Grown;
             }
         }
@@ -63,6 +64,7 @@ public class TileBehavior : MonoBehaviour
         {
             state = TileState.Untilled;
         }
+
         UpdateVisuals();
     }
 
@@ -72,18 +74,19 @@ public class TileBehavior : MonoBehaviour
         {
             state = TileState.Watered;
         }
+
         UpdateVisuals();
     }
 
     public void Plant(Seed s)
     {
-        if ((state == TileState.Tilled || state == TileState.Watered) && seed == null)
+        if ((state == TileState.Tilled || state == TileState.Watered) && !isPlanted)
         {
-            seed = s.stages[0];
-            plant = s.stages[1];
+            isPlanted = true;
+            plantStages = s.stages;
             product = s.product;
             FarmManager fManager = transform.parent.gameObject.GetComponent<FarmManager>();
-            plantedDate = fManager.currentDay;
+            growthScore = 0;
             fManager.RemoveInventoryItem(s);
             UpdateVisuals();
         }
@@ -94,7 +97,7 @@ public class TileBehavior : MonoBehaviour
         FarmManager fManager = transform.parent.gameObject.GetComponent<FarmManager>();
         fManager.AddInventoryItem(product);
         state = TileState.Tilled;
-        seed = null;
+        isPlanted = false;
         UpdateVisuals();
     }
 }

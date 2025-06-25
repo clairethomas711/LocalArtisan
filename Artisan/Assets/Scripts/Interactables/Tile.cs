@@ -12,43 +12,47 @@ public class Tile : Interactable
     {
         if (tile.state == TileBehavior.TileState.Grown)
         {
-            UseHarvest();
+            UseHarvest(farm);
             return;
         }
 
         switch (currentItem.itemType) //Need one case for each item enum type
         {
             case itemType.Hoe:
-                UseHoe();
+                UseHoe(farm);
                 break;
 
             case itemType.WateringCan:
-                UseWateringCan();
+                UseWateringCan(farm);
                 break;
 
             case itemType.Seed:
-                UseSeed((Seed)currentItem);
+                UseSeed((Seed)currentItem, farm);
                 break;
         }
     }
 
-    private void UseHoe()
+    private void UseHoe(FarmManager farm)
     {
-        tile.Till();
+        if(farm.SubtractStamina(5))
+            tile.Till();
     }
 
-    private void UseWateringCan()
+    private void UseWateringCan(FarmManager farm)
     {
-        tile.Water();
+        if (farm.SubtractStamina(5))
+            tile.Water();
     }
 
-    private void UseSeed(Seed currentItem)
+    private void UseSeed(Seed currentItem, FarmManager farm)
     {
-        tile.Plant(currentItem);
+        if (farm.SubtractStamina(1))
+            tile.Plant(currentItem);
     }
 
-    private void UseHarvest()
+    private void UseHarvest(FarmManager farm)
     {
-        tile.Harvest();
+        if (farm.SubtractStamina(1))
+            tile.Harvest();
     }
 }

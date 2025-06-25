@@ -13,11 +13,19 @@ public class FarmManager : MonoBehaviour
     [SerializeField] string path;
     [SerializeField] Inventory playerInventory;
     [SerializeField] TextMeshProUGUI moneyText;
+    [SerializeField] TextMeshProUGUI staminaText;
+    [SerializeField] TextMeshProUGUI dayText;
+    [SerializeField] float maxStamina;
 
     [HideInInspector] public int currentDay;
     [HideInInspector] public int money;
+    [HideInInspector] public float stamina;
 
-    void Start() { currentDay = 1; }
+    void Start()
+    {
+        currentDay = 1;
+        stamina = maxStamina;
+    }
 
     public void AddInventoryItem(InventorySlot i)
     {
@@ -68,9 +76,32 @@ public class FarmManager : MonoBehaviour
         moneyText.text = money.ToString();
     }
 
+    void RestoreStamina()
+    {
+        stamina = maxStamina;
+        staminaText.text = stamina.ToString();
+    }
+    public bool SubtractStamina(float amount)
+    {
+        if (stamina > 0)
+        {
+            stamina -= amount;
+            staminaText.text = stamina.ToString();
+            return true;
+        }
+        else
+        {
+            NewDay();
+            return false;
+        }
+        
+    }
+
     public void NewDay()
     {
         currentDay++;
+        dayText.text = currentDay.ToString();
+        RestoreStamina();
         SaveFarmLayout();
         LoadFarmLayout();
         print("Day: " + currentDay);
@@ -83,12 +114,19 @@ public class FarmManager : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
         {
             GameObject t = transform.GetChild(i).gameObject;
-            Tile tile = new Tile();
+            TileBehavior tileData = t.GetComponent<TileBehavior>();
+            //Process new day updates
+            if (tileData.state == TileBehavior.TileState.Watered && tileData.isPlanted)
+                tileData.growthScore++;
+            if (tileData.state == TileBehavior.TileState.Watered)
+                tileData.state = TileBehavior.TileState.Tilled;
+            //Save the new data
+                Tile tile = new Tile();
             tile.gridLoc = t.transform.position;
-            tile.state = t.GetComponent<TileBehavior>().state;
+            tile.state = tileData.state;
             tile.cropCode = "";
             tile.soilQuality = "";
-            tile.plantedDate = t.GetComponent<TileBehavior>().plantedDate;
+            tile.growthScore = tileData.growthScore;
             tiles.Add(tile);
         }
         FarmLayout farm = new FarmLayout();
@@ -104,7 +142,6 @@ public class FarmManager : MonoBehaviour
         string json = File.ReadAllText(path);
         FarmLayout farm = JsonUtility.FromJson<FarmLayout>(json);
         List<Tile> tiles = farm.layout;
-        currentDay = farm.date;
         for (int i = 0; i < tiles.Count; i++)
         {
             Tile tile = tiles[i];
@@ -112,7 +149,7 @@ public class FarmManager : MonoBehaviour
             toUpdate.transform.position = tile.gridLoc;
             TileBehavior uS = toUpdate.GetComponent<TileBehavior>();
             uS.state = tile.state;
-            uS.plantedDate = tile.plantedDate;
+            uS.growthScore = tile.growthScore;
             uS.UpdateVisuals();
         }
     }
@@ -124,7 +161,7 @@ public class FarmManager : MonoBehaviour
         public TileBehavior.TileState state;
         public string cropCode;
         public string soilQuality;
-        public int plantedDate;
+        public int growthScore;
     }
 
     private class FarmLayout
