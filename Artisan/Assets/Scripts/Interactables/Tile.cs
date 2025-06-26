@@ -35,13 +35,13 @@ public class Tile : Interactable
     private void UseHoe(FarmManager farm)
     {
         if(farm.SubtractStamina(5))
-            tile.Till();
+            tile.Invoke("Till", 0.5f);
     }
 
     private void UseWateringCan(FarmManager farm)
     {
         if (farm.SubtractStamina(5))
-            tile.Water();
+            tile.Invoke("Water", 0.5f);
     }
 
     private void UseSeed(Seed currentItem, FarmManager farm)

@@ -21,22 +21,9 @@ public class TileBehavior : MonoBehaviour
         state = TileState.Untilled;
     }
 
-    public void UpdateVisuals() //This should ALL be overhauled with a better seed system
+    public void UpdateVisuals() 
     {
-        if (isPlanted && transform.childCount <= 0)
-            Instantiate(plantStages[0], transform.position, transform.rotation, transform);
-        else if (!isPlanted && transform.childCount > 0)
-            Destroy(transform.GetChild(0).gameObject);
-        else if (isPlanted)
-        {
-            FarmManager fManager = transform.parent.gameObject.GetComponent<FarmManager>();
-            if (growthScore >= 3) 
-            {
-                Destroy(transform.GetChild(0).gameObject);
-                Instantiate(plantStages[1], transform.position, transform.rotation, transform);
-                state = TileState.Grown;
-            }
-        }
+        GrowPlant();
 
         MeshRenderer mat = GetComponent<MeshRenderer>();
         if (state == TileState.Untilled)
@@ -90,6 +77,19 @@ public class TileBehavior : MonoBehaviour
             fManager.RemoveInventoryItem(s);
             UpdateVisuals();
         }
+    }
+
+    void GrowPlant()
+    {
+        if (transform.childCount > 0) //Clear existing plant
+            Destroy(transform.GetChild(0).gameObject); 
+        if (!isPlanted) //If we harvested, don't grow again
+            return;
+        if (growthScore >= plantStages.Count - 1)
+            state = TileState.Grown;
+
+        Quaternion properRotation = Quaternion.Euler(new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z));
+        Instantiate(plantStages[growthScore], transform.position, properRotation, transform); //Spawn new plant
     }
 
     public void Harvest()

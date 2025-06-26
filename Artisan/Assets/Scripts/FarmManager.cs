@@ -11,7 +11,9 @@ public class FarmManager : MonoBehaviour
 
     [SerializeField] private GameObject tileObject;
     [SerializeField] string path;
-    [SerializeField] Inventory playerInventory;
+    [SerializeField] GameObject player;
+    [SerializeField] Transform respawnPoint;
+    [SerializeField] Animator canvasAnim;
     [SerializeField] TextMeshProUGUI moneyText;
     [SerializeField] TextMeshProUGUI staminaText;
     [SerializeField] TextMeshProUGUI dayText;
@@ -21,10 +23,13 @@ public class FarmManager : MonoBehaviour
     [HideInInspector] public int money;
     [HideInInspector] public float stamina;
 
+    Inventory playerInventory;
+
     void Start()
     {
         currentDay = 1;
         stamina = maxStamina;
+        playerInventory = player.GetComponent<Inventory>();
     }
 
     public void AddInventoryItem(InventorySlot i)
@@ -99,12 +104,26 @@ public class FarmManager : MonoBehaviour
 
     public void NewDay()
     {
+        canvasAnim.SetTrigger("FadeOut");
+        Invoke("NewDayInvoke", 1.0f);
+    }
+
+    void NewDayInvoke()
+    {
+        //Move the player
+        CharacterController c = player.GetComponent<CharacterController>();
+        c.enabled = false;
+        player.transform.position = respawnPoint.position;
+        player.transform.rotation = respawnPoint.rotation;
+        c.enabled = true;
+        //Update data
         currentDay++;
         dayText.text = currentDay.ToString();
         RestoreStamina();
+        //Save
         SaveFarmLayout();
         LoadFarmLayout();
-        print("Day: " + currentDay);
+        canvasAnim.SetTrigger("FadeIn");        
     }
 
     void SaveFarmLayout()

@@ -19,5 +19,6 @@ MonoBehaviour:
   value: 1
   stages:
   - {fileID: 919132149155446097, guid: 54c5dbfb0c0006f4e98d3f19a0747a2f, type: 3}
+  - {fileID: 919132149155446097, guid: 6b2f88137ce89914bb8eacd3651d8bfa, type: 3}
   - {fileID: 919132149155446097, guid: c82459d5d5f01c54ebb63537bc74d74c, type: 3}
   product: {fileID: 11400000, guid: 5d3913f5e6f4244458d1857ee9a0c038, type: 2}
