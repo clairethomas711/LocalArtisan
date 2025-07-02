@@ -8,7 +8,7 @@ public class Tile : Interactable
         tile = GetComponent<TileBehavior>();
     }
 
-    public override void Interact(InventorySlot currentItem, FarmManager farm)
+    public override void Interact(InventoryItem currentItem, FarmManager farm)
     {
         if (tile.state == TileBehavior.TileState.Grown)
         {
@@ -34,14 +34,16 @@ public class Tile : Interactable
 
     private void UseHoe(FarmManager farm)
     {
-        if(farm.SubtractStamina(5))
-            tile.Invoke("Till", 0.5f);
+        if (farm.SubtractStamina(5))
+            tile.Till();
+            //tile.Invoke("Till", 0.5f);
     }
 
     private void UseWateringCan(FarmManager farm)
     {
         if (farm.SubtractStamina(5))
-            tile.Invoke("Water", 0.5f);
+            tile.Water();
+            //tile.Invoke("Water", 0.5f);
     }
 
     private void UseSeed(Seed currentItem, FarmManager farm)

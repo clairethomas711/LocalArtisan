@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Door : Interactable
 {
-    public override void Interact(InventorySlot heldItem, FarmManager farm)
+    public override void Interact(InventoryItem heldItem, FarmManager farm)
     {
         farm.NewDay();
     }

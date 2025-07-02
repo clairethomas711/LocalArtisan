@@ -3,7 +3,7 @@ using UnityEngine;
 //A scriptable object for any item that can be added to the player's inventory
 
 [CreateAssetMenu(fileName = "InventoryItem", menuName = "Scriptable Objects / Inventory Item")]
-public class InventorySlot : ScriptableObject
+public class InventoryItem : ScriptableObject
 {
     public string name;
     public itemType itemType;

@@ -2,8 +2,8 @@ using UnityEngine;
 using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "Seed", menuName = "Scriptable Objects / Seed")]
-public class Seed : InventorySlot
+public class Seed : InventoryItem
 {
     public List<GameObject> stages;
-    public InventorySlot product;
+    public InventoryItem product;
 }

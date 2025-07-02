@@ -11,7 +11,8 @@ public class FarmManager : MonoBehaviour
 
     [SerializeField] private GameObject tileObject;
     [SerializeField] string path;
-    [SerializeField] GameObject player;
+    [SerializeField] public GameObject player;
+    [SerializeField] GameObject animalList;
     [SerializeField] Transform respawnPoint;
     [SerializeField] Animator canvasAnim;
     [SerializeField] TextMeshProUGUI moneyText;
@@ -23,50 +24,13 @@ public class FarmManager : MonoBehaviour
     [HideInInspector] public int money;
     [HideInInspector] public float stamina;
 
-    Inventory playerInventory;
+    [HideInInspector] public Inventory playerInventory;
 
     void Start()
     {
         currentDay = 1;
         stamina = maxStamina;
         playerInventory = player.GetComponent<Inventory>();
-    }
-
-    public void AddInventoryItem(InventorySlot i)
-    {
-        for (int j = 0; j < playerInventory.inventoryList.Count; j++)
-        {
-            if (playerInventory.inventoryList[j].name == i.name) //Increase quantity
-            {
-                playerInventory.inventoryList[j].quantity++;
-                playerInventory.DisplayInventory();
-                return;
-            }
-        }
-        //If nothing with the same name found, add
-        playerInventory.inventoryList.Add(i);
-        playerInventory.DisplayInventory();
-    }
-
-    public void RemoveInventoryItem(InventorySlot i)
-    {
-        for (int j = 0; j < playerInventory.inventoryList.Count; j++)
-        {
-            if (playerInventory.inventoryList[j].name == i.name)
-            {
-                if (playerInventory.inventoryList[j].quantity > 1) //Decrease quantity
-                {
-                    playerInventory.inventoryList[j].quantity--;
-                    playerInventory.DisplayInventory();
-                    return;
-                }
-                else
-                {
-                    playerInventory.inventoryList.Remove(playerInventory.inventoryList[j]);
-                    playerInventory.DisplayInventory();
-                }
-            }
-        }
     }
 
     public void AddMoney(int amount)
@@ -120,6 +84,11 @@ public class FarmManager : MonoBehaviour
         currentDay++;
         dayText.text = currentDay.ToString();
         RestoreStamina();
+        for (int i = 0; i < animalList.transform.childCount; i++)
+        {
+            Animal a = animalList.transform.GetChild(i).GetComponent<Animal>();
+            a.readyToProduce = true;
+        }
         //Save
         SaveFarmLayout();
         LoadFarmLayout();

@@ -12,6 +12,8 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerWalkState walkState = new PlayerWalkState();
     [HideInInspector]
     public PlayerTargetState targetState = new PlayerTargetState();
+    [HideInInspector]
+    public PlayerBusyState busyState = new PlayerBusyState();
 
     [HideInInspector] public Vector2 movement;
     [HideInInspector] public bool isTargeting = false;
@@ -56,11 +58,11 @@ public class PlayerStateManager : MonoBehaviour
 
     void OnInteract()
     {
-        if (target)
+        if (target && currentState != busyState)
         {
             if (target.TryGetComponent<Interactable>(out Interactable i))
             {
-                i.Interact(inv.currentItem, farm);
+                i.Interact(inv.currentSelection.currentItem, farm);
             }            
         }
 
