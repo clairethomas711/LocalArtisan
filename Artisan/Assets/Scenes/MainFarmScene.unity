@@ -782,7 +782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e2d299293dfb5a4f840600f4dc0bca5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  craftingUIMenu: {fileID: 1573115978}
+  uiMenu: {fileID: 1573115979}
   recipes:
   - {fileID: 11400000, guid: be3b3d5e4ed6e814c837d12ee8d43ebb, type: 2}
 --- !u!65 &51221773
@@ -20585,7 +20585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e2d299293dfb5a4f840600f4dc0bca5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  craftingUIMenu: {fileID: 1088190133}
+  uiMenu: {fileID: 1088190137}
   recipes:
   - {fileID: 11400000, guid: 3786f114b425a1543ab9942ee56e832d, type: 2}
 --- !u!65 &1618658569
@@ -27373,8 +27373,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1760843841}
-  - {fileID: 1717864089}
   - {fileID: 2055982333}
   - {fileID: 255264090}
   - {fileID: 522079317}
@@ -27382,6 +27380,8 @@ RectTransform:
   - {fileID: 1088190134}
   - {fileID: 1895578080}
   - {fileID: 1573115982}
+  - {fileID: 1760843841}
+  - {fileID: 1717864089}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

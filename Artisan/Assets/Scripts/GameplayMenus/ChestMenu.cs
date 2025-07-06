@@ -10,8 +10,10 @@ public class ChestMenu : GameplayMenu
         set { chestSlots = value; }
     }
 
-    public void OpenChest(List<InventoryItem> chestInventory)
+    public override void Open(List<InventoryItem> chestInventory)
     {
+        Inventory inv = farm.player.GetComponent<Inventory>();
+        inv.OpenExpandedInventory(true);
         gameObject.SetActive(true);
         int i = 0;
         for (i = 0; i < chestInventory.Count; i++)
@@ -22,8 +24,8 @@ public class ChestMenu : GameplayMenu
 
     public override void Close()
     {
-        PlayerStateManager p = farm.player.GetComponent<PlayerStateManager>();
-        p.SwitchState(p.idleState);
+        Inventory inv = farm.player.GetComponent<Inventory>();
+        inv.CloseExpandedInventory();
         gameObject.SetActive(false);
     }
 }

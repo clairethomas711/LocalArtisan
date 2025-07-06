@@ -12,20 +12,6 @@ public class CraftingMenu : GameplayMenu
         set { tableSlots = value; }
     }
 
-    /*public override void ClickSlot(InventoryContainer craftingTableSlot)
-    {
-        if (craftingTableSlot.currentItem != EMPTY)
-        {
-            farm.playerInventory.AddInventoryItem(craftingTableSlot.currentItem);
-        }
-        craftingTableSlot.currentItem = farm.grab.holding;
-        if (farm.grab.holding.quantity > 1)
-            farm.grab.holding.quantity--;
-        else
-            farm.grab.holding = EMPTY;
-        UpdateDisplay();
-    }*/
-
     public void AttempttoCraft() //Called when we click "Submit"
     {
         HashSet<string> c = new HashSet<string>();
@@ -52,6 +38,13 @@ public class CraftingMenu : GameplayMenu
         }
     }
 
+    public override void Open(List<InventoryItem> inventory)
+    {
+        Inventory inv = farm.player.GetComponent<Inventory>();
+        inv.OpenExpandedInventory(true);
+        gameObject.SetActive(true);
+    }
+
     public override void Close()
     {
         for (int i = 0; i < tableSlots.Count; i++)
@@ -66,8 +59,8 @@ public class CraftingMenu : GameplayMenu
             tableSlots[j] = new InventoryItem("", 0);
         }
         UpdateDisplay();
-        PlayerStateManager p = farm.player.GetComponent<PlayerStateManager>();
-        p.SwitchState(p.idleState);
+        Inventory inv = farm.player.GetComponent<Inventory>();
+        inv.CloseExpandedInventory();
         gameObject.SetActive(false);
     }
 }

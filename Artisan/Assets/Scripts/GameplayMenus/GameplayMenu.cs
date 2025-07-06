@@ -51,7 +51,7 @@ public abstract class GameplayMenu : MonoBehaviour
         }
         UpdateDisplay();
     }
-
+    public abstract void Open(List<InventoryItem> inventory = null);
     public abstract void Close();
 
 }

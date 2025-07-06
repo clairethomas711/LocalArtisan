@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class MenuMachine : Machine
 {
-    [SerializeField] GameObject craftingUIMenu;
+    [SerializeField] GameplayMenu uiMenu;
     List<ItemData> acceptedItems;
     List<ItemData> productedItems;
     public List<CraftingRecipe> recipes;
@@ -20,8 +20,6 @@ public class MenuMachine : Machine
 
     public override void Interact(InventoryItem heldItem, FarmManager farm)
     {
-        PlayerStateManager p = farm.player.GetComponent<PlayerStateManager>();
-        p.SwitchState(p.busyState);
-        craftingUIMenu.SetActive(true);
+        uiMenu.Open();
     }
 }

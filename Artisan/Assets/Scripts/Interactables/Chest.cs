@@ -7,8 +7,6 @@ public class Chest : Interactable
     List<InventoryItem> chestInventory = new List<InventoryItem>();
     public override void Interact(InventoryItem heldItem, FarmManager farm)
     {
-        PlayerStateManager p = farm.player.GetComponent<PlayerStateManager>();
-        p.SwitchState(p.busyState);
-        chestMenu.OpenChest(chestInventory);
+        chestMenu.Open(chestInventory);
     }
 }

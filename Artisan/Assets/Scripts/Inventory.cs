@@ -12,12 +12,14 @@ public class Inventory : MonoBehaviour
     [SerializeField] private int maxCapacity = 20;
     [SerializeField] List<string> startingInventory = new List<string>();
     [HideInInspector] public List<InventoryItem> inventoryList = new List<InventoryItem>();
+    [HideInInspector] public bool menuOpen = false;
     public GameObject hotbarPanel;
     public GameObject expandedInventoryPanel;
     public CursorGrab grab;
     public InventoryItem currentSelection;
     int selectedItemLookup = 0;
     private bool inventoryExpanded = false;
+
 
     void Start()
     {
@@ -122,22 +124,14 @@ public class Inventory : MonoBehaviour
 
     void OnOpenInventory(InputValue ip)
     {
-        PlayerStateManager p = farm.player.GetComponent<PlayerStateManager>();
-        if (!inventoryExpanded)
+        if (!menuOpen)
         {
-            inventoryExpanded = true;
-            hotbarPanel.SetActive(false);
-            expandedInventoryPanel.SetActive(true);
-            p.SwitchState(p.busyState);
+            if (!inventoryExpanded)
+                OpenExpandedInventory();
+            else
+                CloseExpandedInventory();
+            UpdateInventories();
         }
-        else
-        {
-            inventoryExpanded = false;
-            hotbarPanel.SetActive(true);
-            expandedInventoryPanel.SetActive(false);
-            p.SwitchState(p.idleState);
-        }
-        UpdateInventories();
     }
 
     public void OnHotbarSelection(InputValue val)
@@ -211,5 +205,27 @@ public class Inventory : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void OpenExpandedInventory(bool isMenuOpen = false)
+    {
+        menuOpen = isMenuOpen;
+        PlayerStateManager p = farm.player.GetComponent<PlayerStateManager>();
+        inventoryExpanded = true;
+        hotbarPanel.SetActive(false);
+        expandedInventoryPanel.SetActive(true);
+        p.SwitchState(p.busyState);
+        UpdateInventories();
+    }
+
+    public void CloseExpandedInventory()
+    {
+        if (menuOpen) { menuOpen = false; }
+        PlayerStateManager p = farm.player.GetComponent<PlayerStateManager>();
+        inventoryExpanded = false;
+        hotbarPanel.SetActive(true);
+        expandedInventoryPanel.SetActive(false);
+        p.SwitchState(p.idleState);
+        UpdateInventories();
     }
 }
