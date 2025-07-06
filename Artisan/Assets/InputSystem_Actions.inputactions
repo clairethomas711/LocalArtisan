@@ -76,6 +76,24 @@
                     "processors": "",
                     "interactions": "Press(behavior=2)",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "OpenInventory",
+                    "type": "Button",
+                    "id": "fe7ff2c4-67db-456e-ba7a-91aa700bf318",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "HotbarSelection",
+                    "type": "Button",
+                    "id": "8930dbe1-5b29-40e1-b75c-856148434fed",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -439,6 +457,127 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8918ca87-0d91-49e5-95a9-ca4070e4e7b4",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "OpenInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "67173559-2932-4dde-8553-9433f7384f99",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "Scale(factor=0)",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "HotbarSelection",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "646a14e9-9104-4462-9a9d-2ec4359565a0",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "Scale",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "HotbarSelection",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bf777ccb-37c5-48b7-a7b8-a174e93570a2",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "Scale(factor=2)",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "HotbarSelection",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8cf04fbc-d0d0-460b-99f4-a18c6fabc5f4",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "Scale(factor=3)",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "HotbarSelection",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b677e997-b7a2-4f4d-82ef-d7c9562864ce",
+                    "path": "<Keyboard>/5",
+                    "interactions": "",
+                    "processors": "Scale(factor=4)",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "HotbarSelection",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a629362a-48fa-4eb4-a724-d9155ebdfaaf",
+                    "path": "<Keyboard>/6",
+                    "interactions": "",
+                    "processors": "Scale(factor=5)",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "HotbarSelection",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "889856e1-8a4c-462d-9726-55a44777a7cc",
+                    "path": "<Keyboard>/7",
+                    "interactions": "",
+                    "processors": "Scale(factor=6)",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "HotbarSelection",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7e098345-51bd-436f-a7d9-04a2e2c65a56",
+                    "path": "<Keyboard>/8",
+                    "interactions": "",
+                    "processors": "Scale(factor=7)",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "HotbarSelection",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a13338fc-444b-4cc5-87e3-aada6ea6e315",
+                    "path": "<Keyboard>/9",
+                    "interactions": "",
+                    "processors": "Scale(factor=8)",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "HotbarSelection",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ac53e2e8-b1b9-45f2-8e3c-412ac4f59504",
+                    "path": "<Keyboard>/0",
+                    "interactions": "",
+                    "processors": "Scale(factor=9)",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "HotbarSelection",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

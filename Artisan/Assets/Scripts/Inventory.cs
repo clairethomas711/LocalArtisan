@@ -9,15 +9,15 @@ using TMPro;
 public class Inventory : MonoBehaviour
 {
     [SerializeField] FarmManager farm;
-    [SerializeField] private int maxCapacity = 10;
+    [SerializeField] private int maxCapacity = 20;
     [SerializeField] List<string> startingInventory = new List<string>();
     [HideInInspector] public List<InventoryItem> inventoryList = new List<InventoryItem>();
-    //[HideInInspector] public List<int> inventoryCount = new List<int>();
-    public GameObject inventoryPanel;
+    public GameObject hotbarPanel;
+    public GameObject expandedInventoryPanel;
     public CursorGrab grab;
-    int selectedItemLookup = 0;
     public InventoryItem currentSelection;
-    //public InventoryItem EMPTY;
+    int selectedItemLookup = 0;
+    private bool inventoryExpanded = false;
 
     void Start()
     {
@@ -31,16 +31,45 @@ public class Inventory : MonoBehaviour
             AddInventoryItem(startingInventory[i]);
         }
         currentSelection = inventoryList[selectedItemLookup];
-        DisplayInventory();
+        UpdateInventories();
         DisplayHighlight();
     }
 
-    public void DisplayInventory() //UI Hotbar Display
+    void UpdateInventories()
     {
-        ClearHighlight();
+        if (!inventoryExpanded)
+            DisplayHotBar();
+        else
+            DisplayExpandedInventory();
+    }
+
+    void DisplayExpandedInventory()
+    {
         for (int i = 0; i < inventoryList.Count; i++)
         {
-            Transform slot = inventoryPanel.transform.GetChild(i);
+            Transform slot = expandedInventoryPanel.transform.GetChild(i);
+            UnityEngine.UI.Image s = slot.gameObject.GetComponent<UnityEngine.UI.Image>();
+            TextMeshProUGUI text = slot.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
+            if (inventoryList[i].id != "")
+            {
+                s.sprite = farm.manifest[inventoryList[i].id].sprite;
+                text.text = inventoryList[i].quantity.ToString();
+            }
+            else
+            {
+                s.sprite = null;
+                text.text = null;
+            }
+        }
+        currentSelection = inventoryList[selectedItemLookup];
+    }
+
+    void DisplayHotBar() //UI Hotbar Display
+    {
+        ClearHighlight();
+        for (int i = 0; i < hotbarPanel.transform.childCount; i++)
+        {
+            Transform slot = hotbarPanel.transform.GetChild(i);
             UnityEngine.UI.Image s = slot.gameObject.GetComponent<UnityEngine.UI.Image>();
             TextMeshProUGUI text = slot.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
             if (inventoryList[i].id != "")
@@ -60,18 +89,19 @@ public class Inventory : MonoBehaviour
 
     void ClearHighlight() //UI Helper functions
     {
-        Transform slot = inventoryPanel.transform.GetChild(selectedItemLookup);
+        Transform slot = hotbarPanel.transform.GetChild(selectedItemLookup);
         UnityEngine.UI.Image s = slot.gameObject.GetComponent<UnityEngine.UI.Image>();
         s.color = Color.white;
     }
 
     void DisplayHighlight() //UI Helper functions
     {
-        Transform slot = inventoryPanel.transform.GetChild(selectedItemLookup);
+        Transform slot = hotbarPanel.transform.GetChild(selectedItemLookup);
         UnityEngine.UI.Image s = slot.gameObject.GetComponent<UnityEngine.UI.Image>();
         s.color = Color.green;
     }
 
+    /// INPUT MANAGEMENT ///
     void OnScrollWheel(InputValue scrollValue)
     {
         ClearHighlight();
@@ -81,26 +111,60 @@ public class Inventory : MonoBehaviour
         //Move that many places (-1/+1)
         selectedItemLookup = selectedItemLookup - selectedMovement;
         //Loop around if needed
-        if (selectedItemLookup >= inventoryList.Count)
+        if (selectedItemLookup >= hotbarPanel.transform.childCount)
             selectedItemLookup = 0;
         else if (selectedItemLookup < 0)
-            selectedItemLookup = inventoryList.Count - 1;
+            selectedItemLookup = hotbarPanel.transform.childCount - 1;
         //Update the current item
         currentSelection = inventoryList[selectedItemLookup];
         DisplayHighlight();
     }
 
-    public void ClickItem(InventorySlotData slot)
+    void OnOpenInventory(InputValue ip)
+    {
+        PlayerStateManager p = farm.player.GetComponent<PlayerStateManager>();
+        if (!inventoryExpanded)
+        {
+            inventoryExpanded = true;
+            hotbarPanel.SetActive(false);
+            expandedInventoryPanel.SetActive(true);
+            p.SwitchState(p.busyState);
+        }
+        else
+        {
+            inventoryExpanded = false;
+            hotbarPanel.SetActive(true);
+            expandedInventoryPanel.SetActive(false);
+            p.SwitchState(p.idleState);
+        }
+        UpdateInventories();
+    }
+
+    public void OnHotbarSelection(InputValue val)
     {
         ClearHighlight();
+        selectedItemLookup = (int)val.Get<float>();
+        DisplayHighlight();
+    }
+
+    /// UI EVENT HANDLING ///
+    public void ClickHotbarItem(InventorySlotData slot)
+    {
+        ClearHighlight();
+        selectedItemLookup = slot.index;
+        DisplayHighlight();
+    }
+
+    public void ClickItem(InventorySlotData slot)
+    {
         int selectedIndex = slot.index;
         InventoryItem placeholder = grab.holding; //Store the item we're holding
         grab.holding = inventoryList[selectedIndex]; //Put the item in this slot into our hand
         inventoryList[selectedIndex] = placeholder; //Put the stored held item in this slot
-        selectedItemLookup = selectedIndex;
-        DisplayInventory();
+        UpdateInventories();
     }
 
+    /// PUBLIC FUNCTIONS ///
     public void AddInventoryItem(string i)
     {
         if (i == "hi") { return; }
@@ -109,7 +173,7 @@ public class Inventory : MonoBehaviour
             if (inventoryList[j].id == i) //Increase quantity
             {
                 inventoryList[j].quantity++;
-                DisplayInventory();
+                UpdateInventories();
                 return;
             }
         }
@@ -119,7 +183,7 @@ public class Inventory : MonoBehaviour
             if (inventoryList[j].id == "")
             {
                 inventoryList[j] = new InventoryItem(i, 1);
-                DisplayInventory();
+                UpdateInventories();
                 return;
             }
         }
@@ -136,13 +200,13 @@ public class Inventory : MonoBehaviour
                 if (inventoryList[j].quantity > 1) //Decrease quantity
                 {
                     inventoryList[j].quantity--;
-                    DisplayInventory();
+                    UpdateInventories();
                     return;
                 }
                 else
                 {
                     inventoryList[j] = new InventoryItem("", 0);
-                    DisplayInventory();
+                    UpdateInventories();
                     return;
                 }
             }
