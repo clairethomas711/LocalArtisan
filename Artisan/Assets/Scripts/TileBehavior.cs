@@ -12,7 +12,7 @@ public class TileBehavior : MonoBehaviour
     [HideInInspector] public enum TileState { Untilled, Tilled, Watered, Grown };
     [HideInInspector] public TileState state;
     [HideInInspector] public int growthScore;
-    private InventoryItem product;
+    private string product;
     public bool isPlanted = false;
     List<GameObject> plantStages;
 
@@ -71,10 +71,10 @@ public class TileBehavior : MonoBehaviour
         {
             isPlanted = true;
             plantStages = s.stages;
-            product = s.product;
+            product = s.product.id;
             FarmManager fManager = transform.parent.gameObject.GetComponent<FarmManager>();
             growthScore = 0;
-            fManager.playerInventory.RemoveInventoryItem(s);
+            fManager.playerInventory.RemoveInventoryItem(s.id);
             UpdateVisuals();
         }
     }

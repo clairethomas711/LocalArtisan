@@ -62,7 +62,7 @@ public class PlayerStateManager : MonoBehaviour
         {
             if (target.TryGetComponent<Interactable>(out Interactable i))
             {
-                i.Interact(inv.currentSelection.currentItem, farm);
+                i.Interact(inv.currentSelection, farm);
             }            
         }
 

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e316a2abddf25d489bdf7b647a1e14a, type: 3}
   m_Name: MilkPail
   m_EditorClassIdentifier: 
-  name: Milk Pail
-  itemType: 0
+  displayName: Milk Pail
+  id: tool_pail
+  itemType: 2
   sprite: {fileID: 21300000, guid: 2af49779824fb7b4b86694c82d6c9408, type: 3}
-  quantity: 1
   value: 0

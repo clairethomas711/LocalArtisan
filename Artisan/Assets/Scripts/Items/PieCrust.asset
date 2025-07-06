@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e316a2abddf25d489bdf7b647a1e14a, type: 3}
   m_Name: PieCrust
   m_EditorClassIdentifier: 
-  name: Pie Crust
-  itemType: 3
+  displayName: Pie Crust
+  id: piecrust
+  itemType: 4
   sprite: {fileID: 21300000, guid: 798ac796c43423d45a52ce3c4c796b55, type: 3}
-  quantity: 1
   value: 0

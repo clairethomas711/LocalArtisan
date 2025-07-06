@@ -10,13 +10,14 @@ public class Tile : Interactable
 
     public override void Interact(InventoryItem currentItem, FarmManager farm)
     {
+        if (currentItem.id == "") { return; }
         if (tile.state == TileBehavior.TileState.Grown)
         {
             UseHarvest(farm);
             return;
         }
 
-        switch (currentItem.itemType) //Need one case for each item enum type
+        switch (farm.manifest[currentItem.id].itemType) //Need one case for each item enum type
         {
             case itemType.Hoe:
                 UseHoe(farm);
@@ -27,7 +28,7 @@ public class Tile : Interactable
                 break;
 
             case itemType.Seed:
-                UseSeed((Seed)currentItem, farm);
+                UseSeed((Seed)farm.manifest[currentItem.id], farm);
                 break;
         }
     }

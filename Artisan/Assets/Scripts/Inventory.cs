@@ -5,27 +5,30 @@ using TMPro;
 
 //Attached to the player, this stores the list of items the player has and controls held item navigation
 
+
 public class Inventory : MonoBehaviour
 {
-    [SerializeField] List<InventoryItem> startingInventory = new List<InventoryItem>();
-    [HideInInspector] public List<InventoryContainer> inventoryList = new List<InventoryContainer>();
+    [SerializeField] FarmManager farm;
+    [SerializeField] private int maxCapacity = 10;
+    [SerializeField] List<string> startingInventory = new List<string>();
+    [HideInInspector] public List<InventoryItem> inventoryList = new List<InventoryItem>();
+    //[HideInInspector] public List<int> inventoryCount = new List<int>();
     public GameObject inventoryPanel;
     public CursorGrab grab;
-
     int selectedItemLookup = 0;
-    public InventoryContainer currentSelection;
-    public InventoryItem EMPTY;
+    public InventoryItem currentSelection;
+    //public InventoryItem EMPTY;
 
     void Start()
     {
-        //Populate the actual inventory
-        for (int i = 0; i < inventoryPanel.transform.childCount; i++)
+        for (int i = 0; i < maxCapacity; i++)
         {
-            inventoryList.Add(inventoryPanel.transform.GetChild(i).GetComponent<InventoryContainer>());
-            if (i < startingInventory.Count)
-                inventoryList[i].currentItem = startingInventory[i];
-            else
-                inventoryList[i].currentItem = EMPTY;
+            inventoryList.Add(new InventoryItem("", 0));
+        }
+        //Populate the actual inventory
+        for (int i = 0; i < startingInventory.Count; i++)
+        {
+            AddInventoryItem(startingInventory[i]);
         }
         currentSelection = inventoryList[selectedItemLookup];
         DisplayInventory();
@@ -37,20 +40,19 @@ public class Inventory : MonoBehaviour
         ClearHighlight();
         for (int i = 0; i < inventoryList.Count; i++)
         {
-            UnityEngine.UI.Image s = inventoryList[i].gameObject.GetComponent<UnityEngine.UI.Image>();
-            TextMeshProUGUI text = inventoryList[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-            if (inventoryList[i].currentItem.name == "") //Don't display empty objects
+            Transform slot = inventoryPanel.transform.GetChild(i);
+            UnityEngine.UI.Image s = slot.gameObject.GetComponent<UnityEngine.UI.Image>();
+            TextMeshProUGUI text = slot.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
+            if (inventoryList[i].id != "")
             {
-                text.text = "";
-                s.sprite = null;
-                continue;
+                s.sprite = farm.manifest[inventoryList[i].id].sprite;
+                text.text = inventoryList[i].quantity.ToString();
             }
-            //Data
-            //inventoryList[i].currentItem = inventoryList[i];
-            //Image
-            s.sprite = inventoryList[i].currentItem.sprite;
-            //Quantity
-            text.text = inventoryList[i].currentItem.quantity.ToString();
+            else
+            {
+                s.sprite = null;
+                text.text = null;
+            }
         }
         currentSelection = inventoryList[selectedItemLookup];
         DisplayHighlight();
@@ -88,25 +90,25 @@ public class Inventory : MonoBehaviour
         DisplayHighlight();
     }
 
-    public void ClickItem(InventoryContainer item)
+    public void ClickItem(InventorySlotData slot)
     {
         ClearHighlight();
-        InventoryItem placeholder = grab.holding; //Store the item we are holding
-        grab.holding = item.currentItem; //Put the item in this slot into our hand
-        inventoryList[item.index].currentItem = placeholder; //Put the stored held item into this slot
-        currentSelection = inventoryList[item.index];
-        selectedItemLookup = item.index;
+        int selectedIndex = slot.index;
+        InventoryItem placeholder = grab.holding; //Store the item we're holding
+        grab.holding = inventoryList[selectedIndex]; //Put the item in this slot into our hand
+        inventoryList[selectedIndex] = placeholder; //Put the stored held item in this slot
+        selectedItemLookup = selectedIndex;
         DisplayInventory();
     }
 
-        public void AddInventoryItem(InventoryItem i)
+    public void AddInventoryItem(string i)
     {
-        if (i.name == "") { return; }
+        if (i == "hi") { return; }
         for (int j = 0; j < inventoryList.Count; j++)
         {
-            if (inventoryList[j].currentItem.name == i.name) //Increase quantity
+            if (inventoryList[j].id == i) //Increase quantity
             {
-                inventoryList[j].currentItem.quantity++;
+                inventoryList[j].quantity++;
                 DisplayInventory();
                 return;
             }
@@ -114,9 +116,9 @@ public class Inventory : MonoBehaviour
         //If nothing with the same name found, add
         for (int j = 0; j < inventoryList.Count; j++)
         {
-            if (inventoryList[j].currentItem.name == "")
+            if (inventoryList[j].id == "")
             {
-                inventoryList[j].currentItem = i;
+                inventoryList[j] = new InventoryItem(i, 1);
                 DisplayInventory();
                 return;
             }
@@ -124,23 +126,22 @@ public class Inventory : MonoBehaviour
         print("ERROR: Failed to add to inventory - full!");
     }
 
-    public void RemoveInventoryItem(InventoryItem i)
+    public void RemoveInventoryItem(string i)
     {
-        if (i.name == "") { return; }
+        if (i == "") { return; }
         for (int j = 0; j < inventoryList.Count; j++)
         {
-            if (inventoryList[j].currentItem.name == i.name)
+            if (inventoryList[j].id == i)
             {
-                if (inventoryList[j].currentItem.quantity > 1) //Decrease quantity
+                if (inventoryList[j].quantity > 1) //Decrease quantity
                 {
-                    inventoryList[j].currentItem.quantity--;
+                    inventoryList[j].quantity--;
                     DisplayInventory();
                     return;
                 }
                 else
                 {
-                    inventoryList[j].currentItem = EMPTY;
-                    
+                    inventoryList[j] = new InventoryItem("", 0);
                     DisplayInventory();
                     return;
                 }

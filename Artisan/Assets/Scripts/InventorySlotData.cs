@@ -1,7 +1,8 @@
 using UnityEngine;
 
-public class InventoryContainer : MonoBehaviour
+public class InventorySlotData : MonoBehaviour
 {
     public InventoryItem currentItem;
     public int index;
+    //public int quantity;
 }

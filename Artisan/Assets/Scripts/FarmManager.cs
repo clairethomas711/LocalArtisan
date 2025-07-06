@@ -12,6 +12,8 @@ public class FarmManager : MonoBehaviour
     [SerializeField] private GameObject tileObject;
     [SerializeField] string path;
     [SerializeField] public GameObject player;
+    [SerializeField] public CursorGrab grab;
+    public ItemManifest itemManifest;
     [SerializeField] GameObject animalList;
     [SerializeField] Transform respawnPoint;
     [SerializeField] Animator canvasAnim;
@@ -25,9 +27,15 @@ public class FarmManager : MonoBehaviour
     [HideInInspector] public float stamina;
 
     [HideInInspector] public Inventory playerInventory;
+    [HideInInspector] public Dictionary<string, ItemData> manifest = new Dictionary<string, ItemData>();
 
-    void Start()
+    void Awake()
     {
+        //BUILD THE DICTIONARY IN THE MANIFEST
+        for (int i = 0; i < itemManifest.scriptableItems.Count; i++)
+        {
+            manifest[itemManifest.scriptableItems[i].id] = itemManifest.scriptableItems[i];
+        }
         currentDay = 1;
         stamina = maxStamina;
         playerInventory = player.GetComponent<Inventory>();

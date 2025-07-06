@@ -3,14 +3,14 @@ using System.Collections.Generic;
 
 public class SimpleMachine : Machine
 {
-    [SerializeField] List<InventoryItem> acceptedItems;
-    [SerializeField] List<InventoryItem> productedItems;
-    public override List<InventoryItem> AcceptedItems
+    [SerializeField] List<ItemData> acceptedItems;
+    [SerializeField] List<ItemData> productedItems;
+    public override List<ItemData> AcceptedItems
     {
         get { return acceptedItems; }
         set { AcceptedItems = value; }
     }
-    public override List<InventoryItem> ProducedItems
+    public override List<ItemData> ProducedItems
     {
         get { return productedItems; }
         set { ProducedItems = value; }
@@ -20,10 +20,10 @@ public class SimpleMachine : Machine
     {
         for (int i = 0; i < acceptedItems.Count; i++)
         {
-            if (heldItem.name == acceptedItems[i].name)
+            if (heldItem.id == acceptedItems[i].id)
             {
-                farm.playerInventory.RemoveInventoryItem(heldItem);
-                farm.playerInventory.AddInventoryItem(productedItems[i]);
+                farm.playerInventory.RemoveInventoryItem(heldItem.id);
+                farm.playerInventory.AddInventoryItem(productedItems[i].id);
             }
         }
 

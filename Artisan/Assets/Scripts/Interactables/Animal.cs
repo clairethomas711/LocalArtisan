@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class Animal : Interactable
 {
-    [SerializeField] private InventoryItem requiredTool;
-    public InventoryItem product;
+    [SerializeField] private ItemData requiredTool;
+    public ItemData product;
     public bool readyToProduce = false;
     public override void Interact(InventoryItem heldItem, FarmManager farm)
     {
-        if (heldItem.name == requiredTool.name && readyToProduce)
+        if (heldItem.id == requiredTool.id && readyToProduce)
         {
             readyToProduce = false;
-            farm.playerInventory.AddInventoryItem(product);
+            farm.playerInventory.AddInventoryItem(product.id);
         }
     }
 }

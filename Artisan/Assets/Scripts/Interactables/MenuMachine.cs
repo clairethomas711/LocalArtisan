@@ -4,15 +4,15 @@ using System.Collections.Generic;
 public class MenuMachine : Machine
 {
     [SerializeField] GameObject craftingUIMenu;
-    List<InventoryItem> acceptedItems;
-    List<InventoryItem> productedItems;
+    List<ItemData> acceptedItems;
+    List<ItemData> productedItems;
     public List<CraftingRecipe> recipes;
-    public override List<InventoryItem> AcceptedItems
+    public override List<ItemData> AcceptedItems
     {
         get { return acceptedItems; }
         set { AcceptedItems = value; }
     }
-    public override List<InventoryItem> ProducedItems
+    public override List<ItemData> ProducedItems
     {
         get { return productedItems; }
         set { ProducedItems = value; }
