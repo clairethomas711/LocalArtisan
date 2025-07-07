@@ -18,7 +18,7 @@ public class MenuMachine : Machine
         set { ProducedItems = value; }
     }
 
-    public override void Interact(InventoryItem heldItem, FarmManager farm)
+    public override void Interact(InventoryItem heldItem)
     {
         uiMenu.Open();
     }

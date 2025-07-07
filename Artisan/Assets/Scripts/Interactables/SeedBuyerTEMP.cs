@@ -3,12 +3,12 @@ using UnityEngine;
 public class SeedBuyerTEMP : Interactable
 {
     [SerializeField] ItemData seedToBuy;
-    public override void Interact(InventoryItem heldItem, FarmManager farm)
+    public override void Interact(InventoryItem heldItem)
     {
-        if (farm.money >= seedToBuy.value)
+        if (DataManager.instance.money >= seedToBuy.value)
         {
-            farm.SubtractMoney(seedToBuy.value);
-            farm.playerInventory.AddInventoryItem(seedToBuy.id);
+            DataManager.instance.SubtractMoney(seedToBuy.value);
+            DataManager.instance.playerInventory.AddInventoryItem(seedToBuy.id);
         }
     }
 }

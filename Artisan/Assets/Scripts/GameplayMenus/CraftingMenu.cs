@@ -27,7 +27,7 @@ public class CraftingMenu : GameplayMenu
             for (int j = 0; j < r.recipeRequirements.Count; j++) { required.Add(r.recipeRequirements[j].id); }
             if (required.SetEquals(c)) //We are using a hashset here - better equality checking
             {
-                farm.playerInventory.AddInventoryItem(r.product.id); //Once mixed, immediately add to inventory
+                DataManager.instance.playerInventory.AddInventoryItem(r.product.id); //Once mixed, immediately add to inventory
                 for (int j = 0; j < tableSlots.Count; j++)
                 {
                     tableSlots[j] = new InventoryItem("", 0);
@@ -40,7 +40,7 @@ public class CraftingMenu : GameplayMenu
 
     public override void Open(List<InventoryItem> inventory)
     {
-        Inventory inv = farm.player.GetComponent<Inventory>();
+        Inventory inv = DataManager.instance.player.GetComponent<Inventory>();
         inv.OpenExpandedInventory(true);
         gameObject.SetActive(true);
     }
@@ -51,7 +51,7 @@ public class CraftingMenu : GameplayMenu
         {
             if (tableSlots[i] != null && tableSlots[i].id != "")
             {
-                farm.playerInventory.AddInventoryItem(tableSlots[i].id); //Return unused items to the inventory
+                DataManager.instance.playerInventory.AddInventoryItem(tableSlots[i].id); //Return unused items to the inventory
             }
         }
         for (int j = 0; j < tableSlots.Count; j++)
@@ -59,7 +59,7 @@ public class CraftingMenu : GameplayMenu
             tableSlots[j] = new InventoryItem("", 0);
         }
         UpdateDisplay();
-        Inventory inv = farm.player.GetComponent<Inventory>();
+        Inventory inv = DataManager.instance.player.GetComponent<Inventory>();
         inv.CloseExpandedInventory();
         gameObject.SetActive(false);
     }

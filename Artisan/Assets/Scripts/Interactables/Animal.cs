@@ -5,12 +5,12 @@ public class Animal : Interactable
     [SerializeField] private ItemData requiredTool;
     public ItemData product;
     public bool readyToProduce = false;
-    public override void Interact(InventoryItem heldItem, FarmManager farm)
+    public override void Interact(InventoryItem heldItem)
     {
         if (heldItem.id == requiredTool.id && readyToProduce)
         {
             readyToProduce = false;
-            farm.playerInventory.AddInventoryItem(product.id);
+            DataManager.instance.playerInventory.AddInventoryItem(product.id);
         }
     }
 }

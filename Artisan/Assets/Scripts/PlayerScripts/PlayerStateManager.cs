@@ -19,7 +19,6 @@ public class PlayerStateManager : MonoBehaviour
     [HideInInspector] public bool isTargeting = false;
     [HideInInspector] public bool isSneaking = false;
 
-    public FarmManager farm;
     public float default_speed = 1;
 
     CharacterController controller;
@@ -62,7 +61,7 @@ public class PlayerStateManager : MonoBehaviour
         {
             if (target.TryGetComponent<Interactable>(out Interactable i))
             {
-                i.Interact(inv.currentSelection, farm);
+                i.Interact(inv.currentSelection);
             }            
         }
 

@@ -16,14 +16,14 @@ public class SimpleMachine : Machine
         set { ProducedItems = value; }
     }
 
-    public override void Interact(InventoryItem heldItem, FarmManager farm)
+    public override void Interact(InventoryItem heldItem)
     {
         for (int i = 0; i < acceptedItems.Count; i++)
         {
             if (heldItem.id == acceptedItems[i].id)
             {
-                farm.playerInventory.RemoveInventoryItem(heldItem.id);
-                farm.playerInventory.AddInventoryItem(productedItems[i].id);
+                DataManager.instance.playerInventory.RemoveInventoryItem(heldItem.id);
+                DataManager.instance.playerInventory.AddInventoryItem(productedItems[i].id);
             }
         }
 

@@ -7,13 +7,13 @@ public class ShelfPlacement : Interactable
     [SerializeField] GameObject TEMP_MODEL;
     private string currentAcceptedItem;
     private List<InventoryItem> shelfInventory = new List<InventoryItem>();
-    public override void Interact(InventoryItem heldItem, FarmManager farm)
+    public override void Interact(InventoryItem heldItem)
     {
         if (heldItem.id == "")
         {
             if (shelfInventory.Count > 0)
             {
-                farm.playerInventory.AddInventoryItem(shelfInventory[shelfInventory.Count - 1].id);
+                DataManager.instance.playerInventory.AddInventoryItem(shelfInventory[shelfInventory.Count - 1].id);
                 shelfInventory.Remove(shelfInventory[shelfInventory.Count - 1]);
                 if (shelfInventory.Count == 0)
                 {
@@ -25,12 +25,12 @@ public class ShelfPlacement : Interactable
         {
             currentAcceptedItem = heldItem.id;
             shelfInventory.Add(heldItem);
-            farm.playerInventory.RemoveInventoryItem(heldItem.id);
+            DataManager.instance.playerInventory.RemoveInventoryItem(heldItem.id);
         }
         else if (currentAcceptedItem == heldItem.id && shelfInventory.Count < placementLocations.Count)
         {
             shelfInventory.Add(heldItem);
-            farm.playerInventory.RemoveInventoryItem(heldItem.id);
+            DataManager.instance.playerInventory.RemoveInventoryItem(heldItem.id);
         }
         UpdateDisplay();
     }

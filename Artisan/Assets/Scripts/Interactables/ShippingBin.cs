@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class ShippingBin : Interactable
 {
-    public override void Interact(InventoryItem heldItem, FarmManager farm)
+    public override void Interact(InventoryItem heldItem)
     {
-        if (farm.manifest[heldItem.id].value > 0)
+        if (DataManager.instance.manifest[heldItem.id].value > 0)
         {
-            farm.playerInventory.RemoveInventoryItem(heldItem.id);
-            farm.AddMoney(farm.manifest[heldItem.id].value);
-        } else { print(heldItem.id + " is not a sellable item. Value of " + farm.manifest[heldItem.id].value.ToString()); }
+            DataManager.instance.playerInventory.RemoveInventoryItem(heldItem.id);
+            DataManager.instance.AddMoney(DataManager.instance.manifest[heldItem.id].value);
+        } else { print(heldItem.id + " is not a sellable item. Value of " + DataManager.instance.manifest[heldItem.id].value.ToString()); }
     }
 }

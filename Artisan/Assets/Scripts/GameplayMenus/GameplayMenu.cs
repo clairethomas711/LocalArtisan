@@ -4,7 +4,6 @@ using TMPro;
 
 public abstract class GameplayMenu : MonoBehaviour
 {
-    [SerializeField] public FarmManager farm;
     [SerializeField] public GameObject slots;
     public abstract List<InventoryItem> inventorySlots { get; set; }
 
@@ -25,7 +24,7 @@ public abstract class GameplayMenu : MonoBehaviour
             TextMeshProUGUI text = slot.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
             if (inventorySlots[i].id != "")
             {
-                s.sprite = farm.manifest[inventorySlots[i].id].sprite;
+                s.sprite = DataManager.instance.manifest[inventorySlots[i].id].sprite;
                 text.text = inventorySlots[i].quantity.ToString();
             }
             else
@@ -38,15 +37,15 @@ public abstract class GameplayMenu : MonoBehaviour
 
     public void ClickSlot(InventorySlotData s)
     {
-        if (inventorySlots[s.index].id != "" && inventorySlots[s.index].id == farm.grab.holding.id) //We are holding the same item - add what we're holding to the stack
+        if (inventorySlots[s.index].id != "" && inventorySlots[s.index].id == DataManager.instance.grab.holding.id) //We are holding the same item - add what we're holding to the stack
         {
-            inventorySlots[s.index].quantity += farm.grab.holding.quantity;
-            farm.grab.holding = new InventoryItem("", 0);
+            inventorySlots[s.index].quantity += DataManager.instance.grab.holding.quantity;
+            DataManager.instance.grab.holding = new InventoryItem("", 0);
         }
         else //Otherwise, swap the items
         {
-        InventoryItem placeholder = farm.grab.holding; //Store the item we're holding
-        farm.grab.holding = inventorySlots[s.index]; //Put the item in this slot into our hand
+        InventoryItem placeholder = DataManager.instance.grab.holding; //Store the item we're holding
+        DataManager.instance.grab.holding = inventorySlots[s.index]; //Put the item in this slot into our hand
         inventorySlots[s.index] = placeholder; //Put the stored held item in this slot
         }
         UpdateDisplay();

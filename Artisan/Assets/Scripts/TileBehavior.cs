@@ -72,9 +72,8 @@ public class TileBehavior : MonoBehaviour
             isPlanted = true;
             plantStages = s.stages;
             product = s.product.id;
-            FarmManager fManager = transform.parent.gameObject.GetComponent<FarmManager>();
             growthScore = 0;
-            fManager.playerInventory.RemoveInventoryItem(s.id);
+            DataManager.instance.playerInventory.RemoveInventoryItem(s.id);
             UpdateVisuals();
         }
     }
@@ -94,8 +93,7 @@ public class TileBehavior : MonoBehaviour
 
     public void Harvest()
     {
-        FarmManager fManager = transform.parent.gameObject.GetComponent<FarmManager>();
-        fManager.playerInventory.AddInventoryItem(product);
+        DataManager.instance.playerInventory.AddInventoryItem(product);
         state = TileState.Tilled;
         isPlanted = false;
         UpdateVisuals();

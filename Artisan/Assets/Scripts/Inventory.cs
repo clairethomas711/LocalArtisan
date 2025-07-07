@@ -8,7 +8,6 @@ using TMPro;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField] FarmManager farm;
     [SerializeField] private int maxCapacity = 20;
     [SerializeField] List<string> startingInventory = new List<string>();
     [HideInInspector] public List<InventoryItem> inventoryList = new List<InventoryItem>();
@@ -54,7 +53,7 @@ public class Inventory : MonoBehaviour
             TextMeshProUGUI text = slot.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
             if (inventoryList[i].id != "")
             {
-                s.sprite = farm.manifest[inventoryList[i].id].sprite;
+                s.sprite = DataManager.instance.manifest[inventoryList[i].id].sprite;
                 text.text = inventoryList[i].quantity.ToString();
             }
             else
@@ -76,7 +75,7 @@ public class Inventory : MonoBehaviour
             TextMeshProUGUI text = slot.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
             if (inventoryList[i].id != "")
             {
-                s.sprite = farm.manifest[inventoryList[i].id].sprite;
+                s.sprite = DataManager.instance.manifest[inventoryList[i].id].sprite;
                 text.text = inventoryList[i].quantity.ToString();
             }
             else
@@ -210,7 +209,7 @@ public class Inventory : MonoBehaviour
     public void OpenExpandedInventory(bool isMenuOpen = false)
     {
         menuOpen = isMenuOpen;
-        PlayerStateManager p = farm.player.GetComponent<PlayerStateManager>();
+        PlayerStateManager p = DataManager.instance.player.GetComponent<PlayerStateManager>();
         inventoryExpanded = true;
         hotbarPanel.SetActive(false);
         expandedInventoryPanel.SetActive(true);
@@ -221,7 +220,7 @@ public class Inventory : MonoBehaviour
     public void CloseExpandedInventory()
     {
         if (menuOpen) { menuOpen = false; }
-        PlayerStateManager p = farm.player.GetComponent<PlayerStateManager>();
+        PlayerStateManager p = DataManager.instance.player.GetComponent<PlayerStateManager>();
         inventoryExpanded = false;
         hotbarPanel.SetActive(true);
         expandedInventoryPanel.SetActive(false);

@@ -6,8 +6,9 @@ using TMPro;
 
 //A manager EXCLUSIVELY for the farm scene
 
-public class FarmManager : MonoBehaviour
+public class DataManager : MonoBehaviour
 {
+    public static DataManager instance;
 
     [SerializeField] private GameObject tileObject;
     [SerializeField] string path;
@@ -31,11 +32,13 @@ public class FarmManager : MonoBehaviour
 
     void Awake()
     {
+        if (instance == null)
+            instance = this;
         //BUILD THE DICTIONARY IN THE MANIFEST
-        for (int i = 0; i < itemManifest.scriptableItems.Count; i++)
-        {
-            manifest[itemManifest.scriptableItems[i].id] = itemManifest.scriptableItems[i];
-        }
+            for (int i = 0; i < itemManifest.scriptableItems.Count; i++)
+            {
+                manifest[itemManifest.scriptableItems[i].id] = itemManifest.scriptableItems[i];
+            }
         currentDay = 1;
         stamina = maxStamina;
         playerInventory = player.GetComponent<Inventory>();

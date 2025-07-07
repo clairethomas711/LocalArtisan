@@ -12,7 +12,7 @@ public class ChestMenu : GameplayMenu
 
     public override void Open(List<InventoryItem> chestInventory)
     {
-        Inventory inv = farm.player.GetComponent<Inventory>();
+        Inventory inv = DataManager.instance.player.GetComponent<Inventory>();
         inv.OpenExpandedInventory(true);
         gameObject.SetActive(true);
         int i = 0;
@@ -24,7 +24,7 @@ public class ChestMenu : GameplayMenu
 
     public override void Close()
     {
-        Inventory inv = farm.player.GetComponent<Inventory>();
+        Inventory inv = DataManager.instance.player.GetComponent<Inventory>();
         inv.CloseExpandedInventory();
         gameObject.SetActive(false);
     }

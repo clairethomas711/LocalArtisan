@@ -8,54 +8,54 @@ public class Tile : Interactable
         tile = GetComponent<TileBehavior>();
     }
 
-    public override void Interact(InventoryItem currentItem, FarmManager farm)
+    public override void Interact(InventoryItem currentItem)
     {
         if (currentItem.id == "") { return; }
         if (tile.state == TileBehavior.TileState.Grown)
         {
-            UseHarvest(farm);
+            UseHarvest();
             return;
         }
 
-        switch (farm.manifest[currentItem.id].itemType) //Need one case for each item enum type
+        switch (DataManager.instance.manifest[currentItem.id].itemType) //Need one case for each item enum type
         {
             case itemType.Hoe:
-                UseHoe(farm);
+                UseHoe();
                 break;
 
             case itemType.WateringCan:
-                UseWateringCan(farm);
+                UseWateringCan();
                 break;
 
             case itemType.Seed:
-                UseSeed((Seed)farm.manifest[currentItem.id], farm);
+                UseSeed((Seed)DataManager.instance.manifest[currentItem.id]);
                 break;
         }
     }
 
-    private void UseHoe(FarmManager farm)
+    private void UseHoe()
     {
-        if (farm.SubtractStamina(5))
+        if (DataManager.instance.SubtractStamina(5))
             tile.Till();
             //tile.Invoke("Till", 0.5f);
     }
 
-    private void UseWateringCan(FarmManager farm)
+    private void UseWateringCan()
     {
-        if (farm.SubtractStamina(5))
+        if (DataManager.instance.SubtractStamina(5))
             tile.Water();
             //tile.Invoke("Water", 0.5f);
     }
 
-    private void UseSeed(Seed currentItem, FarmManager farm)
+    private void UseSeed(Seed currentItem)
     {
-        if (farm.SubtractStamina(1))
+        if (DataManager.instance.SubtractStamina(1))
             tile.Plant(currentItem);
     }
 
-    private void UseHarvest(FarmManager farm)
+    private void UseHarvest()
     {
-        if (farm.SubtractStamina(1))
+        if (DataManager.instance.SubtractStamina(1))
             tile.Harvest();
     }
 }
