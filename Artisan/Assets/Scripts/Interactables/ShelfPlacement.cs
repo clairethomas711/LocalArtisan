@@ -6,7 +6,7 @@ public class ShelfPlacement : Interactable
     [SerializeField] List<Transform> placementLocations;
     [SerializeField] GameObject TEMP_MODEL;
     private string currentAcceptedItem;
-    private List<InventoryItem> shelfInventory = new List<InventoryItem>();
+    [HideInInspector] public List<InventoryItem> shelfInventory = new List<InventoryItem>();
     public override void Interact(InventoryItem heldItem)
     {
         if (heldItem.id == "")
@@ -20,6 +20,11 @@ public class ShelfPlacement : Interactable
                     currentAcceptedItem = null;
                 }
             }
+        }
+        else if (DataManager.instance.manifest[heldItem.id].itemType != itemType.Artisan)
+        {
+            print("Only Artisan items can be sold in the store.");
+            return;
         }
         else if (currentAcceptedItem == null)
         {
@@ -35,7 +40,7 @@ public class ShelfPlacement : Interactable
         UpdateDisplay();
     }
 
-    void UpdateDisplay()
+    public void UpdateDisplay()
     {
         for (int i = 0; i < placementLocations.Count; i++)
         {
@@ -44,9 +49,11 @@ public class ShelfPlacement : Interactable
                 Destroy(placementLocations[i].GetChild(0).gameObject);
             }
         }
+        if (currentAcceptedItem == null) { return; }
+        Artisan a = (Artisan)DataManager.instance.manifest[currentAcceptedItem];
         for (int i = 0; i < shelfInventory.Count; i++)
         {
-            Instantiate(TEMP_MODEL, placementLocations[i].position, placementLocations[i].rotation, placementLocations[i]);
+            Instantiate(a.model, placementLocations[i].position, placementLocations[i].rotation, placementLocations[i]);
         }
     }
 }

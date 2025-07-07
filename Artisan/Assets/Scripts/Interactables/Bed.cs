@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Door : Interactable
+public class Bed : Interactable
 {
     public override void Interact(InventoryItem heldItem)
     {

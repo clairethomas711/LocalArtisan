@@ -22,6 +22,7 @@ public class DataManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI staminaText;
     [SerializeField] TextMeshProUGUI dayText;
     [SerializeField] float maxStamina;
+    [SerializeField] StoreManager store;
 
     [HideInInspector] public int currentDay;
     [HideInInspector] public int money;
@@ -100,6 +101,7 @@ public class DataManager : MonoBehaviour
             Animal a = animalList.transform.GetChild(i).GetComponent<Animal>();
             a.readyToProduce = true;
         }
+        store.SellAllItems();
         //Save
         SaveFarmLayout();
         LoadFarmLayout();
