@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff0d5a2bd2dfd354cb8569cc2f602c72, type: 3}
-  m_Name: StrawberrySeed
+  m_Name: seed_wheat
   m_EditorClassIdentifier: 
-  displayName: Strawberry Seed
-  id: seed_strawberry
+  displayName: Wheat Seed
+  id: seed_wheat
   itemType: 3
-  sprite: {fileID: 21300000, guid: deb6fbf2d9a776244bb0a7340ac2ff06, type: 3}
-  value: 0
+  sprite: {fileID: 21300000, guid: 0ce91ad751a4dd045bdbcbcb1ee80d82, type: 3}
+  value: 1
   stages:
   - {fileID: 919132149155446097, guid: 54c5dbfb0c0006f4e98d3f19a0747a2f, type: 3}
   - {fileID: 919132149155446097, guid: 6b2f88137ce89914bb8eacd3651d8bfa, type: 3}
   - {fileID: 919132149155446097, guid: c82459d5d5f01c54ebb63537bc74d74c, type: 3}
-  product: {fileID: 11400000, guid: 7a689a49c04e5834fbc763276a5500f9, type: 2}
+  product: {fileID: 11400000, guid: 5d3913f5e6f4244458d1857ee9a0c038, type: 2}

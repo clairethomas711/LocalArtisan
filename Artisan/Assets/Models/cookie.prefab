@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3972592730645299425}
   - component: {fileID: 2605712819355831586}
   m_Layer: 0
-  m_Name: pie
+  m_Name: cookie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 656fa21aeff355845802f8fb7735981f, type: 2}
+  - {fileID: 2100000, guid: 3e2cebd9512368641bf9782a08039f51, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e316a2abddf25d489bdf7b647a1e14a, type: 3}
-  m_Name: Milk
+  m_Script: {fileID: 11500000, guid: 6ca4512db809b5142a1cdf8ae6551298, type: 3}
+  m_Name: ShortbreadCookies
   m_EditorClassIdentifier: 
-  displayName: Milk
-  id: milk
-  itemType: 4
-  sprite: {fileID: 21300000, guid: 125d18e556c87dc4ca184d15dba42c77, type: 3}
-  value: 0
+  recipeRequirements:
+  - {fileID: 11400000, guid: 99a4a95acf04326468da1ae654a0c804, type: 2}
+  product: {fileID: 11400000, guid: 11c2cd3dcf6b4274db27cc0da7a58b15, type: 2}

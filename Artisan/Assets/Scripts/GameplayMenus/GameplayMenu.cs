@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public abstract class GameplayMenu : MonoBehaviour
 {
@@ -49,6 +50,11 @@ public abstract class GameplayMenu : MonoBehaviour
         inventorySlots[s.index] = placeholder; //Put the stored held item in this slot
         }
         UpdateDisplay();
+    }
+
+    public void OnCancel(InputAction.CallbackContext ctx) //WHY DOESN'T THIS WORK. FIGURE IT OUT LATER
+    {
+        print("I hit escape!!");
     }
     public abstract void Open(List<InventoryItem> inventory = null);
     public abstract void Close();

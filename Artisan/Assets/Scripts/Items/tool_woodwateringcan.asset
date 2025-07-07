@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e316a2abddf25d489bdf7b647a1e14a, type: 3}
-  m_Name: Flour
+  m_Name: tool_woodwateringcan
   m_EditorClassIdentifier: 
-  displayName: Flour
-  id: flour
-  itemType: 4
-  sprite: {fileID: 21300000, guid: e2d797ded2922d44ab7ab49033970ac2, type: 3}
+  displayName: Wooden Watering Can
+  id: tool_woodwateringcan
+  itemType: 1
+  sprite: {fileID: 21300000, guid: e3ea650e015363845996145b455693ee, type: 3}
   value: 0

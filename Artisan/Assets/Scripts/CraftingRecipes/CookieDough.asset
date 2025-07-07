@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ca4512db809b5142a1cdf8ae6551298, type: 3}
-  m_Name: StrawberryPie
+  m_Name: CookieDough
   m_EditorClassIdentifier: 
   recipeRequirements:
-  - {fileID: 11400000, guid: 130dce0d2c7907b49964dc1e6919d50c, type: 2}
-  - {fileID: 11400000, guid: c548a3a495edcbb44b05d018a89a7c44, type: 2}
-  product: {fileID: 11400000, guid: 55b9849eb722c354ab690f19bc94c09e, type: 2}
+  - {fileID: 11400000, guid: 55d2a381e3ed2e3448c30ba9fc8563f1, type: 2}
+  - {fileID: 11400000, guid: ba2b40a4093096f4ea2f0fe43b2ea640, type: 2}
+  - {fileID: 11400000, guid: 34590bccc35e04a41bddc017d6bdbcc6, type: 2}
+  product: {fileID: 11400000, guid: 99a4a95acf04326468da1ae654a0c804, type: 2}

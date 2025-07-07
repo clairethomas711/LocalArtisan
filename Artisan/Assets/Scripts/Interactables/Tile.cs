@@ -34,27 +34,25 @@ public class Tile : Interactable
 
     private void UseHoe()
     {
-        if (DataManager.instance.SubtractStamina(5))
-            tile.Till();
-            //tile.Invoke("Till", 0.5f);
+        if (tile.Till())
+            DataManager.instance.SubtractStamina(2);
     }
 
     private void UseWateringCan()
     {
-        if (DataManager.instance.SubtractStamina(5))
-            tile.Water();
-            //tile.Invoke("Water", 0.5f);
+        if (tile.Water())
+            DataManager.instance.SubtractStamina(2);
     }
 
     private void UseSeed(Seed currentItem)
     {
-        if (DataManager.instance.SubtractStamina(1))
-            tile.Plant(currentItem);
+        if (tile.Plant(currentItem))
+            DataManager.instance.SubtractStamina(1);  
     }
 
     private void UseHarvest()
     {
-        if (DataManager.instance.SubtractStamina(1))
-            tile.Harvest();
+        if (tile.Harvest())
+            DataManager.instance.SubtractStamina(1);
     }
 }

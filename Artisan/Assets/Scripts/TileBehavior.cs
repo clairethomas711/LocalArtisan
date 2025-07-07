@@ -40,7 +40,7 @@ public class TileBehavior : MonoBehaviour
         }
     }
 
-    public void Till()
+    public bool Till()
     {
 
         if (state == TileState.Untilled || state == TileState.Watered)
@@ -53,19 +53,21 @@ public class TileBehavior : MonoBehaviour
         }
 
         UpdateVisuals();
+        return true;
     }
 
-    public void Water()
+    public bool Water()
     {
         if (state == TileState.Tilled)
         {
             state = TileState.Watered;
+            UpdateVisuals();
+            return true;
         }
-
-        UpdateVisuals();
+        return false;
     }
 
-    public void Plant(Seed s)
+    public bool Plant(Seed s)
     {
         if ((state == TileState.Tilled || state == TileState.Watered) && !isPlanted)
         {
@@ -75,7 +77,9 @@ public class TileBehavior : MonoBehaviour
             growthScore = 0;
             DataManager.instance.playerInventory.RemoveInventoryItem(s.id);
             UpdateVisuals();
+            return true;
         }
+        return false;
     }
 
     void GrowPlant()
@@ -91,11 +95,12 @@ public class TileBehavior : MonoBehaviour
         Instantiate(plantStages[growthScore], transform.position, properRotation, transform); //Spawn new plant
     }
 
-    public void Harvest()
+    public bool Harvest()
     {
         DataManager.instance.playerInventory.AddInventoryItem(product);
         state = TileState.Tilled;
         isPlanted = false;
         UpdateVisuals();
+        return true;
     }
 }

@@ -28,11 +28,15 @@ public class Inventory : MonoBehaviour
         //Populate the actual inventory
         for (int i = 0; i < startingInventory.Count; i++)
         {
-            AddInventoryItem(startingInventory[i]);
+            if (DataManager.instance.manifest[startingInventory[i]].itemType == itemType.Seed)
+                AddInventoryItem(startingInventory[i], 6);
+            else
+                AddInventoryItem(startingInventory[i]);
         }
         currentSelection = inventoryList[selectedItemLookup];
         UpdateInventories();
         DisplayHighlight();
+        DataManager.instance.AddMoney(10);
     }
 
     void UpdateInventories()

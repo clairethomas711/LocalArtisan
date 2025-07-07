@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e316a2abddf25d489bdf7b647a1e14a, type: 3}
-  m_Name: Strawberry
+  m_Name: ing_strawberryjam
   m_EditorClassIdentifier: 
-  displayName: Strawberry
-  id: crop_strawberry
-  itemType: 4
-  sprite: {fileID: 21300000, guid: 6b6e7c811482d8545a287362fcdd796b, type: 3}
+  displayName: Strawberry Jam
+  id: ing_strawberryjam
+  itemType: 6
+  sprite: {fileID: 21300000, guid: cfb39938ba5f99645ace39f46c3431cc, type: 3}
   value: 0

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13fc2ad6ee9d7a045bcea1ed083f3523, type: 3}
-  m_Name: StrawberryPie
+  m_Name: artisan_bread
   m_EditorClassIdentifier: 
-  displayName: Strawberry Pie
-  id: artisan_strawberrypie
+  displayName: Bread
+  id: artisan_bread
   itemType: 5
-  sprite: {fileID: 21300000, guid: 8fc9fa5be14eaf14dbab70513ced1d42, type: 3}
-  value: 10
-  model: {fileID: 8436183156209430121, guid: fe03e1d713db2bc4f9a3cb7b78b58834, type: 3}
+  sprite: {fileID: 21300000, guid: 564879c5cf1336f44aa7c7ccd0554798, type: 3}
+  value: 5
+  model: {fileID: 8436183156209430121, guid: de81b70c479d6164c9e5a1b99604e861, type: 3}

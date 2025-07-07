@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ca4512db809b5142a1cdf8ae6551298, type: 3}
-  m_Name: StrawberryPie
+  m_Name: Bread
   m_EditorClassIdentifier: 
   recipeRequirements:
-  - {fileID: 11400000, guid: 130dce0d2c7907b49964dc1e6919d50c, type: 2}
-  - {fileID: 11400000, guid: c548a3a495edcbb44b05d018a89a7c44, type: 2}
-  product: {fileID: 11400000, guid: 55b9849eb722c354ab690f19bc94c09e, type: 2}
+  - {fileID: 11400000, guid: e1e6de0d401e3d647b85df5d02ad5230, type: 2}
+  product: {fileID: 11400000, guid: e91b0fc3d6de22846a9d85822dcb4233, type: 2}
