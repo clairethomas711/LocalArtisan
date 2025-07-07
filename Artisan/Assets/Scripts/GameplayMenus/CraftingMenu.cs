@@ -54,7 +54,7 @@ public class CraftingMenu : GameplayMenu
         {
             if (tableSlots[i] != null && tableSlots[i].id != "")
             {
-                DataManager.instance.playerInventory.AddInventoryItem(tableSlots[i].id); //Return unused items to the inventory
+                DataManager.instance.playerInventory.AddInventoryItem(tableSlots[i].id, tableSlots[i].quantity); //Return unused items to the inventory
             }
         }
         for (int j = 0; j < tableSlots.Count; j++)

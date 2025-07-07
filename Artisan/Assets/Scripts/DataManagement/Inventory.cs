@@ -14,7 +14,6 @@ public class Inventory : MonoBehaviour
     [HideInInspector] public bool menuOpen = false;
     public GameObject hotbarPanel;
     public GameObject expandedInventoryPanel;
-    public CursorGrab grab;
     public InventoryItem currentSelection;
     int selectedItemLookup = 0;
     private bool inventoryExpanded = false;
@@ -151,21 +150,29 @@ public class Inventory : MonoBehaviour
     public void ClickItem(InventorySlotData slot)
     {
         int selectedIndex = slot.index;
-        InventoryItem placeholder = grab.holding; //Store the item we're holding
-        grab.holding = inventoryList[selectedIndex]; //Put the item in this slot into our hand
+        if (inventoryList[selectedIndex].id != "" && inventoryList[selectedIndex].id == DataManager.instance.grab.holding.id) //We are holding the same item - add what we're holding to the stack
+        {
+            inventoryList[selectedIndex].quantity += DataManager.instance.grab.holding.quantity;
+            DataManager.instance.grab.holding = new InventoryItem("", 0);
+        }
+        else //Otherwise, swap the items
+        {
+        InventoryItem placeholder = DataManager.instance.grab.holding; //Store the item we're holding
+        DataManager.instance.grab.holding = inventoryList[selectedIndex]; //Put the item in this slot into our hand
         inventoryList[selectedIndex] = placeholder; //Put the stored held item in this slot
+        }
         UpdateInventories();
     }
 
     /// PUBLIC FUNCTIONS ///
-    public void AddInventoryItem(string i)
+    public void AddInventoryItem(string i, int quantity = 1)
     {
         if (i == "hi") { return; }
         for (int j = 0; j < inventoryList.Count; j++)
         {
             if (inventoryList[j].id == i) //Increase quantity
             {
-                inventoryList[j].quantity++;
+                inventoryList[j].quantity += quantity;
                 UpdateInventories();
                 return;
             }
@@ -175,7 +182,7 @@ public class Inventory : MonoBehaviour
         {
             if (inventoryList[j].id == "")
             {
-                inventoryList[j] = new InventoryItem(i, 1);
+                inventoryList[j] = new InventoryItem(i, quantity);
                 UpdateInventories();
                 return;
             }
@@ -183,16 +190,16 @@ public class Inventory : MonoBehaviour
         print("ERROR: Failed to add to inventory - full!");
     }
 
-    public void RemoveInventoryItem(string i)
+    public void RemoveInventoryItem(string i, int quantity = 1)
     {
         if (i == "") { return; }
         for (int j = 0; j < inventoryList.Count; j++)
         {
             if (inventoryList[j].id == i)
             {
-                if (inventoryList[j].quantity > 1) //Decrease quantity
+                if (inventoryList[j].quantity - quantity > 0) //Decrease quantity
                 {
-                    inventoryList[j].quantity--;
+                    inventoryList[j].quantity -= quantity;
                     UpdateInventories();
                     return;
                 }

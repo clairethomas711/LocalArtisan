@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CursorGrab : MonoBehaviour
 {
+    [SerializeField] Sprite defaultSprite;
     [HideInInspector] public InventoryItem holding;
     private UnityEngine.UI.Image img;
 
@@ -18,6 +19,6 @@ public class CursorGrab : MonoBehaviour
         if (holding.id != "")
             img.sprite = DataManager.instance.manifest[holding.id].sprite;
         else
-            img.sprite = null;
+            img.sprite = defaultSprite;
     }
 }

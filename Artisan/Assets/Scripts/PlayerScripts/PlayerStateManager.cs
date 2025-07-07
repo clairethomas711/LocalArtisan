@@ -28,6 +28,8 @@ public class PlayerStateManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Cursor.visible = false;
+
         controller = GetComponent<CharacterController>();
         inv = GetComponent<Inventory>();
 
@@ -84,6 +86,8 @@ public class PlayerStateManager : MonoBehaviour
 
         Vector3 look = Vector3.RotateTowards(transform.forward, actual_movement, 0.5f, 0.5f);
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(look), Time.deltaTime * 50);
+
+        actual_movement.y = -1;
 
         controller.Move(actual_movement * Time.deltaTime * speed);
     }

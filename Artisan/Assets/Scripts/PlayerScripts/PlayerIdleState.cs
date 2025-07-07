@@ -11,6 +11,7 @@ public class PlayerIdleState : PlayerBaseState
     {
         //What are doing during this state?
         player.CheckTarget();
+        player.MovePlayer(player.default_speed);
         
         //On what conditions do we leave the state?
         if (player.isTargeting)
