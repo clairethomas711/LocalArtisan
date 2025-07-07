@@ -30,7 +30,10 @@ public class CraftingMenu : GameplayMenu
                 DataManager.instance.playerInventory.AddInventoryItem(r.product.id); //Once mixed, immediately add to inventory
                 for (int j = 0; j < tableSlots.Count; j++)
                 {
-                    tableSlots[j] = new InventoryItem("", 0);
+                    if (tableSlots[j].quantity <= 1)
+                        tableSlots[j] = new InventoryItem("", 0);
+                    else
+                        tableSlots[j].quantity -= 1;
                 }
                 UpdateDisplay();
                 return;

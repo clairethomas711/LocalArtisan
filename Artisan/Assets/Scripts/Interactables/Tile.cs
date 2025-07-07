@@ -10,13 +10,12 @@ public class Tile : Interactable
 
     public override void Interact(InventoryItem currentItem)
     {
-        if (currentItem.id == "") { return; }
         if (tile.state == TileBehavior.TileState.Grown)
         {
             UseHarvest();
             return;
         }
-
+        if (currentItem.id == "") { return; }
         switch (DataManager.instance.manifest[currentItem.id].itemType) //Need one case for each item enum type
         {
             case itemType.Hoe:

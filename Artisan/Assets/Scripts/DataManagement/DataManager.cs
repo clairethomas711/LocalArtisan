@@ -4,25 +4,24 @@ using System.Collections.Generic;
 using System.IO;
 using TMPro;
 
-//A manager EXCLUSIVELY for the farm scene
+//Managing ALL the data - provides millions of references - is a singleton
 
 public class DataManager : MonoBehaviour
 {
     public static DataManager instance;
 
-    [SerializeField] private GameObject tileObject;
-    [SerializeField] string path;
+    [Header("Manager References")]
+    [SerializeField] StoreManager store;
+    [SerializeField] InterfaceManager uiManager;
     [SerializeField] public GameObject player;
     [SerializeField] public CursorGrab grab;
-    public ItemManifest itemManifest;
     [SerializeField] GameObject animalList;
+    [Header("Data Objects")]
+    public ItemManifest itemManifest;
+    [Header("Game Settings")]
+    [SerializeField] string path;
     [SerializeField] Transform respawnPoint;
-    [SerializeField] Animator canvasAnim;
-    [SerializeField] TextMeshProUGUI moneyText;
-    [SerializeField] TextMeshProUGUI staminaText;
-    [SerializeField] TextMeshProUGUI dayText;
     [SerializeField] float maxStamina;
-    [SerializeField] StoreManager store;
 
     [HideInInspector] public int currentDay;
     [HideInInspector] public int money;
@@ -48,26 +47,26 @@ public class DataManager : MonoBehaviour
     public void AddMoney(int amount)
     {
         money += amount;
-        moneyText.text = money.ToString();
+        uiManager.UpdateUIVisuals();
     }
 
     public void SubtractMoney(int amount)
     {
         money -= amount;
-        moneyText.text = money.ToString();
+        uiManager.UpdateUIVisuals();
     }
 
     void RestoreStamina()
     {
         stamina = maxStamina;
-        staminaText.text = stamina.ToString();
+        uiManager.UpdateUIVisuals();
     }
     public bool SubtractStamina(float amount)
     {
         if (stamina > 0)
         {
             stamina -= amount;
-            staminaText.text = stamina.ToString();
+            uiManager.UpdateUIVisuals();
             return true;
         }
         else
@@ -80,7 +79,7 @@ public class DataManager : MonoBehaviour
 
     public void NewDay()
     {
-        canvasAnim.SetTrigger("FadeOut");
+        uiManager.FadeOut();
         Invoke("NewDayInvoke", 1.0f);
     }
 
@@ -94,7 +93,6 @@ public class DataManager : MonoBehaviour
         c.enabled = true;
         //Update data
         currentDay++;
-        dayText.text = currentDay.ToString();
         RestoreStamina();
         for (int i = 0; i < animalList.transform.childCount; i++)
         {
@@ -102,10 +100,11 @@ public class DataManager : MonoBehaviour
             a.readyToProduce = true;
         }
         store.SellAllItems();
+        uiManager.UpdateUIVisuals();
+        uiManager.FadeIn();
         //Save
         SaveFarmLayout();
-        LoadFarmLayout();
-        canvasAnim.SetTrigger("FadeIn");        
+        LoadFarmLayout();     
     }
 
     void SaveFarmLayout()
