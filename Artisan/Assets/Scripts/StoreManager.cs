@@ -23,8 +23,8 @@ public class StoreManager : MonoBehaviour
             for (int j = 0; j < s.shelfInventory.Count; j++)
             {
                 profit += DataManager.instance.manifest[s.shelfInventory[j].id].value;
-                s.shelfInventory.Remove(s.shelfInventory[j]);
             }
+            s.shelfInventory.Clear();
             s.UpdateDisplay();
         }
         DataManager.instance.AddMoney(profit);

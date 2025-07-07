@@ -9,7 +9,7 @@ public class ShelfPlacement : Interactable
     [HideInInspector] public List<InventoryItem> shelfInventory = new List<InventoryItem>();
     public override void Interact(InventoryItem heldItem)
     {
-        if (heldItem.id == "")
+        if (heldItem.id == "") //If we have an empty hand, remove the item
         {
             if (shelfInventory.Count > 0)
             {
@@ -21,18 +21,18 @@ public class ShelfPlacement : Interactable
                 }
             }
         }
-        else if (DataManager.instance.manifest[heldItem.id].itemType != itemType.Artisan)
+        else if (DataManager.instance.manifest[heldItem.id].itemType != itemType.Artisan) //If we are not holding an artisan item, do nothing
         {
             print("Only Artisan items can be sold in the store.");
             return;
         }
-        else if (currentAcceptedItem == null)
-        {
+        else if (currentAcceptedItem == null || (currentAcceptedItem != null && shelfInventory.Count <= 0)) //If this is an empty & unassigned shelf, add this as the new item
+        { //OR If this is different from our assigned item, but our shelf is empty, reassign
             currentAcceptedItem = heldItem.id;
             shelfInventory.Add(heldItem);
             DataManager.instance.playerInventory.RemoveInventoryItem(heldItem.id);
         }
-        else if (currentAcceptedItem == heldItem.id && shelfInventory.Count < placementLocations.Count)
+        else if (currentAcceptedItem == heldItem.id && shelfInventory.Count < placementLocations.Count) //If this is an assigned shelf and we have the correct item
         {
             shelfInventory.Add(heldItem);
             DataManager.instance.playerInventory.RemoveInventoryItem(heldItem.id);
