@@ -20,6 +20,7 @@ public class PlayerStateManager : MonoBehaviour
     [HideInInspector] public bool isSneaking = false;
 
     public float default_speed = 1;
+    [SerializeField] private Animator characterAnimator;
 
     CharacterController controller;
     Inventory inv;
@@ -83,6 +84,8 @@ public class PlayerStateManager : MonoBehaviour
 
         Vector3 actual_movement = new Vector3(moveX, 0, moveZ);
         actual_movement.Normalize();
+
+        characterAnimator.SetFloat("Speed", actual_movement.magnitude);
 
         Vector3 look = Vector3.RotateTowards(transform.forward, actual_movement, 0.5f, 0.5f);
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(look), Time.deltaTime * 50);

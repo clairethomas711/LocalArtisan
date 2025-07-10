@@ -45,8 +45,8 @@ Material:
     - _RimLightIntensity: 0.82
     - _RimLightPower: 6
     - _ShadowExtraBias: -0.3
-    - _ShellAmount: 3
-    - _ShellStep: 0.0095
+    - _ShellAmount: 2
+    - _ShellStep: 0.0136
     - _Smoothness: 0.274
     m_Colors:
     - _AmbientColor: {r: 0.21568628, g: 0.0627451, b: 0.011764708, a: 1}
