@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -29,6 +30,7 @@ public class DataManager : MonoBehaviour
 
     [HideInInspector] public Inventory playerInventory;
     [HideInInspector] public Dictionary<string, ItemData> manifest = new Dictionary<string, ItemData>();
+    [HideInInspector] public UnityEvent GameTick = new UnityEvent();
     public struct GameTime
     {
         public int Hour;
@@ -43,6 +45,7 @@ public class DataManager : MonoBehaviour
     public GameTime gameTime;
     float dayStartTime;
     float gameTimeReal;
+    int priorMin = 0;
     bool newHour = false;
 
     void Awake()
@@ -59,6 +62,7 @@ public class DataManager : MonoBehaviour
         playerInventory = player.GetComponent<Inventory>();
         dayStartTime = Time.time;
         gameTimeReal = Time.time;
+        gameTime.Hour = 6;
     }
 
     void Update() 
@@ -68,11 +72,21 @@ public class DataManager : MonoBehaviour
 
     void GameClockProgress() //Game Clock
     {
+        //Convert the real time to game time
         gameTimeReal = Time.time;
         float dif = gameTimeReal - dayStartTime;
         gameTime.Min = (int)Mathf.Floor(dif % 60);
+        //Is this a new minute? If so, invoke GameTick
+        if (priorMin < gameTime.Min)
+        {
+            priorMin = gameTime.Min;
+            GameTick.Invoke();
+        }
+        //Is this a new hour?
         if (gameTime.Min == 0 && newHour)
         {
+            priorMin = gameTime.Min;
+            GameTick.Invoke();
             gameTime.Hour += 1;
             newHour = false;
         }
@@ -80,7 +94,13 @@ public class DataManager : MonoBehaviour
         {
             newHour = true;
         }
+        //Visuals Update
         uiManager.UpdateClock();
+    }
+
+    public int GameTimeInMinutes()
+    {
+        return (gameTime.Min + gameTime.Hour * 60);
     }
 
     public void AddMoney(int amount)
@@ -138,7 +158,6 @@ public class DataManager : MonoBehaviour
             Animal a = animalList.transform.GetChild(i).GetComponent<Animal>();
             a.readyToProduce = true;
         }
-        store.SellAllItems();
         uiManager.UpdateUIVisuals();
         uiManager.FadeIn();
         dayStartTime = Time.time;

@@ -20,6 +20,21 @@ public class MenuMachine : Machine
 
     public override void Interact(InventoryItem heldItem)
     {
-        uiMenu.Open();
+        if (state == MachineState.ready)
+            uiMenu.Open();
+        else if (state == MachineState.produced)
+            TakeProducedItem();
+    }
+
+    public override void MachineTickListener()
+    {
+        //Everything here is the same as MenuMachine - can this be universal in Machine.cs?
+        if (state == MachineState.processing)
+        {
+            if (DataManager.instance.GameTimeInMinutes() >= minOfProductionEnd)
+            {
+                Produced();
+            }
+        }
     }
 }

@@ -7,6 +7,12 @@ public class ShelfPlacement : Interactable
     [SerializeField] GameObject TEMP_MODEL;
     private string currentAcceptedItem;
     [HideInInspector] public List<InventoryItem> shelfInventory = new List<InventoryItem>();
+    StoreManager store;
+
+    void Start()
+    {
+        store = transform.parent.parent.gameObject.GetComponent<StoreManager>(); //THIS IS NOT GREAT - NEED TO KEEP THIS FORMAT OR CHANGE
+    }
     public override void Interact(InventoryItem heldItem)
     {
         if (heldItem.id == "") //If we have an empty hand, remove the item
@@ -38,6 +44,7 @@ public class ShelfPlacement : Interactable
             DataManager.instance.playerInventory.RemoveInventoryItem(heldItem.id);
         }
         UpdateDisplay();
+        store.UpdateInventory();
     }
 
     public void UpdateDisplay()

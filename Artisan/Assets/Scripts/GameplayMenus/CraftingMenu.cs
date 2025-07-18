@@ -27,7 +27,7 @@ public class CraftingMenu : GameplayMenu
             for (int j = 0; j < r.recipeRequirements.Count; j++) { required.Add(r.recipeRequirements[j].id); }
             if (required.SetEquals(c)) //We are using a hashset here - better equality checking
             {
-                DataManager.instance.playerInventory.AddInventoryItem(r.product.id); //Once mixed, immediately add to inventory
+                machine.StartProducing(r.product);
                 for (int j = 0; j < tableSlots.Count; j++)
                 {
                     if (tableSlots[j].quantity <= 1)
@@ -36,6 +36,7 @@ public class CraftingMenu : GameplayMenu
                         tableSlots[j].quantity -= 1;
                 }
                 UpdateDisplay();
+                Close();
                 return;
             }
         }

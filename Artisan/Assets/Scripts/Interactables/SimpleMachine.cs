@@ -18,14 +18,32 @@ public class SimpleMachine : Machine
 
     public override void Interact(InventoryItem heldItem)
     {
-        for (int i = 0; i < acceptedItems.Count; i++)
+        if (state == MachineState.ready)
         {
-            if (heldItem.id == acceptedItems[i].id)
+            for (int i = 0; i < acceptedItems.Count; i++)
             {
-                DataManager.instance.playerInventory.RemoveInventoryItem(heldItem.id);
-                DataManager.instance.playerInventory.AddInventoryItem(productedItems[i].id);
+                if (heldItem.id == acceptedItems[i].id)
+                {
+                    DataManager.instance.playerInventory.RemoveInventoryItem(heldItem.id);
+                    StartProducing(productedItems[i]);
+                }
             }
         }
+        else if (state == MachineState.produced)
+        {
+            TakeProducedItem();
+        }
+    }
 
+    public override void MachineTickListener()
+    {
+        //Everything here is the same as MenuMachine - can this be universal in Machine.cs?
+        if (state == MachineState.processing)
+        {
+            if (DataManager.instance.GameTimeInMinutes() >= minOfProductionEnd)
+            {
+                Produced();
+            }
+        }
     }
 }
