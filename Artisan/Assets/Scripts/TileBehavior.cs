@@ -9,7 +9,7 @@ public class TileBehavior : MonoBehaviour
     [SerializeField] private Texture tilled;
     [SerializeField] private Texture watered;
 
-    [HideInInspector] public enum TileState { Untilled, Tilled, Watered, Grown };
+    [HideInInspector] public enum TileState { Untilled, Tilled, Watered, Grown, Trashed };
     [HideInInspector] public TileState state;
     [HideInInspector] public int growthScore;
     private string product;
@@ -18,7 +18,10 @@ public class TileBehavior : MonoBehaviour
 
     void Start()
     {
-        state = TileState.Untilled;
+        if (transform.childCount > 0)
+            state = TileState.Trashed;
+        else
+            state = TileState.Untilled;
     }
 
     public void UpdateVisuals() 
@@ -46,14 +49,16 @@ public class TileBehavior : MonoBehaviour
         if (state == TileState.Untilled || state == TileState.Watered)
         {
             state = TileState.Tilled;
+            UpdateVisuals();
+            return true;
         }
         else if (state == TileState.Tilled)
         {
             state = TileState.Untilled;
+            UpdateVisuals();
+            return true;
         }
-
-        UpdateVisuals();
-        return true;
+        return false;
     }
 
     public bool Water()
