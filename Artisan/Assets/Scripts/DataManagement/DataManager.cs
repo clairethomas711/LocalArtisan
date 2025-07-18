@@ -29,19 +29,58 @@ public class DataManager : MonoBehaviour
 
     [HideInInspector] public Inventory playerInventory;
     [HideInInspector] public Dictionary<string, ItemData> manifest = new Dictionary<string, ItemData>();
+    public struct GameTime
+    {
+        public int Hour;
+        public int Min;
+        public GameTime(int hour, int min)
+        {
+            Hour = hour;
+            Min = min;
+        }
+        public override string ToString() => $"{Hour}:{Min.ToString("00")}";
+    }
+    public GameTime gameTime;
+    float dayStartTime;
+    float gameTimeReal;
+    bool newHour = false;
 
     void Awake()
     {
         if (instance == null)
             instance = this;
         //BUILD THE DICTIONARY IN THE MANIFEST
-            for (int i = 0; i < itemManifest.scriptableItems.Count; i++)
-            {
-                manifest[itemManifest.scriptableItems[i].id] = itemManifest.scriptableItems[i];
-            }
+        for (int i = 0; i < itemManifest.scriptableItems.Count; i++)
+        {
+            manifest[itemManifest.scriptableItems[i].id] = itemManifest.scriptableItems[i];
+        }
         currentDay = 1;
         stamina = maxStamina;
         playerInventory = player.GetComponent<Inventory>();
+        dayStartTime = Time.time;
+        gameTimeReal = Time.time;
+    }
+
+    void Update() 
+    {
+        GameClockProgress();
+    }
+
+    void GameClockProgress() //Game Clock
+    {
+        gameTimeReal = Time.time;
+        float dif = gameTimeReal - dayStartTime;
+        gameTime.Min = (int)Mathf.Floor(dif % 60);
+        if (gameTime.Min == 0 && newHour)
+        {
+            gameTime.Hour += 1;
+            newHour = false;
+        }
+        else if (gameTime.Min > 0)
+        {
+            newHour = true;
+        }
+        uiManager.UpdateClock();
     }
 
     public void AddMoney(int amount)
@@ -102,6 +141,9 @@ public class DataManager : MonoBehaviour
         store.SellAllItems();
         uiManager.UpdateUIVisuals();
         uiManager.FadeIn();
+        dayStartTime = Time.time;
+        gameTime.Hour = 6;
+        gameTime.Min = 0;
         //Save
         SaveFarmLayout();
         LoadFarmLayout();     
