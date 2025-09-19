@@ -8,6 +8,7 @@ public class TileBehavior : MonoBehaviour
     [SerializeField] private Texture grass;
     [SerializeField] private Texture tilled;
     [SerializeField] private Texture watered;
+    [SerializeField] GameObject trash;
 
     [HideInInspector] public enum TileState { Untilled, Tilled, Watered, Grown, Trashed };
     [HideInInspector] public TileState state;
@@ -18,13 +19,11 @@ public class TileBehavior : MonoBehaviour
 
     void Start()
     {
-        if (transform.childCount > 0)
-            state = TileState.Trashed;
-        else
+        if (SpawnTrash(0.3f) == false)
             state = TileState.Untilled;
     }
 
-    public void UpdateVisuals() 
+    public void UpdateVisuals()
     {
         GrowPlant();
 
@@ -89,8 +88,10 @@ public class TileBehavior : MonoBehaviour
 
     void GrowPlant()
     {
+        if (state == TileState.Trashed)
+            return;
         if (transform.childCount > 0) //Clear existing plant
-            Destroy(transform.GetChild(0).gameObject); 
+                Destroy(transform.GetChild(0).gameObject);
         if (!isPlanted) //If we harvested, don't grow again
             return;
         if (growthScore >= plantStages.Count - 1)
@@ -107,5 +108,16 @@ public class TileBehavior : MonoBehaviour
         isPlanted = false;
         UpdateVisuals();
         return true;
+    }
+
+    public bool SpawnTrash(float chance)
+    {
+        if (chance <= Random.Range(0.0f, 1.0f))
+        {
+            state = TileState.Trashed;
+            Instantiate(trash, transform);
+            return true;
+        }
+        return false;
     }
 }

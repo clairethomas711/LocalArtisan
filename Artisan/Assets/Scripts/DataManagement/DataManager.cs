@@ -43,6 +43,7 @@ public class DataManager : MonoBehaviour
         public override string ToString() => $"{Hour}:{Min.ToString("00")}";
     }
     public GameTime gameTime;
+    public int totalElapsedMinutes = 0;
     float dayStartTime;
     float gameTimeReal;
     int priorMin = 0;
@@ -80,6 +81,7 @@ public class DataManager : MonoBehaviour
         if (priorMin < gameTime.Min)
         {
             priorMin = gameTime.Min;
+            totalElapsedMinutes++;
             GameTick.Invoke();
         }
         //Is this a new hour?
@@ -101,6 +103,11 @@ public class DataManager : MonoBehaviour
     public int GameTimeInMinutes()
     {
         return (gameTime.Min + gameTime.Hour * 60);
+    }
+
+    public int TotalElapsedGameTime() //THIS DOES NOT ACCOUNT FOR SLEEPING YET - SHOULD ADD A FEW HOURS WHEN YOU DO
+    {
+        return (totalElapsedMinutes);
     }
 
     public void AddMoney(int amount)
@@ -182,7 +189,7 @@ public class DataManager : MonoBehaviour
             if (tileData.state == TileBehavior.TileState.Watered)
                 tileData.state = TileBehavior.TileState.Tilled;
             //Save the new data
-                Tile tile = new Tile();
+            Tile tile = new Tile();
             tile.gridLoc = t.transform.position;
             tile.state = tileData.state;
             tile.cropCode = "";

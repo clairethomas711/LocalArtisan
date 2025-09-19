@@ -40,7 +40,7 @@ public class SimpleMachine : Machine
         //Everything here is the same as MenuMachine - can this be universal in Machine.cs?
         if (state == MachineState.processing)
         {
-            if (DataManager.instance.GameTimeInMinutes() >= minOfProductionEnd)
+            if (DataManager.instance.TotalElapsedGameTime() >= minOfProductionEnd)
             {
                 Produced();
             }

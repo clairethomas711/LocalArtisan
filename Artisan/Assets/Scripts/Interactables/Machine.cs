@@ -27,7 +27,7 @@ public abstract class Machine : Interactable
         DataManager.instance.GameTick.AddListener(MachineTickListener); //Start listening to GameTick
         state = MachineState.processing; //We are now processing
         activelyProducing = output; //Remember what the output will be
-        minOfProductionStart = DataManager.instance.GameTimeInMinutes(); //Save when we started producing
+        minOfProductionStart = DataManager.instance.TotalElapsedGameTime(); //Save when we started producing
         minOfProductionEnd = minOfProductionStart + processingTimeInMinutes; //Calculate when we will end producing
         //Visual feedback (change later)
         indicator.GetComponent<MeshRenderer>().material.color = Color.red; 
