@@ -16,7 +16,7 @@ public class DataManager : MonoBehaviour
     [SerializeField] InterfaceManager uiManager;
     [SerializeField] public GameObject player;
     [SerializeField] public CursorGrab grab;
-    [SerializeField] GameObject animalList;
+    [SerializeField] BarnManager barnManager;
     [Header("Data Objects")]
     public ItemManifest itemManifest;
     [Header("Game Settings")]
@@ -160,11 +160,13 @@ public class DataManager : MonoBehaviour
         //Update data
         currentDay++;
         RestoreStamina();
-        for (int i = 0; i < animalList.transform.childCount; i++)
+        //TEMP ANIMAL STUFF - UPDATE LATER
+        for (int i = 0; i < barnManager.gameObject.transform.childCount; i++)
         {
-            Animal a = animalList.transform.GetChild(i).GetComponent<Animal>();
+            Animal a = barnManager.gameObject.transform.GetChild(i).GetChild(0).GetComponent<Animal>();
             a.readyToProduce = true;
         }
+        // END TEMP ANIMAL STUFF
         uiManager.UpdateUIVisuals();
         uiManager.FadeIn();
         dayStartTime = Time.time;
@@ -178,6 +180,7 @@ public class DataManager : MonoBehaviour
     void SaveFarmLayout()
     {
         print("Saving...!");
+        // TILE DATA //
         List<Tile> tiles = new List<Tile>();
         for (int r = 0; r < transform.childCount; r++)
         {
@@ -202,9 +205,21 @@ public class DataManager : MonoBehaviour
                 
             }
         }
+        // ANIMAL DATA //
+        List<AnimalData> a = new List<AnimalData>();
+        //For each stall in the barn, grab that animal's data
+        for (int i = 0; i < barnManager.animals.Count; i++)
+        {
+            //Convert to AnimalData object and add
+            AnimalData new_animal = new AnimalData();
+            new_animal.readyToProduce = barnManager.animals[i].readyToProduce;
+            a.Add(new_animal);
+        }
+
         FarmLayout farm = new FarmLayout();
         farm.date = currentDay;
         farm.layout = tiles;
+        farm.animals = a;
         string json = JsonUtility.ToJson(farm);
         File.WriteAllText(path, json);
     }
@@ -214,6 +229,7 @@ public class DataManager : MonoBehaviour
         print("Loading...!");
         string json = File.ReadAllText(path);
         FarmLayout farm = JsonUtility.FromJson<FarmLayout>(json);
+        // TILE DATA //
         List<Tile> tiles = farm.layout;
         for (int t = 0; t < tiles.Count; t++)
         {
@@ -228,6 +244,17 @@ public class DataManager : MonoBehaviour
                 uS.UpdateVisuals();
             }
         }
+        // ANIMAL DATA //
+
+        //For each animal in the data
+        List<AnimalData> a = farm.animals;
+        for (int i = 0; i < a.Count; i++)
+        {
+            //Get that animals stall number in the barn
+            Animal animalToAlter = barnManager.animals[i];
+            //Alter the animal in that stall based on data
+            animalToAlter.readyToProduce = a[i].readyToProduce;
+        }
         
     }
 
@@ -240,10 +267,16 @@ public class DataManager : MonoBehaviour
         public string soilQuality;
         public int growthScore;
     }
+    [System.Serializable]
+    private class AnimalData
+    {
+        public bool readyToProduce;
+    }
 
     private class FarmLayout
     {
         public int date;
         public List<Tile> layout;
+        public List<AnimalData> animals;
     }
 }
