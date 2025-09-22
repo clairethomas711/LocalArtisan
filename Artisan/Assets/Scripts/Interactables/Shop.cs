@@ -18,5 +18,6 @@ public class Shop : Interactable
         }
 
         shopMenu.Open(shopInventory);
+        shopInventory.Clear();
     }
 }

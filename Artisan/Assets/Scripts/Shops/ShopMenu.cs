@@ -18,10 +18,6 @@ public class ShopMenu : GameplayMenu
 
     public override void Open(List<InventoryItem> shopInventory)
     {
-        for (int i = 0; i < slots.transform.childCount; i++)
-        {
-            Destroy(slots.transform.GetChild(0));
-        }
         //Now that the shop is open, we reconstruct the shop manifest using the InventoryItems
         for (int i = 0; i < shopInventory.Count; i++)
         {
@@ -44,6 +40,10 @@ public class ShopMenu : GameplayMenu
 
     public override void Close()
     {
+        for (int i = 0; i < slots.transform.childCount; i++)
+        {
+            Destroy(slots.transform.GetChild(i).gameObject);
+        }
         gameObject.SetActive(false);
     }
 
