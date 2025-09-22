@@ -25,6 +25,9 @@ public class TileBehavior : MonoBehaviour
 
     public void UpdateVisuals()
     {
+        if (gameObject.layer != 3)
+            return;
+
         GrowPlant();
 
         MeshRenderer mat = GetComponent<MeshRenderer>();

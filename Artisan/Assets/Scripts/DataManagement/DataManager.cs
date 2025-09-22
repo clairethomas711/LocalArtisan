@@ -179,23 +179,28 @@ public class DataManager : MonoBehaviour
     {
         print("Saving...!");
         List<Tile> tiles = new List<Tile>();
-        for (int i = 0; i < transform.childCount; i++)
+        for (int r = 0; r < transform.childCount; r++)
         {
-            GameObject t = transform.GetChild(i).gameObject;
-            TileBehavior tileData = t.GetComponent<TileBehavior>();
-            //Process new day updates
-            if (tileData.state == TileBehavior.TileState.Watered && tileData.isPlanted)
-                tileData.growthScore++;
-            if (tileData.state == TileBehavior.TileState.Watered)
-                tileData.state = TileBehavior.TileState.Tilled;
-            //Save the new data
-            Tile tile = new Tile();
-            tile.gridLoc = t.transform.position;
-            tile.state = tileData.state;
-            tile.cropCode = "";
-            tile.soilQuality = "";
-            tile.growthScore = tileData.growthScore;
-            tiles.Add(tile);
+            GameObject row = transform.GetChild(r).gameObject;
+            for (int i = 0; i < row.transform.childCount; i++)
+            {
+                GameObject t = row.transform.GetChild(i).gameObject;
+                TileBehavior tileData = t.GetComponent<TileBehavior>();
+                //Process new day updates
+                if (tileData.state == TileBehavior.TileState.Watered && tileData.isPlanted)
+                    tileData.growthScore++;
+                if (tileData.state == TileBehavior.TileState.Watered)
+                    tileData.state = TileBehavior.TileState.Tilled;
+                //Save the new data
+                Tile tile = new Tile();
+                tile.gridLoc = new Vector2 (r , i);
+                tile.state = tileData.state;
+                tile.cropCode = "";
+                tile.soilQuality = "";
+                tile.growthScore = tileData.growthScore;
+                tiles.Add(tile);
+                
+            }
         }
         FarmLayout farm = new FarmLayout();
         farm.date = currentDay;
@@ -210,22 +215,26 @@ public class DataManager : MonoBehaviour
         string json = File.ReadAllText(path);
         FarmLayout farm = JsonUtility.FromJson<FarmLayout>(json);
         List<Tile> tiles = farm.layout;
-        for (int i = 0; i < tiles.Count; i++)
+        for (int t = 0; t < tiles.Count; t++)
         {
-            Tile tile = tiles[i];
-            GameObject toUpdate = transform.GetChild(i).gameObject;
-            toUpdate.transform.position = tile.gridLoc;
-            TileBehavior uS = toUpdate.GetComponent<TileBehavior>();
-            uS.state = tile.state;
-            uS.growthScore = tile.growthScore;
-            uS.UpdateVisuals();
+            Tile tile = tiles[t];
+            Vector2 tileLoc = tile.gridLoc;
+            GameObject toUpdate = transform.GetChild((int)tileLoc.x).GetChild((int)tileLoc.y).gameObject;
+            TileBehavior uS;
+            if (uS = toUpdate.GetComponent<TileBehavior>())
+            {
+                uS.state = tile.state;
+                uS.growthScore = tile.growthScore;
+                uS.UpdateVisuals();
+            }
         }
+        
     }
 
     [System.Serializable]
     private class Tile
     {
-        public Vector3 gridLoc;
+        public Vector2 gridLoc;
         public TileBehavior.TileState state;
         public string cropCode;
         public string soilQuality;
