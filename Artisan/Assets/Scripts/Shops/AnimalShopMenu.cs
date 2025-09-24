@@ -4,11 +4,10 @@ public class AnimalShopMenu : ShopMenu
 {
     public override void PurchaseItem(ItemData itemToPurchase)
     {
-        if (DataManager.instance.money >= itemToPurchase.value)
+        BarnManager barnManager = DataManager.instance.barnManager;
+        if (DataManager.instance.money >= itemToPurchase.value && barnManager.AddAnimal(itemToPurchase))
         {
             DataManager.instance.SubtractMoney(itemToPurchase.value);
-            BarnManager barnManager = DataManager.instance.barnManager;
-            barnManager.AddAnimal(itemToPurchase);
         }
     }
 }

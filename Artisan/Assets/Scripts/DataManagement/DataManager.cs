@@ -188,9 +188,9 @@ public class DataManager : MonoBehaviour
         currentDay++;
         RestoreStamina();
         //TEMP ANIMAL STUFF - UPDATE LATER
-        for (int i = 0; i < barnManager.gameObject.transform.childCount; i++)
+        for (int i = 0; i < barnManager.animals.Count; i++)
         {
-            AnimalBehavior a = barnManager.gameObject.transform.GetChild(i).GetChild(0).GetComponent<AnimalBehavior>();
+            AnimalData a = barnManager.animals[i];
             a.readyToProduce = true;
         }
         // END TEMP ANIMAL STUFF
@@ -240,7 +240,7 @@ public class DataManager : MonoBehaviour
         {
             //Convert to AnimalData object and add
             AnimalData new_animal = new AnimalData();
-            new_animal.readyToProduce = barnManager.animals[i].readyToProduce;
+            new_animal = barnManager.animals[i];
             a.Add(new_animal);
         }
 
@@ -284,16 +284,8 @@ public class DataManager : MonoBehaviour
             }
         }
         // ANIMAL DATA //
-
-        //For each animal in the data
-        List<AnimalData> a = farm.animals;
-        for (int i = 0; i < a.Count; i++)
-        {
-            //Get that animals stall number in the barn
-            Animal animalToAlter = barnManager.animals[i];
-            //Alter the animal in that stall based on data
-            animalToAlter.readyToProduce = a[i].readyToProduce;
-        }
+        barnManager.animals = farm.animals;
+        barnManager.UpdateBarn();
 
         // INVENTORY DATA //
         playerInventory.inventoryList = farm.inv;
@@ -317,11 +309,7 @@ public class DataManager : MonoBehaviour
         public string soilQuality;
         public int growthScore;
     }
-    [System.Serializable]
-    private class AnimalData
-    {
-        public bool readyToProduce;
-    }
+    
     [System.Serializable]
     private class ChestData
     {
