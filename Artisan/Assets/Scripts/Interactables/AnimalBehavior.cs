@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Animal : Interactable
+public class AnimalBehavior : Interactable
 {
     [SerializeField] private ItemData requiredTool;
     public ItemData product;

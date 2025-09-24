@@ -16,14 +16,16 @@ public class DataManager : MonoBehaviour
     [SerializeField] InterfaceManager uiManager;
     [SerializeField] public GameObject player;
     [SerializeField] public CursorGrab grab;
-    [SerializeField] BarnManager barnManager;
+    [SerializeField] public BarnManager barnManager;
     [Header("Data Objects")]
     public ItemManifest itemManifest;
     [Header("Game Settings")]
     [SerializeField] string path;
     [SerializeField] Transform respawnPoint;
     [SerializeField] float maxStamina;
-
+    [Header("Debug Tools")]
+    [SerializeField] bool resetInventory;
+    [SerializeField] List<string> debugStartingInventory = new List<string>();
     [HideInInspector] public int currentDay;
     [HideInInspector] public int money;
     [HideInInspector] public float stamina;
@@ -43,7 +45,7 @@ public class DataManager : MonoBehaviour
         public override string ToString() => $"{Hour}:{Min.ToString("00")}";
     }
     public GameTime gameTime;
-    public int totalElapsedMinutes = 0;
+    [HideInInspector] public int totalElapsedMinutes = 0;
     float dayStartTime;
     float gameTimeReal;
     int priorMin = 0;
@@ -64,6 +66,30 @@ public class DataManager : MonoBehaviour
         dayStartTime = Time.time;
         gameTimeReal = Time.time;
         gameTime.Hour = 6;
+
+        // DEBUG SHIT //
+        if (resetInventory)
+        {
+            string json = File.ReadAllText(path);
+            SaveData farm = JsonUtility.FromJson<SaveData>(json);
+            for (int i = 0; i < farm.inv.Count; i++)
+            {
+                if (i < debugStartingInventory.Count)
+                {
+                    farm.inv[i].id = debugStartingInventory[i];
+                    farm.inv[i].quantity = 1;
+                }
+                else
+                {
+                    farm.inv[i].id = "";
+                    farm.inv[i].quantity = 0;
+                }
+            }
+            json = JsonUtility.ToJson(farm);
+            File.WriteAllText(path, json);
+        }
+
+        LoadFarmLayout();
     }
 
     void Update() 
@@ -163,7 +189,7 @@ public class DataManager : MonoBehaviour
         //TEMP ANIMAL STUFF - UPDATE LATER
         for (int i = 0; i < barnManager.gameObject.transform.childCount; i++)
         {
-            Animal a = barnManager.gameObject.transform.GetChild(i).GetChild(0).GetComponent<Animal>();
+            AnimalBehavior a = barnManager.gameObject.transform.GetChild(i).GetChild(0).GetComponent<AnimalBehavior>();
             a.readyToProduce = true;
         }
         // END TEMP ANIMAL STUFF
@@ -189,7 +215,7 @@ public class DataManager : MonoBehaviour
             {
                 GameObject t = row.transform.GetChild(i).gameObject;
                 TileBehavior tileData = t.GetComponent<TileBehavior>();
-                //Process new day updates
+                //Process new day updates - doing this here so we only need to loop all tiles once
                 if (tileData.state == TileBehavior.TileState.Watered && tileData.isPlanted)
                     tileData.growthScore++;
                 if (tileData.state == TileBehavior.TileState.Watered)
@@ -205,6 +231,7 @@ public class DataManager : MonoBehaviour
                 
             }
         }
+
         // ANIMAL DATA //
         List<AnimalData> a = new List<AnimalData>();
         //For each stall in the barn, grab that animal's data
@@ -216,10 +243,11 @@ public class DataManager : MonoBehaviour
             a.Add(new_animal);
         }
 
-        FarmLayout farm = new FarmLayout();
+        SaveData farm = new SaveData();
         farm.date = currentDay;
         farm.layout = tiles;
         farm.animals = a;
+        farm.inv = playerInventory.inventoryList;
         string json = JsonUtility.ToJson(farm);
         File.WriteAllText(path, json);
     }
@@ -228,7 +256,7 @@ public class DataManager : MonoBehaviour
     {
         print("Loading...!");
         string json = File.ReadAllText(path);
-        FarmLayout farm = JsonUtility.FromJson<FarmLayout>(json);
+        SaveData farm = JsonUtility.FromJson<SaveData>(json);
         // TILE DATA //
         List<Tile> tiles = farm.layout;
         for (int t = 0; t < tiles.Count; t++)
@@ -255,6 +283,10 @@ public class DataManager : MonoBehaviour
             //Alter the animal in that stall based on data
             animalToAlter.readyToProduce = a[i].readyToProduce;
         }
+
+        // INVENTORY DATA //
+        playerInventory.inventoryList = farm.inv;
+        playerInventory.UpdateInventories();
         
     }
 
@@ -273,10 +305,11 @@ public class DataManager : MonoBehaviour
         public bool readyToProduce;
     }
 
-    private class FarmLayout
+    private class SaveData
     {
         public int date;
         public List<Tile> layout;
+        public List<InventoryItem> inv;
         public List<AnimalData> animals;
     }
 }

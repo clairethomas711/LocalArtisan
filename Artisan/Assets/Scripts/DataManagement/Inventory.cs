@@ -9,7 +9,7 @@ using TMPro;
 public class Inventory : MonoBehaviour
 {
     [SerializeField] private int maxCapacity = 20;
-    [SerializeField] List<string> startingInventory = new List<string>();
+    //[SerializeField] List<string> startingInventory = new List<string>();
     [HideInInspector] public List<InventoryItem> inventoryList = new List<InventoryItem>();
     [HideInInspector] public bool menuOpen = false;
     public GameObject hotbarPanel;
@@ -25,6 +25,20 @@ public class Inventory : MonoBehaviour
         {
             inventoryList.Add(new InventoryItem("", 0));
         }
+        currentSelection = inventoryList[selectedItemLookup];
+        DataManager.instance.AddMoney(10);
+    }
+
+    public void UpdateInventories()
+    {
+        if (!inventoryExpanded)
+            DisplayHotBar();
+        else
+            DisplayExpandedInventory();
+    }
+
+    /*public void AddStartingInventory()
+    {
         //Populate the actual inventory
         for (int i = 0; i < startingInventory.Count; i++)
         {
@@ -33,19 +47,9 @@ public class Inventory : MonoBehaviour
             else
                 AddInventoryItem(startingInventory[i]);
         }
-        currentSelection = inventoryList[selectedItemLookup];
         UpdateInventories();
         DisplayHighlight();
-        DataManager.instance.AddMoney(10);
-    }
-
-    void UpdateInventories()
-    {
-        if (!inventoryExpanded)
-            DisplayHotBar();
-        else
-            DisplayExpandedInventory();
-    }
+    }*/
 
     void DisplayExpandedInventory()
     {
@@ -171,7 +175,6 @@ public class Inventory : MonoBehaviour
     /// PUBLIC FUNCTIONS ///
     public void AddInventoryItem(string i, int quantity = 1)
     {
-        if (i == "hi") { return; }
         for (int j = 0; j < inventoryList.Count; j++)
         {
             if (inventoryList[j].id == i) //Increase quantity

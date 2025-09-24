@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 //for in-game menus where items can be purchased by the player
 
-public class ShopMenu : GameplayMenu
+public abstract class ShopMenu : GameplayMenu
 {
     [SerializeField] GameObject shopOffering;
     List<InventoryItem> listingSlots = new List<InventoryItem>();
@@ -44,7 +44,7 @@ public class ShopMenu : GameplayMenu
         {
             Destroy(slots.transform.GetChild(i).gameObject);
         }
-        gameObject.SetActive(false);
+        this.gameObject.SetActive(false);
     }
 
     public void UpdateShopDisplay()
@@ -57,12 +57,5 @@ public class ShopMenu : GameplayMenu
     }
 
     //Is called by the button when clicked
-    public void PurchaseItem(ItemData itemToPurchase)
-    {
-        if (DataManager.instance.money >= itemToPurchase.value)
-        {
-            DataManager.instance.SubtractMoney(itemToPurchase.value);
-            DataManager.instance.playerInventory.AddInventoryItem(itemToPurchase.id);
-        }
-    }
+    public abstract void PurchaseItem(ItemData itemToPurchase);
 }
