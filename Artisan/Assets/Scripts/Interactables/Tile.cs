@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class Tile : Interactable
 {
-    [SerializeField] bool isStatic = false;
+    public bool isStatic = false;
     [Header("Visuals")]
     [SerializeField] private Texture grass;
     [SerializeField] private Texture tilled;
@@ -16,13 +16,13 @@ public class Tile : Interactable
     private string product;
     public bool isPlanted = false;
     List<GameObject> plantStages;
-    void Start()
+    /*void Start()
     {
         if (isStatic)
             state = TileState.Static;
-        if (state != TileState.Static && SpawnTrash(0.3f) == false)
+        else if (SpawnTrash(0.3f) == false)
             state = TileState.Untilled;
-    }
+    }*/
 
     public override void Interact(InventoryItem currentItem)
     {
@@ -140,12 +140,15 @@ public class Tile : Interactable
 
     void GrowPlant()
     {
-        if (state == TileState.Trashed)
-            return;
         if (transform.childCount > 0) //Clear existing plant
                 Destroy(transform.GetChild(0).gameObject);
-        if (!isPlanted) //If we harvested, don't grow again
+        if (state == TileState.Trashed) //If this tile is trashed, keep it trashed
+        {
+            Instantiate(trash, transform);
             return;
+        }
+        if (!isPlanted) //If we harvested, don't grow again
+                return;
         if (growthScore >= plantStages.Count - 1)
             state = TileState.Grown;
 
@@ -164,7 +167,7 @@ public class Tile : Interactable
 
     public bool SpawnTrash(float chance)
     {
-        if (chance <= Random.Range(0.0f, 1.0f))
+        if (chance >= Random.Range(0.0f, 1.0f))
         {
             state = TileState.Trashed;
             Instantiate(trash, transform);

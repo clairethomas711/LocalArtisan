@@ -8,7 +8,7 @@ using TMPro;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField] private int maxCapacity = 20;
+    public int maxCapacity = 20;
     [HideInInspector] public List<InventoryItem> inventoryList = new List<InventoryItem>();
     [HideInInspector] public bool menuOpen = false;
     public GameObject hotbarPanel;

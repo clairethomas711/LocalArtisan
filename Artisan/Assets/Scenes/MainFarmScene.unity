@@ -2394,6 +2394,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1760938402}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (69)
@@ -4612,6 +4616,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1128616487}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (38)
@@ -8666,6 +8674,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1670820457}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (64)
@@ -10240,6 +10252,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 541700169}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (65)
@@ -14790,6 +14806,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1670820457}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (68)
@@ -18214,6 +18234,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 541700169}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (66)
@@ -18599,6 +18623,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 541700169}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (62)
@@ -25655,6 +25683,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 786657783}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (62)
@@ -26027,6 +26059,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 786657783}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (60)
@@ -26151,6 +26187,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1760938402}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (66)
@@ -27490,6 +27530,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1989821404}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (68)
@@ -30893,6 +30937,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1670820457}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (71)
@@ -36763,6 +36811,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1602905677}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (60)
@@ -40298,6 +40350,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2049893187}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (62)
@@ -46664,6 +46720,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 541700169}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (68)
@@ -50666,6 +50726,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1670820457}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (66)
@@ -52577,6 +52641,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1128616487}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (70)
@@ -53968,6 +54036,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1520202521}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (70)
@@ -61971,6 +62043,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1670820457}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (65)
@@ -63353,6 +63429,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435426526}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (63)
@@ -63725,6 +63805,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2049893187}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (40)
@@ -64757,6 +64841,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1128616487}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (66)
@@ -66233,6 +66321,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 786657783}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (39)
@@ -67347,6 +67439,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 786657783}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (68)
@@ -68503,6 +68599,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2049893187}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (65)
@@ -69825,6 +69925,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435426526}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (65)
@@ -69949,6 +70053,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1520202521}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (63)
@@ -76979,6 +77087,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435426526}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (66)
@@ -79258,6 +79370,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 786657783}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (65)
@@ -79813,6 +79929,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1520202521}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (69)
@@ -82247,6 +82367,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1989821404}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (70)
@@ -86291,6 +86415,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 541700169}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (70)
@@ -91679,6 +91807,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1760938402}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (71)
@@ -92221,6 +92353,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1520202521}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (68)
@@ -95430,6 +95566,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 786657783}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (71)
@@ -97184,6 +97324,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2049893187}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (38)
@@ -97948,6 +98092,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1760938402}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (65)
@@ -98284,6 +98432,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1128616487}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (71)
@@ -98998,6 +99150,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1760938402}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (67)
@@ -99786,6 +99942,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1602905677}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (62)
@@ -101073,6 +101233,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 786657783}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (41)
@@ -101589,6 +101753,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1520202521}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (64)
@@ -104139,6 +104307,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435426526}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (60)
@@ -106336,6 +106508,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1602905677}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (67)
@@ -108201,6 +108377,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1128616487}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (62)
@@ -108325,6 +108505,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1520202521}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (66)
@@ -109112,6 +109296,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1128616487}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (41)
@@ -109174,6 +109362,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435426526}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (67)
@@ -113717,6 +113909,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1670820457}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (63)
@@ -118719,6 +118915,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1602905677}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (71)
@@ -121701,6 +121901,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2049893187}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (64)
@@ -123577,6 +123781,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 786657783}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (69)
@@ -125123,6 +125331,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 541700169}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (71)
@@ -127757,6 +127969,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 541700169}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (61)
@@ -129563,6 +129779,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 541700169}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (69)
@@ -130245,6 +130465,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 541700169}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (67)
@@ -132277,6 +132501,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2049893187}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (68)
@@ -134880,6 +135108,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1670820457}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (62)
@@ -136234,6 +136466,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1602905677}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (65)
@@ -138368,6 +138604,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1989821404}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (61)
@@ -139905,6 +140145,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1602905677}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (61)
@@ -140784,6 +141028,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1128616487}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (65)
@@ -143578,6 +143826,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1760938402}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (62)
@@ -145128,6 +145380,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435426526}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (70)
@@ -145842,6 +146098,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1602905677}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (70)
@@ -146970,6 +147230,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1760938402}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (68)
@@ -150004,6 +150268,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1602905677}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (64)
@@ -150190,6 +150458,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1128616487}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (40)
@@ -150458,6 +150730,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2049893187}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (60)
@@ -151392,6 +151668,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1989821404}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (69)
@@ -153816,6 +154096,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1760938402}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (60)
@@ -159109,6 +159393,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1520202521}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (60)
@@ -159171,6 +159459,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2049893187}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (41)
@@ -159357,6 +159649,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1989821404}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (67)
@@ -162691,6 +162987,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1670820457}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (67)
@@ -162815,6 +163115,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1670820457}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (61)
@@ -163063,6 +163367,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435426526}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (69)
@@ -163909,6 +164217,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 786657783}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (66)
@@ -163971,6 +164283,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1989821404}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (63)
@@ -164693,6 +165009,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1602905677}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (68)
@@ -170392,6 +170712,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 541700169}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (64)
@@ -172632,6 +172956,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1128616487}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (69)
@@ -173354,6 +173682,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 786657783}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (64)
@@ -173912,6 +174244,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1128616487}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (61)
@@ -173974,6 +174310,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435426526}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (62)
@@ -176175,6 +176515,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 786657783}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (38)
@@ -178939,6 +179283,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 786657783}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (70)
@@ -180675,6 +181023,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1128616487}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (68)
@@ -181428,7 +181780,7 @@ MonoBehaviour:
   path: savegame.json
   respawnPoint: {fileID: 527637402}
   maxStamina: 100
-  resetInventory: 1
+  resetData: 0
   debugStartingInventory:
   - tool_woodhoe
   - tool_woodwateringcan
@@ -186978,6 +187330,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435426526}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (64)
@@ -189925,6 +190281,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2049893187}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (69)
@@ -191025,6 +191385,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1760938402}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (63)
@@ -193401,6 +193765,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1989821404}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (65)
@@ -194652,6 +195020,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1989821404}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (60)
@@ -194776,6 +195148,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 541700169}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (60)
@@ -196034,6 +196410,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1602905677}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (66)
@@ -197902,6 +198282,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1128616487}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (63)
@@ -201372,6 +201756,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1989821404}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (66)
@@ -201558,6 +201946,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435426526}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (61)
@@ -203494,6 +203886,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 786657783}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (63)
@@ -205796,6 +206192,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1128616487}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (67)
@@ -205940,6 +206340,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1760938402}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (61)
@@ -206437,6 +206841,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 786657783}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (67)
@@ -211715,6 +212123,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1602905677}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (69)
@@ -216889,6 +217301,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2049893187}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (67)
@@ -220998,7 +221414,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f6e1ee14cfc9cab4c8142fc071f3cb0f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.1
+      value: -0.33
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f6e1ee14cfc9cab4c8142fc071f3cb0f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -221078,6 +221494,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2049893187}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (70)
@@ -221408,6 +221828,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1760938402}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (64)
@@ -221956,6 +222380,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1989821404}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (71)
@@ -226244,6 +226672,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435426526}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (68)
@@ -226678,6 +227110,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1520202521}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (61)
@@ -231315,6 +231751,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1520202521}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (65)
@@ -239406,6 +239846,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1670820457}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (60)
@@ -239778,6 +240222,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1670820457}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (70)
@@ -240885,6 +241333,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1602905677}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (63)
@@ -247218,6 +247670,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1520202521}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (67)
@@ -247528,6 +247984,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1760938402}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (70)
@@ -248619,6 +249079,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1670820457}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (69)
@@ -248929,6 +249393,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 541700169}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (63)
@@ -249457,6 +249925,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1989821404}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (64)
@@ -251085,6 +251557,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2049893187}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (61)
@@ -253136,6 +253612,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1128616487}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (64)
@@ -259431,6 +259911,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2049893187}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (66)
@@ -260893,6 +261377,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1989821404}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (62)
@@ -261452,6 +261940,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2049893187}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (39)
@@ -263084,6 +263576,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 786657783}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (61)
@@ -265725,6 +266221,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1128616487}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (39)
@@ -269675,6 +270175,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435426526}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (71)
@@ -272313,6 +272817,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2049893187}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (63)
@@ -274581,6 +275089,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1128616487}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (60)
@@ -274829,6 +275341,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 786657783}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (40)
@@ -280777,6 +281293,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1520202521}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (71)
@@ -280839,6 +281359,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2049893187}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (71)
@@ -286209,6 +286733,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1520202521}
     m_Modifications:
+    - target: {fileID: 1963110591732539875, guid: 00a256223680fe245847fedeec853b86, type: 3}
+      propertyPath: isStatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322788558039441657, guid: 00a256223680fe245847fedeec853b86, type: 3}
       propertyPath: m_Name
       value: Tile (62)
@@ -292183,6 +292711,10 @@ PrefabInstance:
     - target: {fileID: 3502370292588971160, guid: 8e1a6953b6559a242884e08a277f6b84, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.00000010049201
+      objectReference: {fileID: 0}
+    - target: {fileID: 3515799447572123753, guid: 8e1a6953b6559a242884e08a277f6b84, type: 3}
+      propertyPath: m_StepOffset
+      value: 0.001
       objectReference: {fileID: 0}
     - target: {fileID: 3556107202146862294, guid: 8e1a6953b6559a242884e08a277f6b84, type: 3}
       propertyPath: m_LocalPosition.y

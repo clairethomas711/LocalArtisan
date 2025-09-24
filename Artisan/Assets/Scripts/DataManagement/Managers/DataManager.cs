@@ -25,7 +25,7 @@ public class DataManager : MonoBehaviour
     [SerializeField] Transform respawnPoint;
     [SerializeField] float maxStamina;
     [Header("Debug Tools")]
-    [SerializeField] bool resetInventory;
+    [SerializeField] bool resetData;
     [SerializeField] List<string> debugStartingInventory = new List<string>();
     [HideInInspector] public int currentDay;
     [HideInInspector] public int money;
@@ -69,26 +69,7 @@ public class DataManager : MonoBehaviour
         gameTime.Hour = 6;
 
         // DEBUG SHIT //
-        if (resetInventory)
-        {
-            string json = File.ReadAllText(path);
-            SaveData farm = JsonUtility.FromJson<SaveData>(json);
-            for (int i = 0; i < farm.inv.Count; i++)
-            {
-                if (i < debugStartingInventory.Count)
-                {
-                    farm.inv[i].id = debugStartingInventory[i];
-                    farm.inv[i].quantity = 1;
-                }
-                else
-                {
-                    farm.inv[i].id = "";
-                    farm.inv[i].quantity = 0;
-                }
-            }
-            json = JsonUtility.ToJson(farm);
-            File.WriteAllText(path, json);
-        }
+        if (resetData) { GenerateNewSaveData(); }
 
         LoadFarmLayout();
     }
@@ -266,6 +247,10 @@ public class DataManager : MonoBehaviour
     void LoadFarmLayout()
     {
         print("Loading...!");
+        if (!File.Exists(path))
+        {
+            GenerateNewSaveData();
+        }
         string json = File.ReadAllText(path);
         SaveData farm = JsonUtility.FromJson<SaveData>(json);
         // TILE DATA //
@@ -298,6 +283,60 @@ public class DataManager : MonoBehaviour
             chestManager.knownChests[i].chestInventory = farm.chests[i].chestInv;
         }
         
+    }
+
+    void GenerateNewSaveData()
+    {
+        SaveData farm = new SaveData();
+        farm.date = 0;
+        //Clear all tiles, create random trash
+        List<TileData> tiles = new List<TileData>();
+        for (int r = 0; r < transform.childCount; r++)
+        {
+            GameObject row = transform.GetChild(r).gameObject;
+            for (int i = 0; i < row.transform.childCount; i++)
+            {
+                GameObject t = row.transform.GetChild(i).gameObject;
+                Tile tileData = t.GetComponent<Tile>();
+                if (tileData.isStatic)
+                    tileData.state = Tile.TileState.Static;
+                else if (tileData.SpawnTrash(0.3f) == false)
+                    tileData.state = Tile.TileState.Untilled;
+                //Save the new data
+                TileData tile = new TileData();
+                tile.gridLoc = new Vector2(r, i);
+                tile.state = tileData.state;
+                tile.cropCode = "";
+                tile.soilQuality = "";
+                tile.growthScore = tileData.growthScore;
+                tiles.Add(tile);
+            }
+        }
+        farm.layout = tiles;
+        farm.inv = new List<InventoryItem>();
+        //Inventory
+        for (int i = 0; i < playerInventory.maxCapacity; i++)
+        {
+            if (i < debugStartingInventory.Count)
+            {
+                farm.inv.Add(new InventoryItem(debugStartingInventory[i], 1));
+            }
+            else
+            {
+                farm.inv.Add(new InventoryItem("", 0));
+            }
+        }
+        //Animals
+        farm.animals = null;
+        //Chests
+        farm.chests = new List<ChestData>();
+        for (int i = 0; i < chestManager.transform.childCount; i++)
+        {
+            ChestData c = new ChestData();
+            farm.chests.Add(c);
+        }
+        string json = JsonUtility.ToJson(farm);
+        File.WriteAllText(path, json);
     }
 
     [System.Serializable]
