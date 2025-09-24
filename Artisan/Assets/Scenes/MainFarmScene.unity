@@ -179583,7 +179583,7 @@ MonoBehaviour:
   path: savegame.json
   respawnPoint: {fileID: 527637402}
   maxStamina: 100
-  resetInventory: 0
+  resetInventory: 1
   debugStartingInventory:
   - tool_woodhoe
   - tool_woodwateringcan
