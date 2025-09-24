@@ -215,12 +215,12 @@ public class DataManager : MonoBehaviour
             for (int i = 0; i < row.transform.childCount; i++)
             {
                 GameObject t = row.transform.GetChild(i).gameObject;
-                TileBehavior tileData = t.GetComponent<TileBehavior>();
+                Tile tileData = t.GetComponent<Tile>();
                 //Process new day updates - doing this here so we only need to loop all tiles once
-                if (tileData.state == TileBehavior.TileState.Watered && tileData.isPlanted)
+                if (tileData.state == Tile.TileState.Watered && tileData.isPlanted)
                     tileData.growthScore++;
-                if (tileData.state == TileBehavior.TileState.Watered)
-                    tileData.state = TileBehavior.TileState.Tilled;
+                if (tileData.state == Tile.TileState.Watered)
+                    tileData.state = Tile.TileState.Tilled;
                 //Save the new data
                 TileData tile = new TileData();
                 tile.gridLoc = new Vector2 (r , i);
@@ -275,8 +275,8 @@ public class DataManager : MonoBehaviour
             TileData tile = tiles[t];
             Vector2 tileLoc = tile.gridLoc;
             GameObject toUpdate = transform.GetChild((int)tileLoc.x).GetChild((int)tileLoc.y).gameObject;
-            TileBehavior uS;
-            if (uS = toUpdate.GetComponent<TileBehavior>())
+            Tile uS;
+            if (uS = toUpdate.GetComponent<Tile>())
             {
                 uS.state = tile.state;
                 uS.growthScore = tile.growthScore;
@@ -304,7 +304,7 @@ public class DataManager : MonoBehaviour
     private class TileData
     {
         public Vector2 gridLoc;
-        public TileBehavior.TileState state;
+        public Tile.TileState state;
         public string cropCode;
         public string soilQuality;
         public int growthScore;

@@ -52,6 +52,7 @@ public class CraftingMenu : GameplayMenu
 
     public override void Open(List<InventoryItem> inventory)
     {
+        PausePlayer();
         Inventory inv = DataManager.instance.player.GetComponent<Inventory>();
         inv.OpenExpandedInventory(true);
         gameObject.SetActive(true);
@@ -74,6 +75,7 @@ public class CraftingMenu : GameplayMenu
         Inventory inv = DataManager.instance.player.GetComponent<Inventory>();
         inv.CloseExpandedInventory();
         gameObject.SetActive(false);
+        UnpausePlayer();
     }
 }
 

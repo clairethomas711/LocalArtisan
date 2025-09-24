@@ -8,7 +8,7 @@ public class Trash : Interactable
         if (DataManager.instance.manifest[heldItem.id].itemType == cleaningEquipment)
         {
             DataManager.instance.SubtractStamina(2);
-            transform.parent.gameObject.GetComponent<TileBehavior>().state = TileBehavior.TileState.Untilled;
+            transform.parent.gameObject.GetComponent<Tile>().state = Tile.TileState.Untilled;
             Destroy(gameObject);
         }
     }

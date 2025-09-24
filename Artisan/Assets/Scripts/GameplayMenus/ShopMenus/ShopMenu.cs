@@ -18,6 +18,7 @@ public abstract class ShopMenu : GameplayMenu
 
     public override void Open(List<InventoryItem> shopInventory)
     {
+        PausePlayer();
         //Now that the shop is open, we reconstruct the shop manifest using the InventoryItems
         for (int i = 0; i < shopInventory.Count; i++)
         {
@@ -45,6 +46,7 @@ public abstract class ShopMenu : GameplayMenu
             Destroy(slots.transform.GetChild(i).gameObject);
         }
         this.gameObject.SetActive(false);
+        UnpausePlayer();
     }
 
     public void UpdateShopDisplay()

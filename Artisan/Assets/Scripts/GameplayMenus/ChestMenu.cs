@@ -13,6 +13,7 @@ public class ChestMenu : GameplayMenu
 
     public override void Open(List<InventoryItem> chestInventory)
     {
+        PausePlayer();
         Inventory inv = DataManager.instance.player.GetComponent<Inventory>();
         inv.OpenExpandedInventory(true);
         gameObject.SetActive(true);
@@ -48,6 +49,7 @@ public class ChestMenu : GameplayMenu
         Inventory inv = DataManager.instance.player.GetComponent<Inventory>();
         inv.CloseExpandedInventory();
         gameObject.SetActive(false);
+        UnpausePlayer();
     }
 
     public void ConnectChest(Chest c)

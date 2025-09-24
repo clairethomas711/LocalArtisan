@@ -48,6 +48,16 @@ public abstract class GameplayMenu : MonoBehaviour
     {
         print("I hit escape!!");
     }
+    public void PausePlayer()
+    {
+        PlayerStateManager p = DataManager.instance.player.GetComponent<PlayerStateManager>();
+        p.SwitchState(p.busyState);
+    }
+    public void UnpausePlayer()
+    {
+        PlayerStateManager p = DataManager.instance.player.GetComponent<PlayerStateManager>();
+        p.SwitchState(p.idleState);
+    }
     public abstract void Open(List<InventoryItem> inventory = null);
     public abstract void Close();
 

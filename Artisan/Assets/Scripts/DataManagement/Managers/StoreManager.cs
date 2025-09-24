@@ -7,21 +7,22 @@ public class StoreManager : MonoBehaviour
     [SerializeField] List<ShelfPlacement> allStoreShelves;
     Dictionary<ShelfPlacement, List<InventoryItem>> storeInventory = new Dictionary<ShelfPlacement, List<InventoryItem>>(); //Contains only filled shelf slots??
     //Dictionary<ShelfPlacement, List<InventoryItem>> sellableInventory = new Dictionary<ShelfPlacement, List<InventoryItem>>();
-    int hourOfLastSale;
+    int timeOfLastSale;
 
     void Start()
     {
         UpdateInventory();
         DataManager.instance.GameTick.AddListener(StoreTickListener);
-        hourOfLastSale = DataManager.instance.gameTime.Hour;
+        timeOfLastSale = DataManager.instance.totalElapsedMinutes;
     }
 
     void StoreTickListener()
     {
-        if (hourOfLastSale < DataManager.instance.gameTime.Hour)
+        if (timeOfLastSale + 60 < DataManager.instance.totalElapsedMinutes)
         {
+            print("Attempting item sale");
             SellRandomItem();
-            hourOfLastSale = DataManager.instance.gameTime.Hour;
+            timeOfLastSale = DataManager.instance.totalElapsedMinutes;
         }
     }
 
