@@ -12,6 +12,14 @@ public class CraftingMenu : GameplayMenu
         set { tableSlots = value; }
     }
 
+    void Start()
+    {
+        for (int i = 0; i < slots.transform.childCount; i++) //Populate our menu storage with empty objects
+        {
+            inventorySlots.Add(new InventoryItem("", 0));
+        }
+    }
+
     public void AttempttoCraft() //Called when we click "Submit"
     {
         HashSet<string> c = new HashSet<string>();

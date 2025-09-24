@@ -9,7 +9,6 @@ using TMPro;
 public class Inventory : MonoBehaviour
 {
     [SerializeField] private int maxCapacity = 20;
-    //[SerializeField] List<string> startingInventory = new List<string>();
     [HideInInspector] public List<InventoryItem> inventoryList = new List<InventoryItem>();
     [HideInInspector] public bool menuOpen = false;
     public GameObject hotbarPanel;
@@ -21,10 +20,10 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
-        for (int i = 0; i < maxCapacity; i++)
+        /*for (int i = 0; i < maxCapacity; i++)
         {
             inventoryList.Add(new InventoryItem("", 0));
-        }
+        }*/
         currentSelection = inventoryList[selectedItemLookup];
         DataManager.instance.AddMoney(10);
     }
@@ -36,20 +35,6 @@ public class Inventory : MonoBehaviour
         else
             DisplayExpandedInventory();
     }
-
-    /*public void AddStartingInventory()
-    {
-        //Populate the actual inventory
-        for (int i = 0; i < startingInventory.Count; i++)
-        {
-            if (DataManager.instance.manifest[startingInventory[i]].itemType == itemType.Seed)
-                AddInventoryItem(startingInventory[i], 6);
-            else
-                AddInventoryItem(startingInventory[i]);
-        }
-        UpdateInventories();
-        DisplayHighlight();
-    }*/
 
     void DisplayExpandedInventory()
     {

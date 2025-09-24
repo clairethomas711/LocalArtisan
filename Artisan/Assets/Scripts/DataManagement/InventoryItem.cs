@@ -13,4 +13,7 @@ public class InventoryItem
         quantity = q;
         //index = i;
     }
+
+    public InventoryItem Copy() { return new InventoryItem(id, quantity); }
+    public void Reset() { id = ""; quantity = 0;  }
 }

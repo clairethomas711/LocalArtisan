@@ -8,17 +8,9 @@ public abstract class GameplayMenu : MonoBehaviour
     [SerializeField] public GameObject slots;
     public abstract List<InventoryItem> inventorySlots { get; set; }
 
-    void Start()
-    {
-        for (int i = 0; i < slots.transform.childCount; i++) //Populate our menu storage with empty objects
-        {
-            inventorySlots.Add(new InventoryItem("", 0));
-        }
-    }
-
     public void UpdateDisplay()
     {
-        for (int i = 0; i < inventorySlots.Count; i++)
+        for (int i = 0; i < slots.transform.childCount; i++)
         {
             Transform slot = slots.transform.GetChild(i);
             UnityEngine.UI.Image s = slot.gameObject.GetComponent<UnityEngine.UI.Image>();

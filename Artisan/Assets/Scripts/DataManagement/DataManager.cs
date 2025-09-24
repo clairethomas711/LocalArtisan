@@ -17,6 +17,7 @@ public class DataManager : MonoBehaviour
     [SerializeField] public GameObject player;
     [SerializeField] public CursorGrab grab;
     [SerializeField] public BarnManager barnManager;
+    [SerializeField] public ChestManager chestManager;
     [Header("Data Objects")]
     public ItemManifest itemManifest;
     [Header("Game Settings")]
@@ -207,7 +208,7 @@ public class DataManager : MonoBehaviour
     {
         print("Saving...!");
         // TILE DATA //
-        List<Tile> tiles = new List<Tile>();
+        List<TileData> tiles = new List<TileData>();
         for (int r = 0; r < transform.childCount; r++)
         {
             GameObject row = transform.GetChild(r).gameObject;
@@ -221,7 +222,7 @@ public class DataManager : MonoBehaviour
                 if (tileData.state == TileBehavior.TileState.Watered)
                     tileData.state = TileBehavior.TileState.Tilled;
                 //Save the new data
-                Tile tile = new Tile();
+                TileData tile = new TileData();
                 tile.gridLoc = new Vector2 (r , i);
                 tile.state = tileData.state;
                 tile.cropCode = "";
@@ -243,11 +244,21 @@ public class DataManager : MonoBehaviour
             a.Add(new_animal);
         }
 
+        // CHEST DATA //
+        List<ChestData> c = new List<ChestData>();
+        for (int i = 0; i < chestManager.knownChests.Count; i++)
+        {
+            ChestData newChest = new ChestData();
+            newChest.chestInv = chestManager.knownChests[i].chestInventory;
+            c.Add(newChest);
+        }
+
         SaveData farm = new SaveData();
         farm.date = currentDay;
         farm.layout = tiles;
         farm.animals = a;
         farm.inv = playerInventory.inventoryList;
+        farm.chests = c;
         string json = JsonUtility.ToJson(farm);
         File.WriteAllText(path, json);
     }
@@ -258,10 +269,10 @@ public class DataManager : MonoBehaviour
         string json = File.ReadAllText(path);
         SaveData farm = JsonUtility.FromJson<SaveData>(json);
         // TILE DATA //
-        List<Tile> tiles = farm.layout;
+        List<TileData> tiles = farm.layout;
         for (int t = 0; t < tiles.Count; t++)
         {
-            Tile tile = tiles[t];
+            TileData tile = tiles[t];
             Vector2 tileLoc = tile.gridLoc;
             GameObject toUpdate = transform.GetChild((int)tileLoc.x).GetChild((int)tileLoc.y).gameObject;
             TileBehavior uS;
@@ -287,11 +298,18 @@ public class DataManager : MonoBehaviour
         // INVENTORY DATA //
         playerInventory.inventoryList = farm.inv;
         playerInventory.UpdateInventories();
+
+        // CHEST DATA //
+        for (int i = 0; i < farm.chests.Count; i++)
+        {
+            //should save in the same order, therefore connected
+            chestManager.knownChests[i].chestInventory = farm.chests[i].chestInv;
+        }
         
     }
 
     [System.Serializable]
-    private class Tile
+    private class TileData
     {
         public Vector2 gridLoc;
         public TileBehavior.TileState state;
@@ -304,12 +322,18 @@ public class DataManager : MonoBehaviour
     {
         public bool readyToProduce;
     }
+    [System.Serializable]
+    private class ChestData
+    {
+        public List<InventoryItem> chestInv;
+    }
 
     private class SaveData
     {
         public int date;
-        public List<Tile> layout;
+        public List<TileData> layout;
         public List<InventoryItem> inv;
         public List<AnimalData> animals;
+        public List<ChestData> chests;
     }
 }
