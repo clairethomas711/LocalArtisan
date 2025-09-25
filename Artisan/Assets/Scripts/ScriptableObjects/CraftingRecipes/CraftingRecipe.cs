@@ -6,4 +6,5 @@ public class CraftingRecipe : ScriptableObject
 {
     public List<ItemData> recipeRequirements;
     public ItemData product;
+    public int processingTimeInMinutes;
 }

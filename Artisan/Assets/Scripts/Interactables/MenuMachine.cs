@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class MenuMachine : Machine
 {
     [SerializeField] GameplayMenu uiMenu;
+    CraftingRecipe currentRecipe;
     List<ItemData> acceptedItems;
     List<ItemData> productedItems;
     public List<CraftingRecipe> recipes;
@@ -24,6 +25,16 @@ public class MenuMachine : Machine
             uiMenu.Open();
         else if (state == MachineState.produced)
             TakeProducedItem();
+    }
+
+    public void PassRecipe(CraftingRecipe r)
+    {
+        currentRecipe = r;
+    }
+
+    public override int CalculateProcessingTime(int minOfProductionStart)
+    {
+        return minOfProductionStart + currentRecipe.processingTimeInMinutes;
     }
 
 }

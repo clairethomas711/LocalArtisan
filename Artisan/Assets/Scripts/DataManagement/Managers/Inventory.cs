@@ -20,12 +20,7 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
-        /*for (int i = 0; i < maxCapacity; i++)
-        {
-            inventoryList.Add(new InventoryItem("", 0));
-        }*/
         currentSelection = inventoryList[selectedItemLookup];
-        DataManager.instance.AddMoney(10);
     }
 
     public void UpdateInventories()

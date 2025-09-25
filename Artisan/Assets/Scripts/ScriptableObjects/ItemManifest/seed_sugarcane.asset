@@ -16,7 +16,7 @@ MonoBehaviour:
   id: seed_sugarcane
   itemType: 3
   sprite: {fileID: 21300000, guid: b653289dbe0a7ec408cb59c8562c120e, type: 3}
-  value: 1
+  value: 10
   stages:
   - {fileID: 919132149155446097, guid: 54c5dbfb0c0006f4e98d3f19a0747a2f, type: 3}
   - {fileID: 919132149155446097, guid: 6b2f88137ce89914bb8eacd3651d8bfa, type: 3}

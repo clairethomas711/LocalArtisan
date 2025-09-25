@@ -24,6 +24,7 @@ public class DataManager : MonoBehaviour
     [SerializeField] string path;
     [SerializeField] Transform respawnPoint;
     [SerializeField] float maxStamina;
+    [SerializeField] int startingGold;
     [Header("Debug Tools")]
     [SerializeField] bool resetData;
     [SerializeField] List<string> debugStartingInventory = new List<string>();
@@ -66,6 +67,7 @@ public class DataManager : MonoBehaviour
         playerInventory = player.GetComponent<Inventory>();
         gameTimeReal = 0;
         gameTime.Hour = 6;
+        AddMoney(startingGold);
 
         // DEBUG SHIT //
         if (resetData) { GenerateNewSaveData(); }

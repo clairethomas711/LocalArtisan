@@ -16,5 +16,5 @@ MonoBehaviour:
   id: anim_cow
   itemType: 9
   sprite: {fileID: 21300000, guid: 6358982f438295c478f7ed9fa101ea78, type: 3}
-  value: 5
+  value: 100
   readyToProduce: 0

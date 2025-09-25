@@ -15,3 +15,4 @@ MonoBehaviour:
   recipeRequirements:
   - {fileID: 11400000, guid: 55d2a381e3ed2e3448c30ba9fc8563f1, type: 2}
   product: {fileID: 11400000, guid: e1e6de0d401e3d647b85df5d02ad5230, type: 2}
+  processingTimeInMinutes: 5

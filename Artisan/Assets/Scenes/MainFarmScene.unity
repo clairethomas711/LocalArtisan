@@ -181781,12 +181781,14 @@ MonoBehaviour:
   path: savegame.json
   respawnPoint: {fileID: 527637402}
   maxStamina: 100
-  resetData: 0
+  startingGold: 100
+  resetData: 1
   debugStartingInventory:
   - tool_woodhoe
   - tool_woodwateringcan
   - tool_woodaxe
   - tool_pail
+  - crop_wheat
   currentDay: 0
   money: 0
   stamina: 0

@@ -17,7 +17,7 @@ public abstract class Machine : Interactable
 
     void Start()
     {
-        
+
         state = MachineState.ready;
     }
 
@@ -41,9 +41,9 @@ public abstract class Machine : Interactable
         state = MachineState.processing; //We are now processing
         activelyProducing = output; //Remember what the output will be
         minOfProductionStart = DataManager.instance.TotalElapsedGameTime(); //Save when we started producing
-        minOfProductionEnd = minOfProductionStart + processingTimeInMinutes; //Calculate when we will end producing
+        minOfProductionEnd = CalculateProcessingTime(minOfProductionStart);
         //Visual feedback 
-        indicatorTimer = indicator.transform.GetChild(0).GetComponent<UnityEngine.UI.Slider>(); 
+        indicatorTimer = indicator.transform.GetChild(0).GetComponent<UnityEngine.UI.Slider>();
         indicator.SetActive(true);
     }
 
@@ -67,5 +67,7 @@ public abstract class Machine : Interactable
         indicatorTimer.gameObject.SetActive(true);
         indicatorDone.gameObject.SetActive(false);
     }
+
+    public abstract int CalculateProcessingTime(int minOfProductionStart);
 
 }

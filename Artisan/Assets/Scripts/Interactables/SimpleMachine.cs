@@ -35,4 +35,9 @@ public class SimpleMachine : Machine
         }
     }
 
+    public override int CalculateProcessingTime(int minOfProductionStart)
+    {
+        return 0;
+    }
+
 }
