@@ -115724,6 +115724,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chestMenu: {fileID: 1895578081}
+  chestCapacity: 5
   chestInventory:
   - id: 
     quantity: 0
@@ -257992,6 +257993,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chestMenu: {fileID: 1895578081}
+  chestCapacity: 5
   chestInventory:
   - id: 
     quantity: 0

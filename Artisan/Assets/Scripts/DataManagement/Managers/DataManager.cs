@@ -332,8 +332,13 @@ public class DataManager : MonoBehaviour
         farm.chests = new List<ChestData>();
         for (int i = 0; i < chestManager.transform.childCount; i++)
         {
-            ChestData c = new ChestData();
-            farm.chests.Add(c);
+            ChestData newChest = new ChestData();
+            newChest.chestInv = new List<InventoryItem>();
+            for (int j = 0; j < chestManager.knownChests[i].chestCapacity; j++)
+            {
+                newChest.chestInv.Add(new InventoryItem("", 0));
+            }
+            farm.chests.Add(newChest);
         }
         string json = JsonUtility.ToJson(farm);
         File.WriteAllText(path, json);

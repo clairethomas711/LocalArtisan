@@ -129,6 +129,7 @@ public class Inventory : MonoBehaviour
     {
         ClearHighlight();
         selectedItemLookup = (int)val.Get<float>();
+        currentSelection = inventoryList[selectedItemLookup];
         DisplayHighlight();
     }
 
