@@ -215,6 +215,7 @@ public class Inventory : MonoBehaviour
         expandedInventoryPanel.SetActive(true);
         p.SwitchState(p.busyState);
         UpdateInventories();
+        DataManager.instance.PauseGame(true);
     }
 
     public void CloseExpandedInventory()
@@ -226,5 +227,6 @@ public class Inventory : MonoBehaviour
         expandedInventoryPanel.SetActive(false);
         p.SwitchState(p.idleState);
         UpdateInventories();
+        DataManager.instance.PauseGame(false);
     }
 }

@@ -20,7 +20,7 @@ public class PlayerStateManager : MonoBehaviour
     [HideInInspector] public bool isSneaking = false;
 
     public float default_speed = 1;
-    [SerializeField] private Animator characterAnimator;
+    [SerializeField] public Animator characterAnimator;
 
     CharacterController controller;
     Inventory inv;

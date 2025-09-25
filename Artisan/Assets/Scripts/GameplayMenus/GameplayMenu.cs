@@ -52,11 +52,13 @@ public abstract class GameplayMenu : MonoBehaviour
     {
         PlayerStateManager p = DataManager.instance.player.GetComponent<PlayerStateManager>();
         p.SwitchState(p.busyState);
+        DataManager.instance.PauseGame(true);
     }
     public void UnpausePlayer()
     {
         PlayerStateManager p = DataManager.instance.player.GetComponent<PlayerStateManager>();
         p.SwitchState(p.idleState);
+        DataManager.instance.PauseGame(false);
     }
     public abstract void Open(List<InventoryItem> inventory = null);
     public abstract void Close();

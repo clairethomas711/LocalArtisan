@@ -47,10 +47,10 @@ public class DataManager : MonoBehaviour
     }
     public GameTime gameTime;
     [HideInInspector] public int totalElapsedMinutes = 0;
-    float dayStartTime;
     float gameTimeReal;
     int priorMin = 0;
     bool newHour = false;
+    bool gameRunning = true;
 
     void Awake()
     {
@@ -64,8 +64,7 @@ public class DataManager : MonoBehaviour
         currentDay = 1;
         stamina = maxStamina;
         playerInventory = player.GetComponent<Inventory>();
-        dayStartTime = Time.time;
-        gameTimeReal = Time.time;
+        gameTimeReal = 0;
         gameTime.Hour = 6;
 
         // DEBUG SHIT //
@@ -76,15 +75,15 @@ public class DataManager : MonoBehaviour
 
     void Update() 
     {
-        GameClockProgress();
+        if (gameRunning)
+            GameClockProgress();
     }
 
     void GameClockProgress() //Game Clock
     {
         //Convert the real time to game time
-        gameTimeReal = Time.time;
-        float dif = gameTimeReal - dayStartTime;
-        gameTime.Min = (int)Mathf.Floor(dif % 60);
+        gameTimeReal += Time.deltaTime;
+        gameTime.Min = (int)Mathf.Floor(gameTimeReal % 60);
         //Is this a new minute? If so, invoke GameTick
         if (priorMin < gameTime.Min)
         {
@@ -106,6 +105,14 @@ public class DataManager : MonoBehaviour
         }
         //Visuals Update
         uiManager.UpdateClock();
+    }
+
+    public void PauseGame(bool pause)
+    {
+        if (pause)
+            gameRunning = false;
+        else
+            gameRunning = true;
     }
 
     public int GameTimeInMinutes()
@@ -168,21 +175,20 @@ public class DataManager : MonoBehaviour
         //Update data
         currentDay++;
         RestoreStamina();
-        //TEMP ANIMAL STUFF - UPDATE LATER
+        // ANIMALS //
         for (int i = 0; i < barnManager.animals.Count; i++)
         {
             AnimalData a = barnManager.animals[i];
             a.readyToProduce = true;
         }
-        // END TEMP ANIMAL STUFF
         uiManager.UpdateUIVisuals();
         uiManager.FadeIn();
-        dayStartTime = Time.time;
         gameTime.Hour = 6;
         gameTime.Min = 0;
         //Save
         SaveFarmLayout();
-        LoadFarmLayout();     
+        LoadFarmLayout();
+        gameTimeReal = 0;     
     }
 
     void SaveFarmLayout()

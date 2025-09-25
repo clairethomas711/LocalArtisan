@@ -36,7 +36,8 @@ public class BarnManager : MonoBehaviour
                 //Put an animal in the stall based on that data
                 if (animals[i].id == "anim_cow")
                 {
-                    Instantiate(cow, stalls.transform.GetChild(i).transform);
+                    GameObject a = Instantiate(cow, stalls.transform.GetChild(i).transform);
+                    a.GetComponent<AnimalBehavior>().ReadyAnimal();
                 }
             }
         }
