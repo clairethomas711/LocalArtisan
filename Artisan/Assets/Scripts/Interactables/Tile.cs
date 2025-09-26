@@ -81,9 +81,7 @@ public class Tile : Interactable
     
     public void UpdateVisuals()
     {
-        if (gameObject.layer != 3)
-            return;
-
+        if (gameObject.layer != 3 && gameObject.layer != 6) return;
         GrowPlant();
 
         MeshRenderer mat = GetComponent<MeshRenderer>();
@@ -93,6 +91,7 @@ public class Tile : Interactable
         }
         else if (state == TileState.Tilled)
         {
+            
             mat.material.mainTexture = tilled;
         }
         else if (state == TileState.Watered)

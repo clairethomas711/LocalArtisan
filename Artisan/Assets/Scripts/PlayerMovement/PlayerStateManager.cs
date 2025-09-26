@@ -42,7 +42,7 @@ public class PlayerStateManager : MonoBehaviour
     void Update()
     {
         currentState.UpdateState(this);
-        print(currentState.ToString());
+        //print(currentState.ToString());
     }
 
     // Handle Input //
@@ -106,13 +106,18 @@ public class PlayerStateManager : MonoBehaviour
     public void CheckTarget()
     {
         RaycastHit hit;
-        LayerMask mask = LayerMask.GetMask("Interactable");
+        //LayerMask mask = LayerMask.GetMask("Interactable");
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit, 100, mask))
+        if (Physics.Raycast(ray, out hit, 100))
         {
             GameObject gameHit = hit.transform.gameObject;
-            if (Vector3.Distance(gameHit.transform.position, transform.position) < 5)
-                ChangeTarget(gameHit);
+            if (gameHit.GetComponent<Interactable>() && (gameHit.layer == 3 || gameHit.layer == 6))
+            {
+                if (Vector3.Distance(gameHit.transform.position, transform.position) < 5)
+                    ChangeTarget(gameHit);
+                else
+                    ChangeTarget(null);
+            }
             else
                 ChangeTarget(null);
         }
@@ -125,15 +130,18 @@ public class PlayerStateManager : MonoBehaviour
         if (gameHit != target)
         {
             if (target != null)
-                target.GetComponent<MeshRenderer>().material.color = Color.white;
-
+            {
+                //target.GetComponent<MeshRenderer>().material.color = Color.white;
+                target.layer = 3;
+            }
             target = gameHit;
             if (target)
             {
                 MeshRenderer targetMesh = target.GetComponent<MeshRenderer>();
                 if (targetMesh != null)
                 {
-                    targetMesh.material.color = Color.red;
+                    //targetMesh.material.color = Color.red;
+                    target.layer = 6;
                 }
             }
 
