@@ -9,9 +9,14 @@ public class Trash : Interactable
         {
             DataManager.instance.SubtractStamina(2);
             transform.parent.gameObject.GetComponent<Tile>().state = Tile.TileState.Untilled;
-            Destroy(gameObject);
+            GetComponent<Animator>().SetTrigger("Destroy");
             return "Hit";
         }
         return "";
+    }
+
+    void Despawn()
+    {
+        Destroy(gameObject);
     }
 }

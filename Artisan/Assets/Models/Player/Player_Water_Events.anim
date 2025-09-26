@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_TILL_Events
+  m_Name: Player_Water_Events
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -70,7 +70,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: Bear/ROOT/Spine/R_Clavicle/R_Shoulder/R_Bicep/R_Forearm/Stick_TEMP
+    path: Bear/ROOT/Spine/R_Clavicle/R_Shoulder/R_Bicep/R_Forearm/Watering_TEMP
     classID: 1
     script: {fileID: 0}
     flags: 0
@@ -83,7 +83,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 2323205522
+      path: 2579482868
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
@@ -166,7 +166,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: Bear/ROOT/Spine/R_Clavicle/R_Shoulder/R_Bicep/R_Forearm/Stick_TEMP
+    path: Bear/ROOT/Spine/R_Clavicle/R_Shoulder/R_Bicep/R_Forearm/Watering_TEMP
     classID: 1
     script: {fileID: 0}
     flags: 0

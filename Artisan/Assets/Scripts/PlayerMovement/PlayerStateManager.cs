@@ -14,15 +14,16 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerTargetState targetState = new PlayerTargetState();
     [HideInInspector]
     public PlayerBusyState busyState = new PlayerBusyState();
-    [HideInInspector]
-    public PlayerLockState lockState = new PlayerLockState();
+
 
     [HideInInspector] public Vector2 movement;
     [HideInInspector] public bool isTargeting = false;
     [HideInInspector] public bool isSneaking = false;
+    [HideInInspector] public string currentAnimation = "";
 
     public float default_speed = 1;
     [SerializeField] public Animator characterAnimator;
+    
 
     CharacterController controller;
     Inventory inv;
@@ -66,11 +67,12 @@ public class PlayerStateManager : MonoBehaviour
         {
             if (target.TryGetComponent<Interactable>(out Interactable i))
             {
-                string animation = i.Interact(inv.currentSelection);
-                if (animation != "")
+                currentAnimation = i.Interact(inv.currentSelection);
+                if (currentAnimation != "")
                 {
-                    characterAnimator.SetTrigger(animation);
+                    SwitchState(busyState);
                 }
+                currentAnimation = "";
             }            
         }
 

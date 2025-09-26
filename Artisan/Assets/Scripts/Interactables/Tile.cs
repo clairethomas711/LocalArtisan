@@ -38,8 +38,7 @@ public class Tile : Interactable
                 return UseHoe();
 
             case itemType.WateringCan:
-                UseWateringCan();
-                return "";
+                return UseWateringCan();
 
             case itemType.Seed:
                 UseSeed((Seed)DataManager.instance.manifest[currentItem.id]);
@@ -58,10 +57,14 @@ public class Tile : Interactable
         return "";
     }
 
-    private void UseWateringCan()
+    private string UseWateringCan()
     {
         if (Water())
+        {
             DataManager.instance.SubtractStamina(2);
+            return "Water";
+        }
+        return "";
     }
 
     private void UseSeed(Seed currentItem)

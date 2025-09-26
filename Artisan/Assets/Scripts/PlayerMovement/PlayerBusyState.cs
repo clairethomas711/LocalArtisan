@@ -4,7 +4,8 @@ public class PlayerBusyState : PlayerBaseState
 {
     public override void EnterState(PlayerStateManager player) 
     {
-        player.characterAnimator.SetFloat("Speed", 0);
+        if (player.currentAnimation != "")
+            player.characterAnimator.SetTrigger(player.currentAnimation);
     }
 
     public override void UpdateState(PlayerStateManager player) 

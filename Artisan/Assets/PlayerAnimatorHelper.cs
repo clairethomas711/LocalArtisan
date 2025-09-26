@@ -14,7 +14,7 @@ public class PlayerAnimatorHelper : MonoBehaviour
     {
         if (l == 1)
         {
-            player.SwitchState(player.lockState);
+            player.SwitchState(player.busyState);
         }
         else
         {
