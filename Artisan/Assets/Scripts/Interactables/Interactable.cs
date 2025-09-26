@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
-    public abstract void Interact(InventoryItem heldItem);
+    public abstract string Interact(InventoryItem heldItem);
 }

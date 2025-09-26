@@ -14,6 +14,8 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerTargetState targetState = new PlayerTargetState();
     [HideInInspector]
     public PlayerBusyState busyState = new PlayerBusyState();
+    [HideInInspector]
+    public PlayerLockState lockState = new PlayerLockState();
 
     [HideInInspector] public Vector2 movement;
     [HideInInspector] public bool isTargeting = false;
@@ -64,7 +66,11 @@ public class PlayerStateManager : MonoBehaviour
         {
             if (target.TryGetComponent<Interactable>(out Interactable i))
             {
-                i.Interact(inv.currentSelection);
+                string animation = i.Interact(inv.currentSelection);
+                if (animation != "")
+                {
+                    characterAnimator.SetTrigger(animation);
+                }
             }            
         }
 

@@ -13,7 +13,7 @@ public class ShelfPlacement : Interactable
     {
         store = transform.parent.parent.gameObject.GetComponent<StoreManager>(); //THIS IS NOT GREAT - NEED TO KEEP THIS FORMAT OR CHANGE
     }
-    public override void Interact(InventoryItem heldItem)
+    public override string Interact(InventoryItem heldItem)
     {
         if (heldItem.id == "") //If we have an empty hand, remove the item
         {
@@ -30,7 +30,7 @@ public class ShelfPlacement : Interactable
         else if (DataManager.instance.manifest[heldItem.id].itemType != itemType.Artisan) //If we are not holding an artisan item, do nothing
         {
             print("Only Artisan items can be sold in the store.");
-            return;
+            return "";
         }
         else if (currentAcceptedItem == null || (currentAcceptedItem != null && shelfInventory.Count <= 0)) //If this is an empty & unassigned shelf, add this as the new item
         { //OR If this is different from our assigned item, but our shelf is empty, reassign
@@ -45,6 +45,7 @@ public class ShelfPlacement : Interactable
         }
         UpdateDisplay();
         store.UpdateInventory();
+        return "";
     }
 
     public void UpdateDisplay()

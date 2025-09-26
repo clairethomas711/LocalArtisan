@@ -6,7 +6,7 @@ public class AnimalBehavior : Interactable
     [SerializeField] private GameObject indicator;
     public ItemData product;
     public bool readyToProduce = false;
-    public override void Interact(InventoryItem heldItem)
+    public override string Interact(InventoryItem heldItem)
     {
         if (heldItem.id == requiredTool.id && readyToProduce)
         {
@@ -19,6 +19,7 @@ public class AnimalBehavior : Interactable
             readyToProduce = false;
             DataManager.instance.playerInventory.AddInventoryItem(product.id);
         }
+        return "";
     }
 
     public void ReadyAnimal()

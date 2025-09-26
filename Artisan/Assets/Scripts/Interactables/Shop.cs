@@ -8,7 +8,7 @@ public class Shop : Interactable
     [SerializeField] ShopData shopData;
     [SerializeField] ShopMenu shopMenu;
     List<InventoryItem> shopInventory = new List<InventoryItem>();
-    public override void Interact(InventoryItem heldItem)
+    public override string Interact(InventoryItem heldItem)
     {
         //This is not a good method and I'm sorry
         for (int i = 0; i < shopData.scriptableItems.Count; i++)
@@ -19,5 +19,6 @@ public class Shop : Interactable
 
         shopMenu.Open(shopInventory);
         shopInventory.Clear();
+        return "";
     }
 }

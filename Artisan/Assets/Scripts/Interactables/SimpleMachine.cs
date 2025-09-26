@@ -16,7 +16,7 @@ public class SimpleMachine : Machine
         set { ProducedItems = value; }
     }
 
-    public override void Interact(InventoryItem heldItem)
+    public override string Interact(InventoryItem heldItem)
     {
         if (state == MachineState.ready)
         {
@@ -33,6 +33,7 @@ public class SimpleMachine : Machine
         {
             TakeProducedItem();
         }
+        return "";
     }
 
     public override int CalculateProcessingTime(int minOfProductionStart)

@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class Bed : Interactable
 {
-    public override void Interact(InventoryItem heldItem)
+    public override string Interact(InventoryItem heldItem)
     {
         DataManager.instance.NewDay();
+        return "";
     }
 }

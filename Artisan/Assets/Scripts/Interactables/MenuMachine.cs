@@ -19,12 +19,13 @@ public class MenuMachine : Machine
         set { ProducedItems = value; }
     }
 
-    public override void Interact(InventoryItem heldItem)
+    public override string Interact(InventoryItem heldItem)
     {
         if (state == MachineState.ready)
             uiMenu.Open();
         else if (state == MachineState.produced)
             TakeProducedItem();
+        return "";
     }
 
     public void PassRecipe(CraftingRecipe r)

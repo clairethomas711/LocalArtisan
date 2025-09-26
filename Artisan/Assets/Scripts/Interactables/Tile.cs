@@ -24,34 +24,38 @@ public class Tile : Interactable
             state = TileState.Untilled;
     }*/
 
-    public override void Interact(InventoryItem currentItem)
+    public override string Interact(InventoryItem currentItem)
     {
         if (state == TileState.Grown)
         {
             UseHarvest();
-            return;
+            return "";
         }
-        if (currentItem.id == "") { return; }
+        if (currentItem.id == "") { return ""; }
         switch (DataManager.instance.manifest[currentItem.id].itemType) //Need one case for each item enum type
         {
             case itemType.Hoe:
-                UseHoe();
-                break;
+                return UseHoe();
 
             case itemType.WateringCan:
                 UseWateringCan();
-                break;
+                return "";
 
             case itemType.Seed:
                 UseSeed((Seed)DataManager.instance.manifest[currentItem.id]);
-                break;
+                return "";
         }
+        return "";
     }
 
-    private void UseHoe()
+    private string UseHoe()
     {
         if (Till())
+        {
             DataManager.instance.SubtractStamina(2);
+            return "Hit";
+        }
+        return "";
     }
 
     private void UseWateringCan()
