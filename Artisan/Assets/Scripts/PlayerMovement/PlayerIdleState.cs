@@ -14,11 +14,7 @@ public class PlayerIdleState : PlayerBaseState
         player.MovePlayer(player.default_speed);
         
         //On what conditions do we leave the state?
-        if (player.isTargeting)
-        {
-            player.SwitchState(player.targetState);
-        }
-        else if (player.movement.magnitude > 0.1)
+        if (player.movement.magnitude > 0.1)
         {
             player.SwitchState(player.walkState);
         }

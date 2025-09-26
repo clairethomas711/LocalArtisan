@@ -18,9 +18,5 @@ public class PlayerWalkState : PlayerBaseState
         {
             player.SwitchState(player.idleState);
         }
-        else if (player.isTargeting)
-        {
-            player.SwitchState(player.targetState);
-        }
     }
 }

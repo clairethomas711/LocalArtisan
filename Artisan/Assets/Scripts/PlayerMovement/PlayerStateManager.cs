@@ -11,8 +11,6 @@ public class PlayerStateManager : MonoBehaviour
     [HideInInspector]
     public PlayerWalkState walkState = new PlayerWalkState();
     [HideInInspector]
-    public PlayerTargetState targetState = new PlayerTargetState();
-    [HideInInspector]
     public PlayerBusyState busyState = new PlayerBusyState();
 
 
@@ -44,6 +42,7 @@ public class PlayerStateManager : MonoBehaviour
     void Update()
     {
         currentState.UpdateState(this);
+        print(currentState.ToString());
     }
 
     // Handle Input //
@@ -53,13 +52,13 @@ public class PlayerStateManager : MonoBehaviour
         movement = moveVal.Get<Vector2>();
     }
 
-    void OnTarget(InputValue targetVal)
+    /*void OnTarget(InputValue targetVal)
     {
         if (targetVal.isPressed) 
             isTargeting = true;
         else
             isTargeting = false;
-    }
+    }*/
 
     void OnInteract()
     {
