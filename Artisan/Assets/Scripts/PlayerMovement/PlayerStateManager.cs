@@ -45,6 +45,22 @@ public class PlayerStateManager : MonoBehaviour
         //print(currentState.ToString());
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("CameraZones"))
+        {
+            other.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("CameraZones"))
+        {
+            other.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        }
+    }
+
     // Handle Input //
 
     void OnMove(InputValue moveVal)
