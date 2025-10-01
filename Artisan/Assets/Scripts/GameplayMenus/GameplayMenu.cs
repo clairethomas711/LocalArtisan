@@ -37,9 +37,9 @@ public abstract class GameplayMenu : MonoBehaviour
         }
         else //Otherwise, swap the items
         {
-        InventoryItem placeholder = DataManager.instance.grab.holding; //Store the item we're holding
-        DataManager.instance.grab.holding = inventorySlots[s.index]; //Put the item in this slot into our hand
-        inventorySlots[s.index] = placeholder; //Put the stored held item in this slot
+            InventoryItem placeholder = DataManager.instance.grab.holding; //Store the item we're holding
+            DataManager.instance.grab.holding = inventorySlots[s.index]; //Put the item in this slot into our hand
+            inventorySlots[s.index] = placeholder; //Put the stored held item in this slot
         }
         UpdateDisplay();
     }

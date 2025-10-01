@@ -15,5 +15,5 @@ MonoBehaviour:
   displayName: Wood
   id: res_wood
   itemType: 4
-  sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  value: 0
+  sprite: {fileID: 21300000, guid: 0e9cda1960d745847addbf4d821a185b, type: 3}
+  value: 1

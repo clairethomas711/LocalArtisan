@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class Shop : Interactable
 {
     [SerializeField] ShopData shopData;
-    [SerializeField] ShopMenu shopMenu;
+    [SerializeField] GameplayMenu shopMenu;
     List<InventoryItem> shopInventory = new List<InventoryItem>();
     public override string Interact(InventoryItem heldItem)
     {
