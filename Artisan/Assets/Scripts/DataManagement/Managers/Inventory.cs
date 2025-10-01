@@ -35,19 +35,9 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < inventoryList.Count; i++)
         {
-            Transform slot = expandedInventoryPanel.transform.GetChild(i);
-            UnityEngine.UI.Image s = slot.gameObject.GetComponent<UnityEngine.UI.Image>();
-            TextMeshProUGUI text = slot.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
-            if (inventoryList[i].id != "")
-            {
-                s.sprite = DataManager.instance.manifest[inventoryList[i].id].sprite;
-                text.text = inventoryList[i].quantity.ToString();
-            }
-            else
-            {
-                s.sprite = null;
-                text.text = null;
-            }
+            InventorySlotData slot = expandedInventoryPanel.transform.GetChild(i).GetComponent<InventorySlotData>();
+            slot.currentItem = inventoryList[i];
+            slot.UpdateDisplay();
         }
         currentSelection = inventoryList[selectedItemLookup];
     }
@@ -57,19 +47,9 @@ public class Inventory : MonoBehaviour
         ClearHighlight();
         for (int i = 0; i < hotbarPanel.transform.childCount; i++)
         {
-            Transform slot = hotbarPanel.transform.GetChild(i);
-            UnityEngine.UI.Image s = slot.gameObject.GetComponent<UnityEngine.UI.Image>();
-            TextMeshProUGUI text = slot.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
-            if (inventoryList[i].id != "")
-            {
-                s.sprite = DataManager.instance.manifest[inventoryList[i].id].sprite;
-                text.text = inventoryList[i].quantity.ToString();
-            }
-            else
-            {
-                s.sprite = null;
-                text.text = null;
-            }
+            InventorySlotData slot = hotbarPanel.transform.GetChild(i).GetComponent<InventorySlotData>();
+            slot.currentItem = inventoryList[i];
+            slot.UpdateDisplay();
         }
         currentSelection = inventoryList[selectedItemLookup];
         DisplayHighlight();

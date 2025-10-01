@@ -21,6 +21,7 @@ public class PlayerStateManager : MonoBehaviour
 
     public float default_speed = 1;
     [SerializeField] public Animator characterAnimator;
+    [SerializeField] private GameObject cameraZones;
     
 
     CharacterController controller;
@@ -45,10 +46,12 @@ public class PlayerStateManager : MonoBehaviour
         //print(currentState.ToString());
     }
 
+    // Camera Triggers //
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("CameraZones"))
         {
+            cameraZones.transform.GetChild(0).gameObject.SetActive(false); //Disable the default camera
             other.gameObject.transform.GetChild(0).gameObject.SetActive(true);
         }
     }
@@ -58,6 +61,7 @@ public class PlayerStateManager : MonoBehaviour
         if (other.gameObject.CompareTag("CameraZones"))
         {
             other.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+            cameraZones.transform.GetChild(0).gameObject.SetActive(true); //Enable the default camera
         }
     }
 
@@ -67,14 +71,6 @@ public class PlayerStateManager : MonoBehaviour
     {
         movement = moveVal.Get<Vector2>();
     }
-
-    /*void OnTarget(InputValue targetVal)
-    {
-        if (targetVal.isPressed) 
-            isTargeting = true;
-        else
-            isTargeting = false;
-    }*/
 
     void OnInteract()
     {
