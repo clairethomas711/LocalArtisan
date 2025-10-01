@@ -10,6 +10,7 @@ public class Trash : Interactable
             DataManager.instance.SubtractStamina(2);
             transform.parent.gameObject.GetComponent<Tile>().state = Tile.TileState.Untilled;
             GetComponent<Animator>().SetTrigger("Destroy");
+            DataManager.instance.playerInventory.AddInventoryItem("res_wood");
             return "Hit";
         }
         return "";
