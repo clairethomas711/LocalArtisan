@@ -6,6 +6,8 @@ public class ShopOffering : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI itemName;
     [SerializeField]
+    private TextMeshProUGUI itemDescription;
+    [SerializeField]
     private TextMeshProUGUI itemPrice;
     [SerializeField]
     private UnityEngine.UI.Image sprite;
@@ -16,6 +18,7 @@ public class ShopOffering : MonoBehaviour
     public void UpdateOfferingDisplay()
     {
         itemName.text = offeringData.displayName;
+        itemDescription.text = offeringData.description;
         itemPrice.text = offeringData.value.ToString();
         sprite.sprite = offeringData.sprite;
     }

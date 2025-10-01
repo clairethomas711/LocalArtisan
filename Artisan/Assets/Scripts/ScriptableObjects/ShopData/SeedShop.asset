@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SeedShop
   m_EditorClassIdentifier: 
   scriptableItems:
-  - {fileID: 11400000, guid: 0634e46bb569f604a8be6a0cf8c86de1, type: 2}
-  - {fileID: 11400000, guid: 2447da7b672c72d489c1997cf87c1443, type: 2}
   - {fileID: 11400000, guid: c249eff429ae3ba49bf4dbd6016c6df6, type: 2}
+  - {fileID: 11400000, guid: 2447da7b672c72d489c1997cf87c1443, type: 2}
+  - {fileID: 11400000, guid: 0634e46bb569f604a8be6a0cf8c86de1, type: 2}
   shopName: Seed Shop
