@@ -5,6 +5,7 @@ public abstract class Machine : Interactable
 {
     public int processingTimeInMinutes;
     public GameObject indicator;
+    [SerializeField] AudioClip doneSound;
     UnityEngine.UI.Slider indicatorTimer;
     UnityEngine.UI.Image indicatorDone;
     [HideInInspector] public ItemData activelyProducing;
@@ -37,11 +38,11 @@ public abstract class Machine : Interactable
     // UNIVERSAL HELPER FUNCTIONS //
     public void StartProducing(ItemData output)
     {
-        DataManager.instance.GameTick.AddListener(MachineTickListener); //Start listening to GameTick
-        state = MachineState.processing; //We are now processing
         activelyProducing = output; //Remember what the output will be
         minOfProductionStart = DataManager.instance.TotalElapsedGameTime(); //Save when we started producing
         minOfProductionEnd = CalculateProcessingTime(minOfProductionStart);
+        state = MachineState.processing; //We are now processing
+        DataManager.instance.GameTick.AddListener(MachineTickListener); //Start listening to GameTick
         //Visual feedback 
         indicatorTimer = indicator.transform.GetChild(0).GetComponent<UnityEngine.UI.Slider>();
         indicator.SetActive(true);
@@ -51,7 +52,12 @@ public abstract class Machine : Interactable
     {
         state = MachineState.produced; //We have finished processing
         DataManager.instance.GameTick.RemoveListener(MachineTickListener); //Stop listening to GameTick
-        //Visual feedback 
+        //Visual feedback
+        if (doneSound)
+        {
+            AudioSource audioSource = GetComponent<AudioSource>();
+            audioSource.PlayOneShot(doneSound);
+        }
         indicatorDone = indicator.transform.GetChild(1).GetComponent<UnityEngine.UI.Image>();
         indicatorTimer.gameObject.SetActive(false);
         indicatorDone.gameObject.SetActive(true);

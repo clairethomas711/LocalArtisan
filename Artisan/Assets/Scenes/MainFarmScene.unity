@@ -7329,6 +7329,7 @@ GameObject:
   - component: {fileID: 51221777}
   - component: {fileID: 51221773}
   - component: {fileID: 51221772}
+  - component: {fileID: 51221779}
   m_Layer: 3
   m_Name: Oven
   m_TagString: Untagged
@@ -7350,6 +7351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   processingTimeInMinutes: 60
   indicator: {fileID: 1871734511}
+  doneSound: {fileID: 8300000, guid: 2da51521b9ee7b04d9e1cba850408d22, type: 3}
   activelyProducing: {fileID: 0}
   minOfProductionStart: 0
   minOfProductionEnd: 0
@@ -7449,6 +7451,103 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 51221771}
   m_Mesh: {fileID: 3205702657871549766, guid: 3abcb0d4708aa4c45882b822e6a8e7c3, type: 3}
+--- !u!82 &51221779
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 51221771}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &51318321
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -70933,6 +71032,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   processingTimeInMinutes: 10
   indicator: {fileID: 2056486929}
+  doneSound: {fileID: 0}
   activelyProducing: {fileID: 0}
   minOfProductionStart: 0
   minOfProductionEnd: 0
@@ -92465,6 +92565,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   processingTimeInMinutes: 10
   indicator: {fileID: 1773395362}
+  doneSound: {fileID: 0}
   activelyProducing: {fileID: 0}
   minOfProductionStart: 0
   minOfProductionEnd: 0
@@ -135252,6 +135353,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   processingTimeInMinutes: 0
   indicator: {fileID: 206930048}
+  doneSound: {fileID: 0}
   activelyProducing: {fileID: 0}
   minOfProductionStart: 0
   minOfProductionEnd: 0
@@ -182928,7 +183030,7 @@ MonoBehaviour:
   respawnPoint: {fileID: 527637402}
   maxStamina: 100
   startingGold: 100
-  resetData: 0
+  resetData: 1
   debugStartingInventory:
   - tool_woodhoe
   - tool_woodwateringcan
@@ -219665,6 +219767,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   processingTimeInMinutes: 5
   indicator: {fileID: 202933823}
+  doneSound: {fileID: 0}
   activelyProducing: {fileID: 0}
   minOfProductionStart: 0
   minOfProductionEnd: 0
@@ -226956,6 +227059,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   processingTimeInMinutes: 5
   indicator: {fileID: 20564260}
+  doneSound: {fileID: 0}
   activelyProducing: {fileID: 0}
   minOfProductionStart: 0
   minOfProductionEnd: 0
