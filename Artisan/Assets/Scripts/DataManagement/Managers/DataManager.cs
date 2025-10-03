@@ -18,6 +18,7 @@ public class DataManager : MonoBehaviour
     [SerializeField] public CursorGrab grab;
     [SerializeField] public BarnManager barnManager;
     [SerializeField] public ChestManager chestManager;
+    [SerializeField] public GameObject notificationManager;
     [Header("Data Objects")]
     public ItemManifest itemManifest;
     [Header("Game Settings")]
@@ -28,6 +29,7 @@ public class DataManager : MonoBehaviour
     [Header("Debug Tools")]
     [SerializeField] bool resetData;
     [SerializeField] List<string> debugStartingInventory = new List<string>();
+    [SerializeField] GameObject notification;
     [HideInInspector] public int currentDay;
     [HideInInspector] public int money;
     [HideInInspector] public float stamina;
@@ -109,6 +111,12 @@ public class DataManager : MonoBehaviour
         uiManager.UpdateClock();
     }
 
+    // UNIVERSAL HELPER FUNCTIONS //
+    public void SendNotification(string n)
+    {
+        GameObject notif = Instantiate(notification, notificationManager.transform);
+        notif.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = n;
+    }
     public void PauseGame(bool pause)
     {
         if (pause)
@@ -166,6 +174,7 @@ public class DataManager : MonoBehaviour
         Invoke("NewDayInvoke", 1.0f);
     }
 
+    // SAVE GAME STUFF //
     void NewDayInvoke()
     {
         //Move the player
@@ -195,7 +204,7 @@ public class DataManager : MonoBehaviour
 
     void SaveFarmLayout()
     {
-        print("Saving...!");
+        SendNotification("Saving...!");
         // TILE DATA //
         List<TileData> tiles = new List<TileData>();
         for (int r = 0; r < transform.childCount; r++)
@@ -254,7 +263,7 @@ public class DataManager : MonoBehaviour
 
     void LoadFarmLayout()
     {
-        print("Loading...!");
+        SendNotification("Loading...!");
         if (!File.Exists(path))
         {
             GenerateNewSaveData();

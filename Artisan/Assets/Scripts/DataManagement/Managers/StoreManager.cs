@@ -20,7 +20,6 @@ public class StoreManager : MonoBehaviour
     {
         if (timeOfLastSale + 60 < DataManager.instance.totalElapsedMinutes)
         {
-            print("Attempting item sale");
             SellRandomItem();
             timeOfLastSale = DataManager.instance.totalElapsedMinutes;
         }
@@ -44,7 +43,7 @@ public class StoreManager : MonoBehaviour
             int selectedItemInt = Random.Range(0, selectedShelf.Count);
             InventoryItem itemToSell = selectedShelf[selectedItemInt];
             DataManager.instance.AddMoney(DataManager.instance.manifest[itemToSell.id].value);
-            print("Sold: " + itemToSell.id);
+            DataManager.instance.SendNotification("Sold: " + DataManager.instance.manifest[itemToSell.id].displayName + " for $" + DataManager.instance.manifest[itemToSell.id].value);
             selectedShelf.RemoveAt(selectedItemInt);
             storeInventory.ElementAt(selectedShelfInt).Key.UpdateDisplay();
             if (selectedShelf.Count == 0)

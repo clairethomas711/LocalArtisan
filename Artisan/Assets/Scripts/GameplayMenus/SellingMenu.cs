@@ -55,15 +55,17 @@ public class SellingMenu : GameplayMenu
     {
         if (AttemptSale())
         {
-            print("Sold!");
+            int total = 0;
             //Sell each item
             for (int i = 0; i < inventorySlots.Count; i++)
             {
                 if (inventorySlots[i].id != "")
                 {
                     DataManager.instance.AddMoney(DataManager.instance.manifest[inventorySlots[i].id].value * inventorySlots[i].quantity);
+                    total += DataManager.instance.manifest[inventorySlots[i].id].value * inventorySlots[i].quantity;
                 }
             }
+            DataManager.instance.SendNotification("Sold for $" + total);
             //Clear the inventory
             inventorySlots.Clear();
             for (int i = 0; i < 5; i++)
@@ -74,7 +76,7 @@ public class SellingMenu : GameplayMenu
         }
         else
         {
-            print("Sorry, you can only sell wood here.");
+            DataManager.instance.SendNotification("Sorry, you can only sell wood here.");
         }
     }
 

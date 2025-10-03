@@ -11,9 +11,11 @@ public class BarnManager : MonoBehaviour
     {
         //Is there an empty stall?
         if (animals.Count >= stalls.transform.childCount)
+        {
+            DataManager.instance.SendNotification("Not enough room in barn.");
             return false;
+        }
         //Add the data to the list
-        print("Adding animal...");
         AnimalData newAnimal = new AnimalData();
         newAnimal.id = animalToBuy.id;
         animals.Add(newAnimal);
