@@ -8,7 +8,7 @@ public class AnimalBehavior : Interactable
     public bool readyToProduce = false;
     public override string Interact(InventoryItem heldItem)
     {
-        if (heldItem.id == requiredTool.id && readyToProduce)
+        if ((requiredTool == null || heldItem.id == requiredTool.id) && readyToProduce)
         {
             //TEMPORARY
             GameObject ready = indicator.transform.GetChild(0).gameObject;

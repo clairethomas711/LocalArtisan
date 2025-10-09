@@ -8,7 +8,7 @@ public abstract class Machine : Interactable
     [SerializeField] AudioClip doneSound;
     UnityEngine.UI.Slider indicatorTimer;
     UnityEngine.UI.Image indicatorDone;
-    [HideInInspector] public ItemData activelyProducing;
+    [HideInInspector] public List<ItemData> activelyProducing = new List<ItemData>();
     [HideInInspector] public int minOfProductionStart;
     [HideInInspector] public int minOfProductionEnd;
     public abstract List<ItemData> AcceptedItems { get; set; }
@@ -36,9 +36,10 @@ public abstract class Machine : Interactable
     }
 
     // UNIVERSAL HELPER FUNCTIONS //
-    public void StartProducing(ItemData output)
+    public void StartProducing(ItemData output, ItemData secondaryOutput = null)
     {
-        activelyProducing = output; //Remember what the output will be
+        activelyProducing.Add(output); //Remember what the output will be
+        if (secondaryOutput) activelyProducing.Add(secondaryOutput);
         minOfProductionStart = DataManager.instance.TotalElapsedGameTime(); //Save when we started producing
         minOfProductionEnd = CalculateProcessingTime(minOfProductionStart);
         state = MachineState.processing; //We are now processing
@@ -65,9 +66,10 @@ public abstract class Machine : Interactable
 
     public void TakeProducedItem()
     {
-        DataManager.instance.playerInventory.AddInventoryItem(activelyProducing.id); //Add the item to the player's inventory
+        DataManager.instance.playerInventory.AddInventoryItem(activelyProducing[0].id); //Add the item to the player's inventory
+        if (activelyProducing.Count > 1) DataManager.instance.playerInventory.AddInventoryItem(activelyProducing[1].id);
         state = MachineState.ready; //We are now ready for new input
-        activelyProducing = null; //Reset what we are producing
+        activelyProducing.Clear(); //Reset what we are producing
         //Visual feedback (change later)
         indicator.SetActive(false);
         indicatorTimer.gameObject.SetActive(true);

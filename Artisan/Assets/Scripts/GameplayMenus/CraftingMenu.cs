@@ -36,7 +36,10 @@ public class CraftingMenu : GameplayMenu
             if (required.SetEquals(c)) //We are using a hashset here - better equality checking
             {
                 machine.PassRecipe(r);
-                machine.StartProducing(r.product);
+                if (r.product.Count == 1)
+                    machine.StartProducing(r.product[0]);
+                else
+                    machine.StartProducing(r.product[0], r.product[1]);
                 for (int j = 0; j < tableSlots.Count; j++)
                 {
                     if (tableSlots[j].quantity <= 1)

@@ -10,9 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ca4512db809b5142a1cdf8ae6551298, type: 3}
-  m_Name: BreadDough
+  m_Name: CakeBatter
   m_EditorClassIdentifier: 
   recipeRequirements:
   - {fileID: 11400000, guid: 55d2a381e3ed2e3448c30ba9fc8563f1, type: 2}
-  product: {fileID: 11400000, guid: e1e6de0d401e3d647b85df5d02ad5230, type: 2}
-  processingTimeInMinutes: 5
+  - {fileID: 11400000, guid: ba2b40a4093096f4ea2f0fe43b2ea640, type: 2}
+  - {fileID: 11400000, guid: ffd2cc357cfb35441b834931f6d9e8e4, type: 2}
+  product:
+  - {fileID: 11400000, guid: b4ca646b74694e647adf893fbefa6398, type: 2}
+  processingTimeInMinutes: 3

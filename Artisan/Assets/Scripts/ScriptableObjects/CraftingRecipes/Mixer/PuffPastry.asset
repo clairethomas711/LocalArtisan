@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ca4512db809b5142a1cdf8ae6551298, type: 3}
-  m_Name: ShortbreadCookies
+  m_Name: PuffPastry
   m_EditorClassIdentifier: 
   recipeRequirements:
-  - {fileID: 11400000, guid: 99a4a95acf04326468da1ae654a0c804, type: 2}
-  product: {fileID: 11400000, guid: 11c2cd3dcf6b4274db27cc0da7a58b15, type: 2}
-  processingTimeInMinutes: 25
+  - {fileID: 11400000, guid: 93c58a171a168c147844a29d091ff350, type: 2}
+  - {fileID: 11400000, guid: 55d2a381e3ed2e3448c30ba9fc8563f1, type: 2}
+  product:
+  - {fileID: 11400000, guid: 130dce0d2c7907b49964dc1e6919d50c, type: 2}
+  processingTimeInMinutes: 5

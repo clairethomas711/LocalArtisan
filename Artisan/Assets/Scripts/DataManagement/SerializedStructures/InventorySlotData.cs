@@ -3,7 +3,10 @@ using TMPro;
 
 public class InventorySlotData : MonoBehaviour
 {
-    public InventoryItem currentItem;
+    [HideInInspector] public InventoryItem currentItem;
+    public bool required;
+    public bool restricted;
+    public itemType requiredType = itemType.Ingredient;
     public int index;
     //public int quantity;
 

@@ -149,12 +149,12 @@ public class PlayerStateManager : MonoBehaviour
             target = gameHit;
             if (target)
             {
-                MeshRenderer targetMesh = target.GetComponent<MeshRenderer>();
-                if (targetMesh != null)
-                {
+                //MeshRenderer targetMesh = target.GetComponent<MeshRenderer>();
+                //if (targetMesh != null)
+                //{
                     //targetMesh.material.color = Color.red;
-                    target.layer = 6;
-                }
+                target.layer = 6;
+                //}
             }
 
         }

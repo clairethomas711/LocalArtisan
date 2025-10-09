@@ -5,6 +5,6 @@ using System.Collections.Generic;
 public class CraftingRecipe : ScriptableObject
 {
     public List<ItemData> recipeRequirements;
-    public ItemData product;
+    public List<ItemData> product;
     public int processingTimeInMinutes;
 }

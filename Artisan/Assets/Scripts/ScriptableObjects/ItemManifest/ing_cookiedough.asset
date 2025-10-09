@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: ing_cookiedough
   m_EditorClassIdentifier: 
   displayName: Cookie Dough
+  description: 
   id: ing_cookiedough
-  itemType: 6
+  itemType: 11
   sprite: {fileID: 21300000, guid: 3c2a58f7e4713d9439f77c64cd7cedd6, type: 3}
   value: 0

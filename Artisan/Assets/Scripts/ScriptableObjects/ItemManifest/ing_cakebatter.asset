@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e316a2abddf25d489bdf7b647a1e14a, type: 3}
-  m_Name: ing_piecrust
+  m_Name: ing_cakebatter
   m_EditorClassIdentifier: 
-  displayName: Pie Crust
-  id: ing_piecrust
-  itemType: 6
-  sprite: {fileID: 21300000, guid: 798ac796c43423d45a52ce3c4c796b55, type: 3}
+  displayName: Cake Batter
+  description: 
+  id: ing_cakebatter
+  itemType: 11
+  sprite: {fileID: 21300000, guid: 6c682e1efae538d4fbaebceafc7a8fad, type: 3}
   value: 0

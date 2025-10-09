@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: artisan_bread
   m_EditorClassIdentifier: 
   displayName: Bread
+  description: 
   id: artisan_bread
   itemType: 5
   sprite: {fileID: 21300000, guid: 564879c5cf1336f44aa7c7ccd0554798, type: 3}
-  value: 50
+  value: 20
   model: {fileID: 8436183156209430121, guid: de81b70c479d6164c9e5a1b99604e861, type: 3}

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ca4512db809b5142a1cdf8ae6551298, type: 3}
+  m_Name: Baguette
+  m_EditorClassIdentifier: 
+  recipeRequirements:
+  - {fileID: 11400000, guid: 6e1d50f848f9ca64dad56b12fb678869, type: 2}
+  - {fileID: 11400000, guid: e1e6de0d401e3d647b85df5d02ad5230, type: 2}
+  product:
+  - {fileID: 11400000, guid: e91b0fc3d6de22846a9d85822dcb4233, type: 2}
+  - {fileID: 11400000, guid: 6e1d50f848f9ca64dad56b12fb678869, type: 2}
+  processingTimeInMinutes: 30

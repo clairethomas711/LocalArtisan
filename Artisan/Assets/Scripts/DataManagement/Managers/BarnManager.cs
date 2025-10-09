@@ -5,6 +5,7 @@ public class BarnManager : MonoBehaviour
 {
     [HideInInspector] public List<AnimalData> animals;
     [SerializeField] GameObject stalls;
+    [SerializeField] GameObject chicken;
     [SerializeField] GameObject cow;
 
     public bool AddAnimal(ItemData animalToBuy)
@@ -39,6 +40,11 @@ public class BarnManager : MonoBehaviour
                 if (animals[i].id == "anim_cow")
                 {
                     GameObject a = Instantiate(cow, stalls.transform.GetChild(i).transform);
+                    a.GetComponent<AnimalBehavior>().ReadyAnimal();
+                }
+                else if (animals[i].id == "anim_chicken")
+                {
+                    GameObject a = Instantiate(chicken, stalls.transform.GetChild(i).transform);
                     a.GetComponent<AnimalBehavior>().ReadyAnimal();
                 }
             }

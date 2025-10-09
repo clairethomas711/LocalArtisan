@@ -15,5 +15,6 @@ MonoBehaviour:
   recipeRequirements:
   - {fileID: 11400000, guid: 7a689a49c04e5834fbc763276a5500f9, type: 2}
   - {fileID: 11400000, guid: ba2b40a4093096f4ea2f0fe43b2ea640, type: 2}
-  product: {fileID: 11400000, guid: 4bfbc1bce8640db4980241c8e02d8d7b, type: 2}
+  product:
+  - {fileID: 11400000, guid: 4bfbc1bce8640db4980241c8e02d8d7b, type: 2}
   processingTimeInMinutes: 40

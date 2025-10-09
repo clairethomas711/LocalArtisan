@@ -5,9 +5,9 @@ public class Tile : Interactable
 {
     public bool isStatic = false;
     [Header("Visuals")]
-    [SerializeField] private Texture grass;
-    [SerializeField] private Texture tilled;
-    [SerializeField] private Texture watered;
+    [SerializeField] private Material grass;
+    [SerializeField] private Material tilled;
+    [SerializeField] private Material watered;
     [SerializeField] GameObject trash;
 
     [HideInInspector] public enum TileState { Untilled, Tilled, Watered, Grown, Trashed, Static };
@@ -87,16 +87,16 @@ public class Tile : Interactable
         MeshRenderer mat = GetComponent<MeshRenderer>();
         if (state == TileState.Untilled)
         {
-            mat.material.mainTexture = grass;
+            mat.material = grass;
         }
         else if (state == TileState.Tilled)
         {
             
-            mat.material.mainTexture = tilled;
+            mat.material = tilled;
         }
         else if (state == TileState.Watered)
         {
-            mat.material.mainTexture = watered;
+            mat.material = watered;
         }
     }
 

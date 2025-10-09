@@ -30,6 +30,16 @@ public abstract class GameplayMenu : MonoBehaviour
 
     public void ClickSlot(InventorySlotData s)
     {
+        //FIRST - are we putting the right type of item here?
+        if (s.restricted && DataManager.instance.grab.holding.id != "")
+        {
+            if (DataManager.instance.manifest[DataManager.instance.grab.holding.id].itemType != s.requiredType)
+            {
+                DataManager.instance.SendNotification("Only items of type " + s.requiredType + " can be put here.");
+                return;
+            }
+        }
+        //If so, then let's continue
         if (inventorySlots[s.index].id != "" && inventorySlots[s.index].id == DataManager.instance.grab.holding.id) //We are holding the same item - add what we're holding to the stack
         {
             inventorySlots[s.index].quantity += DataManager.instance.grab.holding.quantity;
@@ -40,6 +50,7 @@ public abstract class GameplayMenu : MonoBehaviour
             InventoryItem placeholder = DataManager.instance.grab.holding; //Store the item we're holding
             DataManager.instance.grab.holding = inventorySlots[s.index]; //Put the item in this slot into our hand
             inventorySlots[s.index] = placeholder; //Put the stored held item in this slot
+            s.currentItem = placeholder;
         }
         UpdateDisplay();
     }

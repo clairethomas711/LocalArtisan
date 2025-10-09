@@ -8,7 +8,7 @@ public class AnimalShopMenu : ShopMenu
         if (DataManager.instance.money >= itemToPurchase.value && barnManager.AddAnimal(itemToPurchase))
         {
             DataManager.instance.SubtractMoney(itemToPurchase.value);
-            DataManager.instance.SendNotification("Cow Purchased!");
+            DataManager.instance.SendNotification(itemToPurchase.displayName + " Purchased!");
         }
     }
 }

@@ -19,6 +19,7 @@ public class DataManager : MonoBehaviour
     [SerializeField] public BarnManager barnManager;
     [SerializeField] public ChestManager chestManager;
     [SerializeField] public GameObject notificationManager;
+    [SerializeField] SunManager sunManager;
     [Header("Data Objects")]
     public ItemManifest itemManifest;
     [Header("Game Settings")]
@@ -102,6 +103,15 @@ public class DataManager : MonoBehaviour
             GameTick.Invoke();
             gameTime.Hour += 1;
             newHour = false;
+            if (gameTime.Hour == 19)
+            {
+                sunManager.isSunSet = true;
+            }
+            else if (gameTime.Hour == 24)
+            {
+                SendNotification("It's too late at night -  you passed out!");
+                NewDay();
+            }
         }
         else if (gameTime.Min > 0)
         {
@@ -109,6 +119,7 @@ public class DataManager : MonoBehaviour
         }
         //Visuals Update
         uiManager.UpdateClock();
+        sunManager.UpdateSun();
     }
 
     // UNIVERSAL HELPER FUNCTIONS //
@@ -158,10 +169,15 @@ public class DataManager : MonoBehaviour
         {
             stamina -= amount;
             uiManager.UpdateUIVisuals();
+            if (stamina <= 10f)
+            {
+                SendNotification("Be careful! You're running out of energy.");
+            }
             return true;
         }
         else
         {
+            SendNotification("You passed out!");
             NewDay();
             return false;
         }
@@ -198,6 +214,7 @@ public class DataManager : MonoBehaviour
         gameTime.Min = 0;
         //Save
         SaveFarmLayout();
+        sunManager.ResetSun();
         LoadFarmLayout();
         gameTimeReal = 0;     
     }
