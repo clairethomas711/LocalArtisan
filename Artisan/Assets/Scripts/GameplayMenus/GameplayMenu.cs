@@ -50,8 +50,8 @@ public abstract class GameplayMenu : MonoBehaviour
             InventoryItem placeholder = DataManager.instance.grab.holding; //Store the item we're holding
             DataManager.instance.grab.holding = inventorySlots[s.index]; //Put the item in this slot into our hand
             inventorySlots[s.index] = placeholder; //Put the stored held item in this slot
-            s.currentItem = placeholder;
         }
+        s.currentItem = inventorySlots[s.index]; //Update the slot's knowledge of it's contents
         UpdateDisplay();
     }
 
