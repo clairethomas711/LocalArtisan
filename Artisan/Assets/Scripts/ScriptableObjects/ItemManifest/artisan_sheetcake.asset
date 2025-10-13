@@ -17,5 +17,5 @@ MonoBehaviour:
   id: artisan_sheetcake
   itemType: 5
   sprite: {fileID: 21300000, guid: 1e5d09c6beb1d7c49bb2d04b7868cb0c, type: 3}
-  value: 60
-  model: {fileID: 2762171679012300483, guid: 172f509a934c33a4a88eb7226bb05f28, type: 3}
+  value: 5
+  model: {fileID: 5043763691325448402, guid: 198551a5749d0ae478aa05128f320817, type: 3}

@@ -9,6 +9,7 @@ public abstract class Machine : Interactable
     UnityEngine.UI.Slider indicatorTimer;
     UnityEngine.UI.Image indicatorDone;
     [HideInInspector] public List<ItemData> activelyProducing = new List<ItemData>();
+    int quantityToProduce;
     [HideInInspector] public int minOfProductionStart;
     [HideInInspector] public int minOfProductionEnd;
     public abstract List<ItemData> AcceptedItems { get; set; }
@@ -36,8 +37,9 @@ public abstract class Machine : Interactable
     }
 
     // UNIVERSAL HELPER FUNCTIONS //
-    public void StartProducing(ItemData output, ItemData secondaryOutput = null)
+    public void StartProducing(ItemData output, int quantity = 1, ItemData secondaryOutput = null)
     {
+        quantityToProduce = quantity;
         activelyProducing.Add(output); //Remember what the output will be
         if (secondaryOutput) activelyProducing.Add(secondaryOutput);
         minOfProductionStart = DataManager.instance.TotalElapsedGameTime(); //Save when we started producing
@@ -66,7 +68,7 @@ public abstract class Machine : Interactable
 
     public void TakeProducedItem()
     {
-        DataManager.instance.playerInventory.AddInventoryItem(activelyProducing[0].id); //Add the item to the player's inventory
+        DataManager.instance.playerInventory.AddInventoryItem(activelyProducing[0].id, quantityToProduce); //Add the item(s) to the player's inventory
         if (activelyProducing.Count > 1) DataManager.instance.playerInventory.AddInventoryItem(activelyProducing[1].id);
         state = MachineState.ready; //We are now ready for new input
         activelyProducing.Clear(); //Reset what we are producing

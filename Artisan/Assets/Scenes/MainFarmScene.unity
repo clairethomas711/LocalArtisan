@@ -122890,15 +122890,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: becf4ac4b017fda4f828d4b662eb2b1b, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 1.4154
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: becf4ac4b017fda4f828d4b662eb2b1b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.4154
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: becf4ac4b017fda4f828d4b662eb2b1b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.4154
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: becf4ac4b017fda4f828d4b662eb2b1b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.5669994
+      value: -2.82
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: becf4ac4b017fda4f828d4b662eb2b1b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: -1.98
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: becf4ac4b017fda4f828d4b662eb2b1b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -184369,18 +184377,18 @@ MonoBehaviour:
   path: savegame.json
   respawnPoint: {fileID: 527637402}
   maxStamina: 100
-  startingGold: 100
+  startingGold: 500
   resetData: 1
   debugStartingInventory:
   - tool_woodhoe
   - tool_woodwateringcan
   - tool_woodaxe
   - tool_pail
+  - tool_sheetpan
   - artisan_bread
-  - artisan_bread
-  - artisan_bread
-  - artisan_bread
-  - artisan_bread
+  - artisan_shortbreadcookies
+  - artisan_croissant
+  - artisan_sheetcake
   notification: {fileID: 4297460580870484600, guid: 01204682542a84e45a135616b22d5fe5, type: 3}
   currentDay: 0
   money: 0
@@ -223685,7 +223693,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 3e2cebd9512368641bf9782a08039f51, type: 2}
     - target: {fileID: 4007055355517851637, guid: f6e1ee14cfc9cab4c8142fc071f3cb0f, type: 3}
       propertyPath: m_CastShadows
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4007055355517851637, guid: f6e1ee14cfc9cab4c8142fc071f3cb0f, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'

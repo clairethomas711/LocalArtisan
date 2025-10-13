@@ -37,9 +37,9 @@ public class CraftingMenu : GameplayMenu
             {
                 machine.PassRecipe(r);
                 if (r.product.Count == 1)
-                    machine.StartProducing(r.product[0]);
+                    machine.StartProducing(r.product[0], r.quantityProduced);
                 else
-                    machine.StartProducing(r.product[0], r.product[1]);
+                    machine.StartProducing(r.product[0], r.quantityProduced, r.product[1]);
                 for (int j = 0; j < tableSlots.Count; j++)
                 {
                     if (tableSlots[j].quantity <= 1)

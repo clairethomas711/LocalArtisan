@@ -17,4 +17,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4bfbc1bce8640db4980241c8e02d8d7b, type: 2}
   product:
   - {fileID: 11400000, guid: 55b9849eb722c354ab690f19bc94c09e, type: 2}
+  quantityProduced: 1
   processingTimeInMinutes: 60
