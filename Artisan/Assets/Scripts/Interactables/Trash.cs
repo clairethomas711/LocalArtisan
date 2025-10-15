@@ -8,9 +8,9 @@ public class Trash : Interactable
         if (DataManager.instance.manifest[heldItem.id].itemType == cleaningEquipment)
         {
             DataManager.instance.SubtractStamina(2);
-            transform.parent.gameObject.GetComponent<Tile>().state = Tile.TileState.Untilled;
+            transform.parent.gameObject.GetComponent<Tile>().Harvest();
             GetComponent<Animator>().SetTrigger("Destroy");
-            DataManager.instance.playerInventory.AddInventoryItem("res_wood");
+            //DataManager.instance.playerInventory.AddInventoryItem("res_wood");
             return "Hit";
         }
         return "";

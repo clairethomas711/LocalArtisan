@@ -8,6 +8,8 @@ public class Chest : Interactable
     public List<InventoryItem> chestInventory = new List<InventoryItem>();
     public override string Interact(InventoryItem heldItem)
     {
+        if (heldItem.id != "" && AttemptToMove(DataManager.instance.manifest[heldItem.id].itemType))
+            return "Hit";
         chestMenu.ConnectChest(this);
         chestMenu.Open(chestInventory);
         return "";

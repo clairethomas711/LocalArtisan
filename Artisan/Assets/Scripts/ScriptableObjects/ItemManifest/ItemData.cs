@@ -14,4 +14,4 @@ public class ItemData : ScriptableObject
 }
 
 //There NEEDS to be one of these for every item with a different "use" functionality
-public enum itemType { Hoe, WateringCan, Pail, Seed, Resource, Artisan, Ingredient, Crop, Axe, Animal, BakingTool, BakingDough };
+public enum itemType { Hoe, WateringCan, Pail, Seed, Resource, Artisan, Ingredient, Crop, Axe, Animal, BakingTool, BakingDough, Placeable };

@@ -4,5 +4,16 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
+    public bool isMoveableObject;
     public abstract string Interact(InventoryItem heldItem);
+    public bool AttemptToMove(itemType toolUsed)
+    {
+        if (isMoveableObject && toolUsed == itemType.Axe)
+        {
+            transform.parent.gameObject.GetComponent<Tile>().Harvest();
+            return true;
+        }
+        else
+            return false;
+    }
 }

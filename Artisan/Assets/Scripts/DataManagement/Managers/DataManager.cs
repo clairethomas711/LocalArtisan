@@ -232,15 +232,15 @@ public class DataManager : MonoBehaviour
                 GameObject t = row.transform.GetChild(i).gameObject;
                 Tile tileData = t.GetComponent<Tile>();
                 //Process new day updates - doing this here so we only need to loop all tiles once
-                if (tileData.state == Tile.TileState.Watered && tileData.isPlanted)
-                    tileData.growthScore++;
-                if (tileData.state == Tile.TileState.Watered)
-                    tileData.state = Tile.TileState.Tilled;
+                if (tileData.tileInventory != "" && manifest[tileData.tileInventory].itemType == itemType.Seed) //If the current item is a seed, grow that seed
+                {
+                    tileData.GrowPlant();         
+                }
                 //Save the new data
                 TileData tile = new TileData();
                 tile.gridLoc = new Vector2 (r , i);
                 tile.state = tileData.state;
-                tile.cropCode = "";
+                tile.inventoryId = tileData.tileInventory;
                 tile.soilQuality = "";
                 tile.growthScore = tileData.growthScore;
                 tiles.Add(tile);
@@ -298,6 +298,7 @@ public class DataManager : MonoBehaviour
             if (uS = toUpdate.GetComponent<Tile>())
             {
                 uS.state = tile.state;
+                uS.tileInventory = tile.inventoryId;
                 uS.growthScore = tile.growthScore;
                 uS.UpdateVisuals();
             }
@@ -332,15 +333,14 @@ public class DataManager : MonoBehaviour
             {
                 GameObject t = row.transform.GetChild(i).gameObject;
                 Tile tileData = t.GetComponent<Tile>();
-                if (tileData.isStatic)
-                    tileData.state = Tile.TileState.Static;
-                else if (tileData.SpawnTrash(0.3f) == false)
-                    tileData.state = Tile.TileState.Untilled;
+                //THIS NEEDS TO BE CHANGED - generating stuff
+                tileData.GenerateNewData();
+                tileData.UpdateVisuals();
                 //Save the new data
                 TileData tile = new TileData();
                 tile.gridLoc = new Vector2(r, i);
                 tile.state = tileData.state;
-                tile.cropCode = "";
+                tile.inventoryId = tileData.tileInventory; 
                 tile.soilQuality = "";
                 tile.growthScore = tileData.growthScore;
                 tiles.Add(tile);
@@ -383,7 +383,7 @@ public class DataManager : MonoBehaviour
     {
         public Vector2 gridLoc;
         public Tile.TileState state;
-        public string cropCode;
+        public string inventoryId;
         public string soilQuality;
         public int growthScore;
     }

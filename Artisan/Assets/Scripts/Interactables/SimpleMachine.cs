@@ -18,6 +18,8 @@ public class SimpleMachine : Machine
 
     public override string Interact(InventoryItem heldItem)
     {
+        if (heldItem.id != "" && AttemptToMove(DataManager.instance.manifest[heldItem.id].itemType))
+            return "Hit";
         if (state == MachineState.ready)
         {
             for (int i = 0; i < acceptedItems.Count; i++)
