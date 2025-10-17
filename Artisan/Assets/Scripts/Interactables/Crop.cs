@@ -92,6 +92,7 @@ public class Crop : Interactable
         if (state == PlantState.Watered)
             growthScore++;
         currentTile.state = Tile.TileState.Tilled;
+        state = PlantState.Unwatered;
         //If this growth score is the end of the line, then we are fully grown 
         if (growthScore >= plantStages.Count - 1)
         {

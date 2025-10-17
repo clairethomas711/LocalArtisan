@@ -230,10 +230,8 @@ MonoBehaviour:
   indicator: {fileID: 1916361793552662114}
   doneSound: {fileID: 0}
   activelyProducing: []
-  minOfProductionStart: 0
-  minOfProductionEnd: 0
   state: 0
-  processingTimeInMinutes: 300
+  processingTimeInMinutes: 30
   acceptedItems:
   - {fileID: 11400000, guid: 34590bccc35e04a41bddc017d6bdbcc6, type: 2}
   producedItems:

@@ -143997,11 +143997,13 @@ MonoBehaviour:
   doneSound: {fileID: 0}
   activelyProducing: []
   state: 0
-  processingTimeInMinutes: 0
+  processingTimeInMinutes: 20
   acceptedItems:
   - {fileID: 11400000, guid: 5d3913f5e6f4244458d1857ee9a0c038, type: 2}
   - {fileID: 11400000, guid: cf5e8d11a1c42574cb1b692834dd2e53, type: 2}
-  producedItems: []
+  producedItems:
+  - {fileID: 11400000, guid: 55d2a381e3ed2e3448c30ba9fc8563f1, type: 2}
+  - {fileID: 11400000, guid: ba2b40a4093096f4ea2f0fe43b2ea640, type: 2}
 --- !u!136 &978934338
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -144086,15 +144088,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 978934336}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 35.67, y: 3.61, z: 17.71}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 14.890402, y: -4.5533104, z: -0.8366146}
   m_LocalScale: {x: 3.6605, y: 3.6605, z: 3.6605}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 206930052}
   - {fileID: 1167682119}
   - {fileID: 1758085352}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1907524539}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &979957201
 PrefabInstance:
@@ -194670,15 +194672,15 @@ MonoBehaviour:
   respawnPoint: {fileID: 527637402}
   maxStamina: 100
   startingGold: 500
-  resetData: 0
+  resetData: 1
   debugStartingInventory:
   - tool_woodhoe
   - tool_woodwateringcan
   - tool_woodaxe
   - tool_pail
   - tool_sheetpan
-  - placeable_butterchurn
-  - ing_breaddough
+  - seed_wheat
+  - seed_sugarcane
   notification: {fileID: 4297460580870484600, guid: 01204682542a84e45a135616b22d5fe5, type: 3}
   currentDay: 0
   money: 0
@@ -275894,6 +275896,7 @@ Transform:
   - {fileID: 1618658572}
   - {fileID: 51221776}
   - {fileID: 1668714829}
+  - {fileID: 978934341}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1908471360
@@ -311243,7 +311246,6 @@ SceneRoots:
   - {fileID: 1856329603}
   - {fileID: 1634102141}
   - {fileID: 1758663586}
-  - {fileID: 978934341}
   - {fileID: 347914097}
   - {fileID: 483194302}
   - {fileID: 592407649}

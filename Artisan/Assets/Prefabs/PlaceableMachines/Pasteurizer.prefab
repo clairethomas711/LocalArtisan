@@ -227,17 +227,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isMoveableObject: 1
   data: 
-  processingTimeInMinutes: 30
   indicator: {fileID: 3987370605159191038}
   doneSound: {fileID: 0}
   activelyProducing: []
-  minOfProductionStart: 0
-  minOfProductionEnd: 0
   state: 0
+  processingTimeInMinutes: 60
   acceptedItems:
   - {fileID: 11400000, guid: 34590bccc35e04a41bddc017d6bdbcc6, type: 2}
-  productedItems:
-  - {fileID: 11400000, guid: ce5ef902053d89048885193d77bee002, type: 2}
+  producedItems: []
 --- !u!1 &6690016860705925619
 GameObject:
   m_ObjectHideFlags: 0

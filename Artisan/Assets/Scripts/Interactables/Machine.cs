@@ -66,7 +66,8 @@ public abstract class Machine : Interactable
     
     public override void NewDay()
     {
-        minutesSeen += 200;
+        if (state == MachineState.processing)
+            minutesSeen += 200;
     }
 
     //Moved this from abstract to be universal
