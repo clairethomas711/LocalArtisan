@@ -18,6 +18,7 @@ public class DataManager : MonoBehaviour
     [SerializeField] public CursorGrab grab;
     [SerializeField] public BarnManager barnManager;
     [SerializeField] public ChestManager chestManager;
+    [SerializeField] public GameObject staticMachines;
     [SerializeField] public GameObject notificationManager;
     [SerializeField] SunManager sunManager;
     [Header("Data Objects")]
@@ -235,10 +236,18 @@ public class DataManager : MonoBehaviour
                 tileData.NewDay();
                 //Save the new data
                 TileData tile = new TileData();
-                tile.gridLoc = new Vector2 (r , i);
+                tile.gridLoc = new Vector2(r, i);
                 tile.dataPacket = tileData.GetSaveData();
                 tiles.Add(tile);
             }
+        }
+        // STATIC MACHINES //
+        List<string> staticMachineData = new List<string>();
+        for (int i = 0; i < staticMachines.transform.childCount; i++)
+        {
+            Interactable machine = staticMachines.transform.GetChild(i).GetComponent<Interactable>();
+            machine.NewDay();
+            staticMachineData.Add(machine.GetSaveData());
         }
 
         // ANIMAL DATA - THIS NEEDS TO BE UPDATED WITH THE NEW SYSTEM //
@@ -266,6 +275,7 @@ public class DataManager : MonoBehaviour
         farm.layout = tiles;
         farm.animals = a;
         farm.inv = playerInventory.inventoryList;
+        farm.staticMachines = staticMachineData;
         farm.chests = c;
         string json = JsonUtility.ToJson(farm);
         File.WriteAllText(path, json);
@@ -296,11 +306,18 @@ public class DataManager : MonoBehaviour
                 uT.SetSaveData(tile.dataPacket);
             }
         }
+
+        // STATIC MACHINES //
+        for (int i = 0; i < farm.staticMachines.Count; i++)
+        {
+            staticMachines.transform.GetChild(i).gameObject.GetComponent<Interactable>().SetSaveData(farm.staticMachines[i]);       
+        }
+
         // ANIMAL DATA - NEEDS TO BE UPDATED WITH THE NEW SYSTEM //
         barnManager.animals = farm.animals;
         barnManager.UpdateBarn();
 
-        // INVENTORY DATA - I DON'T THINK THIS WORKS RN???//
+        // INVENTORY DATA //
         playerInventory.inventoryList = farm.inv;
         playerInventory.UpdateInventories();
 
@@ -317,7 +334,7 @@ public class DataManager : MonoBehaviour
     {
         SaveData farm = new SaveData();
         farm.date = 0;
-        //Clear all tiles, create random trash
+        // TILES (INCLUDES RANDOMIZATION)
         List<TileData> tiles = new List<TileData>();
         for (int r = 0; r < transform.childCount; r++)
         {
@@ -337,8 +354,16 @@ public class DataManager : MonoBehaviour
             }
         }
         farm.layout = tiles;
-        farm.inv = new List<InventoryItem>();
+        //Static machines
+        farm.staticMachines = new List<string>();
+        for (int i = 0; i < staticMachines.transform.childCount; i++)
+        {
+            Interactable machine = staticMachines.transform.GetChild(i).GetComponent<Interactable>();
+            machine.Initialize(null);
+            farm.staticMachines.Add(machine.GetSaveData());
+        }
         //Inventory
+        farm.inv = new List<InventoryItem>();
         for (int i = 0; i < playerInventory.maxCapacity; i++)
         {
             if (i < debugStartingInventory.Count)
