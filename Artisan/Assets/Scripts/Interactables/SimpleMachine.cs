@@ -3,8 +3,9 @@ using System.Collections.Generic;
 
 public class SimpleMachine : Machine
 {
+    [SerializeField] int processingTimeInMinutes;
     [SerializeField] List<ItemData> acceptedItems;
-    [SerializeField] List<ItemData> productedItems;
+    [SerializeField] List<ItemData> producedItems;
     public override List<ItemData> AcceptedItems
     {
         get { return acceptedItems; }
@@ -12,14 +13,20 @@ public class SimpleMachine : Machine
     }
     public override List<ItemData> ProducedItems
     {
-        get { return productedItems; }
+        get { return producedItems; }
         set { ProducedItems = value; }
     }
 
     public override string Interact(InventoryItem heldItem)
     {
         if (heldItem.id != "" && AttemptToMove(DataManager.instance.manifest[heldItem.id].itemType))
-            return "Hit";
+        {
+            Tile t = transform.parent.gameObject.GetComponent<Tile>();
+            DataManager.instance.playerInventory.AddInventoryItem(t.tileInventoryId);
+            t.ClearTile();
+            Destroy(gameObject);
+            return "Hit";      
+        }
         if (state == MachineState.ready)
         {
             for (int i = 0; i < acceptedItems.Count; i++)
@@ -27,7 +34,8 @@ public class SimpleMachine : Machine
                 if (heldItem.id == acceptedItems[i].id)
                 {
                     DataManager.instance.playerInventory.RemoveInventoryItem(heldItem.id);
-                    StartProducing(productedItems[i]);
+                    StartProducing(producedItems[i]);
+                    return "";
                 }
             }
         }
@@ -38,9 +46,9 @@ public class SimpleMachine : Machine
         return "";
     }
 
-    public override int CalculateProcessingTime(int minOfProductionStart)
+    public override int CalculateProcessingTime()
     {
-        return 0;
+        return processingTimeInMinutes;
     }
 
 }

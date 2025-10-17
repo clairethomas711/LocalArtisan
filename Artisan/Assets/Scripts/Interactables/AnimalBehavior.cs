@@ -6,6 +6,7 @@ public class AnimalBehavior : Interactable
     [SerializeField] private GameObject indicator;
     public ItemData product;
     public bool readyToProduce = false;
+    public override void Initialize(Tile t) {}
     public override string Interact(InventoryItem heldItem)
     {
         if ((requiredTool == null || heldItem.id == requiredTool.id) && readyToProduce)
@@ -21,6 +22,11 @@ public class AnimalBehavior : Interactable
         }
         return "";
     }
+
+    public override string GetSaveData() { return ""; }
+
+    public override void SetSaveData(string saveData) { }
+    public override void NewDay() {}
 
     public void ReadyAnimal()
     {

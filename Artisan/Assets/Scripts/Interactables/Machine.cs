@@ -3,33 +3,81 @@ using System.Collections.Generic;
 
 public abstract class Machine : Interactable
 {
-    public int processingTimeInMinutes;
     public GameObject indicator;
     [SerializeField] AudioClip doneSound;
     UnityEngine.UI.Slider indicatorTimer;
     UnityEngine.UI.Image indicatorDone;
     [HideInInspector] public List<ItemData> activelyProducing = new List<ItemData>();
     int quantityToProduce;
-    [HideInInspector] public int minOfProductionStart;
-    [HideInInspector] public int minOfProductionEnd;
+    int minutesSeen = 0;
+    int minutesRequired = 0;
     public abstract List<ItemData> AcceptedItems { get; set; }
     public abstract List<ItemData> ProducedItems { get; set; }
-    [HideInInspector] public MachineState state;
+    public MachineState state;
     public enum MachineState { ready, processing, produced };
 
-    void Start()
+    private class MachineDataPacket
     {
+        public MachineState state;
+        public int minutesSeen;
+        public int minutesRequired;
+        public List<string> activelyProducing;
+        public int quantityToProduce;      
+    }
 
-        state = MachineState.ready;
+    public override void Initialize(Tile t)
+    {
+        state = MachineState.ready;      
+    }
+
+    public override string GetSaveData()
+    {
+        MachineDataPacket saveData = new MachineDataPacket();
+        saveData.state = state;
+        saveData.minutesSeen = minutesSeen;
+        saveData.minutesRequired = minutesRequired;
+        saveData.activelyProducing = new List<string>();
+        for (int i = 0; i < activelyProducing.Count; i++)
+        {
+            saveData.activelyProducing.Add(activelyProducing[i].id);
+        }
+        saveData.quantityToProduce = quantityToProduce;
+        return JsonUtility.ToJson(saveData); 
+    }
+
+    public override void SetSaveData(string saveData)
+    {
+        MachineDataPacket loadedData = JsonUtility.FromJson<MachineDataPacket>(saveData);
+        state = loadedData.state;
+        minutesSeen = loadedData.minutesSeen;
+        minutesRequired = loadedData.minutesRequired;
+        activelyProducing.Clear();
+        for (int i = 0; i < loadedData.activelyProducing.Count; i++)
+        {
+            activelyProducing.Add(DataManager.instance.manifest[loadedData.activelyProducing[i]]);
+        }
+        quantityToProduce = loadedData.quantityToProduce;
+        if (state == MachineState.processing)
+        {
+            indicator.SetActive(true);
+            DataManager.instance.GameTick.AddListener(MachineTickListener); //Start listening to GameTick again       
+        }
+    }
+    
+    public override void NewDay()
+    {
+        minutesSeen += 200;
     }
 
     //Moved this from abstract to be universal
     public void MachineTickListener()
     {
-        indicatorTimer.value = ((float)DataManager.instance.TotalElapsedGameTime() - minOfProductionStart) / (minOfProductionEnd - minOfProductionStart);
         if (state == MachineState.processing)
         {
-            if (DataManager.instance.TotalElapsedGameTime() >= minOfProductionEnd)
+            minutesSeen++;
+            indicatorTimer = indicator.transform.GetChild(0).GetComponent<UnityEngine.UI.Slider>();
+            indicatorTimer.value = (float)minutesSeen / minutesRequired;
+            if (minutesSeen >= minutesRequired)
             {
                 Produced();
             }
@@ -42,8 +90,8 @@ public abstract class Machine : Interactable
         quantityToProduce = quantity;
         activelyProducing.Add(output); //Remember what the output will be
         if (secondaryOutput) activelyProducing.Add(secondaryOutput);
-        minOfProductionStart = DataManager.instance.TotalElapsedGameTime(); //Save when we started producing
-        minOfProductionEnd = CalculateProcessingTime(minOfProductionStart);
+        //minOfProductionStart = DataManager.instance.TotalElapsedGameTime(); //Save when we started producing
+        minutesRequired = CalculateProcessingTime();
         state = MachineState.processing; //We are now processing
         DataManager.instance.GameTick.AddListener(MachineTickListener); //Start listening to GameTick
         //Visual feedback 
@@ -55,6 +103,8 @@ public abstract class Machine : Interactable
     {
         state = MachineState.produced; //We have finished processing
         DataManager.instance.GameTick.RemoveListener(MachineTickListener); //Stop listening to GameTick
+        minutesSeen = 0;
+        minutesRequired = 0;
         //Visual feedback
         if (doneSound)
         {
@@ -78,6 +128,6 @@ public abstract class Machine : Interactable
         indicatorDone.gameObject.SetActive(false);
     }
 
-    public abstract int CalculateProcessingTime(int minOfProductionStart);
+    public abstract int CalculateProcessingTime();
 
 }

@@ -17,6 +17,7 @@ public class StoreManager : Interactable
         DataManager.instance.GameTick.AddListener(StoreTickListener);
         timeOfLastSale = DataManager.instance.totalElapsedMinutes;
     }
+    public override void Initialize(Tile t) {}
 
     public override string Interact(InventoryItem heldItem)
     {
@@ -31,6 +32,12 @@ public class StoreManager : Interactable
         }
         return "";
     }
+
+    public override string GetSaveData() { return ""; }
+
+    public override void SetSaveData(string saveData) { }
+
+    public override void NewDay() { }
     
     public void Close()
     {

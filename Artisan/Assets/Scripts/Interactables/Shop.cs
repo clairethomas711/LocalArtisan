@@ -8,6 +8,7 @@ public class Shop : Interactable
     [SerializeField] ShopData shopData;
     [SerializeField] GameplayMenu shopMenu;
     List<InventoryItem> shopInventory = new List<InventoryItem>();
+    public override void Initialize(Tile t) {}
     public override string Interact(InventoryItem heldItem)
     {
         //This is not a good method and I'm sorry
@@ -21,4 +22,10 @@ public class Shop : Interactable
         shopInventory.Clear();
         return "";
     }
+
+    public override string GetSaveData() { return ""; }
+
+    public override void SetSaveData(string saveData) { }
+
+    public override void NewDay() { }
 }

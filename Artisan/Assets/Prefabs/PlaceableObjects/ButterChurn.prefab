@@ -131,14 +131,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3142108729367532723}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -1, w: 0}
-  m_LocalPosition: {x: 52.977, y: 0.96, z: 18.59}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5274429350507000240}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &2492011311287812472
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -226,16 +226,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isMoveableObject: 1
-  processingTimeInMinutes: 10
+  data: 
   indicator: {fileID: 1916361793552662114}
   doneSound: {fileID: 0}
   activelyProducing: []
   minOfProductionStart: 0
   minOfProductionEnd: 0
   state: 0
+  processingTimeInMinutes: 300
   acceptedItems:
   - {fileID: 11400000, guid: 34590bccc35e04a41bddc017d6bdbcc6, type: 2}
-  productedItems:
+  producedItems:
   - {fileID: 11400000, guid: 93c58a171a168c147844a29d091ff350, type: 2}
 --- !u!1 &4657699826543568671
 GameObject:

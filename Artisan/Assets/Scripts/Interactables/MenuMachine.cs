@@ -35,9 +35,9 @@ public class MenuMachine : Machine
         currentRecipe = r;
     }
 
-    public override int CalculateProcessingTime(int minOfProductionStart)
+    public override int CalculateProcessingTime()
     {
-        return minOfProductionStart + currentRecipe.processingTimeInMinutes;
+        return currentRecipe.processingTimeInMinutes;
     }
 
 }

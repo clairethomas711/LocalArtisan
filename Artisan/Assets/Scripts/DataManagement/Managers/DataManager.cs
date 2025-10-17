@@ -224,31 +224,24 @@ public class DataManager : MonoBehaviour
         SendNotification("Saving...!");
         // TILE DATA //
         List<TileData> tiles = new List<TileData>();
+        //Loop over all of the children of the DataManager object (should only be Tile objects)
         for (int r = 0; r < transform.childCount; r++)
         {
             GameObject row = transform.GetChild(r).gameObject;
             for (int i = 0; i < row.transform.childCount; i++)
             {
-                GameObject t = row.transform.GetChild(i).gameObject;
-                Tile tileData = t.GetComponent<Tile>();
-                //Process new day updates - doing this here so we only need to loop all tiles once
-                if (tileData.tileInventory != "" && manifest[tileData.tileInventory].itemType == itemType.Seed) //If the current item is a seed, grow that seed
-                {
-                    tileData.GrowPlant();         
-                }
+                Tile tileData = row.transform.GetChild(i).gameObject.GetComponent<Tile>();
+                //Process new day updates - doing this here so we only need to loop all tiles once. SHOULD PROBABLY BE A FUNCTION???
+                tileData.NewDay();
                 //Save the new data
                 TileData tile = new TileData();
                 tile.gridLoc = new Vector2 (r , i);
-                tile.state = tileData.state;
-                tile.inventoryId = tileData.tileInventory;
-                tile.soilQuality = "";
-                tile.growthScore = tileData.growthScore;
+                tile.dataPacket = tileData.GetSaveData();
                 tiles.Add(tile);
-                
             }
         }
 
-        // ANIMAL DATA //
+        // ANIMAL DATA - THIS NEEDS TO BE UPDATED WITH THE NEW SYSTEM //
         List<AnimalData> a = new List<AnimalData>();
         //For each stall in the barn, grab that animal's data
         for (int i = 0; i < barnManager.animals.Count; i++)
@@ -289,25 +282,25 @@ public class DataManager : MonoBehaviour
         SaveData farm = JsonUtility.FromJson<SaveData>(json);
         // TILE DATA //
         List<TileData> tiles = farm.layout;
+        //Loop over the saved tile data
         for (int t = 0; t < tiles.Count; t++)
         {
             TileData tile = tiles[t];
             Vector2 tileLoc = tile.gridLoc;
+            //Grab the gameobject that can be found at the saved grid location for that tile
             GameObject toUpdate = transform.GetChild((int)tileLoc.x).GetChild((int)tileLoc.y).gameObject;
-            Tile uS;
-            if (uS = toUpdate.GetComponent<Tile>())
+            //Update the data for that tile based on the save data
+            Tile uT;
+            if (uT = toUpdate.GetComponent<Tile>())
             {
-                uS.state = tile.state;
-                uS.tileInventory = tile.inventoryId;
-                uS.growthScore = tile.growthScore;
-                uS.UpdateVisuals();
+                uT.SetSaveData(tile.dataPacket);
             }
         }
-        // ANIMAL DATA //
+        // ANIMAL DATA - NEEDS TO BE UPDATED WITH THE NEW SYSTEM //
         barnManager.animals = farm.animals;
         barnManager.UpdateBarn();
 
-        // INVENTORY DATA //
+        // INVENTORY DATA - I DON'T THINK THIS WORKS RN???//
         playerInventory.inventoryList = farm.inv;
         playerInventory.UpdateInventories();
 
@@ -339,10 +332,7 @@ public class DataManager : MonoBehaviour
                 //Save the new data
                 TileData tile = new TileData();
                 tile.gridLoc = new Vector2(r, i);
-                tile.state = tileData.state;
-                tile.inventoryId = tileData.tileInventory; 
-                tile.soilQuality = "";
-                tile.growthScore = tileData.growthScore;
+                tile.dataPacket = tileData.GetSaveData();
                 tiles.Add(tile);
             }
         }
@@ -382,10 +372,7 @@ public class DataManager : MonoBehaviour
     private class TileData
     {
         public Vector2 gridLoc;
-        public Tile.TileState state;
-        public string inventoryId;
-        public string soilQuality;
-        public int growthScore;
+        public string dataPacket;
     }
     
     [System.Serializable]
@@ -398,6 +385,7 @@ public class DataManager : MonoBehaviour
     {
         public int date;
         public List<TileData> layout;
+        public List<string> staticMachines;
         public List<InventoryItem> inv;
         public List<AnimalData> animals;
         public List<ChestData> chests;
