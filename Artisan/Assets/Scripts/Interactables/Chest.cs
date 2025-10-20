@@ -39,7 +39,7 @@ public class Chest : Interactable
             if (empty)
             {
                 Tile t = transform.parent.gameObject.GetComponent<Tile>();
-                DataManager.instance.playerInventory.AddInventoryItem(t.tileInventoryId);
+                DataManager.instance.playerInventory.AddInventoryItem(new InventoryItem(t.tileInventoryId, 1));
                 DataManager.instance.chestManager.chestManifest.Remove(uniqueChestId);
                 t.ClearTile();
                 Destroy(gameObject);

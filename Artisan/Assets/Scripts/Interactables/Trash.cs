@@ -23,7 +23,7 @@ public class Trash : Interactable
 
     void Despawn()
     {
-        DataManager.instance.playerInventory.AddInventoryItem("res_wood");
+        DataManager.instance.playerInventory.AddInventoryItem(new InventoryItem("res_wood", 1));
         Destroy(gameObject);
     }
 }

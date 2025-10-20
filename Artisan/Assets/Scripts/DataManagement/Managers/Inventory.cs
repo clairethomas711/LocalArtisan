@@ -134,23 +134,24 @@ public class Inventory : MonoBehaviour
     }
 
     /// PUBLIC FUNCTIONS ///
-    public void AddInventoryItem(string i, int quantity = 1)
+    public void AddInventoryItem(InventoryItem itemToAdd)
     {
         for (int j = 0; j < inventoryList.Count; j++)
         {
-            if (inventoryList[j].id == i) //Increase quantity
+            //If these items are identical, increase quantity
+            if (inventoryList[j].id == itemToAdd.id && inventoryList[j].customItemData == itemToAdd.customItemData) 
             {
-                inventoryList[j].quantity += quantity;
+                inventoryList[j].quantity += itemToAdd.quantity;
                 UpdateInventories();
                 return;
             }
         }
-        //If nothing with the same name found, add
+        //If nothing with the same data found, add
         for (int j = 0; j < inventoryList.Count; j++)
         {
             if (inventoryList[j].id == "")
             {
-                inventoryList[j] = new InventoryItem(i, quantity);
+                inventoryList[j] = itemToAdd;
                 UpdateInventories();
                 return;
             }

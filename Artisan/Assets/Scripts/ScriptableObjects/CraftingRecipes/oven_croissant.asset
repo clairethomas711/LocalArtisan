@@ -14,9 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: oven_croissant
   recipeDisplayName: Croissant
-  recipeRequirements:
+  strictRecipeRequirements:
   - {fileID: 11400000, guid: 6e1d50f848f9ca64dad56b12fb678869, type: 2}
   - {fileID: 11400000, guid: 130dce0d2c7907b49964dc1e6919d50c, type: 2}
+  genericRecipeRequirements: []
+  strictRecipeOptionals: []
+  genericRecipeOptionals: []
   product:
   - {fileID: 11400000, guid: 8936c955260a09f4aa5a9e98e0625d6f, type: 2}
   - {fileID: 11400000, guid: 6e1d50f848f9ca64dad56b12fb678869, type: 2}

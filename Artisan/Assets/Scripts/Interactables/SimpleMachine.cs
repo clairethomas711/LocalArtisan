@@ -22,7 +22,7 @@ public class SimpleMachine : Machine
         if (heldItem.id != "" && AttemptToMove(DataManager.instance.manifest[heldItem.id].itemType))
         {
             Tile t = transform.parent.gameObject.GetComponent<Tile>();
-            DataManager.instance.playerInventory.AddInventoryItem(t.tileInventoryId);
+            DataManager.instance.playerInventory.AddInventoryItem(new InventoryItem(t.tileInventoryId, 1));
             t.ClearTile();
             Destroy(gameObject);
             return "Hit";      
@@ -34,7 +34,7 @@ public class SimpleMachine : Machine
                 if (heldItem.id == acceptedItems[i].id)
                 {
                     DataManager.instance.playerInventory.RemoveInventoryItem(heldItem.id);
-                    StartProducing(producedItems[i]);
+                    StartProducing(new InventoryItem(producedItems[i].id, 1));
                     return "";
                 }
             }

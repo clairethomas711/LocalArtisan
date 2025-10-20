@@ -11,6 +11,7 @@ public class ItemData : ScriptableObject
     public itemType itemType;
     public Sprite sprite;
     public int value;
+    public string tag;
 }
 
 //There NEEDS to be one of these for every item with a different "use" functionality

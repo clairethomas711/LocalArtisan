@@ -6,7 +6,10 @@ public class CraftingRecipe : ScriptableObject
 {
     public string id;
     public string recipeDisplayName;
-    public List<ItemData> recipeRequirements;
+    public List<ItemData> strictRecipeRequirements;
+    public List<string> genericRecipeRequirements;
+    public List<ItemData> strictRecipeOptionals;
+    public List<string> genericRecipeOptionals;
     public List<ItemData> product;
     public int quantityProduced = 1;
     public int processingTimeInMinutes;

@@ -80,7 +80,7 @@ public class Crop : Interactable
 
     public string UseHarvest()
     {
-        DataManager.instance.playerInventory.AddInventoryItem(product);
+        DataManager.instance.playerInventory.AddInventoryItem(new InventoryItem(product, 1));
         currentTile.ClearTile();
         Destroy(gameObject);
         return "";

@@ -10,10 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ca4512db809b5142a1cdf8ae6551298, type: 3}
-  m_Name: BreadDough
+  m_Name: mixer_puffpastry
   m_EditorClassIdentifier: 
-  recipeRequirements:
-  - {fileID: 11400000, guid: 55d2a381e3ed2e3448c30ba9fc8563f1, type: 2}
+  id: mixer_puffpastry
+  recipeDisplayName: Puff Pastry
+  strictRecipeRequirements:
+  - {fileID: 11400000, guid: 93c58a171a168c147844a29d091ff350, type: 2}
+  genericRecipeRequirements:
+  - ing_flour
+  strictRecipeOptionals: []
+  genericRecipeOptionals: []
   product:
-  - {fileID: 11400000, guid: e1e6de0d401e3d647b85df5d02ad5230, type: 2}
+  - {fileID: 11400000, guid: 130dce0d2c7907b49964dc1e6919d50c, type: 2}
+  quantityProduced: 1
   processingTimeInMinutes: 5

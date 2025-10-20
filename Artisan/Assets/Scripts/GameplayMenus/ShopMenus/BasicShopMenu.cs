@@ -7,7 +7,7 @@ public class BasicShopMenu : ShopMenu
         if (DataManager.instance.money >= itemToPurchase.value)
         {
             DataManager.instance.SubtractMoney(itemToPurchase.value);
-            DataManager.instance.playerInventory.AddInventoryItem(itemToPurchase.id);
+            DataManager.instance.playerInventory.AddInventoryItem(new InventoryItem(itemToPurchase.id, 1));
         }
     }
 }

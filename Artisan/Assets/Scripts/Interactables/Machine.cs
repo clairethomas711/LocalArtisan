@@ -7,7 +7,7 @@ public abstract class Machine : Interactable
     [SerializeField] AudioClip doneSound;
     UnityEngine.UI.Slider indicatorTimer;
     UnityEngine.UI.Image indicatorDone;
-    [HideInInspector] public List<ItemData> activelyProducing = new List<ItemData>();
+    [HideInInspector] public List<InventoryItem> activelyProducing = new List<InventoryItem>();
     int quantityToProduce;
     int minutesSeen = 0;
     int minutesRequired = 0;
@@ -21,7 +21,7 @@ public abstract class Machine : Interactable
         public MachineState state;
         public int minutesSeen;
         public int minutesRequired;
-        public List<string> activelyProducing;
+        public List<InventoryItem> activelyProducing;
         public int quantityToProduce;      
     }
 
@@ -36,12 +36,11 @@ public abstract class Machine : Interactable
         saveData.state = state;
         saveData.minutesSeen = minutesSeen;
         saveData.minutesRequired = minutesRequired;
-        saveData.activelyProducing = new List<string>();
+        saveData.activelyProducing = new List<InventoryItem>();
         for (int i = 0; i < activelyProducing.Count; i++)
         {
-            saveData.activelyProducing.Add(activelyProducing[i].id);
+            saveData.activelyProducing.Add(activelyProducing[i]);
         }
-        saveData.quantityToProduce = quantityToProduce;
         return JsonUtility.ToJson(saveData); 
     }
 
@@ -54,9 +53,8 @@ public abstract class Machine : Interactable
         activelyProducing.Clear();
         for (int i = 0; i < loadedData.activelyProducing.Count; i++)
         {
-            activelyProducing.Add(DataManager.instance.manifest[loadedData.activelyProducing[i]]);
+            activelyProducing.Add(loadedData.activelyProducing[i]);
         }
-        quantityToProduce = loadedData.quantityToProduce;
         if (state == MachineState.processing)
         {
             indicator.SetActive(true);
@@ -86,11 +84,11 @@ public abstract class Machine : Interactable
     }
 
     // UNIVERSAL HELPER FUNCTIONS //
-    public void StartProducing(ItemData output, int quantity = 1, ItemData secondaryOutput = null)
+    public void StartProducing(InventoryItem output, InventoryItem secondaryOutput = null)
     {
-        quantityToProduce = quantity;
+        print("Producing " + output.customItemData);
         activelyProducing.Add(output); //Remember what the output will be
-        if (secondaryOutput) activelyProducing.Add(secondaryOutput);
+        if (secondaryOutput != null) activelyProducing.Add(secondaryOutput);
         //minOfProductionStart = DataManager.instance.TotalElapsedGameTime(); //Save when we started producing
         minutesRequired = CalculateProcessingTime();
         state = MachineState.processing; //We are now processing
@@ -119,8 +117,8 @@ public abstract class Machine : Interactable
 
     public void TakeProducedItem()
     {
-        DataManager.instance.playerInventory.AddInventoryItem(activelyProducing[0].id, quantityToProduce); //Add the item(s) to the player's inventory
-        if (activelyProducing.Count > 1) DataManager.instance.playerInventory.AddInventoryItem(activelyProducing[1].id);
+        DataManager.instance.playerInventory.AddInventoryItem(activelyProducing[0]); //Add the item(s) to the player's inventory
+        if (activelyProducing.Count > 1) DataManager.instance.playerInventory.AddInventoryItem(activelyProducing[1]);
         state = MachineState.ready; //We are now ready for new input
         activelyProducing.Clear(); //Reset what we are producing
         //Visual feedback (change later)

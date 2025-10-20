@@ -18,7 +18,7 @@ public class AnimalBehavior : Interactable
             done.SetActive(true);
 
             readyToProduce = false;
-            DataManager.instance.playerInventory.AddInventoryItem(product.id);
+            DataManager.instance.playerInventory.AddInventoryItem(new InventoryItem(product.id, 1));
         }
         return "";
     }

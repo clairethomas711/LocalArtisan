@@ -37,7 +37,7 @@ public class SellingMenu : GameplayMenu
         {
             if (inventorySlots[i] != null && inventorySlots[i].id != "")
             {
-                DataManager.instance.playerInventory.AddInventoryItem(inventorySlots[i].id, inventorySlots[i].quantity); //Return unused items to the inventory
+                DataManager.instance.playerInventory.AddInventoryItem(inventorySlots[i]); //Return unused items to the inventory
             }
         }
         for (int j = 0; j < inventorySlots.Count; j++)

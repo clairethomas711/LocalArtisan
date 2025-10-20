@@ -2467,6 +2467,7 @@ MonoBehaviour:
   currentItem:
     id: 
     quantity: 0
+    customItemData: 
   required: 1
   restricted: 1
   requiredType: 10
@@ -9392,6 +9393,7 @@ MonoBehaviour:
   currentItem:
     id: 
     quantity: 0
+    customItemData: 
   required: 0
   restricted: 0
   requiredType: 0
@@ -10115,6 +10117,7 @@ MonoBehaviour:
   currentItem:
     id: 
     quantity: 0
+    customItemData: 
   required: 0
   restricted: 0
   requiredType: 0
@@ -18802,6 +18805,7 @@ MonoBehaviour:
   currentItem:
     id: 
     quantity: 0
+    customItemData: 
   required: 0
   restricted: 0
   requiredType: 0
@@ -30021,6 +30025,7 @@ MonoBehaviour:
   currentItem:
     id: 
     quantity: 0
+    customItemData: 
   required: 0
   restricted: 0
   requiredType: 0
@@ -51769,6 +51774,7 @@ MonoBehaviour:
   holding:
     id: 
     quantity: 0
+    customItemData: 
 --- !u!1001 &346058043
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53398,6 +53404,7 @@ MonoBehaviour:
   currentItem:
     id: 
     quantity: 0
+    customItemData: 
   required: 0
   restricted: 0
   requiredType: 0
@@ -77007,6 +77014,7 @@ MonoBehaviour:
   currentItem:
     id: 
     quantity: 0
+    customItemData: 
   required: 0
   restricted: 0
   requiredType: 0
@@ -80253,6 +80261,7 @@ MonoBehaviour:
   currentItem:
     id: 
     quantity: 0
+    customItemData: 
   required: 0
   restricted: 0
   requiredType: 0
@@ -90913,6 +90922,7 @@ MonoBehaviour:
   currentItem:
     id: 
     quantity: 0
+    customItemData: 
   required: 0
   restricted: 0
   requiredType: 0
@@ -97791,6 +97801,7 @@ MonoBehaviour:
   currentItem:
     id: 
     quantity: 0
+    customItemData: 
   required: 0
   restricted: 0
   requiredType: 0
@@ -99024,6 +99035,7 @@ MonoBehaviour:
   currentItem:
     id: 
     quantity: 0
+    customItemData: 
   required: 0
   restricted: 0
   requiredType: 0
@@ -101580,6 +101592,7 @@ MonoBehaviour:
   currentItem:
     id: 
     quantity: 0
+    customItemData: 
   required: 0
   restricted: 0
   requiredType: 0
@@ -105336,6 +105349,7 @@ MonoBehaviour:
   currentItem:
     id: 
     quantity: 0
+    customItemData: 
   required: 0
   restricted: 0
   requiredType: 0
@@ -125081,6 +125095,7 @@ MonoBehaviour:
   currentItem:
     id: 
     quantity: 0
+    customItemData: 
   required: 1
   restricted: 1
   requiredType: 11
@@ -144541,6 +144556,7 @@ MonoBehaviour:
   currentItem:
     id: 
     quantity: 0
+    customItemData: 
   required: 0
   restricted: 0
   requiredType: 0
@@ -161321,6 +161337,7 @@ MonoBehaviour:
   currentItem:
     id: 
     quantity: 0
+    customItemData: 
   required: 0
   restricted: 0
   requiredType: 0
@@ -165744,6 +165761,7 @@ MonoBehaviour:
   currentItem:
     id: 
     quantity: 0
+    customItemData: 
   required: 0
   restricted: 0
   requiredType: 0
@@ -176977,6 +176995,7 @@ MonoBehaviour:
   currentItem:
     id: 
     quantity: 0
+    customItemData: 
   required: 0
   restricted: 0
   requiredType: 0
@@ -194709,7 +194728,8 @@ MonoBehaviour:
   - tool_woodaxe
   - tool_pail
   - tool_sheetpan
-  - ing_breaddough
+  - ing_flour
+  - crop_strawberry
   notification: {fileID: 4297460580870484600, guid: 01204682542a84e45a135616b22d5fe5, type: 3}
   currentDay: 0
   money: 0
@@ -219456,6 +219476,7 @@ MonoBehaviour:
   currentItem:
     id: 
     quantity: 0
+    customItemData: 
   required: 0
   restricted: 0
   requiredType: 0
@@ -244564,6 +244585,7 @@ MonoBehaviour:
   currentItem:
     id: 
     quantity: 0
+    customItemData: 
   required: 0
   restricted: 0
   requiredType: 0
@@ -245674,6 +245696,7 @@ MonoBehaviour:
   currentItem:
     id: 
     quantity: 0
+    customItemData: 
   required: 0
   restricted: 0
   requiredType: 0
@@ -262146,6 +262169,7 @@ MonoBehaviour:
   currentItem:
     id: 
     quantity: 0
+    customItemData: 
   required: 0
   restricted: 0
   requiredType: 0
@@ -281566,6 +281590,7 @@ MonoBehaviour:
   currentItem:
     id: 
     quantity: 0
+    customItemData: 
   required: 0
   restricted: 0
   requiredType: 0
