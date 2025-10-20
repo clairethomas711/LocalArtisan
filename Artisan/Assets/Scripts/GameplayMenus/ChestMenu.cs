@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class ChestMenu : GameplayMenu
 {
-    public Chest currentChest;
+    string currentChest;
     List<InventoryItem> chestSlots = new List<InventoryItem>();
     public override List<InventoryItem> inventorySlots
     {
@@ -31,15 +31,15 @@ public class ChestMenu : GameplayMenu
 
     public override void Close()
     {
-        //Copy the current inventory slots into the chest itself
-        currentChest.chestInventory.Clear();
+        List<InventoryItem> currentChestInventory = DataManager.instance.chestManager.chestManifest[currentChest];
+        currentChestInventory.Clear();
         for (int i = 0; i < inventorySlots.Count; i++)
         {
-            currentChest.chestInventory.Add(inventorySlots[i].Copy());
+            currentChestInventory.Add(inventorySlots[i].Copy());
             //print("Adding inv inventory " + i.ToString() + ": " + inventorySlots[i].id);
         }
 
-        currentChest = null;
+        currentChest = "";
         //Wipe the current inventory slots
         for (int i = 0; i < inventorySlots.Count; i++)
             inventorySlots[i].Reset();
@@ -52,7 +52,7 @@ public class ChestMenu : GameplayMenu
         UnpausePlayer();
     }
 
-    public void ConnectChest(Chest c)
+    public void ConnectChest(string c)
     {
         currentChest = c;
     }

@@ -263,10 +263,12 @@ public class DataManager : MonoBehaviour
 
         // CHEST DATA //
         List<ChestData> c = new List<ChestData>();
-        for (int i = 0; i < chestManager.knownChests.Count; i++)
+        Dictionary<string, List<InventoryItem>>.KeyCollection knownChestIds = chestManager.chestManifest.Keys;
+        foreach (string s in knownChestIds )
         {
             ChestData newChest = new ChestData();
-            newChest.chestInv = chestManager.knownChests[i].chestInventory;
+            newChest.chestId = s;
+            newChest.chestInv = chestManager.chestManifest[s];
             c.Add(newChest);
         }
 
@@ -322,10 +324,12 @@ public class DataManager : MonoBehaviour
         playerInventory.UpdateInventories();
 
         // CHEST DATA //
+        //Clear the current data
+        chestManager.chestManifest.Clear();
+        //For each chest in the save data
         for (int i = 0; i < farm.chests.Count; i++)
         {
-            //should save in the same order, therefore connected
-            chestManager.knownChests[i].chestInventory = farm.chests[i].chestInv;
+            chestManager.chestManifest[farm.chests[i].chestId] = farm.chests[i].chestInv;
         }
         
     }
@@ -354,13 +358,22 @@ public class DataManager : MonoBehaviour
             }
         }
         farm.layout = tiles;
-        //Static machines
+        //Static machines (includes static chests)
         farm.staticMachines = new List<string>();
         for (int i = 0; i < staticMachines.transform.childCount; i++)
         {
             Interactable machine = staticMachines.transform.GetChild(i).GetComponent<Interactable>();
             machine.Initialize(null);
             farm.staticMachines.Add(machine.GetSaveData());
+        }
+        farm.chests = new List<ChestData>();
+        Dictionary<string, List<InventoryItem>>.KeyCollection knownChestIds = chestManager.chestManifest.Keys;
+        foreach (string s in knownChestIds )
+        {
+            ChestData newChest = new ChestData();
+            newChest.chestId = s;
+            newChest.chestInv = chestManager.chestManifest[s];
+            farm.chests.Add(newChest);
         }
         //Inventory
         farm.inv = new List<InventoryItem>();
@@ -377,18 +390,6 @@ public class DataManager : MonoBehaviour
         }
         //Animals
         farm.animals = null;
-        //Chests
-        farm.chests = new List<ChestData>();
-        for (int i = 0; i < chestManager.transform.childCount; i++)
-        {
-            ChestData newChest = new ChestData();
-            newChest.chestInv = new List<InventoryItem>();
-            for (int j = 0; j < chestManager.knownChests[i].chestCapacity; j++)
-            {
-                newChest.chestInv.Add(new InventoryItem("", 0));
-            }
-            farm.chests.Add(newChest);
-        }
         string json = JsonUtility.ToJson(farm);
         File.WriteAllText(path, json);
     }
@@ -403,6 +404,7 @@ public class DataManager : MonoBehaviour
     [System.Serializable]
     private class ChestData
     {
+        public string chestId;
         public List<InventoryItem> chestInv;
     }
 

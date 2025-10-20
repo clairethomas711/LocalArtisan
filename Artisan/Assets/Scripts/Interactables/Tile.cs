@@ -28,7 +28,7 @@ public class Tile : Interactable
     {
         //A tile is only an interactable if it does not currently contain a DIFFERENT interactable.
         if (tileInventoryId != "") { return ""; }
-
+        if (currentItem.id == "") { return ""; } // Stop giving me an error when i click
         //If we are holding something, then the tile needs to react accordingly
         switch (DataManager.instance.manifest[currentItem.id].itemType) //Need one case for each item enum type
         {

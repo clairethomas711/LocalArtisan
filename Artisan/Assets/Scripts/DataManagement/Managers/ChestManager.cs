@@ -3,5 +3,6 @@ using System.Collections.Generic;
 
 public class ChestManager : MonoBehaviour
 {
-    public List<Chest> knownChests;
+    public Dictionary<string, List<InventoryItem>> chestManifest = new Dictionary<string, List<InventoryItem>>();
+    public ChestMenu defaultChestMenu;
 }

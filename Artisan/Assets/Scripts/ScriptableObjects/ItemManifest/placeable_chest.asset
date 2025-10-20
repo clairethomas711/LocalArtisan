@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79779cfed7cbb37478520cca3ff10b48, type: 3}
+  m_Name: placeable_chest
+  m_EditorClassIdentifier: 
+  displayName: Chest
+  description: 
+  id: placeable_chest
+  itemType: 12
+  sprite: {fileID: 21300000, guid: 10d13e52721f005409ec03ab4ef847f3, type: 3}
+  value: 0
+  prefab: {fileID: 3013995252004540505, guid: a7979ee7345e96041ab2676d8bd80b57, type: 3}
