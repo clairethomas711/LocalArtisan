@@ -31,7 +31,7 @@ public class RequiredSubmit : MonoBehaviour
         {
             if (requiredSlots[i].currentItem.id == "")
             {
-                print("Slot " + requiredSlots[i].index + " has no item.");
+                //print("Slot " + requiredSlots[i].index + " has no item.");
                 return false;
             }
         }

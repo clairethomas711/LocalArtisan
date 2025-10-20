@@ -10,8 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ca4512db809b5142a1cdf8ae6551298, type: 3}
-  m_Name: SheetCake
+  m_Name: oven_sheetcake
   m_EditorClassIdentifier: 
+  id: oven_sheetcake
+  recipeDisplayName: Sheet Cake
   recipeRequirements:
   - {fileID: 11400000, guid: 6e1d50f848f9ca64dad56b12fb678869, type: 2}
   - {fileID: 11400000, guid: b4ca646b74694e647adf893fbefa6398, type: 2}

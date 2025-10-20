@@ -18,11 +18,13 @@ public class DataManager : MonoBehaviour
     [SerializeField] public CursorGrab grab;
     [SerializeField] public BarnManager barnManager;
     [SerializeField] public ChestManager chestManager;
+    [SerializeField] public ProgressionManager progressionManager;
     [SerializeField] public GameObject staticMachines;
     [SerializeField] public GameObject notificationManager;
     [SerializeField] SunManager sunManager;
     [Header("Data Objects")]
     public ItemManifest itemManifest;
+    public CraftingManifest craftingRecipeManifest;
     [Header("Game Settings")]
     [SerializeField] string path;
     [SerializeField] Transform respawnPoint;
@@ -38,6 +40,7 @@ public class DataManager : MonoBehaviour
 
     [HideInInspector] public Inventory playerInventory;
     [HideInInspector] public Dictionary<string, ItemData> manifest = new Dictionary<string, ItemData>();
+    [HideInInspector] public Dictionary<string, CraftingRecipe> recipeManifest = new Dictionary<string, CraftingRecipe>();
     [HideInInspector] public UnityEvent GameTick = new UnityEvent();
     public struct GameTime
     {
@@ -61,10 +64,14 @@ public class DataManager : MonoBehaviour
     {
         if (instance == null)
             instance = this;
-        //BUILD THE DICTIONARY IN THE MANIFEST
+        //BUILD THE DICTIONARYS IN THE MANIFESTS
         for (int i = 0; i < itemManifest.scriptableItems.Count; i++)
         {
             manifest[itemManifest.scriptableItems[i].id] = itemManifest.scriptableItems[i];
+        }
+        for (int i = 0; i < craftingRecipeManifest.scriptableItems.Count; i++)
+        {
+            recipeManifest[craftingRecipeManifest.scriptableItems[i].id] = craftingRecipeManifest.scriptableItems[i];
         }
         currentDay = 1;
         stamina = maxStamina;
@@ -264,13 +271,16 @@ public class DataManager : MonoBehaviour
         // CHEST DATA //
         List<ChestData> c = new List<ChestData>();
         Dictionary<string, List<InventoryItem>>.KeyCollection knownChestIds = chestManager.chestManifest.Keys;
-        foreach (string s in knownChestIds )
+        foreach (string s in knownChestIds)
         {
             ChestData newChest = new ChestData();
             newChest.chestId = s;
             newChest.chestInv = chestManager.chestManifest[s];
             c.Add(newChest);
         }
+
+        // PROGRESSION DATA //
+        string progression = progressionManager.GetProgressionData();
 
         SaveData farm = new SaveData();
         farm.date = currentDay;
@@ -279,6 +289,7 @@ public class DataManager : MonoBehaviour
         farm.inv = playerInventory.inventoryList;
         farm.staticMachines = staticMachineData;
         farm.chests = c;
+        farm.progression = progression;
         string json = JsonUtility.ToJson(farm);
         File.WriteAllText(path, json);
     }
@@ -331,6 +342,9 @@ public class DataManager : MonoBehaviour
         {
             chestManager.chestManifest[farm.chests[i].chestId] = farm.chests[i].chestInv;
         }
+
+        // PROGRESSION DATA //
+        progressionManager.SetProgressionData(farm.progression);
         
     }
 
@@ -392,6 +406,9 @@ public class DataManager : MonoBehaviour
         farm.animals = null;
         string json = JsonUtility.ToJson(farm);
         File.WriteAllText(path, json);
+
+        //Progression
+        farm.progression = progressionManager.NewProgressionData();
     }
 
     [System.Serializable]
@@ -400,7 +417,7 @@ public class DataManager : MonoBehaviour
         public Vector2 gridLoc;
         public string dataPacket;
     }
-    
+
     [System.Serializable]
     private class ChestData
     {
@@ -416,5 +433,6 @@ public class DataManager : MonoBehaviour
         public List<InventoryItem> inv;
         public List<AnimalData> animals;
         public List<ChestData> chests;
+        public string progression;
     }
 }

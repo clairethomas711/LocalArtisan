@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class CraftingMenu : GameplayMenu
 {
     [SerializeField] MenuMachine machine;
+    [SerializeField] RecipeBook recipeBookDisplay;
     List<InventoryItem> tableSlots = new List<InventoryItem>();
     public override List<InventoryItem> inventorySlots
     {
@@ -60,21 +61,24 @@ public class CraftingMenu : GameplayMenu
         Inventory inv = DataManager.instance.player.GetComponent<Inventory>();
         inv.OpenExpandedInventory(true);
         gameObject.SetActive(true);
+        if (recipeBookDisplay) { recipeBookDisplay.OpenRecipeBook(machine); }
     }
 
     public override void Close()
     {
+        //For each item on the crafting table
         for (int i = 0; i < tableSlots.Count; i++)
         {
+            //Return unused items to the inventory
             if (tableSlots[i] != null && tableSlots[i].id != "")
             {
-                DataManager.instance.playerInventory.AddInventoryItem(tableSlots[i].id, tableSlots[i].quantity); //Return unused items to the inventory
+                DataManager.instance.playerInventory.AddInventoryItem(tableSlots[i].id, tableSlots[i].quantity);
             }
+            //Clear
+            tableSlots[i] = new InventoryItem("", 0);
         }
-        for (int j = 0; j < tableSlots.Count; j++)
-        {
-            tableSlots[j] = new InventoryItem("", 0);
-        }
+        //Clear the recipe book display
+        if (recipeBookDisplay) { recipeBookDisplay.CloseRecipeBook(); }
         UpdateDisplay();
         Inventory inv = DataManager.instance.player.GetComponent<Inventory>();
         inv.CloseExpandedInventory();
