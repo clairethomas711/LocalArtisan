@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79779cfed7cbb37478520cca3ff10b48, type: 3}
+  m_Name: seed_sugarcane
+  m_EditorClassIdentifier: 
+  displayName: Sugarcane Seeds
+  description: Grows into Sugarcane after 5 days, which can be milled into Sugar.
+    Sugar can combined with other items.
+  id: seed_sugarcane
+  itemType: 3
+  sprite: {fileID: 21300000, guid: b653289dbe0a7ec408cb59c8562c120e, type: 3}
+  value: 10
+  tag: 
+  prefab: {fileID: 9042086795519634568, guid: e941122c6d959e4458410cad5ffc2db3, type: 3}

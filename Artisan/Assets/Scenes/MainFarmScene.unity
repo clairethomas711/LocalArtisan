@@ -143716,6 +143716,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slot (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 5418912677149353240, guid: 6ac53fcf61192a94ea7f0f35a15233c7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8444626905183335630, guid: 6ac53fcf61192a94ea7f0f35a15233c7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -194721,15 +194725,15 @@ MonoBehaviour:
   respawnPoint: {fileID: 527637402}
   maxStamina: 100
   startingGold: 500
-  resetData: 1
+  resetData: 0
   debugStartingInventory:
   - tool_woodhoe
   - tool_woodwateringcan
   - tool_woodaxe
   - tool_pail
   - tool_sheetpan
-  - ing_flour
-  - crop_strawberry
+  - seed_wheat
+  - seed_sugarcane
   notification: {fileID: 4297460580870484600, guid: 01204682542a84e45a135616b22d5fe5, type: 3}
   currentDay: 0
   money: 0

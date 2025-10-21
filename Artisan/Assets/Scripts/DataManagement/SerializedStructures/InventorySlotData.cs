@@ -26,16 +26,16 @@ public class InventorySlotData : MonoBehaviour
                 quantity.text = null;
             //Display artisan indicator (if applicable)
             if (DataManager.instance.manifest[currentItem.id].itemType == itemType.Artisan)
-                transform.GetChild(1).gameObject.SetActive(true);
+                transform.GetChild(2).gameObject.SetActive(true);
             else
-                transform.GetChild(1).gameObject.SetActive(false);
+                transform.GetChild(2).gameObject.SetActive(false);
         }
         else
         {
             s.sprite = null;
             name.text = null;
             quantity.text = null;
-            transform.GetChild(1).gameObject.SetActive(false);
+            transform.GetChild(2).gameObject.SetActive(false);
         }
     }
 }

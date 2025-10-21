@@ -13,21 +13,41 @@ PrefabInstance:
       value: crop_wheat
       objectReference: {fileID: 0}
     - target: {fileID: 7557937650634401355, guid: ddc9091067c74cd43948ab0e7680fdcb, type: 3}
+      propertyPath: regrows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7557937650634401355, guid: ddc9091067c74cd43948ab0e7680fdcb, type: 3}
+      propertyPath: sapling
+      value: sapling_wheat
+      objectReference: {fileID: 0}
+    - target: {fileID: 7557937650634401355, guid: ddc9091067c74cd43948ab0e7680fdcb, type: 3}
+      propertyPath: isMoveableObject
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7557937650634401355, guid: ddc9091067c74cd43948ab0e7680fdcb, type: 3}
+      propertyPath: postHarvestState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7557937650634401355, guid: ddc9091067c74cd43948ab0e7680fdcb, type: 3}
       propertyPath: plantStages.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7557937650634401355, guid: ddc9091067c74cd43948ab0e7680fdcb, type: 3}
       propertyPath: 'plantStages.Array.data[0]'
       value: 
-      objectReference: {fileID: 919132149155446097, guid: 54c5dbfb0c0006f4e98d3f19a0747a2f, type: 3}
+      objectReference: {fileID: 919132149155446097, guid: 9b19d1d9a7f961c45932b651d8704b62, type: 3}
     - target: {fileID: 7557937650634401355, guid: ddc9091067c74cd43948ab0e7680fdcb, type: 3}
       propertyPath: 'plantStages.Array.data[1]'
       value: 
-      objectReference: {fileID: 919132149155446097, guid: 6b2f88137ce89914bb8eacd3651d8bfa, type: 3}
+      objectReference: {fileID: 919132149155446097, guid: cc654590ad83b174c84ba45c1e0bb48c, type: 3}
     - target: {fileID: 7557937650634401355, guid: ddc9091067c74cd43948ab0e7680fdcb, type: 3}
       propertyPath: 'plantStages.Array.data[2]'
       value: 
-      objectReference: {fileID: 919132149155446097, guid: c82459d5d5f01c54ebb63537bc74d74c, type: 3}
+      objectReference: {fileID: 919132149155446097, guid: 833dd7d94089c0843ab68c2637bd2b85, type: 3}
+    - target: {fileID: 7557937650634401355, guid: ddc9091067c74cd43948ab0e7680fdcb, type: 3}
+      propertyPath: 'plantStages.Array.data[3]'
+      value: 
+      objectReference: {fileID: 919132149155446097, guid: d4f201b7102cdcd4b9b864df5e5ec6d7, type: 3}
     - target: {fileID: 8448601647686330645, guid: ddc9091067c74cd43948ab0e7680fdcb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

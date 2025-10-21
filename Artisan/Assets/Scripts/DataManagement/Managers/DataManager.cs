@@ -69,6 +69,22 @@ public class DataManager : MonoBehaviour
         {
             manifest[itemManifest.scriptableItems[i].id] = itemManifest.scriptableItems[i];
         }
+        for (int i = 0; i < itemManifest.artisanItems.Count; i++)
+        {
+            manifest[itemManifest.artisanItems[i].id] = itemManifest.artisanItems[i];
+        }
+        for (int i = 0; i < itemManifest.resourceItems.Count; i++)
+        {
+            manifest[itemManifest.resourceItems[i].id] = itemManifest.resourceItems[i];
+        }
+        for (int i = 0; i < itemManifest.seedItems.Count; i++)
+        {
+            manifest[itemManifest.seedItems[i].id] = itemManifest.seedItems[i];
+        }
+        for (int i = 0; i < itemManifest.toolItems.Count; i++)
+        {
+            manifest[itemManifest.toolItems[i].id] = itemManifest.toolItems[i];
+        }
         for (int i = 0; i < craftingRecipeManifest.scriptableItems.Count; i++)
         {
             recipeManifest[craftingRecipeManifest.scriptableItems[i].id] = craftingRecipeManifest.scriptableItems[i];

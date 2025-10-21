@@ -6,6 +6,12 @@ public class Crop : Interactable
 {
     [SerializeField] string product;
     [SerializeField] List<GameObject> plantStages;
+    [Header("Sapling Settings")]
+    [SerializeField] string sapling;
+    [SerializeField] int startingState;
+    [Header("Regrowth Settings")]
+    [SerializeField] bool regrows;
+    [SerializeField] int postHarvestState;
     enum PlantState { Unwatered, Watered, Grown }
     PlantState state;
     int growthScore;
@@ -20,7 +26,8 @@ public class Crop : Interactable
     public override void Initialize(Tile t)
     {
         currentTile = t;
-        Instantiate(plantStages[0], transform);
+        growthScore = startingState;
+        Instantiate(plantStages[growthScore], transform);
     }
     public override string Interact(InventoryItem currentItem)
     {
@@ -69,7 +76,15 @@ public class Crop : Interactable
     // LOGIC FOR DETERMINING PLAYER INTENTION - RETURN ANIMATION TRIGGER IF SUCCESSFUL //
     public string UseHoe()
     {
-        return "Hit";
+        //If this is a grown, moveable crop and we till it, give the player a sapling and destroy the plant
+        if (isMoveableObject && growthScore >= startingState)
+        {
+            DataManager.instance.playerInventory.AddInventoryItem(new InventoryItem(sapling, 1));
+            currentTile.ClearTile();
+            Destroy(gameObject);
+            return "Hit";
+        }
+        return "";
     }
 
     public string UseWateringCan()
@@ -80,9 +95,23 @@ public class Crop : Interactable
 
     public string UseHarvest()
     {
+        //Give the player the product
         DataManager.instance.playerInventory.AddInventoryItem(new InventoryItem(product, 1));
-        currentTile.ClearTile();
-        Destroy(gameObject);
+        //If this is a regrowable crop, then reset it's state and display
+        if (regrows)
+        {
+            growthScore = postHarvestState;
+            //Update the model
+            Destroy(transform.GetChild(0).gameObject);
+            Instantiate(plantStages[growthScore], transform);
+            state = PlantState.Unwatered;
+        }
+        //If it isn't destroy the crop
+        else
+        {
+            currentTile.ClearTile();
+            Destroy(gameObject);
+        }
         return "";
     }
     
