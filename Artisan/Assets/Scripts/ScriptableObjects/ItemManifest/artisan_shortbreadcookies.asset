@@ -16,6 +16,7 @@ MonoBehaviour:
   description: 
   id: artisan_shortbreadcookies
   itemType: 5
-  sprite: {fileID: 21300000, guid: f5c2f8aedea383647b5e4a2dc01995be, type: 3}
+  sprite: {fileID: 21300000, guid: 6d4df5d4a6f940048952b76bf8a0fa53, type: 3}
   value: 7
+  tag: 
   model: {fileID: 5496967388658420871, guid: dbd27f0162b77fa4b90bb658cf26ad4a, type: 3}

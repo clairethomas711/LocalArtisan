@@ -16,6 +16,7 @@ MonoBehaviour:
   description: 
   id: artisan_croissant
   itemType: 5
-  sprite: {fileID: 21300000, guid: 41d97831f785f8a47b9e0424c2d5ce57, type: 3}
+  sprite: {fileID: 21300000, guid: b6bf932cd5faeb14e9eb4334f71a537f, type: 3}
   value: 15
+  tag: 
   model: {fileID: 2628768770018804034, guid: 6bedeb812dd68f24b95aac3d726f11c2, type: 3}
