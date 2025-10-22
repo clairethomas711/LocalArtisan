@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Sugarcane
-    second: {fileID: 2100000, guid: f67e221e94a4e574497926d24fa59c12, type: 2}
+    second: {fileID: 2100000, guid: a0439c933ddc47742ad18a1f8e55b672, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

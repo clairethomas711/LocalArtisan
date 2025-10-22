@@ -130,4 +130,4 @@ MonoBehaviour:
   tileInventoryData: 
   grass: {fileID: 2100000, guid: 12584cf1361a62c4b8859caa967b42ef, type: 2}
   tilled: {fileID: 2100000, guid: e61952b7de0f1964eb2c967456945f8f, type: 2}
-  watered: {fileID: 2100000, guid: f7a1d676ecde05c458f6f19a978588d0, type: 2}
+  watered: {fileID: 2100000, guid: 8be9f055b37afdf4f990e4b4927bd905, type: 2}
