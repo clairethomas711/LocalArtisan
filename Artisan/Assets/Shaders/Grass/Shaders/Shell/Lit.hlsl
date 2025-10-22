@@ -1,5 +1,5 @@
-#ifndef FUR_SHELL_LIT_HLSL
-#define FUR_SHELL_LIT_HLSL
+#ifndef GRASS_SHELL_LIT_HLSL
+#define GRASS_SHELL_LIT_HLSL
 
 #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/SurfaceInput.hlsl"
@@ -30,6 +30,25 @@ struct Varyings
 
 Attributes vert(Attributes input)
 {
+    //VertexPositionInputs vertexInput = GetVertexPositionInputs(input.positionOS.xyz);
+    //float2 worldSpaceUv = (vertexInput.positionWS.xy);
+    //float2 hillUv = worldSpaceUv / _HillMap_ST.xy * _HillScale; 
+    //float4 hills_sample = tex2Dlod(sampler_HillMap, float4(hillUv, 0, 0));
+    //float4 hills_sample = tex2Dlod(sampler_HillMap, float4(input.texcoord.xy, 0, 0));
+    //input.positionOS.z -= hills_sample.x;
+    /*float4 dir = (1.0, 0.0, 0.0, 1.0);
+    float steepness = 0.5;
+    float freq = 1.0;
+    float3 pos = vertexInput.positionWS.xyz; 
+    float defaultWavelength = 1 * 3.14;
+    float wL = defaultWavelength / freq;
+    float phase = sqrt(9.8 / wL);
+    float disp = wL * (dot(dir, pos) - (phase * _Time.y));
+    float peak = steepness / wL;
+    //pos.x += dir.x * (peak * cos(disp));
+    //pos.y = peak * sin(disp);
+    pos.z += dir.y * (peak * cos(disp));
+    input.positionOS.xyz = TransformWorldToObject(pos);*/
     return input;
 }
 
@@ -41,7 +60,7 @@ void AppendShellVertex(inout TriangleStream<Varyings> stream, Attributes input, 
     VertexNormalInputs normalInput = GetVertexNormalInputs(input.normalOS, input.tangentOS);
 
     float moveFactor = pow(abs((float)index / _ShellAmount), _BaseMove.w);
-    float3 posOS = input.positionOS.xyz;
+    float3 posOS = vertexInput.positionWS.xyz;
     float3 windAngle = _Time.w * _WindFreq.xyz;
     float3 windMove = moveFactor * _WindMove.xyz * sin(windAngle + posOS * _WindMove.w);
     float3 move = moveFactor * _BaseMove.xyz;
@@ -85,15 +104,16 @@ inline float3 TransformHClipToWorld(float4 positionCS)
 
 float4 frag(Varyings input) : SV_Target
 {
-    float2 worldSpaceUv = input.uv;
+    float2 worldSpaceUv = (input.positionWS.xz);
     float2 furUv = worldSpaceUv / _BaseMap_ST.xy * _FurScale;
+    float2 normalUv = worldSpaceUv / _NormalMap_ST.xy;
     float4 furColor = SAMPLE_TEXTURE2D(_FurMap, sampler_FurMap, furUv);
     float alpha = furColor.r * (1.0 - input.layer);
     if (input.layer > 0.0 && alpha < _AlphaCutout) discard;
 
     float3 viewDirWS = SafeNormalize(GetCameraPositionWS() - input.positionWS);
     float3 normalTS = UnpackNormalScale(
-        SAMPLE_TEXTURE2D(_NormalMap, sampler_NormalMap, furUv), 
+        SAMPLE_TEXTURE2D(_NormalMap, sampler_NormalMap, normalUv), 
         _NormalScale);
     float3 bitangent = SafeNormalize(viewDirWS.y * cross(input.normalWS, input.tangentWS));
     float3 normalWS = SafeNormalize(TransformTangentToWorld(
