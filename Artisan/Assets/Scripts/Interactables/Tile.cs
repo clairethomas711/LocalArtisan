@@ -162,7 +162,10 @@ public class Tile : Interactable
             //Does this tile get a resource on it?
             if (SpawnTrash(0.3f))
             {
-                tileInventoryId = "res_wood"; //Change this later          
+                if (SpawnTrash(0.5f))
+                    tileInventoryId = "res_wood"; //Change this later
+                else
+                    tileInventoryId = "res_stone";          
             }
         }
     }

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79779cfed7cbb37478520cca3ff10b48, type: 3}
-  m_Name: res_wood
+  m_Name: res_stone
   m_EditorClassIdentifier: 
-  displayName: Wood
+  displayName: Stone
   description: 
-  id: res_wood
+  id: res_stone
   itemType: 4
-  sprite: {fileID: 21300000, guid: 0e9cda1960d745847addbf4d821a185b, type: 3}
+  sprite: {fileID: 21300000, guid: 9337c5fb79f9cce43a26a0aaeeeebf13, type: 3}
   value: 1
   tag: 
-  prefab: {fileID: 2231558168561873419, guid: de702b8e9b0214048bf56f0928bd5853, type: 3}
+  prefab: {fileID: 7725098468062412296, guid: 9f59b548c8d9ead4485793ab9057c780, type: 3}

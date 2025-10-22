@@ -3,6 +3,7 @@ using UnityEngine;
 public class Trash : Interactable
 {
     [SerializeField] itemType cleaningEquipment;
+    [SerializeField] string product;
     public override void Initialize(Tile t) {}
     public override string Interact(InventoryItem heldItem)
     {
@@ -23,7 +24,7 @@ public class Trash : Interactable
 
     void Despawn()
     {
-        DataManager.instance.playerInventory.AddInventoryItem(new InventoryItem("res_wood", 1));
+        DataManager.instance.playerInventory.AddInventoryItem(new InventoryItem(product, 1));
         Destroy(gameObject);
     }
 }

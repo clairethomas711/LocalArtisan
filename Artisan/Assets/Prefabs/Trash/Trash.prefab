@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3375591569578181469}
   - component: {fileID: 8917602605036554141}
   m_Layer: 3
-  m_Name: Wood
+  m_Name: Trash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,6 +125,7 @@ MonoBehaviour:
   isMoveableObject: 0
   data: 
   cleaningEquipment: 8
+  product: 
 --- !u!95 &8917602605036554141
 Animator:
   serializedVersion: 7

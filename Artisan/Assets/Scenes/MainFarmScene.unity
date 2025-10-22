@@ -194375,7 +194375,7 @@ MonoBehaviour:
   respawnPoint: {fileID: 527637402}
   maxStamina: 100
   startingGold: 500
-  resetData: 0
+  resetData: 1
   debugStartingInventory:
   - tool_woodhoe
   - tool_woodwateringcan
