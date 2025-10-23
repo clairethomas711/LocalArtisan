@@ -1,5 +1,0 @@
-1. Model the food in Blender inside of the Shelves.blend file to ensure correct scaling with the ShelfDisplay asset. UV unwrap and export the model with the correct scaling. Everything should be put inside of a new folder with the name of the food item within the Models folder.
-2. In Substance Painter, pick a color from the palette and use a fill layer. Paint the shadows / highlights of the model with a large round brush, as if spray painted. Apply the Blur if needed, and use a palette. Export only the base color.
-3. OPTIONAL: In Blender, bake the ambient occlusion in Cycles and export. This isn't needed for every model (especially small ones).
-4. In Unity, create a Prefab variant of the ShelfDisplay prefab. Create a display using the blender model and a new Unity material with the base color and AO applied. Make sure that the hierarchy order is the order that items should be revealed in. Disable all of the models.
-5. In the ItemManifest folder, find the artisan model ScriptableObject. Put the new prefab variant into the "model" slot.

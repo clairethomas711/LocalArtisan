@@ -26,8 +26,6 @@ public abstract class Interactable : MonoBehaviour
 
     public void RandomizeRotation()
     {
-        print("randomizing");
-        //Get local up
         int newRotation = Random.Range(0, 4);
         transform.RotateAround(transform.position, Vector3.up, 90 * newRotation);
     }

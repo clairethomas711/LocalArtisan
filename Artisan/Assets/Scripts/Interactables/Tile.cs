@@ -176,15 +176,6 @@ public class Tile : Interactable
         }
     }
 
-    public void ClearTile()
-    {
-        if (isStatic) { state = TileState.Static; }
-        else {state = TileState.Untilled;}
-        tileInventoryId = "";
-        tileInventory = null;
-        UpdateVisuals();      
-    }
-
     public void UpdateVisuals()
     {   
         //Update the material on the tile based on its state
@@ -254,7 +245,8 @@ public class Tile : Interactable
                             return false;
                         }
                         t.tileInventoryId = "x";
-                    } else
+                    }
+                    else
                     {
                         //print("We reached the end of the world");
                         return false;
@@ -267,5 +259,45 @@ public class Tile : Interactable
         if (tileInventory.randomizeRotation)
             tileInventory.RandomizeRotation();
         return true;
+    }
+    
+    public void ClearTile() //Inverse of PlaceItem
+    {
+        //Is there an item here to clear?
+        if (tileInventoryId != "x" && tileInventoryId != "")
+        {
+            Placeable p = (Placeable)DataManager.instance.manifest[tileInventoryId]; //Grab the correct prefab from the manifest
+            //If this is a large item, we need to check / alert surrounding tiles
+            if (p.size.x != 1 || p.size.y != 1)
+            {
+                //Double loop to change all the items
+                for (int x = 0; x < p.size.x; x++)
+                {
+                    for (int y = 0; y < p.size.y; y++)
+                    {
+                        Vector2 search = new Vector2(gridLocation.x + x, gridLocation.y + y);
+                        //Grab a new tile
+                        if (DataManager.instance.tileManifest.ContainsKey(search))
+                        {
+                            Tile t = DataManager.instance.tileManifest[search];
+                            //Change its currentitem
+                            if (x == 0 && y == 0) //Don't change the tile we're on
+                                continue;
+                            t.tileInventoryId = "";
+                        }
+                        else
+                        {
+                            print("TILE ERROR: Attempting removal of a non-existant item.");
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+        if (isStatic) { state = TileState.Static; }
+        else { state = TileState.Untilled; }
+        tileInventoryId = "";
+        tileInventory = null;
+        UpdateVisuals();      
     }
 }

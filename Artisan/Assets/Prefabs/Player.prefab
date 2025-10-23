@@ -165,7 +165,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 2
-  m_Radius: 0.5
+  m_Radius: 0.45
   m_SlopeLimit: 45
   m_StepOffset: 0.001
   m_SkinWidth: 0.08
@@ -210,6 +210,7 @@ MonoBehaviour:
   currentSelection:
     id: 
     quantity: 0
+    customItemData: 
 --- !u!1 &4179287669597767093
 GameObject:
   m_ObjectHideFlags: 0
