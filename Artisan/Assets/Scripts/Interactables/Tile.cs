@@ -5,6 +5,7 @@ public class Tile : Interactable
 {
     public bool isStatic = false;
     [HideInInspector] public enum TileState { Untilled, Tilled, Watered, Static }; //Switch to using this only for visuals
+    public Vector2 gridLocation;
     public TileState state;
     [HideInInspector] public string tileInventoryId = "";
     [HideInInspector] public string tileInventoryData = "";
@@ -87,11 +88,16 @@ public class Tile : Interactable
                 return "";
             }
         }
-        tileInventoryId = currentItem; //Save the item ID of what we are placing
-        Placeable p = (Placeable)DataManager.instance.manifest[tileInventoryId]; //Grab the correct prefab from the manifest
-        tileInventory = Instantiate(p.prefab, transform).GetComponent<Interactable>(); //Spawn that prefab and store ref to the component
-        tileInventory.Initialize(this); //Initialize the new object
-        DataManager.instance.playerInventory.RemoveInventoryItem(currentItem); //Remove that item from the inventory
+        //tileInventoryId = currentItem; //Save the item ID of what we are placing
+        if (PlaceItem(currentItem))
+        {
+            tileInventory.Initialize(this); //Initialize the new object
+            DataManager.instance.playerInventory.RemoveInventoryItem(currentItem); //Remove that item from the inventory
+        }
+        else
+        {
+            DataManager.instance.SendNotification("There isn't room for this item!");       
+        }
         UpdateVisuals();
         return "";
     }
@@ -129,10 +135,9 @@ public class Tile : Interactable
         {
             Destroy(transform.GetChild(0).gameObject);       
         }
-        if (tileInventoryId != "")
+        if (tileInventoryId != "" && tileInventoryId != "x")
         {
-            Placeable p = (Placeable)DataManager.instance.manifest[tileInventoryId]; //Grab the correct prefab from the manifest
-            tileInventory = Instantiate(p.prefab, transform).GetComponent<Interactable>(); //Spawn that prefab and store ref to the component
+            PlaceItem();
             tileInventory.SetSaveData(tileInventoryData);      
         }
         //Update the visuals of this tile based on the new data
@@ -150,6 +155,13 @@ public class Tile : Interactable
     }
     public void GenerateNewData()
     {
+        //Did we visit this tile already while generating data?
+        if (tileInventoryId == "x")
+        {
+            state = TileState.Untilled;
+            return;
+        }
+        //Otherwise, initialize
         tileInventoryId = "";
         //If this tile is static, then it should have a static visualization. Otherwise, it is untilled.
         if (isStatic)
@@ -160,13 +172,7 @@ public class Tile : Interactable
         {
             state = TileState.Untilled;
             //Does this tile get a resource on it?
-            if (SpawnTrash(0.3f))
-            {
-                if (SpawnTrash(0.5f))
-                    tileInventoryId = "res_wood"; //Change this later
-                else
-                    tileInventoryId = "res_stone";          
-            }
+            SpawnTrash(0.2f);
         }
     }
 
@@ -198,12 +204,68 @@ public class Tile : Interactable
         }
     }
 
-    bool SpawnTrash(float chance)
+    void SpawnTrash(float chance)
     {
+        //If we get the initial percentage, then we can move on
         if (chance >= Random.Range(0.0f, 1.0f))
         {
-            return true;
+            //What type of trash are we putting here?
+            float randomTrashType = Random.Range(0.0f, 1.0f);
+            if (randomTrashType > 0.9) //Tree
+            {
+                PlaceItem("tree_basic");
+            }
+            else if (randomTrashType > 0.4) //Stone
+            {
+                PlaceItem("res_stone");
+            }
+            else //Wood
+            {
+                PlaceItem("res_wood");
+            }
+            tileInventory.Initialize(this);
         }
-        return false;
+    }
+
+    public bool PlaceItem(string newItem = "")
+    {
+        if (tileInventoryId == "x") return false; //Make sure we aren't holding something else
+        if (newItem == "") { newItem = tileInventoryId; } //If we didn't provide a string, just use the current item
+        Placeable p = (Placeable)DataManager.instance.manifest[newItem]; //Grab the correct prefab from the manifest
+        //If this is a large item, we need to check / alert surrounding tiles
+        if (p.size.x != 1 || p.size.y != 1)
+        {
+            //Double loop to change all the items
+            for (int x = 0; x < p.size.x; x++)
+            {
+                for (int y = 0; y < p.size.y; y++)
+                {
+                    Vector2 search = new Vector2(gridLocation.x + x, gridLocation.y + y);
+                    //Grab a new tile
+                    if (DataManager.instance.tileManifest.ContainsKey(search))
+                    {
+                        Tile t = DataManager.instance.tileManifest[search];
+                        //Change its currentitem
+                        if (x == 0 && y == 0) //Don't change the tile we're on
+                            continue;
+                        if (t.tileInventoryId != "" && t.tileInventoryId != "x")
+                        {
+                            //print("Too big - this tile contains " + t.tileInventoryId);
+                            return false;
+                        }
+                        t.tileInventoryId = "x";
+                    } else
+                    {
+                        //print("We reached the end of the world");
+                        return false;
+                    }
+                }
+            }
+        }
+        tileInventoryId = newItem; //If we've provided a string, then we should change the inventory
+        tileInventory = Instantiate(p.prefab, transform).GetComponent<Interactable>(); //Spawn that prefab and store ref to the component
+        if (tileInventory.randomizeRotation)
+            tileInventory.RandomizeRotation();
+        return true;
     }
 }

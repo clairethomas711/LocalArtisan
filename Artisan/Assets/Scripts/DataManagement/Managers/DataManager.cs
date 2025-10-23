@@ -34,14 +34,18 @@ public class DataManager : MonoBehaviour
     [SerializeField] bool resetData;
     [SerializeField] List<string> debugStartingInventory = new List<string>();
     [SerializeField] GameObject notification;
+    //Global variables
     [HideInInspector] public int currentDay;
     [HideInInspector] public int money;
     [HideInInspector] public float stamina;
 
+    //Manifests and large data storage
     [HideInInspector] public Inventory playerInventory;
     [HideInInspector] public Dictionary<string, ItemData> manifest = new Dictionary<string, ItemData>();
     [HideInInspector] public Dictionary<string, CraftingRecipe> recipeManifest = new Dictionary<string, CraftingRecipe>();
-    [HideInInspector] public UnityEvent GameTick = new UnityEvent();
+    [HideInInspector] public Dictionary<Vector2, Tile> tileManifest = new Dictionary<Vector2, Tile>();
+    
+    //Game Clock stuff
     public struct GameTime
     {
         public int Hour;
@@ -54,6 +58,7 @@ public class DataManager : MonoBehaviour
         public override string ToString() => $"{Hour}:{Min.ToString("00")}";
     }
     public GameTime gameTime;
+    [HideInInspector] public UnityEvent GameTick = new UnityEvent();
     [HideInInspector] public int totalElapsedMinutes = 0;
     float gameTimeReal;
     int priorMin = 0;
@@ -259,9 +264,10 @@ public class DataManager : MonoBehaviour
                 tileData.NewDay();
                 //Save the new data
                 TileData tile = new TileData();
-                tile.gridLoc = new Vector2(r, i);
+                tile.gridLoc = tileData.gridLocation;
                 tile.dataPacket = tileData.GetSaveData();
                 tiles.Add(tile);
+                tileManifest[tile.gridLoc] = tileData;
             }
         }
         // STATIC MACHINES //
@@ -332,8 +338,10 @@ public class DataManager : MonoBehaviour
             Tile uT;
             if (uT = toUpdate.GetComponent<Tile>())
             {
+                uT.gridLocation = tileLoc;
                 uT.SetSaveData(tile.dataPacket);
             }
+            tileManifest[tileLoc] = uT;
         }
 
         // STATIC MACHINES //
@@ -380,11 +388,13 @@ public class DataManager : MonoBehaviour
                 //THIS NEEDS TO BE CHANGED - generating stuff
                 tileData.GenerateNewData();
                 tileData.UpdateVisuals();
+                tileData.gridLocation = new Vector2(r, i);
                 //Save the new data
                 TileData tile = new TileData();
-                tile.gridLoc = new Vector2(r, i);
+                tile.gridLoc = tileData.gridLocation;
                 tile.dataPacket = tileData.GetSaveData();
                 tiles.Add(tile);
+                tileManifest[tile.gridLoc] = tileData;
             }
         }
         farm.layout = tiles;

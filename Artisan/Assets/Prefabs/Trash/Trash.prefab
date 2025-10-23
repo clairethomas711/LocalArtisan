@@ -123,9 +123,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isMoveableObject: 0
+  randomizeRotation: 1
   data: 
   cleaningEquipment: 8
+  hitsToBreak: 1
   product: 
+  quantityGiven: 1
 --- !u!95 &8917602605036554141
 Animator:
   serializedVersion: 7

@@ -38,6 +38,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ba2b40a4093096f4ea2f0fe43b2ea640, type: 2}
   - {fileID: 11400000, guid: 7cad2176f6a5f6645bb0bc2bcba32197, type: 2}
   - {fileID: 11400000, guid: 06883d78b70aad64e9ff5653689f27fc, type: 2}
+  - {fileID: 11400000, guid: 45428e612eaa7a7409a6a6a0e1555537, type: 2}
   seedItems:
   - {fileID: 11400000, guid: cf5e8d11a1c42574cb1b692834dd2e53, type: 2}
   - {fileID: 11400000, guid: 5d3913f5e6f4244458d1857ee9a0c038, type: 2}

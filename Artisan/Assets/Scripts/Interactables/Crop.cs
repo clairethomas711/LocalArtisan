@@ -4,6 +4,7 @@ using System.Data;
 
 public class Crop : Interactable
 {
+    [Header("Crop Settings")]
     [SerializeField] string product;
     [SerializeField] List<GameObject> plantStages;
     [Header("Sapling Settings")]

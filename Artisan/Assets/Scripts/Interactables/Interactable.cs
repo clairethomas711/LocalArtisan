@@ -4,7 +4,9 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
+    [Header ("Interactable Settings")]
     public bool isMoveableObject;
+    public bool randomizeRotation;
     [HideInInspector] public string data;
     public abstract void Initialize(Tile t);
     public abstract string Interact(InventoryItem heldItem);
@@ -20,5 +22,13 @@ public abstract class Interactable : MonoBehaviour
         }
         else
             return false;
+    }
+
+    public void RandomizeRotation()
+    {
+        print("randomizing");
+        //Get local up
+        int newRotation = Random.Range(0, 4);
+        transform.RotateAround(transform.position, Vector3.up, 90 * newRotation);
     }
 }
