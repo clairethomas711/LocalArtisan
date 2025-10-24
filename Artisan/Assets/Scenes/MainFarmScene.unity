@@ -7624,6 +7624,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 760da552edd10984381549bfa4ad58cc, type: 2}
   - {fileID: 11400000, guid: 09a3edd6d6c156c4ea6d21d67c998517, type: 2}
   - {fileID: 11400000, guid: ed237226cf086bc47897e576d8376db3, type: 2}
+  - {fileID: 11400000, guid: e6a65c77ea5a53645919acfdf933d06a, type: 2}
 --- !u!65 &51221773
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -194390,8 +194391,9 @@ MonoBehaviour:
   - tool_woodwateringcan
   - tool_woodaxe
   - tool_pail
-  - tool_sheetpan
-  - tree_basic
+  - tool_roundpan
+  - ing_cakebatter
+  - crop_strawberry
   notification: {fileID: 4297460580870484600, guid: 01204682542a84e45a135616b22d5fe5, type: 3}
   currentDay: 0
   money: 0

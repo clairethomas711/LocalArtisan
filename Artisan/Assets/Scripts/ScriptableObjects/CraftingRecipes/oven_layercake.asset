@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ca4512db809b5142a1cdf8ae6551298, type: 3}
+  m_Name: oven_layercake
+  m_EditorClassIdentifier: 
+  id: oven_layercake
+  recipeDisplayName: Layer Cake
+  strictRecipeRequirements:
+  - {fileID: 11400000, guid: 6d0c8a25099ae7943be06ef759549d71, type: 2}
+  - {fileID: 11400000, guid: b4ca646b74694e647adf893fbefa6398, type: 2}
+  genericRecipeRequirements:
+  - flavor_sweet
+  strictRecipeOptionals: []
+  genericRecipeOptionals: []
+  product:
+  - {fileID: 11400000, guid: 2211fe52dd3ca75418427834060c2100, type: 2}
+  - {fileID: 11400000, guid: 6d0c8a25099ae7943be06ef759549d71, type: 2}
+  quantityProduced: 12
+  processingTimeInMinutes: 5

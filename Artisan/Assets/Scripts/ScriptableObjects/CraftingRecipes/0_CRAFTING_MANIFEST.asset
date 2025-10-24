@@ -15,6 +15,7 @@ MonoBehaviour:
   scriptableItems:
   - {fileID: 11400000, guid: fda4725e109073547a36824c5473a7a0, type: 2}
   - {fileID: 11400000, guid: ed237226cf086bc47897e576d8376db3, type: 2}
+  - {fileID: 11400000, guid: e6a65c77ea5a53645919acfdf933d06a, type: 2}
   - {fileID: 11400000, guid: 760da552edd10984381549bfa4ad58cc, type: 2}
   - {fileID: 11400000, guid: 09a3edd6d6c156c4ea6d21d67c998517, type: 2}
   - {fileID: 11400000, guid: f96e1c4b9005fe14284ba56a2734158f, type: 2}

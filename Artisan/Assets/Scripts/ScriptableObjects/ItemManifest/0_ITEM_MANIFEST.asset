@@ -19,6 +19,7 @@ MonoBehaviour:
   artisanItems:
   - {fileID: 11400000, guid: e91b0fc3d6de22846a9d85822dcb4233, type: 2}
   - {fileID: 11400000, guid: 8936c955260a09f4aa5a9e98e0625d6f, type: 2}
+  - {fileID: 11400000, guid: 2211fe52dd3ca75418427834060c2100, type: 2}
   - {fileID: 11400000, guid: ce5ef902053d89048885193d77bee002, type: 2}
   - {fileID: 11400000, guid: 70ee8214c88246e418b24dd5b98eaf2d, type: 2}
   - {fileID: 11400000, guid: 11c2cd3dcf6b4274db27cc0da7a58b15, type: 2}
@@ -40,6 +41,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 06883d78b70aad64e9ff5653689f27fc, type: 2}
   - {fileID: 11400000, guid: 45428e612eaa7a7409a6a6a0e1555537, type: 2}
   seedItems:
+  - {fileID: 11400000, guid: 3d4cf68ce3be4f74cbaad4308ff05b2c, type: 2}
   - {fileID: 11400000, guid: cf5e8d11a1c42574cb1b692834dd2e53, type: 2}
   - {fileID: 11400000, guid: 5d3913f5e6f4244458d1857ee9a0c038, type: 2}
   - {fileID: 11400000, guid: aa26b327f3cb9ec489c15b309d19f54a, type: 2}
@@ -48,6 +50,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 772f4b119e8d14e4688c3ed3f599605f, type: 2}
   toolItems:
   - {fileID: 11400000, guid: 611a902dd400cb84ca50b91aec48844e, type: 2}
+  - {fileID: 11400000, guid: 6d0c8a25099ae7943be06ef759549d71, type: 2}
   - {fileID: 11400000, guid: 6e1d50f848f9ca64dad56b12fb678869, type: 2}
   - {fileID: 11400000, guid: a7da981346161d549addeed6ede28dba, type: 2}
   - {fileID: 11400000, guid: ec1a23cbd5107764995dbf48212023a8, type: 2}
