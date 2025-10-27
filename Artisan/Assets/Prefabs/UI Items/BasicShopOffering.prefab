@@ -359,9 +359,9 @@ GameObject:
   - component: {fileID: 2536659579445354616}
   - component: {fileID: 1293069510941353043}
   - component: {fileID: 434778813240191199}
-  - component: {fileID: 4060253622666217014}
+  - component: {fileID: 7757996318285979731}
   m_Layer: 5
-  m_Name: ShopOffering
+  m_Name: BasicShopOffering
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -471,8 +471,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1293069510941353043}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &4060253622666217014
+      m_Calls:
+      - m_Target: {fileID: 7757996318285979731}
+        m_TargetAssemblyTypeName: BasicShopOffering, Assembly-CSharp
+        m_MethodName: PurchaseItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7757996318285979731
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -481,7 +493,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7017497571804880811}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d7664979ab130749abbfa2caa5ab7eb, type: 3}
+  m_Script: {fileID: 11500000, guid: f14e49ba6e51fc04890d0eb4c90a29d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: {fileID: 1736219775157141793}

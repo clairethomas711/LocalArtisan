@@ -39,12 +39,6 @@ public class ProgressionManager : MonoBehaviour
         saveData.knownSpecializations = new List<SpecializationProgressionData>();
         saveData.knownRecipes = new List<RecipeProgressionData>();
         saveData.flags = new List<FlagData>();
-        //TEMP REMOVE LATER//
-        flags["hasRoundPan"] = true;
-        FlagData tempFlag = new FlagData();
-        tempFlag.flagName = "hasRoundPan";
-        tempFlag.flagState = true;
-        saveData.flags.Add(tempFlag);
         return JsonUtility.ToJson(saveData);      
     }
 
@@ -109,6 +103,7 @@ public class ProgressionManager : MonoBehaviour
 
     public void SaveMadeRecipe(string r)
     {
+        if (!knownSpecializations.ContainsKey("baker")) knownSpecializations["baker"] = 0;
         if (isRecipeKnown(r))
         {
             knownSpecializations["baker"] += DataManager.instance.recipeManifest[r].expGiven;
@@ -116,7 +111,7 @@ public class ProgressionManager : MonoBehaviour
         }
         else
         {
-            knownSpecializations["baker"] = DataManager.instance.recipeManifest[r].expGiven;
+            knownSpecializations["baker"] += DataManager.instance.recipeManifest[r].expGiven * 2;
             knownRecipes[r] = 1;
         }
         DataManager.instance.uiManager.UpdateUIVisuals();

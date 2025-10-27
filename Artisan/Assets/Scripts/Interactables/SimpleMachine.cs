@@ -51,4 +51,6 @@ public class SimpleMachine : Machine
         return processingTimeInMinutes;
     }
 
+    public override void OnProductCollection() {}
+
 }

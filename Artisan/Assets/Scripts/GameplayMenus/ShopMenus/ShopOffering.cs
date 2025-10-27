@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class ShopOffering : MonoBehaviour
+public abstract class ShopOffering : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI itemName;
@@ -12,14 +12,17 @@ public class ShopOffering : MonoBehaviour
     [SerializeField]
     private UnityEngine.UI.Image sprite;
     [HideInInspector]
-    public ItemData offeringData; //Data storage
+    public string offeringData; //Data storage
 
     //Visual control
     public void UpdateOfferingDisplay()
     {
-        itemName.text = offeringData.displayName;
-        itemDescription.text = offeringData.description;
-        itemPrice.text = offeringData.value.ToString();
-        sprite.sprite = offeringData.sprite;
+        ItemData o = DataManager.instance.manifest[offeringData];
+        itemName.text = o.displayName;
+        itemDescription.text = o.description;
+        itemPrice.text = o.value.ToString();
+        sprite.sprite = o.sprite;
     }
+
+    public abstract void PurchaseItem();
 }

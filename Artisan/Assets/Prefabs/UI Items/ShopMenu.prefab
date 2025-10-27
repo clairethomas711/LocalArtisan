@@ -257,7 +257,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3601870263302635956}
+      - m_Target: {fileID: 8542782038546485870}
         m_TargetAssemblyTypeName: ShopMenu, Assembly-CSharp
         m_MethodName: Close
         m_Mode: 1
@@ -340,9 +340,9 @@ GameObject:
   - component: {fileID: 5579331149342739722}
   - component: {fileID: 4909648138411414242}
   - component: {fileID: 992461036283597410}
-  - component: {fileID: 3601870263302635956}
+  - component: {fileID: 8542782038546485870}
   m_Layer: 5
-  m_Name: BasicShopMenu
+  m_Name: ShopMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -407,7 +407,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3601870263302635956
+--- !u!114 &8542782038546485870
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -416,8 +416,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7039606659273769973}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e313b935872187145a91b9d4bb6ac8ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ab4ac89ca938fd4f8797350f7375264, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   slots: {fileID: 7000118127585554077}
-  shopOffering: {fileID: 7017497571804880811, guid: 25b996448de1a2348a8c7dbba4ce94e2, type: 3}
+  shopOfferingPrefab: {fileID: 0}

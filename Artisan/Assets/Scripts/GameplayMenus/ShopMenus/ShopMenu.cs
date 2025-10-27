@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 //for in-game menus where items can be purchased by the player
 
-public abstract class ShopMenu : GameplayMenu
+public class ShopMenu : GameplayMenu
 {
-    [SerializeField] GameObject shopOffering;
+    [SerializeField] GameObject shopOfferingPrefab;
     List<InventoryItem> listingSlots = new List<InventoryItem>();
     public override List<InventoryItem> inventorySlots
     {
@@ -24,15 +24,21 @@ public abstract class ShopMenu : GameplayMenu
         {
             //This gives us the manifest of ItemData that we need
             ItemData manifestGet = DataManager.instance.manifest[shopInventory[i].id];
+            //Make sure that we have the required progression levels
+            if (manifestGet.requireProgression)
+            {
+                //If we don't even know this specialization, don't spawn the item
+                if (!DataManager.instance.progressionManager.knownSpecializations.ContainsKey(manifestGet.specializationRequired)) { continue; }
+                //If we know the specialization but are too low level, don't spawn the item
+                if (DataManager.instance.progressionManager.knownSpecializations[manifestGet.specializationRequired] < manifestGet.levelRequired)
+                { continue; }        
+            }
             shopManifest.Add(manifestGet);
             //Add a listing for this item
-            GameObject s = Instantiate(shopOffering, slots.transform);
+            GameObject s = Instantiate(shopOfferingPrefab, slots.transform);
             //Connect the item data
             ShopOffering data = s.GetComponent<ShopOffering>();
-            data.offeringData = manifestGet;
-            //Connect button press functionality
-            Button b = s.GetComponent<Button>();
-            b.onClick.AddListener(() => PurchaseItem(data.offeringData));
+            data.offeringData = manifestGet.id;
         }
 
         UpdateShopDisplay();
@@ -57,7 +63,4 @@ public abstract class ShopMenu : GameplayMenu
             listing.UpdateOfferingDisplay();
         }
     }
-
-    //Is called by the button when clicked
-    public abstract void PurchaseItem(ItemData itemToPurchase);
 }

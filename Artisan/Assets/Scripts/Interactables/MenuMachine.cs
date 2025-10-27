@@ -33,12 +33,16 @@ public class MenuMachine : Machine
     public void PassRecipe(CraftingRecipe r)
     {
         currentRecipe = r;
-        DataManager.instance.progressionManager.SaveMadeRecipe(r.id);
     }
 
     public override int CalculateProcessingTime()
     {
         return currentRecipe.processingTimeInMinutes;
+    }
+
+    public override void OnProductCollection()
+    {
+        DataManager.instance.progressionManager.SaveMadeRecipe(currentRecipe.id);
     }
 
 }

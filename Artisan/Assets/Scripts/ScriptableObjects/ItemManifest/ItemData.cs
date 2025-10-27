@@ -11,8 +11,11 @@ public class ItemData : ScriptableObject
     public itemType itemType;
     public Sprite sprite;
     public int value;
+    public bool requireProgression = false;
+    public string specializationRequired;
+    public int levelRequired;
     public string tag;
 }
 
 //There NEEDS to be one of these for every item with a different "use" functionality
-public enum itemType { Hoe, WateringCan, Pail, Seed, Resource, Artisan, Ingredient, Crop, Axe, Animal, BakingTool, BakingDough, Placeable };
+public enum itemType { Hoe, WateringCan, Pail, Seed, Resource, Artisan, Ingredient, Crop, Axe, Animal, BakingTool, BakingDough, Placeable};

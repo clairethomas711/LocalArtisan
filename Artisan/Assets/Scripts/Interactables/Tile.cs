@@ -137,8 +137,8 @@ public class Tile : Interactable
         }
         if (tileInventoryId != "" && tileInventoryId != "x")
         {
-            PlaceItem();
-            tileInventory.SetSaveData(tileInventoryData);      
+            if (PlaceItem())
+                tileInventory.SetSaveData(tileInventoryData);      
         }
         //Update the visuals of this tile based on the new data
         UpdateVisuals();

@@ -86,7 +86,7 @@ public abstract class Machine : Interactable
     // UNIVERSAL HELPER FUNCTIONS //
     public void StartProducing(InventoryItem output, InventoryItem secondaryOutput = null)
     {
-        print("Producing " + output.customItemData);
+        //print("Producing " + output.customItemData);
         activelyProducing.Add(output); //Remember what the output will be
         if (secondaryOutput != null) activelyProducing.Add(secondaryOutput);
         //minOfProductionStart = DataManager.instance.TotalElapsedGameTime(); //Save when we started producing
@@ -125,8 +125,11 @@ public abstract class Machine : Interactable
         indicator.SetActive(false);
         indicatorTimer.gameObject.SetActive(true);
         indicatorDone.gameObject.SetActive(false);
+        OnProductCollection();
     }
 
     public abstract int CalculateProcessingTime();
+
+    public abstract void OnProductCollection();
 
 }

@@ -13,7 +13,13 @@ public class OvenMenu : CraftingMenu
         unlockedPans.Add(recipeCategory.Oven_SheetPan);
         if (DataManager.instance.progressionManager.flags.ContainsKey("hasRoundPan"))
             unlockedPans.Add(recipeCategory.Oven_RoundPan);
-        currentPanIndicator.text = "Sheet Pan";      
+        if (DataManager.instance.progressionManager.flags.ContainsKey("hasLoafPan"))
+            unlockedPans.Add(recipeCategory.Oven_LoafPan);
+        if (DataManager.instance.progressionManager.flags.ContainsKey("hasMuffinPan"))
+            unlockedPans.Add(recipeCategory.Oven_MuffinPan);
+        currentPanIndicator.text = "Sheet Pan";
+        currentPan = 0;
+        machine.recipes[0] = unlockedPans[currentPan];      
     }
     public void SwitchPan()
     {
@@ -22,10 +28,14 @@ public class OvenMenu : CraftingMenu
             currentPan = 0;
         machine.recipes[0] = unlockedPans[currentPan];
 
-        if (currentPan == 0)
+        if (machine.recipes[0] == recipeCategory.Oven_SheetPan)
             currentPanIndicator.text = "Sheet Pan";
-        else if (currentPan == 1)
+        else if (machine.recipes[0] == recipeCategory.Oven_RoundPan)
             currentPanIndicator.text = "Round Pan";
+        else if (machine.recipes[0] == recipeCategory.Oven_LoafPan)
+            currentPanIndicator.text = "Loaf Pan";
+        else if (machine.recipes[0] == recipeCategory.Oven_MuffinPan)
+            currentPanIndicator.text = "Muffin Pan";
 
         recipeBookDisplay.CloseRecipeBook();
         recipeBookDisplay.OpenRecipeBook(machine);
