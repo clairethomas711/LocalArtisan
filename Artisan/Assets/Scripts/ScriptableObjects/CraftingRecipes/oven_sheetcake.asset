@@ -14,15 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: oven_sheetcake
   recipeDisplayName: Sheet Cake
+  recipeCategory: 1
   strictRecipeRequirements:
-  - {fileID: 11400000, guid: 6e1d50f848f9ca64dad56b12fb678869, type: 2}
   - {fileID: 11400000, guid: b4ca646b74694e647adf893fbefa6398, type: 2}
   genericRecipeRequirements: []
   strictRecipeOptionals: []
   genericRecipeOptionals: []
   product:
   - {fileID: 11400000, guid: 70ee8214c88246e418b24dd5b98eaf2d, type: 2}
-  - {fileID: 11400000, guid: 6e1d50f848f9ca64dad56b12fb678869, type: 2}
   quantityProduced: 16
   processingTimeInMinutes: 25
   expGiven: 3

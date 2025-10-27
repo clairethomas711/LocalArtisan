@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: oven_baguette
   recipeDisplayName: Baguette
+  recipeCategory: 1
   strictRecipeRequirements:
-  - {fileID: 11400000, guid: 6e1d50f848f9ca64dad56b12fb678869, type: 2}
   - {fileID: 11400000, guid: e1e6de0d401e3d647b85df5d02ad5230, type: 2}
   genericRecipeRequirements: []
   strictRecipeOptionals: []
@@ -23,7 +23,6 @@ MonoBehaviour:
   - flavor_sweet
   product:
   - {fileID: 11400000, guid: e91b0fc3d6de22846a9d85822dcb4233, type: 2}
-  - {fileID: 11400000, guid: 6e1d50f848f9ca64dad56b12fb678869, type: 2}
   quantityProduced: 1
   processingTimeInMinutes: 30
   expGiven: 5

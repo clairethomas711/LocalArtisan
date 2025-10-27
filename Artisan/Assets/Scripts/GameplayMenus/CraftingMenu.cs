@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 public class CraftingMenu : GameplayMenu
 {
-    [SerializeField] MenuMachine machine;
-    [SerializeField] RecipeBook recipeBookDisplay;
+    [SerializeField] public MenuMachine machine;
+    [SerializeField] public RecipeBook recipeBookDisplay;
     List<InventoryItem> tableSlots = new List<InventoryItem>();
     public override List<InventoryItem> inventorySlots
     {
@@ -57,12 +57,19 @@ public class CraftingMenu : GameplayMenu
 
     public CraftingRecipe FindValidRecipe(HashSet<string> tableContents)
     {
+        List<CraftingRecipe> availableRecipes = new List<CraftingRecipe>();
+        Dictionary<string, CraftingRecipe>.ValueCollection recipes = DataManager.instance.recipeManifest.Values;
+        foreach (CraftingRecipe r in recipes)
+        {
+            if (machine.recipes.Contains(r.recipeCategory))
+                availableRecipes.Add(r);       
+        }
         //for each recipe that the machine knows
-        for (int i = 0; i < machine.recipes.Count; i++)
+        for (int i = 0; i < availableRecipes.Count; i++)
         {
             // STEP 1: CHECK THAT WE HAVE ALL OF THE RECIPES STRICT REQUIREMENTS
-            CraftingRecipe recipeToCheck = machine.recipes[i];
-            print("Checking recipe: " + machine.recipes[i].recipeDisplayName);
+            CraftingRecipe recipeToCheck = availableRecipes[i];
+            //print("Checking recipe: " + availableRecipes[i].recipeDisplayName);
             HashSet<string> itemsUnchecked = new HashSet<string>(tableContents);
             bool hasStrictRequiredItems = true;
             //iterate over every required item in that recipe
@@ -162,7 +169,7 @@ public class CraftingMenu : GameplayMenu
     {
         if (itemsUnchecked.Contains(id))
         {
-            print("Took item: " + id);
+            //print("Took item: " + id);
             itemsUnchecked.Remove(id);
             return true;
         }
@@ -176,7 +183,7 @@ public class CraftingMenu : GameplayMenu
         {
             if (DataManager.instance.manifest[s].tag == tag)
             {
-                print("Took tagged item: " + s);
+                //print("Took tagged item: " + s);
                 itemsUnchecked.Remove(s);
                 return s;
             }

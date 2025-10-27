@@ -20,7 +20,7 @@ public class InterfaceManager : MonoBehaviour
         //float progressToNextLevel = 0.0f;
         if (DataManager.instance.progressionManager.knownSpecializations.ContainsKey("baker"))
         {
-            print("ah yes a baker");
+            //print("ah yes a baker");
             int exp = DataManager.instance.progressionManager.knownSpecializations["baker"];
             if (exp > 10000)
                 specializationId += "Artisan ";

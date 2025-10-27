@@ -50,8 +50,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 772f4b119e8d14e4688c3ed3f599605f, type: 2}
   toolItems:
   - {fileID: 11400000, guid: 611a902dd400cb84ca50b91aec48844e, type: 2}
-  - {fileID: 11400000, guid: 6d0c8a25099ae7943be06ef759549d71, type: 2}
-  - {fileID: 11400000, guid: 6e1d50f848f9ca64dad56b12fb678869, type: 2}
   - {fileID: 11400000, guid: a7da981346161d549addeed6ede28dba, type: 2}
   - {fileID: 11400000, guid: ec1a23cbd5107764995dbf48212023a8, type: 2}
   - {fileID: 11400000, guid: c8e3cffe00309eb48a9a2aea23a8f10d, type: 2}

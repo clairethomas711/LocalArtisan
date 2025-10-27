@@ -7,7 +7,7 @@ public class MenuMachine : Machine
     CraftingRecipe currentRecipe;
     List<ItemData> acceptedItems;
     List<ItemData> productedItems;
-    public List<CraftingRecipe> recipes;
+    public List<recipeCategory> recipes;
     public override List<ItemData> AcceptedItems
     {
         get { return acceptedItems; }

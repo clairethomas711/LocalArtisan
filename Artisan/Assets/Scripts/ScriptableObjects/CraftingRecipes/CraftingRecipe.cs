@@ -6,6 +6,7 @@ public class CraftingRecipe : ScriptableObject
 {
     public string id;
     public string recipeDisplayName;
+    public recipeCategory recipeCategory;
     public List<ItemData> strictRecipeRequirements;
     public List<string> genericRecipeRequirements;
     public List<ItemData> strictRecipeOptionals;
@@ -16,4 +17,4 @@ public class CraftingRecipe : ScriptableObject
     public int expGiven;
 }
 
-public enum recipeCategory {}
+public enum recipeCategory {Mixer, Oven_SheetPan, Oven_RoundPan}

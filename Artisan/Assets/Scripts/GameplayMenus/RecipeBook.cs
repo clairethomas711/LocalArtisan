@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
 using System.Transactions;
 
 public class RecipeBook : MonoBehaviour
@@ -8,12 +9,19 @@ public class RecipeBook : MonoBehaviour
 
     public void OpenRecipeBook(MenuMachine machine)
     {
-        for (int i = 0; i < machine.recipes.Count; i++)
+        List<CraftingRecipe> availableRecipes = new List<CraftingRecipe>();
+        Dictionary<string, CraftingRecipe>.ValueCollection recipes = DataManager.instance.recipeManifest.Values;
+        foreach (CraftingRecipe r in recipes)
+        {
+            if (machine.recipes.Contains(r.recipeCategory))
+                availableRecipes.Add(r);       
+        }
+        for (int i = 0; i < availableRecipes.Count; i++)
         {
             GameObject recipeDisplay = Instantiate(recipeBookDisplayItem, transform);
-            if (DataManager.instance.progressionManager.isRecipeKnown(machine.recipes[i].id))
+            if (DataManager.instance.progressionManager.isRecipeKnown(availableRecipes[i].id))
             {
-                recipeDisplay.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = machine.recipes[i].recipeDisplayName;
+                recipeDisplay.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = availableRecipes[i].recipeDisplayName;
             }
         }
     }

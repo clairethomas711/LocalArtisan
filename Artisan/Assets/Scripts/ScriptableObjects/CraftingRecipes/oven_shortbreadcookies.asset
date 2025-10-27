@@ -14,15 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: oven_shortbreadcookies
   recipeDisplayName: Shortbread Cookies
+  recipeCategory: 1
   strictRecipeRequirements:
-  - {fileID: 11400000, guid: 6e1d50f848f9ca64dad56b12fb678869, type: 2}
   - {fileID: 11400000, guid: 99a4a95acf04326468da1ae654a0c804, type: 2}
   genericRecipeRequirements: []
   strictRecipeOptionals: []
   genericRecipeOptionals: []
   product:
   - {fileID: 11400000, guid: 11c2cd3dcf6b4274db27cc0da7a58b15, type: 2}
-  - {fileID: 11400000, guid: 6e1d50f848f9ca64dad56b12fb678869, type: 2}
   quantityProduced: 12
   processingTimeInMinutes: 15
   expGiven: 2
