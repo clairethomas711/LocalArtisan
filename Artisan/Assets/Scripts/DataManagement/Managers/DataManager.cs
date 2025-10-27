@@ -13,7 +13,7 @@ public class DataManager : MonoBehaviour
 
     [Header("Manager References")]
     [SerializeField] StoreManager store;
-    [SerializeField] InterfaceManager uiManager;
+    [SerializeField] public InterfaceManager uiManager;
     [SerializeField] public GameObject player;
     [SerializeField] public CursorGrab grab;
     [SerializeField] public BarnManager barnManager;
@@ -73,6 +73,10 @@ public class DataManager : MonoBehaviour
         for (int i = 0; i < itemManifest.scriptableItems.Count; i++)
         {
             manifest[itemManifest.scriptableItems[i].id] = itemManifest.scriptableItems[i];
+        }
+        for (int i = 0; i < itemManifest.animalItems.Count; i++)
+        {
+            manifest[itemManifest.animalItems[i].id] = itemManifest.animalItems[i];
         }
         for (int i = 0; i < itemManifest.artisanItems.Count; i++)
         {

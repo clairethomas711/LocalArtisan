@@ -13,4 +13,7 @@ public class CraftingRecipe : ScriptableObject
     public List<ItemData> product;
     public int quantityProduced = 1;
     public int processingTimeInMinutes;
+    public int expGiven;
 }
+
+public enum recipeCategory {}

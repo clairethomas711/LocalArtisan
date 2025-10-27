@@ -23,3 +23,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e1e6de0d401e3d647b85df5d02ad5230, type: 2}
   quantityProduced: 1
   processingTimeInMinutes: 5
+  expGiven: 0

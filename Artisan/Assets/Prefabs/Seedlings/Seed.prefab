@@ -100,9 +100,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isMoveableObject: 0
+  randomizeRotation: 0
   data: 
   product: 
   plantStages: []
+  sapling: 
+  startingState: 0
+  regrows: 0
+  postHarvestState: 0
 --- !u!65 &4918446329824194584
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -122,5 +127,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0.49, z: 0}
+  m_Size: {x: 1, y: 0.5, z: 1}
+  m_Center: {x: 0, y: 0.25, z: 0}
