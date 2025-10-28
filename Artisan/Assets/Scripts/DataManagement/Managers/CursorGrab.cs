@@ -17,7 +17,7 @@ public class CursorGrab : MonoBehaviour
     {
         transform.position = Input.mousePosition;
         if (holding.id != "")
-            img.sprite = DataManager.instance.manifest[holding.id].sprite;
+            img.sprite = DataManager.instance.manifest[holding.id].primarySprite;
         else
             img.sprite = defaultSprite;
     }

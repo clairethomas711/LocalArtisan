@@ -180,6 +180,10 @@ PrefabInstance:
       value: 22.591
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 23979033ccf89434bb401a30fb8fb90f, type: 3}
+      propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 23979033ccf89434bb401a30fb8fb90f, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: cfb97688d4f5386469c3710ba41a2500, type: 2}
@@ -189,7 +193,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 23979033ccf89434bb401a30fb8fb90f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -637,7 +641,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: faebbe8e5130a7945a3b773f476bb678, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -680,7 +684,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   output: {fileID: 8600000, guid: 3ad9a58ccb8c535458a495c352198f84, type: 2}
   cam: {fileID: 263204684}
-  outputFilePath: Assets/Models/BakeryItems/Baguette/baguette_sprite.png
+  outputFilePath: Assets/Art/BakeryItems/SheetCake/sheetcake_sprite.png
 --- !u!4 &1594008938
 Transform:
   m_ObjectHideFlags: 0

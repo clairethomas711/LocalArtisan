@@ -109,8 +109,8 @@ public class CraftingMenu : GameplayMenu
 
     InventoryItem GenerateRecipeProduct(CraftingRecipe r, HashSet<string> tableContents)
     {
-        //If we are calling this, then we KNOW we have the required items. But do we have more than that?
-        int numberOfItemsRequired = r.strictRecipeRequirements.Count + r.genericRecipeRequirements.Count;
+        //Do we have any items that would alter our custom data?
+        int numberOfItemsRequired = r.strictRecipeRequirements.Count;
         //If the number of items on the table is more than the number of items required, then let's check our optional reqs
         if (tableContents.Count > numberOfItemsRequired)
         {
@@ -124,21 +124,21 @@ public class CraftingMenu : GameplayMenu
                     return null;
                 }
             }
+            //Now, with what we have left, make sure that we are allowed to use it. If so, add to the generated item data
+            List<string> addOns = new List<string>();
             for (int i = 0; i < r.genericRecipeRequirements.Count; i++)
             {
-                if (AttemptToTakeTaggedItem(itemsUnchecked, r.genericRecipeRequirements[i]) == "")
+                string taggedItem = AttemptToTakeTaggedItem(itemsUnchecked, r.genericRecipeRequirements[i]);
+                if (taggedItem != "")
                 {
-                    print("ERROR: Generating a recipe product without required ingredients.");
-                    return null;
+                    addOns.Add(taggedItem);
                 }
             }
-            //Now, with what we have left, make sure that we are allowed to use it. If so, add to the generated item name
-            List<string> adjectives = new List<string>();
             for (int i = 0; i < r.strictRecipeOptionals.Count; i++)
             {
                 if (AttemptToTakeItem(itemsUnchecked, r.strictRecipeOptionals[i].id))
                 {
-                    adjectives.Add(r.strictRecipeOptionals[i].displayName);
+                    addOns.Add(r.strictRecipeOptionals[i].id);
                 }
             }
             for (int i = 0; i < r.genericRecipeOptionals.Count; i++)
@@ -146,23 +146,54 @@ public class CraftingMenu : GameplayMenu
                 string taggedItem = AttemptToTakeTaggedItem(itemsUnchecked, r.genericRecipeOptionals[i]);
                 if (taggedItem != "")
                 {
-                    adjectives.Add(DataManager.instance.manifest[taggedItem].displayName);
+                    addOns.Add(taggedItem);
                 }
             }
-            //Generate the item based on what we found
-            adjectives.Sort();
-            string customName = "";
-            for (int i = 0; i < adjectives.Count; i++)
+            //Do we still have items left on the table? If so, return them to the player
+            if (itemsUnchecked.Count > 0)
             {
-                customName = customName + adjectives[i] + " ";
+                foreach (string s in itemsUnchecked)
+                {
+                    //Just give them the item back - we clear the table later
+                    DataManager.instance.playerInventory.AddInventoryItem(new InventoryItem(s, 1));
+                }
             }
-            customName += r.product[0].displayName;
-            InventoryItem p = new InventoryItem(r.product[0].id, r.quantityProduced);
-            print("Generated an item called " + customName);
-            return p.GenerateCustomInventoryItem(customName);
+            //Check if the addons list even CONTAINS anything
+            if (addOns.Count > 0)
+            {
+                CustomInventoryItemData customData = GenerateItemFromAddOns(addOns);
+                InventoryItem p = new InventoryItem(r.product[0].id, r.quantityProduced);
+                p.SetCustomData(customData);
+                return p;
+            }
         }
         InventoryItem primaryProduct = new InventoryItem(r.product[0].id, r.quantityProduced);
-        return primaryProduct;      
+        return primaryProduct;
+    }
+    
+    private CustomInventoryItemData GenerateItemFromAddOns(List<string> addOns)
+    {
+        addOns.Sort();
+        CustomInventoryItemData data = new CustomInventoryItemData();
+        string customName = "";
+        int additionalValue = 0;
+        float red = 0; float green = 0; float blue = 0;
+        int numberOfSamples = 0;
+        foreach (string item in addOns)
+        {
+            print("appending " + DataManager.instance.manifest[item].displayName);
+            customName += DataManager.instance.manifest[item].displayName + " ";
+            additionalValue += DataManager.instance.manifest[item].value;
+            red += DataManager.instance.manifest[item].color.r;
+            green += DataManager.instance.manifest[item].color.g;
+            blue += DataManager.instance.manifest[item].color.b;
+            numberOfSamples++;
+        }
+        Vector3 newColor = new Vector3(red / numberOfSamples, green / numberOfSamples, blue / numberOfSamples);
+        data.customName = customName;
+        data.additionalValue = additionalValue;
+        data.customColor = newColor;
+        return data;
     }
 
     bool AttemptToTakeItem(HashSet<string> itemsUnchecked, string id)

@@ -17,7 +17,13 @@ MonoBehaviour:
     Sugar can combined with other items.
   id: seed_sugarcane
   itemType: 3
-  sprite: {fileID: 21300000, guid: b653289dbe0a7ec408cb59c8562c120e, type: 3}
+  primarySprite: {fileID: 21300000, guid: 0ce91ad751a4dd045bdbcbcb1ee80d82, type: 3}
+  decorativeSprite: {fileID: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
   value: 10
+  requireProgression: 0
+  specializationRequired: 
+  levelRequired: 0
   tag: 
+  size: {x: 1, y: 1}
   prefab: {fileID: 9042086795519634568, guid: e941122c6d959e4458410cad5ffc2db3, type: 3}

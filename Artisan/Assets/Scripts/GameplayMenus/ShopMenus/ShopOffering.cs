@@ -21,7 +21,7 @@ public abstract class ShopOffering : MonoBehaviour
         itemName.text = o.displayName;
         itemDescription.text = o.description;
         itemPrice.text = o.value.ToString();
-        sprite.sprite = o.sprite;
+        sprite.sprite = o.primarySprite;
     }
 
     public abstract void PurchaseItem();

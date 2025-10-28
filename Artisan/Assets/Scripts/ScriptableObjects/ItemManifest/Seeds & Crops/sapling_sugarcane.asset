@@ -16,7 +16,13 @@ MonoBehaviour:
   description: 
   id: sapling_sugarcane
   itemType: 3
-  sprite: {fileID: 21300000, guid: bf8293861aca1d14f82f39aba8115f5c, type: 3}
+  primarySprite: {fileID: 21300000, guid: bf8293861aca1d14f82f39aba8115f5c, type: 3}
+  decorativeSprite: {fileID: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
   value: 0
+  requireProgression: 0
+  specializationRequired: 
+  levelRequired: 0
   tag: 
+  size: {x: 1, y: 1}
   prefab: {fileID: 1167666818113356588, guid: b3ddd272b07e8df4f9da187735ad8308, type: 3}

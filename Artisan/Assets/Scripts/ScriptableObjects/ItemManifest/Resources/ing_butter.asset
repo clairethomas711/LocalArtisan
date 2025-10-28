@@ -13,7 +13,14 @@ MonoBehaviour:
   m_Name: ing_butter
   m_EditorClassIdentifier: 
   displayName: Butter
+  description: 
   id: ing_butter
   itemType: 6
-  sprite: {fileID: 21300000, guid: 3422bbccbe964f44faa74958373eb2cd, type: 3}
+  primarySprite: {fileID: 21300000, guid: 3422bbccbe964f44faa74958373eb2cd, type: 3}
+  decorativeSprite: {fileID: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
   value: 0
+  requireProgression: 0
+  specializationRequired: 
+  levelRequired: 0
+  tag: 

@@ -3144,6 +3144,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LayerCakeShelfDisplay
       objectReference: {fileID: 0}
+    - target: {fileID: 8329753671921481175, guid: b71812d8b21a5d84c82666975ebae6a0, type: 3}
+      propertyPath: materialInstanceToAlter
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8728050005545127213, guid: b71812d8b21a5d84c82666975ebae6a0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -3,7 +3,12 @@ guid: 9b3540a904c8c204cb5bc5f6500e047e
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LayerCake_Filling
+    second: {fileID: 2100000, guid: 5a963ea877923d24b8a9bf644c820035, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

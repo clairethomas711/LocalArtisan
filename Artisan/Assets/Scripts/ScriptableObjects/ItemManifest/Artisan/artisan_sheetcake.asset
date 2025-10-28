@@ -16,7 +16,12 @@ MonoBehaviour:
   description: 
   id: artisan_sheetcake
   itemType: 5
-  sprite: {fileID: 21300000, guid: db92189d058d5c24abe93c1501ad495b, type: 3}
+  primarySprite: {fileID: 21300000, guid: db92189d058d5c24abe93c1501ad495b, type: 3}
+  decorativeSprite: {fileID: 21300000, guid: db89557314e70b14cb69172ee7b64980, type: 3}
+  color: {r: 0, g: 0, b: 0, a: 0}
   value: 5
+  requireProgression: 0
+  specializationRequired: 
+  levelRequired: 0
   tag: 
   model: {fileID: 5043763691325448402, guid: 198551a5749d0ae478aa05128f320817, type: 3}

@@ -14,12 +14,27 @@ public class InventoryItem
         customItemData = customData;
     }
 
-    public InventoryItem GenerateCustomInventoryItem(string customItemData)
-    {
-        InventoryItem customItem = new InventoryItem(id, quantity);
-        customItem.customItemData = customItemData;
-        return customItem;
-    }
     public InventoryItem Copy() { return new InventoryItem(id, quantity, customItemData); }
-    public void Reset() { id = ""; quantity = 0;  }
+    public void Reset() { id = ""; quantity = 0; customItemData = ""; }
+
+    public void SetCustomData(CustomInventoryItemData data)
+    {
+        customItemData = JsonUtility.ToJson(data);
+    }
+    public CustomInventoryItemData GetCustomData()
+    {
+        if (customItemData != "")
+        {
+            CustomInventoryItemData data = JsonUtility.FromJson<CustomInventoryItemData>(customItemData);
+            return data;
+        }
+        return null;
+    }
+}
+
+public class CustomInventoryItemData
+{
+    public string customName;
+    public int additionalValue;
+    public Vector3 customColor;
 }

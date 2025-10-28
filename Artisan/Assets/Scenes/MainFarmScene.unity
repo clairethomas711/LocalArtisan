@@ -2472,6 +2472,10 @@ MonoBehaviour:
   restricted: 1
   requiredType: 11
   index: 0
+  secondarySpriteDisplay: {fileID: 0}
+  nameDisplay: {fileID: 0}
+  quantityDisplay: {fileID: 0}
+  artisanIndicator: {fileID: 0}
 --- !u!114 &15019618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9395,6 +9399,10 @@ MonoBehaviour:
   restricted: 0
   requiredType: 0
   index: 1
+  secondarySpriteDisplay: {fileID: 0}
+  nameDisplay: {fileID: 0}
+  quantityDisplay: {fileID: 0}
+  artisanIndicator: {fileID: 0}
 --- !u!114 &60824165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10119,6 +10127,10 @@ MonoBehaviour:
   restricted: 0
   requiredType: 0
   index: 2
+  secondarySpriteDisplay: {fileID: 0}
+  nameDisplay: {fileID: 0}
+  quantityDisplay: {fileID: 0}
+  artisanIndicator: {fileID: 0}
 --- !u!114 &63398476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18807,6 +18819,10 @@ MonoBehaviour:
   restricted: 0
   requiredType: 0
   index: 4
+  secondarySpriteDisplay: {fileID: 0}
+  nameDisplay: {fileID: 0}
+  quantityDisplay: {fileID: 0}
+  artisanIndicator: {fileID: 0}
 --- !u!1001 &126096044
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29965,6 +29981,10 @@ MonoBehaviour:
   restricted: 0
   requiredType: 0
   index: 2
+  secondarySpriteDisplay: {fileID: 0}
+  nameDisplay: {fileID: 0}
+  quantityDisplay: {fileID: 0}
+  artisanIndicator: {fileID: 0}
 --- !u!114 &206526569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53309,6 +53329,10 @@ MonoBehaviour:
   restricted: 0
   requiredType: 0
   index: 0
+  secondarySpriteDisplay: {fileID: 0}
+  nameDisplay: {fileID: 0}
+  quantityDisplay: {fileID: 0}
+  artisanIndicator: {fileID: 0}
 --- !u!114 &355862968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76884,6 +76908,10 @@ MonoBehaviour:
   restricted: 0
   requiredType: 0
   index: 0
+  secondarySpriteDisplay: {fileID: 0}
+  nameDisplay: {fileID: 0}
+  quantityDisplay: {fileID: 0}
+  artisanIndicator: {fileID: 0}
 --- !u!114 &519576331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80131,6 +80159,10 @@ MonoBehaviour:
   restricted: 0
   requiredType: 0
   index: 1
+  secondarySpriteDisplay: {fileID: 0}
+  nameDisplay: {fileID: 0}
+  quantityDisplay: {fileID: 0}
+  artisanIndicator: {fileID: 0}
 --- !u!114 &537618381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90757,6 +90789,10 @@ MonoBehaviour:
   restricted: 0
   requiredType: 0
   index: 2
+  secondarySpriteDisplay: {fileID: 0}
+  nameDisplay: {fileID: 0}
+  quantityDisplay: {fileID: 0}
+  artisanIndicator: {fileID: 0}
 --- !u!114 &611664451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97604,6 +97640,10 @@ MonoBehaviour:
   restricted: 0
   requiredType: 0
   index: 1
+  secondarySpriteDisplay: {fileID: 0}
+  nameDisplay: {fileID: 0}
+  quantityDisplay: {fileID: 0}
+  artisanIndicator: {fileID: 0}
 --- !u!114 &663968820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98838,6 +98878,10 @@ MonoBehaviour:
   restricted: 0
   requiredType: 0
   index: 0
+  secondarySpriteDisplay: {fileID: 0}
+  nameDisplay: {fileID: 0}
+  quantityDisplay: {fileID: 0}
+  artisanIndicator: {fileID: 0}
 --- !u!1001 &670456655
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -101384,6 +101428,10 @@ MonoBehaviour:
   restricted: 0
   requiredType: 0
   index: 4
+  secondarySpriteDisplay: {fileID: 0}
+  nameDisplay: {fileID: 0}
+  quantityDisplay: {fileID: 0}
+  artisanIndicator: {fileID: 0}
 --- !u!114 &684139756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105141,6 +105189,10 @@ MonoBehaviour:
   restricted: 0
   requiredType: 0
   index: 4
+  secondarySpriteDisplay: {fileID: 0}
+  nameDisplay: {fileID: 0}
+  quantityDisplay: {fileID: 0}
+  artisanIndicator: {fileID: 0}
 --- !u!114 &713822993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124974,6 +125026,10 @@ MonoBehaviour:
   restricted: 0
   requiredType: 0
   index: 1
+  secondarySpriteDisplay: {fileID: 0}
+  nameDisplay: {fileID: 0}
+  quantityDisplay: {fileID: 0}
+  artisanIndicator: {fileID: 0}
 --- !u!114 &841767962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144576,6 +144632,10 @@ MonoBehaviour:
   restricted: 0
   requiredType: 0
   index: 3
+  secondarySpriteDisplay: {fileID: 0}
+  nameDisplay: {fileID: 0}
+  quantityDisplay: {fileID: 0}
+  artisanIndicator: {fileID: 0}
 --- !u!114 &981666456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161232,6 +161292,10 @@ MonoBehaviour:
   restricted: 0
   requiredType: 0
   index: 2
+  secondarySpriteDisplay: {fileID: 0}
+  nameDisplay: {fileID: 0}
+  quantityDisplay: {fileID: 0}
+  artisanIndicator: {fileID: 0}
 --- !u!114 &1099541869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176768,6 +176832,10 @@ MonoBehaviour:
   restricted: 0
   requiredType: 0
   index: 0
+  secondarySpriteDisplay: {fileID: 0}
+  nameDisplay: {fileID: 0}
+  quantityDisplay: {fileID: 0}
+  artisanIndicator: {fileID: 0}
 --- !u!114 &1208993864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194359,8 +194427,9 @@ MonoBehaviour:
   - tool_woodwateringcan
   - tool_woodaxe
   - tool_pail
-  - artisan_sheetcake
   - ing_cakebatter
+  - ing_cakebatter
+  - crop_strawberry
   - crop_strawberry
   notification: {fileID: 4297460580870484600, guid: 01204682542a84e45a135616b22d5fe5, type: 3}
   currentDay: 0
@@ -219980,6 +220049,10 @@ MonoBehaviour:
   restricted: 0
   requiredType: 0
   index: 2
+  secondarySpriteDisplay: {fileID: 0}
+  nameDisplay: {fileID: 0}
+  quantityDisplay: {fileID: 0}
+  artisanIndicator: {fileID: 0}
 --- !u!1001 &1511184738
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -245464,6 +245537,10 @@ MonoBehaviour:
   restricted: 0
   requiredType: 0
   index: 3
+  secondarySpriteDisplay: {fileID: 0}
+  nameDisplay: {fileID: 0}
+  quantityDisplay: {fileID: 0}
+  artisanIndicator: {fileID: 0}
 --- !u!114 &1690068210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246575,6 +246652,10 @@ MonoBehaviour:
   restricted: 0
   requiredType: 0
   index: 1
+  secondarySpriteDisplay: {fileID: 0}
+  nameDisplay: {fileID: 0}
+  quantityDisplay: {fileID: 0}
+  artisanIndicator: {fileID: 0}
 --- !u!1001 &1695523036
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -263021,6 +263102,10 @@ MonoBehaviour:
   restricted: 0
   requiredType: 0
   index: 3
+  secondarySpriteDisplay: {fileID: 0}
+  nameDisplay: {fileID: 0}
+  quantityDisplay: {fileID: 0}
+  artisanIndicator: {fileID: 0}
 --- !u!1001 &1813543550
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -282443,6 +282528,10 @@ MonoBehaviour:
   restricted: 0
   requiredType: 0
   index: 3
+  secondarySpriteDisplay: {fileID: 0}
+  nameDisplay: {fileID: 0}
+  quantityDisplay: {fileID: 0}
+  artisanIndicator: {fileID: 0}
 --- !u!114 &1944957830
 MonoBehaviour:
   m_ObjectHideFlags: 0

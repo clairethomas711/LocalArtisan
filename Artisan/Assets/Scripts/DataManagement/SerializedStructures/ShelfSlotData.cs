@@ -16,7 +16,13 @@ public class ShelfSlotData : InventorySlotData
             //Spawn the items model
             GameObject spawned = Instantiate(toSpawn, slotVisualSpawnPoint.position, slotVisualSpawnPoint.rotation, slotVisualSpawnPoint);
             //Once the product model is spawned, let it know how many we should display
-            spawned.GetComponent<ProductShelfDisplay>().UpdateProductShelfDisplay(currentItem.quantity);
+            CustomInventoryItemData data = currentItem.GetCustomData();
+            if (data != null)
+            {
+                spawned.GetComponent<ProductShelfDisplay>().UpdateProductShelfDisplay(currentItem.quantity, data.customColor);
+            }
+            else
+                spawned.GetComponent<ProductShelfDisplay>().UpdateProductShelfDisplay(currentItem.quantity);
         }
     }
 }

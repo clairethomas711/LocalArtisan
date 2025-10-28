@@ -41,7 +41,7 @@ public class StoreShelf : GameplayMenu
     
     public void UpdateModelDisplay()
     {
-        print("Updating the model display for the " + gameObject.name + " item");
+        //print("Updating the model display for the " + gameObject.name + " item");
         //Update the shelf visuals
         for (int i = 0; i < slots.transform.childCount; i++)
         {

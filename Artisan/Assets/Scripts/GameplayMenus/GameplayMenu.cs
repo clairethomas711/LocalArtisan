@@ -17,7 +17,7 @@ public abstract class GameplayMenu : MonoBehaviour
             TextMeshProUGUI text = slot.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
             if (inventorySlots[i].id != "")
             {
-                s.sprite = DataManager.instance.manifest[inventorySlots[i].id].sprite;
+                s.sprite = DataManager.instance.manifest[inventorySlots[i].id].primarySprite;
                 text.text = inventorySlots[i].quantity.ToString();
             }
             else

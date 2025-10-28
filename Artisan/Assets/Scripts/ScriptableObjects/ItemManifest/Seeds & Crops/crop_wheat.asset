@@ -13,7 +13,14 @@ MonoBehaviour:
   m_Name: crop_wheat
   m_EditorClassIdentifier: 
   displayName: Wheat
+  description: 
   id: crop_wheat
   itemType: 7
-  sprite: {fileID: 21300000, guid: 6ba2dedea6083f2429289be7d85b9981, type: 3}
+  primarySprite: {fileID: 21300000, guid: 6ba2dedea6083f2429289be7d85b9981, type: 3}
+  decorativeSprite: {fileID: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
   value: 0
+  requireProgression: 0
+  specializationRequired: 
+  levelRequired: 0
+  tag: 

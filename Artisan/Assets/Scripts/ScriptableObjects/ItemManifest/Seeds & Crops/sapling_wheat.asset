@@ -16,7 +16,13 @@ MonoBehaviour:
   description: 
   id: sapling_wheat
   itemType: 3
-  sprite: {fileID: 21300000, guid: bf8293861aca1d14f82f39aba8115f5c, type: 3}
+  primarySprite: {fileID: 21300000, guid: bf8293861aca1d14f82f39aba8115f5c, type: 3}
+  decorativeSprite: {fileID: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
   value: 0
+  requireProgression: 0
+  specializationRequired: 
+  levelRequired: 0
   tag: 
+  size: {x: 1, y: 1}
   prefab: {fileID: 1506027972775999560, guid: c9e5a13d4498583428c406abecde1b6a, type: 3}

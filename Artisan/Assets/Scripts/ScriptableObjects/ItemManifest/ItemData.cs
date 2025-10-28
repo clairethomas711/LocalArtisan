@@ -9,7 +9,9 @@ public class ItemData : ScriptableObject
     public string description;
     public string id;
     public itemType itemType;
-    public Sprite sprite;
+    public Sprite primarySprite;
+    public Sprite decorativeSprite;
+    public Color color;
     public int value;
     public bool requireProgression = false;
     public string specializationRequired;

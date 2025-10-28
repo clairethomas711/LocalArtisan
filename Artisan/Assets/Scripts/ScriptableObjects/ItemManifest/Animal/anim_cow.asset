@@ -17,6 +17,12 @@ MonoBehaviour:
     combined with other items.
   id: anim_cow
   itemType: 9
-  sprite: {fileID: 21300000, guid: 6358982f438295c478f7ed9fa101ea78, type: 3}
+  primarySprite: {fileID: 21300000, guid: 6358982f438295c478f7ed9fa101ea78, type: 3}
+  decorativeSprite: {fileID: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
   value: 100
+  requireProgression: 0
+  specializationRequired: 
+  levelRequired: 0
+  tag: 
   readyToProduce: 0

@@ -8,34 +8,57 @@ public class InventorySlotData : MonoBehaviour
     public bool restricted;
     public itemType requiredType = itemType.Ingredient;
     public int index;
-
+    [Header("References")]
+    [SerializeField] UnityEngine.UI.Image secondarySpriteDisplay;
+    [SerializeField] TextMeshProUGUI nameDisplay;
+    [SerializeField] TextMeshProUGUI quantityDisplay;
+    [SerializeField] GameObject artisanIndicator;
     public void UpdateDisplay()
     {
-        UnityEngine.UI.Image s = GetComponent<UnityEngine.UI.Image>();
-        TextMeshProUGUI name = transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
-        TextMeshProUGUI quantity = transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
+        UnityEngine.UI.Image spriteDisplay = GetComponent<UnityEngine.UI.Image>();
         if (currentItem.id != "")
         {
-            //Display the item sprite
-            s.sprite = DataManager.instance.manifest[currentItem.id].sprite;
-            name.text = currentItem.customItemData;
+            //ALWAYS - Display the Sprite, Quantity, and Artisan Indicator
+            spriteDisplay.sprite = DataManager.instance.manifest[currentItem.id].primarySprite;
             //Display the quantity (if applicable)
             if (currentItem.quantity > 1)
-                quantity.text = currentItem.quantity.ToString();
+                quantityDisplay.text = currentItem.quantity.ToString();
             else
-                quantity.text = null;
+                quantityDisplay.text = null;
             //Display artisan indicator (if applicable)
             if (DataManager.instance.manifest[currentItem.id].itemType == itemType.Artisan)
-                transform.GetChild(2).gameObject.SetActive(true);
+                artisanIndicator.SetActive(true);
             else
-                transform.GetChild(2).gameObject.SetActive(false);
+                artisanIndicator.SetActive(false);
+            //Display the secondary sprite (if applicable)
+            if (DataManager.instance.manifest[currentItem.id].decorativeSprite != null)
+            {
+                secondarySpriteDisplay.gameObject.SetActive(true); 
+                secondarySpriteDisplay.sprite = DataManager.instance.manifest[currentItem.id].decorativeSprite;     
+            } else
+            {
+                secondarySpriteDisplay.gameObject.SetActive(false);        
+            }
+            //SOMETIMES - Determine if we have any custom data
+            CustomInventoryItemData data = currentItem.GetCustomData();
+            if (data != null)
+            {
+                spriteDisplay.color = new Color(data.customColor.x, data.customColor.y, data.customColor.z, 1f);
+                nameDisplay.text = data.customName + DataManager.instance.manifest[currentItem.id].displayName;
+            } else
+            {
+                spriteDisplay.color = Color.white;
+                nameDisplay.text = DataManager.instance.manifest[currentItem.id].displayName;
+            }
         }
         else
         {
-            s.sprite = null;
-            name.text = null;
-            quantity.text = null;
-            transform.GetChild(2).gameObject.SetActive(false);
+            spriteDisplay.sprite = null;
+            spriteDisplay.color = Color.white;
+            secondarySpriteDisplay.gameObject.SetActive(false);   
+            nameDisplay.text = null;
+            quantityDisplay.text = null;
+            artisanIndicator.SetActive(false);
         }
     }
 }
