@@ -194427,10 +194427,6 @@ MonoBehaviour:
   - tool_woodwateringcan
   - tool_woodaxe
   - tool_pail
-  - ing_cakebatter
-  - ing_cakebatter
-  - crop_strawberry
-  - crop_strawberry
   notification: {fileID: 4297460580870484600, guid: 01204682542a84e45a135616b22d5fe5, type: 3}
   currentDay: 0
   money: 0
@@ -242528,7 +242524,7 @@ MonoBehaviour:
   activelyProducing: []
   state: 0
   uiMenu: {fileID: 983596636}
-  recipes: 00000000
+  recipes: 05000000
 --- !u!65 &1668714826
 BoxCollider:
   m_ObjectHideFlags: 0

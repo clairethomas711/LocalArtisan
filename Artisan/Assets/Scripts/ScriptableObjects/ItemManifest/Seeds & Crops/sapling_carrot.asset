@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79779cfed7cbb37478520cca3ff10b48, type: 3}
+  m_Name: sapling_carrot
+  m_EditorClassIdentifier: 
+  displayName: Carrot Sapling
+  description: 
+  id: sapling_carrot
+  itemType: 3
+  primarySprite: {fileID: 21300000, guid: bf8293861aca1d14f82f39aba8115f5c, type: 3}
+  decorativeSprite: {fileID: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
+  value: 0
+  requireProgression: 0
+  specializationRequired: 
+  levelRequired: 0
+  tag: 
+  size: {x: 1, y: 1}
+  prefab: {fileID: 7843298586757213433, guid: a124ff6e8570dcf47b97d92c51ecaabd, type: 3}

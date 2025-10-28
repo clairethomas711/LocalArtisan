@@ -17,4 +17,4 @@ public class CraftingRecipe : ScriptableObject
     public int expGiven;
 }
 
-public enum recipeCategory {Mixer, Oven_SheetPan, Oven_RoundPan, Oven_LoafPan, Oven_MuffinPan}
+public enum recipeCategory {Mixer, Oven_SheetPan, Oven_RoundPan, Oven_LoafPan, Oven_MuffinPan, Saucepan}

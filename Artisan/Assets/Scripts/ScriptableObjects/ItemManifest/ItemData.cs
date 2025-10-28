@@ -11,7 +11,7 @@ public class ItemData : ScriptableObject
     public itemType itemType;
     public Sprite primarySprite;
     public Sprite decorativeSprite;
-    public Color color;
+    public Color color = Color.white;
     public int value;
     public bool requireProgression = false;
     public string specializationRequired;

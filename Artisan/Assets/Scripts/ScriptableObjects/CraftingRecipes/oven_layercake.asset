@@ -18,11 +18,11 @@ MonoBehaviour:
   strictRecipeRequirements:
   - {fileID: 11400000, guid: b4ca646b74694e647adf893fbefa6398, type: 2}
   genericRecipeRequirements:
-  - flavor_sweet
+  - filling_sweet
   strictRecipeOptionals: []
   genericRecipeOptionals: []
   product:
   - {fileID: 11400000, guid: 2211fe52dd3ca75418427834060c2100, type: 2}
   quantityProduced: 12
-  processingTimeInMinutes: 5
+  processingTimeInMinutes: 20
   expGiven: 3

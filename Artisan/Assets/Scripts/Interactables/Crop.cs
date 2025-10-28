@@ -5,11 +5,12 @@ using System.Data;
 public class Crop : Interactable
 {
     [Header("Crop Settings")]
+    [SerializeField] int startingState;
     [SerializeField] string product;
     [SerializeField] List<GameObject> plantStages;
     [Header("Sapling Settings")]
     [SerializeField] string sapling;
-    [SerializeField] int startingState;
+    [SerializeField] int minimumMovableState;
     [Header("Regrowth Settings")]
     [SerializeField] bool regrows;
     [SerializeField] int postHarvestState;
@@ -78,7 +79,7 @@ public class Crop : Interactable
     public string UseHoe()
     {
         //If this is a grown, moveable crop and we till it, give the player a sapling and destroy the plant
-        if (isMoveableObject && growthScore >= startingState)
+        if (isMoveableObject && growthScore >= minimumMovableState)
         {
             DataManager.instance.playerInventory.AddInventoryItem(new InventoryItem(sapling, 1));
             currentTile.ClearTile();

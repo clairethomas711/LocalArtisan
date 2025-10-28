@@ -19,7 +19,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 99a4a95acf04326468da1ae654a0c804, type: 2}
   genericRecipeRequirements: []
   strictRecipeOptionals: []
-  genericRecipeOptionals: []
+  genericRecipeOptionals:
+  - crop_sweet
   product:
   - {fileID: 11400000, guid: 11c2cd3dcf6b4274db27cc0da7a58b15, type: 2}
   quantityProduced: 12

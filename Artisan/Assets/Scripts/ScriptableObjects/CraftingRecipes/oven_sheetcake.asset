@@ -20,9 +20,9 @@ MonoBehaviour:
   genericRecipeRequirements: []
   strictRecipeOptionals: []
   genericRecipeOptionals:
-  - flavor_sweet
+  - crop_sweet
   product:
   - {fileID: 11400000, guid: 70ee8214c88246e418b24dd5b98eaf2d, type: 2}
-  quantityProduced: 16
-  processingTimeInMinutes: 5
+  quantityProduced: 9
+  processingTimeInMinutes: 20
   expGiven: 3

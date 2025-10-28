@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3965a526af6dfd34d9ea36bc3b2266b5, type: 3}
   m_Name: SeedShop
   m_EditorClassIdentifier: 
+  shopName: Seed Shop
   scriptableItems:
   - {fileID: 11400000, guid: 772f4b119e8d14e4688c3ed3f599605f, type: 2}
   - {fileID: 11400000, guid: 2447da7b672c72d489c1997cf87c1443, type: 2}
-  shopName: Seed Shop
+  - {fileID: 11400000, guid: 0df14d9c155eb1742a675524101e9a82, type: 2}
+  - {fileID: 11400000, guid: 2109dc80e06ec0944b7d20b4329af11f, type: 2}
+  - {fileID: 11400000, guid: 45f91391bdf710a448678ff6556a54d6, type: 2}
+  - {fileID: 11400000, guid: ae4bdd562c5beeb4aa6306b5f74b77ed, type: 2}
