@@ -7,6 +7,8 @@ public class StoreManager : Interactable
 {
     [SerializeField] GameObject closeUI;
     [SerializeField] List<StoreShelf> knownStoreShelves;
+    [SerializeField] int customerSpawnRate = 60;
+    [SerializeField] int maxCustomerPurchase = 50;
     Dictionary<StoreShelf, List<InventoryItem>> storeInventory = new Dictionary<StoreShelf, List<InventoryItem>>(); //Contains all shelf slots
     Dictionary<StoreShelf, List<InventoryItem>> sellableInventory = new Dictionary<StoreShelf, List<InventoryItem>>(); //Contains ONLY shelves with things to sell and those items within
     int timeOfLastSale;
@@ -57,9 +59,10 @@ public class StoreManager : Interactable
 
     void StoreTickListener()
     {
-        if (timeOfLastSale + 60 < DataManager.instance.totalElapsedMinutes)
+        //CALCULATE THE RATE THAT WE SPAWN CUSTOMERS AT
+        if (timeOfLastSale + customerSpawnRate < DataManager.instance.totalElapsedMinutes) //EVENTUALLY - MULTIPLY BY TOURISM RATE
         {
-            SellRandomItem();
+            GenerateCustomer();
             timeOfLastSale = DataManager.instance.totalElapsedMinutes;
         }
     }
@@ -85,23 +88,24 @@ public class StoreManager : Interactable
             //When we are done going through a shelf, check if any of it was sellable. If not, remove that shelf from the sellable dictionary
             if (sellableInventory[knownStoreShelves[i]].Count <= 0)
             {
-                sellableInventory.Remove(knownStoreShelves[i]);        
+                sellableInventory.Remove(knownStoreShelves[i]);
             }
+            knownStoreShelves[i].UpdateModelDisplay();
         }
     }
 
-    void SellRandomItem() //check Time Since Last Sale, if above a threshold then sell a random item.
+    int SellRandomItem() //check Time Since Last Sale, if above a threshold then sell a random item.
     {
         if (sellableInventory.Count > 0)
         {
-            int selectedShelfInt = Random.Range(0, sellableInventory.Count); //Pick a random shelf from our sellable inventory
-            List<InventoryItem> selectedShelfList = sellableInventory.ElementAt(selectedShelfInt).Value; //Grab the list of sellable items at that shelf
-            StoreShelf selectedShelf = sellableInventory.ElementAt(selectedShelfInt).Key; //Also save the StoreSelf we picked
-            int selectedItemInt = Random.Range(0, selectedShelfList.Count); //Pick a random item from the list of sellable items
-            string itemToSell = selectedShelfList[selectedItemInt].id; //That inventory item is the item to sell
+            int selectedDisplayShelfInt = Random.Range(0, sellableInventory.Count); //Pick a random shelf from our sellable inventory
+            List<InventoryItem> selectedDisplayShelf = sellableInventory.ElementAt(selectedDisplayShelfInt).Value; //Grab the list of sellable items on that display
+            StoreShelf selectedShelf = sellableInventory.ElementAt(selectedDisplayShelfInt).Key; //Also save the StoreSelf we picked
+            int selectedItemInt = Random.Range(0, selectedDisplayShelf.Count); //Pick a random item from the display
+            string itemToSell = selectedDisplayShelf[selectedItemInt].id; //That inventory item is the item to sell
             //Sell the item
             DataManager.instance.AddMoney(DataManager.instance.manifest[itemToSell].value);
-            DataManager.instance.SendNotification("Sold: " + DataManager.instance.manifest[itemToSell].displayName + " for " + DataManager.instance.manifest[itemToSell].value +"B.");
+            //DataManager.instance.SendNotification("Sold: " + DataManager.instance.manifest[itemToSell].displayName + " for " + DataManager.instance.manifest[itemToSell].value + "B.");
             //Remove one of those items from that selected StoreShelf object
             for (int i = 0; i < selectedShelf.inventorySlots.Count; i++)
             {
@@ -117,33 +121,34 @@ public class StoreManager : Interactable
                         selectedShelf.inventorySlots[i].Reset();
                     }
                     selectedShelf.UpdateDisplay();
-                    selectedShelf.UpdateModelDisplay();
+                    //selectedShelf.UpdateModelDisplay();
                     break;
                 }
             }
             UpdateInventory();
-        } else
-        {
-            DataManager.instance.SendNotification("A customer came, but there was nothing to buy.");       
+            return DataManager.instance.manifest[itemToSell].value;
         }
-         
-    }
+        else
+        {
+            DataManager.instance.SendNotification("Your store is open, but you are out of products.");
+            return 0;
+        }
 
-    public void SellAllItems()
+    }
+    
+    public void GenerateCustomer()
     {
-        /*int profit = 0;
-        for (int i = 0; i < knownStoreShelves.Count; i++)
+        //Generate the number of buttons that customer is looking to spend
+        int customerBudget = Random.Range(1, maxCustomerPurchase); //EVENTUALLY - MULTIPLY BY SHOP REPUTATION
+        //Customer buys items until they run out of money
+        int moneySpent = 0;
+        while (moneySpent < customerBudget)
         {
-            StoreShelf s = knownStoreShelves[i];
-            for (int j = 0; j < s.inventorySlots.Count; j++)
-            {
-                if (s.inventorySlots[j].id != "")
-                    profit += DataManager.instance.manifest[s.inventorySlots[j].id].value;
-            }
-            //s.shelfInventory.Clear();
-            //s.UpdateDisplay();
+            int purchase = SellRandomItem();
+            moneySpent += purchase;
+            if (purchase == 0) break;
         }
-        DataManager.instance.AddMoney(profit);*/
+        DataManager.instance.SendNotification("A customer spent " + moneySpent.ToString() + "B at your store.");
     }
 
 }

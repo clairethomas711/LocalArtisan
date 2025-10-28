@@ -194359,7 +194359,7 @@ MonoBehaviour:
   - tool_woodwateringcan
   - tool_woodaxe
   - tool_pail
-  - ing_cakebatter
+  - artisan_sheetcake
   - ing_cakebatter
   - crop_strawberry
   notification: {fileID: 4297460580870484600, guid: 01204682542a84e45a135616b22d5fe5, type: 3}
@@ -259817,7 +259817,7 @@ GameObject:
   - component: {fileID: 1792426163}
   - component: {fileID: 1792426167}
   m_Layer: 3
-  m_Name: Register
+  m_Name: StoreManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -259934,6 +259934,8 @@ MonoBehaviour:
   knownStoreShelves:
   - {fileID: 880239397}
   - {fileID: 1994704936}
+  customerSpawnRate: 60
+  maxCustomerPurchase: 50
 --- !u!1001 &1793699307
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -312108,6 +312110,7 @@ SceneRoots:
   - {fileID: 625235361}
   - {fileID: 725824861}
   - {fileID: 527536544}
+  - {fileID: 1792426166}
   - {fileID: 373541047}
   - {fileID: 2145720475}
   - {fileID: 330585546}
@@ -312136,5 +312139,4 @@ SceneRoots:
   - {fileID: 821731973}
   - {fileID: 1598583153}
   - {fileID: 244138214}
-  - {fileID: 1792426166}
   - {fileID: 1539372013}
