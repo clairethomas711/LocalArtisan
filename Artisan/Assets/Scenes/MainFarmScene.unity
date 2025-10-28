@@ -144110,6 +144110,7 @@ MonoBehaviour:
   activelyProducing: []
   state: 0
   processingTimeInMinutes: 20
+  maxCapacity: 10
   acceptedItems:
   - {fileID: 11400000, guid: 5d3913f5e6f4244458d1857ee9a0c038, type: 2}
   - {fileID: 11400000, guid: cf5e8d11a1c42574cb1b692834dd2e53, type: 2}
@@ -194427,6 +194428,11 @@ MonoBehaviour:
   - tool_woodwateringcan
   - tool_woodaxe
   - tool_pail
+  - crop_wheat
+  - crop_wheat
+  - crop_wheat
+  - crop_wheat
+  - crop_wheat
   notification: {fileID: 4297460580870484600, guid: 01204682542a84e45a135616b22d5fe5, type: 3}
   currentDay: 0
   money: 0

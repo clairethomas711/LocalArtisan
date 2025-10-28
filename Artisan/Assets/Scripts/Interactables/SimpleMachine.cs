@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class SimpleMachine : Machine
 {
     [SerializeField] int processingTimeInMinutes;
+    [SerializeField] int maxCapacity = 1;
     [SerializeField] List<ItemData> acceptedItems;
     [SerializeField] List<ItemData> producedItems;
     public override List<ItemData> AcceptedItems
@@ -33,8 +34,16 @@ public class SimpleMachine : Machine
             {
                 if (heldItem.id == acceptedItems[i].id)
                 {
-                    DataManager.instance.playerInventory.RemoveInventoryItem(heldItem.id);
-                    StartProducing(new InventoryItem(producedItems[i].id, 1));
+                    if (heldItem.quantity >= maxCapacity)
+                    {
+                        DataManager.instance.playerInventory.RemoveInventoryItem(heldItem.id, maxCapacity);
+                        StartProducing(new InventoryItem(producedItems[i].id, maxCapacity));
+                    }
+                    else
+                    {
+                        DataManager.instance.playerInventory.RemoveInventoryItem(heldItem.id, heldItem.quantity);
+                        StartProducing(new InventoryItem(producedItems[i].id, heldItem.quantity));
+                    }
                     return "";
                 }
             }
