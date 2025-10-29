@@ -98,12 +98,9 @@ public class DataManager : MonoBehaviour
         {
             recipeManifest[craftingRecipeManifest.scriptableItems[i].id] = craftingRecipeManifest.scriptableItems[i];
         }
-        currentDay = 1;
-        stamina = maxStamina;
         playerInventory = player.GetComponent<Inventory>();
         gameTimeReal = 0;
         gameTime.Hour = 6;
-        AddMoney(startingGold);
 
         // DEBUG SHIT //
         if (resetData) { GenerateNewSaveData(); }
@@ -190,32 +187,6 @@ public class DataManager : MonoBehaviour
         money -= amount;
         uiManager.UpdateUIVisuals();
     }
-
-    /*void RestoreStamina()
-    {
-        stamina = maxStamina;
-        uiManager.UpdateUIVisuals();
-    }
-    public bool SubtractStamina(float amount)
-    {
-        if (stamina > 0)
-        {
-            stamina -= amount;
-            uiManager.UpdateUIVisuals();
-            if (stamina <= 10f)
-            {
-                SendNotification("Be careful! You're running out of energy.");
-            }
-            return true;
-        }
-        else
-        {
-            SendNotification("You passed out!");
-            NewDay();
-            return false;
-        }
-        
-    }*/
 
     public void NewDay()
     {
@@ -310,6 +281,7 @@ public class DataManager : MonoBehaviour
 
         SaveData farm = new SaveData();
         farm.date = currentDay;
+        farm.money = money;
         farm.layout = tiles;
         farm.animals = a;
         farm.inv = playerInventory.inventoryList;
@@ -329,6 +301,10 @@ public class DataManager : MonoBehaviour
         }
         string json = File.ReadAllText(path);
         SaveData farm = JsonUtility.FromJson<SaveData>(json);
+        // BASIC DATA //
+        currentDay = farm.date;
+        money = farm.money;
+
         // TILE DATA //
         List<TileData> tiles = farm.layout;
         //Loop over the saved tile data
@@ -373,13 +349,14 @@ public class DataManager : MonoBehaviour
 
         // PROGRESSION DATA //
         progressionManager.SetProgressionData(farm.progression);
-        
+        uiManager.UpdateUIVisuals();
     }
 
     void GenerateNewSaveData()
     {
         SaveData farm = new SaveData();
-        farm.date = 0;
+        farm.date = 1;
+        farm.money = startingGold;
         // TILES (INCLUDES RANDOMIZATION)
         List<TileData> tiles = new List<TileData>();
         for (int r = 0; r < transform.childCount; r++)
@@ -434,11 +411,12 @@ public class DataManager : MonoBehaviour
         }
         //Animals
         farm.animals = null;
-        string json = JsonUtility.ToJson(farm);
-        File.WriteAllText(path, json);
 
         //Progression
         farm.progression = progressionManager.NewProgressionData();
+
+        string json = JsonUtility.ToJson(farm);
+        File.WriteAllText(path, json);
     }
 
     [System.Serializable]
@@ -458,6 +436,7 @@ public class DataManager : MonoBehaviour
     private class SaveData
     {
         public int date;
+        public float money;
         public List<TileData> layout;
         public List<string> staticMachines;
         public List<InventoryItem> inv;

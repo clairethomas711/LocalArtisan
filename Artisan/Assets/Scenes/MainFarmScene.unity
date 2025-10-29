@@ -194535,7 +194535,7 @@ MonoBehaviour:
   respawnPoint: {fileID: 527637402}
   maxStamina: 0
   startingGold: 10
-  resetData: 1
+  resetData: 0
   debugStartingInventory:
   - tool_hatchet
   - tool_hoe
@@ -259914,7 +259914,9 @@ MonoBehaviour:
   randomizeRotation: 0
   data: 
   closeUI: {fileID: 2118194550}
-  knownStoreDisplays: []
+  knownStoreDisplays:
+  - {fileID: 880239397}
+  - {fileID: 1994704936}
   customerSpawnRate: 60
   maxCustomerPurchase: 5
 --- !u!1001 &1793699307
