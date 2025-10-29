@@ -23,11 +23,11 @@ public class CraftingMenu : GameplayMenu
     public void AttempttoCraft() //Called when we click "Submit"
     {
         //Create a hashset of all the items on our table
-        HashSet<string> c = new HashSet<string>();
+        HashSet<InventoryItem> c = new HashSet<InventoryItem>();
         for (int i = 0; i < tableSlots.Count; i++)
         {
             if (tableSlots[i].id != "")
-                c.Add(tableSlots[i].id);
+                c.Add(tableSlots[i]);
         }
         CraftingRecipe validRecipe = FindValidRecipe(c);
         //Are we able to find a valid recipe based on required ingredients?
@@ -55,7 +55,7 @@ public class CraftingMenu : GameplayMenu
         return;
     }
 
-    public CraftingRecipe FindValidRecipe(HashSet<string> tableContents)
+    public CraftingRecipe FindValidRecipe(HashSet<InventoryItem> tableContents)
     {
         List<CraftingRecipe> availableRecipes = new List<CraftingRecipe>();
         Dictionary<string, CraftingRecipe>.ValueCollection recipes = DataManager.instance.recipeManifest.Values;
@@ -70,13 +70,14 @@ public class CraftingMenu : GameplayMenu
             // STEP 1: CHECK THAT WE HAVE ALL OF THE RECIPES STRICT REQUIREMENTS
             CraftingRecipe recipeToCheck = availableRecipes[i];
             //print("Checking recipe: " + availableRecipes[i].recipeDisplayName);
-            HashSet<string> itemsUnchecked = new HashSet<string>(tableContents);
+            HashSet<InventoryItem> itemsUnchecked = new HashSet<InventoryItem>(tableContents);
             bool hasStrictRequiredItems = true;
             //iterate over every required item in that recipe
             for (int j = 0; j < recipeToCheck.strictRecipeRequirements.Count; j++)
             {
                 //try to take that item from the table. If we fail, break.
-                if (!AttemptToTakeItem(itemsUnchecked, recipeToCheck.strictRecipeRequirements[j].id))
+                InventoryItem check = AttemptToTakeItem(itemsUnchecked, recipeToCheck.strictRecipeRequirements[j].id);
+                if (check == null)
                 {
                     hasStrictRequiredItems = false;
                     break;
@@ -89,7 +90,7 @@ public class CraftingMenu : GameplayMenu
                 bool hasGenericRequiredItems = true;
                 for (int j = 0; j < recipeToCheck.genericRecipeRequirements.Count; j++)
                 {
-                    if (AttemptToTakeTaggedItem(itemsUnchecked, recipeToCheck.genericRecipeRequirements[j]) == "")
+                    if (AttemptToTakeTaggedItem(itemsUnchecked, recipeToCheck.genericRecipeRequirements[j]) == null)
                     {
                         hasGenericRequiredItems = false;
                         break;
@@ -107,44 +108,46 @@ public class CraftingMenu : GameplayMenu
         return null;
     }
 
-    InventoryItem GenerateRecipeProduct(CraftingRecipe r, HashSet<string> tableContents)
+    InventoryItem GenerateRecipeProduct(CraftingRecipe r, HashSet<InventoryItem> tableContents)
     {
         //Do we have any items that would alter our custom data?
         int numberOfItemsRequired = r.strictRecipeRequirements.Count;
         //If the number of items on the table is more than the number of items required, then let's check our optional reqs
         if (tableContents.Count > numberOfItemsRequired)
         {
-            HashSet<string> itemsUnchecked = new HashSet<string>(tableContents);
+            HashSet<InventoryItem> itemsUnchecked = new HashSet<InventoryItem>(tableContents);
             //First remove all of the required items from our set (I HATE THAT WE ITERATE TWICE - CAN WE DO THIS IN FindValidRecipe??)
             for (int i = 0; i < r.strictRecipeRequirements.Count; i++)
             {
-                if (!AttemptToTakeItem(itemsUnchecked, r.strictRecipeRequirements[i].id))
+                InventoryItem check = AttemptToTakeItem(itemsUnchecked, r.strictRecipeRequirements[i].id);
+                if (check == null)
                 {
                     print("ERROR: Generating a recipe product without required ingredients.");
                     return null;
                 }
             }
             //Now, with what we have left, make sure that we are allowed to use it. If so, add to the generated item data
-            List<string> addOns = new List<string>();
+            List<InventoryItem> addOns = new List<InventoryItem>();
             for (int i = 0; i < r.genericRecipeRequirements.Count; i++)
             {
-                string taggedItem = AttemptToTakeTaggedItem(itemsUnchecked, r.genericRecipeRequirements[i]);
-                if (taggedItem != "")
+                InventoryItem taggedItem = AttemptToTakeTaggedItem(itemsUnchecked, r.genericRecipeRequirements[i]);
+                if (taggedItem != null)
                 {
                     addOns.Add(taggedItem);
                 }
             }
             for (int i = 0; i < r.strictRecipeOptionals.Count; i++)
             {
-                if (AttemptToTakeItem(itemsUnchecked, r.strictRecipeOptionals[i].id))
+                InventoryItem check = AttemptToTakeItem(itemsUnchecked, r.strictRecipeOptionals[i].id);
+                if (check != null)
                 {
-                    addOns.Add(r.strictRecipeOptionals[i].id);
+                    addOns.Add(check);
                 }
             }
             for (int i = 0; i < r.genericRecipeOptionals.Count; i++)
             {
-                string taggedItem = AttemptToTakeTaggedItem(itemsUnchecked, r.genericRecipeOptionals[i]);
-                if (taggedItem != "")
+                InventoryItem taggedItem = AttemptToTakeTaggedItem(itemsUnchecked, r.genericRecipeOptionals[i]);
+                if (taggedItem != null)
                 {
                     addOns.Add(taggedItem);
                 }
@@ -152,10 +155,10 @@ public class CraftingMenu : GameplayMenu
             //Do we still have items left on the table? If so, return them to the player
             if (itemsUnchecked.Count > 0)
             {
-                foreach (string s in itemsUnchecked)
+                foreach (InventoryItem s in itemsUnchecked)
                 {
                     //Just give them the item back - we clear the table later
-                    DataManager.instance.playerInventory.AddInventoryItem(new InventoryItem(s, 1));
+                    DataManager.instance.playerInventory.AddInventoryItem(s);
                 }
             }
             //Check if the addons list even CONTAINS anything
@@ -171,22 +174,36 @@ public class CraftingMenu : GameplayMenu
         return primaryProduct;
     }
     
-    private CustomInventoryItemData GenerateItemFromAddOns(List<string> addOns)
+    private CustomInventoryItemData GenerateItemFromAddOns(List<InventoryItem> addOns)
     {
-        addOns.Sort();
+        //addOns.Sort();
         CustomInventoryItemData data = new CustomInventoryItemData();
         string customName = "";
         int additionalValue = 0;
         float red = 0; float green = 0; float blue = 0;
         int numberOfSamples = 0;
-        foreach (string item in addOns)
+        for (int i = 0; i < addOns.Count; i++)
         {
-            print("appending " + DataManager.instance.manifest[item].displayName);
-            customName += DataManager.instance.manifest[item].displayName + " ";
-            additionalValue += DataManager.instance.manifest[item].value;
-            red += DataManager.instance.manifest[item].color.r;
-            green += DataManager.instance.manifest[item].color.g;
-            blue += DataManager.instance.manifest[item].color.b;
+            CustomInventoryItemData ingData = addOns[i].GetCustomData();
+            if (ingData == null)
+            {
+                string item = addOns[i].id;
+                print("appending " + DataManager.instance.manifest[item].displayName);
+                customName += DataManager.instance.manifest[item].displayName + " ";
+                additionalValue += DataManager.instance.manifest[item].value;
+                red += DataManager.instance.manifest[item].color.r;
+                green += DataManager.instance.manifest[item].color.g;
+                blue += DataManager.instance.manifest[item].color.b;
+            }
+            else
+            {
+                print("appending custom item " + ingData.customName);
+                customName += ingData.customName + " ";
+                additionalValue += ingData.additionalValue;
+                red += ingData.customColor.x;
+                green += ingData.customColor.y;
+                blue += ingData.customColor.z;
+            }
             numberOfSamples++;
         }
         Vector3 newColor = new Vector3(red / numberOfSamples, green / numberOfSamples, blue / numberOfSamples);
@@ -196,30 +213,32 @@ public class CraftingMenu : GameplayMenu
         return data;
     }
 
-    bool AttemptToTakeItem(HashSet<string> itemsUnchecked, string id)
+    InventoryItem AttemptToTakeItem(HashSet<InventoryItem> itemsUnchecked, string id)
     {
-        if (itemsUnchecked.Contains(id))
+        foreach (InventoryItem i in itemsUnchecked)
         {
-            //print("Took item: " + id);
-            itemsUnchecked.Remove(id);
-            return true;
-        }
-        return false;
-    }
-    
-    string AttemptToTakeTaggedItem(HashSet<string> itemsUnchecked, string tag)
-    {
-        //check if the hashset contains an item with the given tag. if we find one, remove it and return true. else, return false
-        foreach (string s in itemsUnchecked)
-        {
-            if (DataManager.instance.manifest[s].tag == tag)
+            if (i.id == id)
             {
-                //print("Took tagged item: " + s);
-                itemsUnchecked.Remove(s);
-                return s;
+                itemsUnchecked.Remove(i);
+                return i;
             }
         }
-        return "";   
+        return null;
+    }
+    
+    InventoryItem AttemptToTakeTaggedItem(HashSet<InventoryItem> itemsUnchecked, string tag)
+    {
+        //check if the hashset contains an item with the given tag. if we find one, remove it and return true. else, return false
+        foreach (InventoryItem i in itemsUnchecked)
+        {
+            if (DataManager.instance.manifest[i.id].tag == tag)
+            {
+                //print("Took tagged item: " + s);
+                itemsUnchecked.Remove(i);
+                return i;
+            }
+        }
+        return null;   
     }
 
     public override void Open(List<InventoryItem> inventory)

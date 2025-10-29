@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: mixer_puffpastry
   recipeDisplayName: Puff Pastry
+  recipeCategory: 0
   strictRecipeRequirements:
   - {fileID: 11400000, guid: 93c58a171a168c147844a29d091ff350, type: 2}
-  genericRecipeRequirements:
-  - ing_flour
+  - {fileID: 11400000, guid: 55d2a381e3ed2e3448c30ba9fc8563f1, type: 2}
+  genericRecipeRequirements: []
   strictRecipeOptionals: []
   genericRecipeOptionals: []
   product:

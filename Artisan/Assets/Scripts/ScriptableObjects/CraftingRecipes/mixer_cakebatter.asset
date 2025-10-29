@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: mixer_cakebatter
   recipeDisplayName: Cake Batter
+  recipeCategory: 0
   strictRecipeRequirements:
   - {fileID: 11400000, guid: ba2b40a4093096f4ea2f0fe43b2ea640, type: 2}
   - {fileID: 11400000, guid: ffd2cc357cfb35441b834931f6d9e8e4, type: 2}
-  genericRecipeRequirements:
-  - ing_flour
+  - {fileID: 11400000, guid: 55d2a381e3ed2e3448c30ba9fc8563f1, type: 2}
+  genericRecipeRequirements: []
   strictRecipeOptionals: []
   genericRecipeOptionals: []
   product:

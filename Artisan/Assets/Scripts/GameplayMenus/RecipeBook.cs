@@ -19,10 +19,12 @@ public class RecipeBook : MonoBehaviour
         for (int i = 0; i < availableRecipes.Count; i++)
         {
             GameObject recipeDisplay = Instantiate(recipeBookDisplayItem, transform);
-            if (DataManager.instance.progressionManager.isRecipeKnown(availableRecipes[i].id))
+            //Initialize the display item
+            recipeDisplay.GetComponent<RecipeBookItem>().Initialize(availableRecipes[i]);
+            /*if (DataManager.instance.progressionManager.isRecipeKnown(availableRecipes[i].id))
             {
                 recipeDisplay.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = availableRecipes[i].recipeDisplayName;
-            }
+            }*/
         }
     }
     
