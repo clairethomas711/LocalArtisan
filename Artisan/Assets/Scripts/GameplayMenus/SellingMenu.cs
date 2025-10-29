@@ -61,8 +61,8 @@ public class SellingMenu : GameplayMenu
             {
                 if (inventorySlots[i].id != "")
                 {
-                    DataManager.instance.AddMoney(DataManager.instance.manifest[inventorySlots[i].id].value * inventorySlots[i].quantity);
-                    total += DataManager.instance.manifest[inventorySlots[i].id].value * inventorySlots[i].quantity;
+                    DataManager.instance.AddMoney(DataManager.instance.manifest[inventorySlots[i].id].defaultValue * inventorySlots[i].quantity);
+                    total += DataManager.instance.manifest[inventorySlots[i].id].defaultValue * inventorySlots[i].quantity;
                 }
             }
             DataManager.instance.SendNotification("Sold for $" + total);

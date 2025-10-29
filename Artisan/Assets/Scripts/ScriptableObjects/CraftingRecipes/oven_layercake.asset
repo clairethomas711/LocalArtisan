@@ -19,7 +19,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b4ca646b74694e647adf893fbefa6398, type: 2}
   genericRecipeRequirements:
   - filling_sweet
-  strictRecipeOptionals: []
+  strictRecipeOptionals:
+  - {fileID: 11400000, guid: d0557f4a87ffe364c95fddda4744a972, type: 2}
   genericRecipeOptionals: []
   product:
   - {fileID: 11400000, guid: 2211fe52dd3ca75418427834060c2100, type: 2}

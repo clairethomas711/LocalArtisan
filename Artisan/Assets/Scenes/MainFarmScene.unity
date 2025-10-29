@@ -194542,11 +194542,11 @@ MonoBehaviour:
   - tool_woodaxe
   - tool_pail
   - ing_flour
-  - ing_sugar
-  - ing_egg
   - ing_flour
   - ing_sugar
+  - ing_egg
   - crop_strawberry
+  - ing_sugar
   notification: {fileID: 4297460580870484600, guid: 01204682542a84e45a135616b22d5fe5, type: 3}
   currentDay: 0
   money: 0

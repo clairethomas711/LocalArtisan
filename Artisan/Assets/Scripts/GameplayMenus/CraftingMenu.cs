@@ -108,73 +108,99 @@ public class CraftingMenu : GameplayMenu
         return null;
     }
 
-    InventoryItem GenerateRecipeProduct(CraftingRecipe r, HashSet<InventoryItem> tableContents)
+    InventoryItem GenerateRecipeProduct(CraftingRecipe recipe, HashSet<InventoryItem> tableContents)
     {
-        //Do we have any items that would alter our custom data?
-        int numberOfItemsRequired = r.strictRecipeRequirements.Count;
-        //If the number of items on the table is more than the number of items required, then let's check our optional reqs
-        if (tableContents.Count > numberOfItemsRequired)
+        //Let's build an item! Assume it has custom data
+        CustomInventoryItemData customData = new CustomInventoryItemData();
+        customData.name = "";
+        customData.value = 0;
+        float r = 0; float g = 0; float b = 0; int samples = 0;//Color stuff is complicated
+        HashSet<InventoryItem> itemsUnchecked = new HashSet<InventoryItem>(tableContents);
+        //First remove all of the required items from our set 
+        for (int i = 0; i < recipe.strictRecipeRequirements.Count; i++)
         {
-            HashSet<InventoryItem> itemsUnchecked = new HashSet<InventoryItem>(tableContents);
-            //First remove all of the required items from our set (I HATE THAT WE ITERATE TWICE - CAN WE DO THIS IN FindValidRecipe??)
-            for (int i = 0; i < r.strictRecipeRequirements.Count; i++)
+            InventoryItem check = AttemptToTakeItem(itemsUnchecked, recipe.strictRecipeRequirements[i].id);
+            if (check == null)
             {
-                InventoryItem check = AttemptToTakeItem(itemsUnchecked, r.strictRecipeRequirements[i].id);
-                if (check == null)
-                {
-                    print("ERROR: Generating a recipe product without required ingredients.");
-                    return null;
-                }
+                print("ERROR: Generating a recipe product without required ingredients.");
+                return null;
             }
-            //Now, with what we have left, make sure that we are allowed to use it. If so, add to the generated item data
-            List<InventoryItem> addOns = new List<InventoryItem>();
-            for (int i = 0; i < r.genericRecipeRequirements.Count; i++)
+            //Required items don't modify the name or color, but they do mod the value
+            customData.value += check.GetCustomData().value;
+        }
+        //Now, our required generic items. These alter our color and name.
+        for (int i = 0; i < recipe.genericRecipeRequirements.Count; i++)
+        {
+            InventoryItem check = AttemptToTakeTaggedItem(itemsUnchecked, recipe.genericRecipeRequirements[i]);
+            if (check == null)
             {
-                InventoryItem taggedItem = AttemptToTakeTaggedItem(itemsUnchecked, r.genericRecipeRequirements[i]);
-                if (taggedItem != null)
-                {
-                    addOns.Add(taggedItem);
-                }
+                print("ERROR: Generating a recipe product without required ingredients.");
+                return null;
             }
-            for (int i = 0; i < r.strictRecipeOptionals.Count; i++)
+            //Required generics modify everything
+            CustomInventoryItemData checkedItemData = check.GetCustomData();
+            customData.name += checkedItemData.name + " ";
+            customData.value += checkedItemData.value;
+            r += checkedItemData.customColor.x;
+            g += checkedItemData.customColor.y;
+            b += checkedItemData.customColor.z;
+            samples++;
+        }
+        //Now, any optional items
+        for (int i = 0; i < recipe.strictRecipeOptionals.Count; i++)
+        {
+            InventoryItem check = AttemptToTakeItem(itemsUnchecked, recipe.strictRecipeOptionals[i].id);
+            if (check != null)
             {
-                InventoryItem check = AttemptToTakeItem(itemsUnchecked, r.strictRecipeOptionals[i].id);
-                if (check != null)
-                {
-                    addOns.Add(check);
-                }
-            }
-            for (int i = 0; i < r.genericRecipeOptionals.Count; i++)
-            {
-                InventoryItem taggedItem = AttemptToTakeTaggedItem(itemsUnchecked, r.genericRecipeOptionals[i]);
-                if (taggedItem != null)
-                {
-                    addOns.Add(taggedItem);
-                }
-            }
-            //Do we still have items left on the table? If so, return them to the player
-            if (itemsUnchecked.Count > 0)
-            {
-                foreach (InventoryItem s in itemsUnchecked)
-                {
-                    //Just give them the item back - we clear the table later
-                    DataManager.instance.playerInventory.AddInventoryItem(s);
-                }
-            }
-            //Check if the addons list even CONTAINS anything
-            if (addOns.Count > 0)
-            {
-                CustomInventoryItemData customData = GenerateItemFromAddOns(addOns);
-                InventoryItem p = new InventoryItem(r.product[0].id, r.quantityProduced);
-                p.SetCustomData(customData);
-                return p;
+                //We only need to do this if we find something
+                CustomInventoryItemData checkedItemData = check.GetCustomData();
+                customData.name += checkedItemData.name + " ";
+                customData.value += checkedItemData.value;
+                r += checkedItemData.customColor.x;
+                g += checkedItemData.customColor.y;
+                b += checkedItemData.customColor.z;
+                samples++;
             }
         }
-        InventoryItem primaryProduct = new InventoryItem(r.product[0].id, r.quantityProduced);
-        return primaryProduct;
+        for (int i = 0; i < recipe.genericRecipeOptionals.Count; i++)
+        {
+            InventoryItem check = AttemptToTakeTaggedItem(itemsUnchecked, recipe.genericRecipeOptionals[i]);
+            if (check != null)
+            {
+                CustomInventoryItemData checkedItemData = check.GetCustomData();
+                customData.name += checkedItemData.name + " ";
+                customData.value += checkedItemData.value;
+                r += checkedItemData.customColor.x;
+                g += checkedItemData.customColor.y;
+                b += checkedItemData.customColor.z;
+                samples++;
+            }
+        }
+        //Data Polishing
+        customData.name += DataManager.instance.manifest[recipe.product[0].id].displayName; //Add the display name
+        customData.value += (int)Mathf.Floor(recipe.processingTimeInMinutes * 0.5f); //Give a bonus value for processing time
+        customData.value = (int)Mathf.Floor(customData.value / recipe.quantityProduced); //Divide by the number of items we get       
+        r /= samples; g /= samples; b /= samples; 
+        customData.customColor = new Vector3(r, g, b); //Average the colors
+        //Cool, we've assembled everything we need!
+        //Do we still have items left on the table? If so, return them to the player
+        if (itemsUnchecked.Count > 0)
+        {
+            foreach (InventoryItem s in itemsUnchecked)
+            {
+                //Just give them the item back - we clear the table later
+                DataManager.instance.playerInventory.AddInventoryItem(s);
+            }
+        }
+        //ALL ITEMS GENERATED LIKE THIS HAVE CUSTOM DATA
+        string recipeProductId = recipe.product[0].id;
+        int recipeProductQuantity = recipe.quantityProduced;
+        string serializedData = JsonUtility.ToJson(customData);
+        InventoryItem recipeProduct = new InventoryItem(recipeProductId, recipeProductQuantity, serializedData);
+        return recipeProduct;
     }
     
-    private CustomInventoryItemData GenerateItemFromAddOns(List<InventoryItem> addOns)
+    /*private CustomInventoryItemData GenerateItemFromAddOns(List<InventoryItem> addOns)
     {
         //addOns.Sort();
         CustomInventoryItemData data = new CustomInventoryItemData();
@@ -211,7 +237,7 @@ public class CraftingMenu : GameplayMenu
         data.additionalValue = additionalValue;
         data.customColor = newColor;
         return data;
-    }
+    }*/
 
     InventoryItem AttemptToTakeItem(HashSet<InventoryItem> itemsUnchecked, string id)
     {

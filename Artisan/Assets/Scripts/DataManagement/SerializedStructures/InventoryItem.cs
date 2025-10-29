@@ -23,18 +23,27 @@ public class InventoryItem
     }
     public CustomInventoryItemData GetCustomData()
     {
+        CustomInventoryItemData data;
         if (customItemData != "")
         {
-            CustomInventoryItemData data = JsonUtility.FromJson<CustomInventoryItemData>(customItemData);
-            return data;
+            data = JsonUtility.FromJson<CustomInventoryItemData>(customItemData);
         }
-        return null;
+        else
+        {
+            data = new CustomInventoryItemData();
+            data.name = DataManager.instance.manifest[id].displayName;
+            data.value = DataManager.instance.manifest[id].defaultValue;
+            data.customColor = new Vector3(DataManager.instance.manifest[id].color.r,
+             DataManager.instance.manifest[id].color.g,
+             DataManager.instance.manifest[id].color.b);
+        }
+        return data;
     }
 }
 
 public class CustomInventoryItemData
 {
-    public string customName;
-    public int additionalValue;
+    public string name;
+    public int value;
     public Vector3 customColor;
 }

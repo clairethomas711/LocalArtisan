@@ -6,9 +6,9 @@ public class UpgradeShopOffering : ShopOffering
     public override void PurchaseItem()
     {
         ItemData o = DataManager.instance.manifest[offeringData];
-        if (DataManager.instance.money >= o.value)
+        if (DataManager.instance.money >= o.defaultValue)
         {
-            DataManager.instance.SubtractMoney(o.value);
+            DataManager.instance.SubtractMoney(o.defaultValue);
             DataManager.instance.progressionManager.flags[offeringData] = true;
             DataManager.instance.SendNotification(o.displayName + " Purchased!");
             Destroy(gameObject);

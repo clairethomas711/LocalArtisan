@@ -102,14 +102,15 @@ public class StoreManager : Interactable
             List<InventoryItem> selectedDisplayShelf = sellableInventory.ElementAt(selectedDisplayShelfInt).Value; //Grab the list of sellable items on that display
             StoreShelf selectedShelf = sellableInventory.ElementAt(selectedDisplayShelfInt).Key; //Also save the StoreSelf we picked
             int selectedItemInt = Random.Range(0, selectedDisplayShelf.Count); //Pick a random item from the display
-            string itemToSell = selectedDisplayShelf[selectedItemInt].id; //That inventory item is the item to sell
+            InventoryItem itemToSell = selectedDisplayShelf[selectedItemInt]; //That inventory item is the item to sell
             //Sell the item
-            DataManager.instance.AddMoney(DataManager.instance.manifest[itemToSell].value);
+            int goingPrice = itemToSell.GetCustomData().value;
+            DataManager.instance.AddMoney(goingPrice);
             //DataManager.instance.SendNotification("Sold: " + DataManager.instance.manifest[itemToSell].displayName + " for " + DataManager.instance.manifest[itemToSell].value + "B.");
             //Remove one of those items from that selected StoreShelf object
             for (int i = 0; i < selectedShelf.inventorySlots.Count; i++)
             {
-                if (selectedShelf.inventorySlots[i].id == itemToSell) //Once we find the item on that shelf
+                if (selectedShelf.inventorySlots[i].id == itemToSell.id) //Once we find the item on that shelf
                 {
                     //If there are multiple, remove one. If there is only one, clear it.
                     if (selectedShelf.inventorySlots[i].quantity > 1)
@@ -126,7 +127,7 @@ public class StoreManager : Interactable
                 }
             }
             UpdateInventory();
-            return DataManager.instance.manifest[itemToSell].value;
+            return goingPrice;
         }
         else
         {

@@ -23,7 +23,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e91b0fc3d6de22846a9d85822dcb4233, type: 2}
   - {fileID: 11400000, guid: 8936c955260a09f4aa5a9e98e0625d6f, type: 2}
   - {fileID: 11400000, guid: 2211fe52dd3ca75418427834060c2100, type: 2}
-  - {fileID: 11400000, guid: ce5ef902053d89048885193d77bee002, type: 2}
   - {fileID: 11400000, guid: 70ee8214c88246e418b24dd5b98eaf2d, type: 2}
   - {fileID: 11400000, guid: 11c2cd3dcf6b4274db27cc0da7a58b15, type: 2}
   placeableItems:

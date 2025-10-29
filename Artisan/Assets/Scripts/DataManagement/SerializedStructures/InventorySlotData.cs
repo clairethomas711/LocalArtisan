@@ -41,15 +41,11 @@ public class InventorySlotData : MonoBehaviour
             }
             //SOMETIMES - Determine if we have any custom data
             CustomInventoryItemData data = currentItem.GetCustomData();
-            if (data != null)
-            {
-                spriteDisplay.color = new Color(data.customColor.x, data.customColor.y, data.customColor.z, 1f);
-                nameDisplay.text = data.customName + DataManager.instance.manifest[currentItem.id].displayName;
-            } else
-            {
+            if (data.customColor.x == 0f && data.customColor.y == 0f && data.customColor.z == 0f || DataManager.instance.manifest[currentItem.id].itemType != itemType.Artisan)
                 spriteDisplay.color = Color.white;
-                nameDisplay.text = DataManager.instance.manifest[currentItem.id].displayName;
-            }
+            else
+                spriteDisplay.color = new Color(data.customColor.x, data.customColor.y, data.customColor.z, 1f);
+            nameDisplay.text = data.name + data.value.ToString();
         }
         else
         {
