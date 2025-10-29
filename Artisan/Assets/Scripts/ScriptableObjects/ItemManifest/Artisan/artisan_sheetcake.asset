@@ -18,8 +18,8 @@ MonoBehaviour:
   itemType: 5
   primarySprite: {fileID: 21300000, guid: db92189d058d5c24abe93c1501ad495b, type: 3}
   decorativeSprite: {fileID: 21300000, guid: db89557314e70b14cb69172ee7b64980, type: 3}
-  color: {r: 0, g: 0, b: 0, a: 0}
-  value: 5
+  color: {r: 1, g: 1, b: 1, a: 0}
+  defaultValue: 0
   requireProgression: 0
   specializationRequired: 
   levelRequired: 0

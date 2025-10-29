@@ -20,7 +20,7 @@ public abstract class ShopOffering : MonoBehaviour
         ItemData o = DataManager.instance.manifest[offeringData];
         itemName.text = o.displayName;
         itemDescription.text = o.description;
-        itemPrice.text = o.defaultValue.ToString();
+        itemPrice.text = o.defaultValue.ToString("n2");
         sprite.sprite = o.primarySprite;
     }
 

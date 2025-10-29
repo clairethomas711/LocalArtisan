@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e316a2abddf25d489bdf7b647a1e14a, type: 3}
-  m_Name: tool_woodaxe
+  m_Name: tool_hoe
   m_EditorClassIdentifier: 
-  displayName: Wooden Axe
+  displayName: Hoe
   description: 
-  id: tool_woodaxe
-  itemType: 8
-  primarySprite: {fileID: 21300000, guid: c801d48656823624c9a8bed312ab2e99, type: 3}
+  id: tool_hoe
+  itemType: 0
+  primarySprite: {fileID: 21300000, guid: aa7054be1389d7b4b9825549c70a370e, type: 3}
   decorativeSprite: {fileID: 0}
   color: {r: 0, g: 0, b: 0, a: 0}
-  value: 0
+  defaultValue: 0
   requireProgression: 0
   specializationRequired: 
   levelRequired: 0

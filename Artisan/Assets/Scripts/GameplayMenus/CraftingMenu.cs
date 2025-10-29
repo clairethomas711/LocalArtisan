@@ -178,10 +178,14 @@ public class CraftingMenu : GameplayMenu
         }
         //Data Polishing
         customData.name += DataManager.instance.manifest[recipe.product[0].id].displayName; //Add the display name
-        customData.value += (int)Mathf.Floor(recipe.processingTimeInMinutes * 0.5f); //Give a bonus value for processing time
-        customData.value = (int)Mathf.Floor(customData.value / recipe.quantityProduced); //Divide by the number of items we get       
-        r /= samples; g /= samples; b /= samples; 
-        customData.customColor = new Vector3(r, g, b); //Average the colors
+        customData.value += recipe.processingTimeInMinutes * 0.05f; //Give a bonus value for processing time
+        customData.value = customData.value / recipe.quantityProduced; //Divide by the number of items we get
+        if (r == 0 && g == 0 && b == 0) customData.customColor = new Vector3(1f,1f,1f);
+        else
+        {
+            r /= samples; g /= samples; b /= samples;
+            customData.customColor = new Vector3(r, g, b); //Average the colors
+        }
         //Cool, we've assembled everything we need!
         //Do we still have items left on the table? If so, return them to the player
         if (itemsUnchecked.Count > 0)

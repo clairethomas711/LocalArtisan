@@ -36,7 +36,7 @@ public class DataManager : MonoBehaviour
     [SerializeField] GameObject notification;
     //Global variables
     [HideInInspector] public int currentDay;
-    [HideInInspector] public int money;
+    [HideInInspector] public float money;
     [HideInInspector] public float stamina;
 
     //Manifests and large data storage
@@ -179,19 +179,19 @@ public class DataManager : MonoBehaviour
         return (totalElapsedMinutes);
     }
 
-    public void AddMoney(int amount)
+    public void AddMoney(float amount)
     {
         money += amount;
         uiManager.UpdateUIVisuals();
     }
 
-    public void SubtractMoney(int amount)
+    public void SubtractMoney(float amount)
     {
         money -= amount;
         uiManager.UpdateUIVisuals();
     }
 
-    void RestoreStamina()
+    /*void RestoreStamina()
     {
         stamina = maxStamina;
         uiManager.UpdateUIVisuals();
@@ -215,7 +215,7 @@ public class DataManager : MonoBehaviour
             return false;
         }
         
-    }
+    }*/
 
     public void NewDay()
     {
@@ -234,7 +234,7 @@ public class DataManager : MonoBehaviour
         c.enabled = true;
         //Update data
         currentDay++;
-        RestoreStamina();
+        //RestoreStamina();
         // ANIMALS //
         for (int i = 0; i < barnManager.animals.Count; i++)
         {

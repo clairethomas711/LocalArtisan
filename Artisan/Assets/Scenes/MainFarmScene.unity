@@ -194534,19 +194534,13 @@ MonoBehaviour:
   path: savegame.json
   respawnPoint: {fileID: 527637402}
   maxStamina: 0
-  startingGold: 500
+  startingGold: 10
   resetData: 1
   debugStartingInventory:
-  - tool_woodhoe
-  - tool_woodwateringcan
-  - tool_woodaxe
+  - tool_hatchet
+  - tool_hoe
+  - tool_wateringcan
   - tool_pail
-  - ing_flour
-  - ing_flour
-  - ing_sugar
-  - ing_egg
-  - crop_strawberry
-  - ing_sugar
   notification: {fileID: 4297460580870484600, guid: 01204682542a84e45a135616b22d5fe5, type: 3}
   currentDay: 0
   money: 0
@@ -259920,11 +259914,9 @@ MonoBehaviour:
   randomizeRotation: 0
   data: 
   closeUI: {fileID: 2118194550}
-  knownStoreShelves:
-  - {fileID: 880239397}
-  - {fileID: 1994704936}
+  knownStoreDisplays: []
   customerSpawnRate: 60
-  maxCustomerPurchase: 50
+  maxCustomerPurchase: 5
 --- !u!1001 &1793699307
 PrefabInstance:
   m_ObjectHideFlags: 0

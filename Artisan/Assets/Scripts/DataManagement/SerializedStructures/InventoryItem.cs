@@ -44,6 +44,6 @@ public class InventoryItem
 public class CustomInventoryItemData
 {
     public string name;
-    public int value;
+    public float value;
     public Vector3 customColor;
 }

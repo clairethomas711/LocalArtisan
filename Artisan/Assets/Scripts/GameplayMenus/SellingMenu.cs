@@ -55,7 +55,7 @@ public class SellingMenu : GameplayMenu
     {
         if (AttemptSale())
         {
-            int total = 0;
+            float total = 0;
             //Sell each item
             for (int i = 0; i < inventorySlots.Count; i++)
             {

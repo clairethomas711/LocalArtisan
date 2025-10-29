@@ -45,7 +45,7 @@ public class InventorySlotData : MonoBehaviour
                 spriteDisplay.color = Color.white;
             else
                 spriteDisplay.color = new Color(data.customColor.x, data.customColor.y, data.customColor.z, 1f);
-            nameDisplay.text = data.name + data.value.ToString();
+            nameDisplay.text = data.name + data.value.ToString("n2");
         }
         else
         {
