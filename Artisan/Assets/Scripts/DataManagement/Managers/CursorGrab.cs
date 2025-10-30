@@ -1,24 +1,16 @@
 using UnityEngine;
 
-public class CursorGrab : MonoBehaviour
+public class CursorGrab : InventorySlotData
 {
-    [SerializeField] Sprite defaultSprite;
-    [HideInInspector] public InventoryItem holding;
-    private UnityEngine.UI.Image img;
-
     void Start()
     {
-        img = GetComponent<UnityEngine.UI.Image>();
-        holding = new InventoryItem("", 0);
+        currentItem = new InventoryItem("", 0);
+        UpdateDisplay();
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.position = Input.mousePosition;
-        if (holding.id != "")
-            img.sprite = DataManager.instance.manifest[holding.id].primarySprite;
-        else
-            img.sprite = defaultSprite;
     }
 }

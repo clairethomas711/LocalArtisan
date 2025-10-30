@@ -284,7 +284,7 @@ public class DataManager : MonoBehaviour
         farm.money = money;
         farm.layout = tiles;
         farm.animals = a;
-        farm.inv = playerInventory.inventoryList;
+        farm.inv = playerInventory.GetSaveData();
         farm.staticMachines = staticMachineData;
         farm.chests = c;
         farm.progression = progression;
@@ -335,8 +335,8 @@ public class DataManager : MonoBehaviour
         barnManager.UpdateBarn();
 
         // INVENTORY DATA //
-        playerInventory.inventoryList = farm.inv;
-        playerInventory.UpdateInventories();
+        playerInventory.SetSaveData(farm.inv);
+        //playerInventory.UpdateInventories();
 
         // CHEST DATA //
         //Clear the current data

@@ -79,11 +79,11 @@ public class StoreManager : Interactable
             //Replace that list with a new list containing that shelf's current contents
             for (int j = 0; j < knownStoreDisplays[i].inventorySlots.Count; j++)
             {
-                storeInventory[knownStoreDisplays[i]].Add(knownStoreDisplays[i].inventorySlots[j]);
+                storeInventory[knownStoreDisplays[i]].Add(knownStoreDisplays[i].inventorySlots[j].currentItem);
                 //For the sellable inventory, check if this item is actually sellable
-                if (knownStoreDisplays[i].inventorySlots[j].id != "")
+                if (knownStoreDisplays[i].inventorySlots[j].currentItem.id != "")
                 {
-                    sellableInventory[knownStoreDisplays[i]].Add(knownStoreDisplays[i].inventorySlots[j]);
+                    sellableInventory[knownStoreDisplays[i]].Add(knownStoreDisplays[i].inventorySlots[j].currentItem);
                 }
             }
             //When we are done going through a shelf, check if any of it was sellable. If not, remove that shelf from the sellable dictionary
@@ -119,19 +119,18 @@ public class StoreManager : Interactable
             //Remove one of those items from that selected StoreShelf object
             for (int i = 0; i < selectedDisplay.inventorySlots.Count; i++)
             {
-                if (selectedDisplay.inventorySlots[i].id == itemToSell.id) //Once we find the item on that shelf
+                if (selectedDisplay.inventorySlots[i].currentItem.id == itemToSell.id) //Once we find the item on that shelf
                 {
                     //If there are multiple, remove one. If there is only one, clear it.
-                    if (selectedDisplay.inventorySlots[i].quantity > 1)
+                    if (selectedDisplay.inventorySlots[i].currentItem.quantity > 1)
                     {
-                        selectedDisplay.inventorySlots[i].quantity--;
+                        selectedDisplay.inventorySlots[i].currentItem.quantity--;
                     }
                     else
                     {
-                        selectedDisplay.inventorySlots[i].Reset();
+                        selectedDisplay.inventorySlots[i].currentItem.Reset();
                     }
                     selectedDisplay.UpdateDisplay();
-                    //selectedShelf.UpdateModelDisplay();
                     break;
                 }
             }

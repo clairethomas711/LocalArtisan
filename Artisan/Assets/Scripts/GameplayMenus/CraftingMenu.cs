@@ -5,8 +5,8 @@ public class CraftingMenu : GameplayMenu
 {
     [SerializeField] public MenuMachine machine;
     [SerializeField] public RecipeBook recipeBookDisplay;
-    List<InventoryItem> tableSlots = new List<InventoryItem>();
-    public override List<InventoryItem> inventorySlots
+    List<InventorySlotData> tableSlots = new List<InventorySlotData>();
+    public override List<InventorySlotData> inventorySlots
     {
         get { return tableSlots; }
         set { tableSlots = value; }
@@ -16,7 +16,7 @@ public class CraftingMenu : GameplayMenu
     {
         for (int i = 0; i < slots.transform.childCount; i++) //Populate our menu storage with empty objects
         {
-            inventorySlots.Add(new InventoryItem("", 0));
+            inventorySlots.Add(slots.transform.GetChild(i).gameObject.GetComponent<InventorySlotData>());
         }
     }
 
@@ -26,8 +26,8 @@ public class CraftingMenu : GameplayMenu
         HashSet<InventoryItem> c = new HashSet<InventoryItem>();
         for (int i = 0; i < tableSlots.Count; i++)
         {
-            if (tableSlots[i].id != "")
-                c.Add(tableSlots[i]);
+            if (tableSlots[i].currentItem.id != "")
+                c.Add(tableSlots[i].currentItem);
         }
         CraftingRecipe validRecipe = FindValidRecipe(c);
         //Are we able to find a valid recipe based on required ingredients?
@@ -40,10 +40,10 @@ public class CraftingMenu : GameplayMenu
             //Delete the items that we use for this recipe
             for (int j = 0; j < tableSlots.Count; j++)
             {
-                if (tableSlots[j].quantity <= 1)
-                    tableSlots[j] = new InventoryItem("", 0);
+                if (tableSlots[j].currentItem.quantity <= 1)
+                    tableSlots[j].currentItem = new InventoryItem("", 0);
                 else
-                    tableSlots[j].quantity -= 1;
+                    tableSlots[j].currentItem.quantity -= 1;
             }
             if (validRecipe.product.Count == 1)
                 machine.StartProducing(primaryProduct);
@@ -278,6 +278,7 @@ public class CraftingMenu : GameplayMenu
         inv.OpenExpandedInventory(true);
         gameObject.SetActive(true);
         if (recipeBookDisplay) { recipeBookDisplay.OpenRecipeBook(machine); }
+        UpdateDisplay();
     }
 
     public override void Close()
@@ -286,12 +287,12 @@ public class CraftingMenu : GameplayMenu
         for (int i = 0; i < tableSlots.Count; i++)
         {
             //Return unused items to the inventory
-            if (tableSlots[i] != null && tableSlots[i].id != "")
+            if (tableSlots[i].currentItem != null && tableSlots[i].currentItem.id != "")
             {
-                DataManager.instance.playerInventory.AddInventoryItem(tableSlots[i]);
+                DataManager.instance.playerInventory.AddInventoryItem(tableSlots[i].currentItem);
             }
             //Clear
-            tableSlots[i] = new InventoryItem("", 0);
+            tableSlots[i].currentItem = new InventoryItem("", 0);
         }
         //Clear the recipe book display
         if (recipeBookDisplay) { recipeBookDisplay.CloseRecipeBook(); }

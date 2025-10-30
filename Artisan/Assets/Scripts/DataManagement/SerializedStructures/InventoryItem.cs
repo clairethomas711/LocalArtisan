@@ -16,6 +16,7 @@ public class InventoryItem
 
     public InventoryItem Copy() { return new InventoryItem(id, quantity, customItemData); }
     public void Reset() { id = ""; quantity = 0; customItemData = ""; }
+    public bool Equals(InventoryItem i) { return (i.id == id && i.customItemData == customItemData); }
 
     public void SetCustomData(CustomInventoryItemData data)
     {

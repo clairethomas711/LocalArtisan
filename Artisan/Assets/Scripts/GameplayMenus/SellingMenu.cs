@@ -4,8 +4,8 @@ using System.Collections.Generic;
 public class SellingMenu : GameplayMenu
 {
     List<string> acceptedItems = new List<string>();
-    List<InventoryItem> currentInventory = new List<InventoryItem>();
-    public override List<InventoryItem> inventorySlots
+    List<InventorySlotData> currentInventory = new List<InventorySlotData>();
+    public override List<InventorySlotData> inventorySlots
     {
         get { return currentInventory; }
         set { currentInventory = value; }
@@ -19,10 +19,9 @@ public class SellingMenu : GameplayMenu
         inv.OpenExpandedInventory(true);
         gameObject.SetActive(true);
         //Add blank inventory slots
-        inventorySlots.Clear();
         for (int i = 0; i < 5; i++)
         {
-            inventorySlots.Add(new InventoryItem("", 0));
+            inventorySlots[i].currentItem = new InventoryItem("", 0);
         }
         //The given inventory is the items we accept here - populate acceptedItems
         for (int i = 0; i < inventory.Count; i++)
@@ -35,14 +34,14 @@ public class SellingMenu : GameplayMenu
     {
         for (int i = 0; i < inventorySlots.Count; i++)
         {
-            if (inventorySlots[i] != null && inventorySlots[i].id != "")
+            if (inventorySlots[i].currentItem != null && inventorySlots[i].currentItem.id != "")
             {
-                DataManager.instance.playerInventory.AddInventoryItem(inventorySlots[i]); //Return unused items to the inventory
+                DataManager.instance.playerInventory.AddInventoryItem(inventorySlots[i].currentItem); //Return unused items to the inventory
             }
         }
         for (int j = 0; j < inventorySlots.Count; j++)
         {
-            inventorySlots[j] = new InventoryItem("", 0);
+            inventorySlots[j].currentItem = new InventoryItem("", 0);
         }
         UpdateDisplay();
         Inventory inv = DataManager.instance.player.GetComponent<Inventory>();
@@ -59,18 +58,17 @@ public class SellingMenu : GameplayMenu
             //Sell each item
             for (int i = 0; i < inventorySlots.Count; i++)
             {
-                if (inventorySlots[i].id != "")
+                if (inventorySlots[i].currentItem.id != "")
                 {
-                    DataManager.instance.AddMoney(DataManager.instance.manifest[inventorySlots[i].id].defaultValue * inventorySlots[i].quantity);
-                    total += DataManager.instance.manifest[inventorySlots[i].id].defaultValue * inventorySlots[i].quantity;
+                    DataManager.instance.AddMoney(DataManager.instance.manifest[inventorySlots[i].currentItem.id].defaultValue * inventorySlots[i].currentItem.quantity);
+                    total += DataManager.instance.manifest[inventorySlots[i].currentItem.id].defaultValue * inventorySlots[i].currentItem.quantity;
                 }
             }
             DataManager.instance.SendNotification("Sold for $" + total);
             //Clear the inventory
-            inventorySlots.Clear();
             for (int i = 0; i < 5; i++)
             {
-                inventorySlots.Add(new InventoryItem("", 0));
+                inventorySlots[i].currentItem = new InventoryItem("", 0);
             }
             UpdateDisplay();
         }
@@ -84,7 +82,7 @@ public class SellingMenu : GameplayMenu
     {
         for (int i = 0; i < inventorySlots.Count; i++)
         {
-            if (inventorySlots[i].id != "" && !acceptedItems.Contains(inventorySlots[i].id))
+            if (inventorySlots[i].currentItem.id != "" && !acceptedItems.Contains(inventorySlots[i].currentItem.id))
             {
                 return false;
             }

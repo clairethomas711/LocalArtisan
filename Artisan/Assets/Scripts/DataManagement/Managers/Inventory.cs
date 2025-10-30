@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using TMPro;
 
 //Attached to the player, this stores the list of items the player has and controls held item navigation
@@ -9,69 +10,94 @@ using TMPro;
 public class Inventory : MonoBehaviour
 {
     public int maxCapacity = 20;
-    [HideInInspector] public List<InventoryItem> inventoryList = new List<InventoryItem>();
+    public int hotbarCapacity = 10;
+    //We alter the data in our inventory as if the expanded panel is ALWAYS open
+    //If it isn't then the hotbar is just a preview version of that section of inventory
+    [HideInInspector] public List<InventorySlotData> inventoryList = new List<InventorySlotData>();
+    List<InventorySlotData> hotbar = new List<InventorySlotData>();
     [HideInInspector] public bool menuOpen = false;
+    public GameObject hotbarSlotPrefab;
+    public GameObject inventorySlotPrefab;
     public GameObject hotbarPanel;
     public GameObject expandedInventoryPanel;
-    public InventoryItem currentSelection;
+    public InventoryItem currentHotbarSelection;
     int selectedItemLookup = 0;
     private bool inventoryExpanded = false;
 
 
-    void Start()
+    void Awake()
     {
-        currentSelection = inventoryList[selectedItemLookup];
+        //Get reference to the inventory slots
+        for (int i = 0; i < maxCapacity; i++)
+        {
+            GameObject invSlot = Instantiate(inventorySlotPrefab, expandedInventoryPanel.transform, expandedInventoryPanel.transform);
+            inventoryList.Add(invSlot.GetComponent<InventorySlotData>());
+        }
     }
 
-    public void UpdateInventories()
+    // SAVE DATA STUFF //
+    public List<InventoryItem> GetSaveData()
     {
-        if (!inventoryExpanded)
-            DisplayHotBar();
-        else
-            DisplayExpandedInventory();
-    }
-
-    void DisplayExpandedInventory()
-    {
+        List<InventoryItem> inv = new List<InventoryItem>();
         for (int i = 0; i < inventoryList.Count; i++)
         {
-            InventorySlotData slot = expandedInventoryPanel.transform.GetChild(i).GetComponent<InventorySlotData>();
-            slot.currentItem = inventoryList[i];
-            slot.UpdateDisplay();
+            inv.Add(inventoryList[i].currentItem);
         }
-        currentSelection = inventoryList[selectedItemLookup];
+        return inv;
     }
 
-    void DisplayHotBar() //UI Hotbar Display
+    public void SetSaveData(List<InventoryItem> inv)
     {
-        ClearHighlight();
+        for (int i = 0; i < inv.Count; i++)
+        {
+            inventoryList[i].currentItem = inv[i];
+            inventoryList[i].UpdateDisplay();
+        }
+        CloseExpandedInventory();
+    }
+    
+    // HOT BAR DISPLAY //
+    void GenerateHotBar()
+    {
+        //Clear the existing panel (if there is one)
         for (int i = 0; i < hotbarPanel.transform.childCount; i++)
         {
-            InventorySlotData slot = hotbarPanel.transform.GetChild(i).GetComponent<InventorySlotData>();
-            slot.currentItem = inventoryList[i];
-            slot.UpdateDisplay();
+            Destroy(hotbarPanel.transform.GetChild(i).gameObject);
         }
-        currentSelection = inventoryList[selectedItemLookup];
+        //Generate a new one
+        for (int i = 0; i < hotbarCapacity; i++)
+        {
+            GameObject hotbarSlot = Instantiate(hotbarSlotPrefab, hotbarPanel.transform, hotbarPanel.transform);
+            //Data Transfer
+            InventorySlotData hotbarInvSlot = hotbarSlot.GetComponent<InventorySlotData>();
+            hotbarInvSlot.currentItem = inventoryList[i].currentItem;
+            hotbarInvSlot.index = i;
+            hotbarInvSlot.UpdateDisplay();
+            //Add listener
+            Button b = hotbarSlot.GetComponent<Button>();
+            b.onClick.AddListener(() => ClickHotbarItem(hotbarInvSlot));
+        }
+        currentHotbarSelection = inventoryList[selectedItemLookup].currentItem;
         DisplayHighlight();
     }
 
-    void ClearHighlight() //UI Helper functions
+    void ClearHighlight()
     {
         Transform slot = hotbarPanel.transform.GetChild(selectedItemLookup);
         UnityEngine.UI.Image s = slot.gameObject.GetComponent<UnityEngine.UI.Image>();
         s.color = Color.white;
     }
 
-    void DisplayHighlight() //UI Helper functions
+    void DisplayHighlight()
     {
         Transform slot = hotbarPanel.transform.GetChild(selectedItemLookup);
         UnityEngine.UI.Image s = slot.gameObject.GetComponent<UnityEngine.UI.Image>();
         s.color = Color.green;
     }
 
-    /// INPUT MANAGEMENT ///
-    void OnScrollWheel(InputValue scrollValue)
+    void OnScrollWheel(InputValue scrollValue) // CONNECTED TO INPUT MANAGER //
     {
+        if (menuOpen) return;
         ClearHighlight();
         //Extract the direction of movement on the hotbar
         Vector2 scrollVector = scrollValue.Get<Vector2>();
@@ -84,11 +110,11 @@ public class Inventory : MonoBehaviour
         else if (selectedItemLookup < 0)
             selectedItemLookup = hotbarPanel.transform.childCount - 1;
         //Update the current item
-        currentSelection = inventoryList[selectedItemLookup];
+        currentHotbarSelection = inventoryList[selectedItemLookup].currentItem;
         DisplayHighlight();
     }
 
-    void OnOpenInventory(InputValue ip)
+    void OnOpenInventory(InputValue ip) // CONNECTED TO INPUT MANAGER //
     {
         if (!menuOpen)
         {
@@ -96,41 +122,23 @@ public class Inventory : MonoBehaviour
                 OpenExpandedInventory();
             else
                 CloseExpandedInventory();
-            UpdateInventories();
         }
     }
 
-    public void OnHotbarSelection(InputValue val)
+    public void OnHotbarSelection(InputValue val) // CONNECTED TO INPUT MANAGER //
     {
         ClearHighlight();
         selectedItemLookup = (int)val.Get<float>();
-        currentSelection = inventoryList[selectedItemLookup];
+        currentHotbarSelection = inventoryList[selectedItemLookup].currentItem;
         DisplayHighlight();
     }
 
-    /// UI EVENT HANDLING ///
     public void ClickHotbarItem(InventorySlotData slot)
     {
         ClearHighlight();
         selectedItemLookup = slot.index;
+        currentHotbarSelection = inventoryList[selectedItemLookup].currentItem;
         DisplayHighlight();
-    }
-
-    public void ClickItem(InventorySlotData slot)
-    {
-        int selectedIndex = slot.index;
-        if (inventoryList[selectedIndex].id != "" && inventoryList[selectedIndex].id == DataManager.instance.grab.holding.id) //We are holding the same item - add what we're holding to the stack
-        {
-            inventoryList[selectedIndex].quantity += DataManager.instance.grab.holding.quantity;
-            DataManager.instance.grab.holding = new InventoryItem("", 0);
-        }
-        else //Otherwise, swap the items
-        {
-        InventoryItem placeholder = DataManager.instance.grab.holding; //Store the item we're holding
-        DataManager.instance.grab.holding = inventoryList[selectedIndex]; //Put the item in this slot into our hand
-        inventoryList[selectedIndex] = placeholder; //Put the stored held item in this slot
-        }
-        UpdateInventories();
     }
 
     /// PUBLIC FUNCTIONS ///
@@ -139,20 +147,22 @@ public class Inventory : MonoBehaviour
         for (int j = 0; j < inventoryList.Count; j++)
         {
             //If these items are identical, increase quantity
-            if (inventoryList[j].id == itemToAdd.id && inventoryList[j].customItemData == itemToAdd.customItemData) 
+            if (inventoryList[j].currentItem.Equals(itemToAdd)) 
             {
-                inventoryList[j].quantity += itemToAdd.quantity;
-                UpdateInventories();
+                inventoryList[j].currentItem.quantity += itemToAdd.quantity;
+                inventoryList[j].UpdateDisplay();
+                if (!menuOpen) { GenerateHotBar(); }
                 return;
             }
         }
         //If nothing with the same data found, add
         for (int j = 0; j < inventoryList.Count; j++)
         {
-            if (inventoryList[j].id == "")
+            if (inventoryList[j].currentItem.id == "")
             {
-                inventoryList[j] = itemToAdd;
-                UpdateInventories();
+                inventoryList[j].currentItem = itemToAdd;
+                inventoryList[j].UpdateDisplay();
+                if (!menuOpen) { GenerateHotBar(); }
                 return;
             }
         }
@@ -164,18 +174,20 @@ public class Inventory : MonoBehaviour
         if (i == "") { return; }
         for (int j = 0; j < inventoryList.Count; j++)
         {
-            if (inventoryList[j].id == i)
+            if (inventoryList[j].currentItem.id == i)
             {
-                if (inventoryList[j].quantity - quantity > 0) //Decrease quantity
+                if (inventoryList[j].currentItem.quantity - quantity > 0) //Decrease quantity
                 {
-                    inventoryList[j].quantity -= quantity;
-                    UpdateInventories();
+                    inventoryList[j].currentItem.quantity -= quantity;
+                    inventoryList[j].UpdateDisplay();
+                    if (!menuOpen) { GenerateHotBar(); }
                     return;
                 }
                 else
                 {
-                    inventoryList[j] = new InventoryItem("", 0);
-                    UpdateInventories();
+                    inventoryList[j].currentItem = new InventoryItem("", 0);
+                    inventoryList[j].UpdateDisplay();
+                    if (!menuOpen) { GenerateHotBar(); }
                     return;
                 }
             }
@@ -184,25 +196,38 @@ public class Inventory : MonoBehaviour
 
     public void OpenExpandedInventory(bool isMenuOpen = false)
     {
-        menuOpen = isMenuOpen;
+        //Pause the game and player
         PlayerStateManager p = DataManager.instance.player.GetComponent<PlayerStateManager>();
+        p.SwitchState(p.busyState);
+        DataManager.instance.PauseGame(true);
+        //Change the bools
+        menuOpen = isMenuOpen;
         inventoryExpanded = true;
+        //Destroy our current hotbar
+        for (int i = 0; i < hotbarPanel.transform.childCount; i++)
+        {
+            Destroy(hotbarPanel.transform.GetChild(i).gameObject);    
+        }
+        //Swap the panels
         hotbarPanel.SetActive(false);
         expandedInventoryPanel.SetActive(true);
-        p.SwitchState(p.busyState);
-        UpdateInventories();
-        DataManager.instance.PauseGame(true);
+
     }
 
     public void CloseExpandedInventory()
     {
+        //Change the bools
         if (menuOpen) { menuOpen = false; }
-        PlayerStateManager p = DataManager.instance.player.GetComponent<PlayerStateManager>();
         inventoryExpanded = false;
+        //Generate the hotbar preview
+        GenerateHotBar();
+        //Swap over the panels
         hotbarPanel.SetActive(true);
         expandedInventoryPanel.SetActive(false);
+        //Free the player
+        PlayerStateManager p = DataManager.instance.player.GetComponent<PlayerStateManager>();
         p.SwitchState(p.idleState);
-        UpdateInventories();
         DataManager.instance.PauseGame(false);
+
     }
 }

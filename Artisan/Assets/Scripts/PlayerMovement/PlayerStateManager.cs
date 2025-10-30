@@ -78,7 +78,7 @@ public class PlayerStateManager : MonoBehaviour
         {
             if (target.TryGetComponent<Interactable>(out Interactable i))
             {
-                currentAnimation = i.Interact(inv.currentSelection);
+                currentAnimation = i.Interact(inv.currentHotbarSelection);
                 if (currentAnimation != "")
                 {
                     SwitchState(busyState);
@@ -123,6 +123,7 @@ public class PlayerStateManager : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 100))
         {
             GameObject gameHit = hit.transform.gameObject;
+            print(gameHit.name);
             if (gameHit.GetComponent<Interactable>() && (gameHit.layer == 3 || gameHit.layer == 6))
             {
                 if (Vector3.Distance(gameHit.transform.position, transform.position) < 5)

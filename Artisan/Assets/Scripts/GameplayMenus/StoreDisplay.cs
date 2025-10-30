@@ -4,8 +4,8 @@ using System.Collections.Generic;
 //Displays a set of items within its inventory, which is saved by the StoreManager. Enables functionality of ShelfSlots
 public class StoreDisplay : GameplayMenu
 {
-    List<InventoryItem> shelfSlots = new List<InventoryItem>();
-    public override List<InventoryItem> inventorySlots
+    List<InventorySlotData> shelfSlots = new List<InventorySlotData>();
+    public override List<InventorySlotData> inventorySlots
     {
         get { return shelfSlots; }
         set { shelfSlots = value; }
@@ -15,7 +15,7 @@ public class StoreDisplay : GameplayMenu
     {
         //When we first start, make sure the inventory is full of blank items
         for (int i = 0; i < slots.transform.childCount; i++)
-            inventorySlots.Add(new InventoryItem("", 0));
+            inventorySlots.Add(slots.transform.GetChild(i).gameObject.GetComponent<InventorySlotData>());
     }
 
     public override void Open(List<InventoryItem> shelfInventory)
@@ -23,9 +23,8 @@ public class StoreDisplay : GameplayMenu
         //Pause the player (this is a UI thing, but should probably be moved!)
         PausePlayer();
         //Repopulate this shelf's inventory with data from Store Manager
-        inventorySlots.Clear();
         for (int i = 0; i < shelfInventory.Count; i++)
-            inventorySlots.Add(shelfInventory[i].Copy());
+            inventorySlots[i].currentItem = shelfInventory[i].Copy();
         //Display the inventory UI
         slots.SetActive(true);
         UpdateDisplay();

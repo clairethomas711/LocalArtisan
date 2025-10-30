@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class ShopMenu : GameplayMenu
 {
     [SerializeField] GameObject shopOfferingPrefab;
-    List<InventoryItem> listingSlots = new List<InventoryItem>();
-    public override List<InventoryItem> inventorySlots
+    List<InventorySlotData> listingSlots = new List<InventorySlotData>();
+    public override List<InventorySlotData> inventorySlots
     {
         get { return listingSlots; }
         set { listingSlots = value; }

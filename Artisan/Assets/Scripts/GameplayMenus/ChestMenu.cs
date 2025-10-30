@@ -4,8 +4,8 @@ using System.Collections.Generic;
 public class ChestMenu : GameplayMenu
 {
     string currentChest;
-    List<InventoryItem> chestSlots = new List<InventoryItem>();
-    public override List<InventoryItem> inventorySlots
+    List<InventorySlotData> chestSlots = new List<InventorySlotData>();
+    public override List<InventorySlotData> inventorySlots
     {
         get { return chestSlots; }
         set { chestSlots = value; }
@@ -19,10 +19,9 @@ public class ChestMenu : GameplayMenu
         gameObject.SetActive(true);
 
         //Copy the chest inventory into the inventory slots
-        inventorySlots.Clear();
         for (int i = 0; i < chestInventory.Count; i++)
         {
-            inventorySlots.Add(chestInventory[i].Copy());
+            inventorySlots[i].currentItem = chestInventory[i].Copy();
             //print("Adding chest inventory " + i.ToString() + ": " + chestInventory[i].id);
         }
 
@@ -35,14 +34,14 @@ public class ChestMenu : GameplayMenu
         currentChestInventory.Clear();
         for (int i = 0; i < inventorySlots.Count; i++)
         {
-            currentChestInventory.Add(inventorySlots[i].Copy());
+            currentChestInventory.Add(inventorySlots[i].currentItem.Copy());
             //print("Adding inv inventory " + i.ToString() + ": " + inventorySlots[i].id);
         }
 
         currentChest = "";
         //Wipe the current inventory slots
         for (int i = 0; i < inventorySlots.Count; i++)
-            inventorySlots[i].Reset();
+            inventorySlots[i].currentItem.Reset();
 
         UpdateDisplay();
         //Close the chest UI
