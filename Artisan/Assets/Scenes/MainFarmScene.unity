@@ -187220,7 +187220,7 @@ MonoBehaviour:
   respawnPoint: {fileID: 527637402}
   maxStamina: 0
   startingGold: 10
-  resetData: 1
+  resetData: 0
   debugStartingInventory:
   - tool_hatchet
   - tool_hoe
