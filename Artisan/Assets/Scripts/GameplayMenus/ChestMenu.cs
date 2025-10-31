@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class ChestMenu : GameplayMenu
 {
+    public GameObject slotPrefab;
     string currentChest;
     List<InventorySlotData> chestSlots = new List<InventorySlotData>();
     public override List<InventorySlotData> inventorySlots
@@ -18,11 +19,13 @@ public class ChestMenu : GameplayMenu
         inv.OpenExpandedInventory(true);
         gameObject.SetActive(true);
 
-        //Copy the chest inventory into the inventory slots
+        //Generate a set of slot data based on inventory from the manifest
         for (int i = 0; i < chestInventory.Count; i++)
         {
-            inventorySlots[i].currentItem = chestInventory[i].Copy();
-            //print("Adding chest inventory " + i.ToString() + ": " + chestInventory[i].id);
+            InventorySlotData s = Instantiate(slotPrefab, slots.transform, slots.transform).GetComponent<InventorySlotData>();
+            s.currentItem = chestInventory[i].Copy();
+            s.index = i;
+            inventorySlots.Add(s);
         }
 
         UpdateDisplay();
@@ -30,20 +33,20 @@ public class ChestMenu : GameplayMenu
 
     public override void Close()
     {
+        //Save the item list into the manifest
         List<InventoryItem> currentChestInventory = DataManager.instance.chestManager.chestManifest[currentChest];
         currentChestInventory.Clear();
         for (int i = 0; i < inventorySlots.Count; i++)
         {
             currentChestInventory.Add(inventorySlots[i].currentItem.Copy());
-            //print("Adding inv inventory " + i.ToString() + ": " + inventorySlots[i].id);
         }
-
+        //Clear the inventory slots list and destroy gameobjects
+        inventorySlots.Clear();
+        for (int i = 0; i < slots.transform.childCount; i++) 
+        {
+            Destroy(slots.transform.GetChild(i).gameObject);
+        }
         currentChest = "";
-        //Wipe the current inventory slots
-        for (int i = 0; i < inventorySlots.Count; i++)
-            inventorySlots[i].currentItem.Reset();
-
-        UpdateDisplay();
         //Close the chest UI
         Inventory inv = DataManager.instance.player.GetComponent<Inventory>();
         inv.CloseExpandedInventory();
