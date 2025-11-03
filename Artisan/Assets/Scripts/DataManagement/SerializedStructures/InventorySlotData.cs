@@ -9,10 +9,11 @@ public class InventorySlotData : MonoBehaviour
     public itemType requiredType = itemType.Ingredient;
     public int index;
     [Header("References")]
-    [SerializeField] public Sprite defaultSprite;
+    [SerializeField] Animator animatorController;
+    [SerializeField] UnityEngine.UI.Image defaultSprite;
     [SerializeField] UnityEngine.UI.Image secondarySpriteDisplay;
     [SerializeField] TextMeshProUGUI nameDisplay;
-    [SerializeField] TextMeshProUGUI quantityDisplay;
+    [SerializeField] GameObject quantityDisplay;
     [SerializeField] GameObject artisanIndicator;
 
     public void ClickItem()
@@ -42,16 +43,20 @@ public class InventorySlotData : MonoBehaviour
     }
     public void UpdateDisplay()
     {
-        UnityEngine.UI.Image spriteDisplay = GetComponent<UnityEngine.UI.Image>();
+        //UnityEngine.UI.Image spriteDisplay = GetComponent<UnityEngine.UI.Image>();
         if (currentItem.id != "")
         {
+            defaultSprite.gameObject.SetActive(true); 
             //ALWAYS - Display the Sprite, Quantity, and Artisan Indicator
-            spriteDisplay.sprite = DataManager.instance.manifest[currentItem.id].primarySprite;
+            defaultSprite.sprite = DataManager.instance.manifest[currentItem.id].primarySprite;
             //Display the quantity (if applicable)
-            if (currentItem.quantity > 1)
-                quantityDisplay.text = currentItem.quantity.ToString();
+            if (currentItem.quantity > 1) 
+            {
+                quantityDisplay.SetActive(true);
+                quantityDisplay.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = currentItem.quantity.ToString();
+            }
             else
-                quantityDisplay.text = null;
+                quantityDisplay.SetActive(false);
             //Display artisan indicator (if applicable)
             if (DataManager.instance.manifest[currentItem.id].itemType == itemType.Artisan)
                 artisanIndicator.SetActive(true);
@@ -69,19 +74,32 @@ public class InventorySlotData : MonoBehaviour
             //SOMETIMES - Determine if we have any custom data
             CustomInventoryItemData data = currentItem.GetCustomData();
             if (data.customColor.x == 0f && data.customColor.y == 0f && data.customColor.z == 0f || DataManager.instance.manifest[currentItem.id].itemType != itemType.Artisan)
-                spriteDisplay.color = Color.white;
+                defaultSprite.color = Color.white;
             else
-                spriteDisplay.color = new Color(data.customColor.x, data.customColor.y, data.customColor.z, 1f);
+                defaultSprite.color = new Color(data.customColor.x, data.customColor.y, data.customColor.z, 1f);
             nameDisplay.text = data.name + data.value.ToString("n2");
         }
         else
         {
-            spriteDisplay.sprite = defaultSprite;
-            spriteDisplay.color = Color.white;
+            defaultSprite.gameObject.SetActive(false);  
             secondarySpriteDisplay.gameObject.SetActive(false);   
             nameDisplay.text = null;
-            quantityDisplay.text = null;
+            quantityDisplay.SetActive(false);
             artisanIndicator.SetActive(false);
         }
+    }
+
+    public void ShowHighlight()
+    {
+        animatorController.SetBool("isHighlighted", true);
+        //UnityEngine.UI.Image s = gameObject.GetComponent<UnityEngine.UI.Image>();
+        //s.color = Color.green;
+    }
+
+    public void ClearHighlight()
+    {
+        animatorController.SetBool("isHighlighted", false);
+        //UnityEngine.UI.Image s = gameObject.GetComponent<UnityEngine.UI.Image>();
+        //s.color = Color.white;
     }
 }

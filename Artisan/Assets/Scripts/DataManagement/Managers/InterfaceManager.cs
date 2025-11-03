@@ -14,7 +14,7 @@ public class InterfaceManager : MonoBehaviour
     {
         moneyText.text = DataManager.instance.money.ToString("n2");
         //staminaText.text = DataManager.instance.stamina.ToString();
-        dayText.text = DataManager.instance.currentDay.ToString();
+        dayText.text = "Day " + DataManager.instance.currentDay.ToString();
         string specializationId = "";
         string progress = "";
         //float progressToNextLevel = 0.0f;

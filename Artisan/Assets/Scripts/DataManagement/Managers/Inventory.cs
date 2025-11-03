@@ -83,16 +83,14 @@ public class Inventory : MonoBehaviour
 
     void ClearHighlight()
     {
-        Transform slot = hotbarPanel.transform.GetChild(selectedItemLookup);
-        UnityEngine.UI.Image s = slot.gameObject.GetComponent<UnityEngine.UI.Image>();
-        s.color = Color.white;
+        InventorySlotData slot = hotbarPanel.transform.GetChild(selectedItemLookup).gameObject.GetComponent<InventorySlotData>();
+        slot.ClearHighlight();
     }
 
     void DisplayHighlight()
     {
-        Transform slot = hotbarPanel.transform.GetChild(selectedItemLookup);
-        UnityEngine.UI.Image s = slot.gameObject.GetComponent<UnityEngine.UI.Image>();
-        s.color = Color.green;
+        InventorySlotData slot = hotbarPanel.transform.GetChild(selectedItemLookup).gameObject.GetComponent<InventorySlotData>();
+        slot.ShowHighlight();
     }
 
     void OnScrollWheel(InputValue scrollValue) // CONNECTED TO INPUT MANAGER //
