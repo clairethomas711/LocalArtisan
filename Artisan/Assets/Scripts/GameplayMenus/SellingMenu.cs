@@ -19,7 +19,7 @@ public class SellingMenu : GameplayMenu
         inv.OpenExpandedInventory(true);
         gameObject.SetActive(true);
         //Add blank inventory slots
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < inventorySlots.Count; i++)
         {
             inventorySlots[i].currentItem = new InventoryItem("", 0);
         }
@@ -66,7 +66,7 @@ public class SellingMenu : GameplayMenu
             }
             DataManager.instance.SendNotification("Sold for $" + total);
             //Clear the inventory
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < inventorySlots.Count; i++)
             {
                 inventorySlots[i].currentItem = new InventoryItem("", 0);
             }

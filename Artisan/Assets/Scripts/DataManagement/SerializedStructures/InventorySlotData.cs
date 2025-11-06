@@ -91,15 +91,13 @@ public class InventorySlotData : MonoBehaviour
 
     public void ShowHighlight()
     {
-        animatorController.SetBool("isHighlighted", true);
-        //UnityEngine.UI.Image s = gameObject.GetComponent<UnityEngine.UI.Image>();
-        //s.color = Color.green;
+        if (animatorController != null)
+            animatorController.SetBool("isHighlighted", true);
     }
 
     public void ClearHighlight()
     {
-        animatorController.SetBool("isHighlighted", false);
-        //UnityEngine.UI.Image s = gameObject.GetComponent<UnityEngine.UI.Image>();
-        //s.color = Color.white;
+        if (animatorController != null)
+            animatorController.SetBool("isHighlighted", false);
     }
 }

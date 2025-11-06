@@ -4,6 +4,8 @@ using System.Collections.Generic;
 public class MenuMachine : Machine
 {
     [SerializeField] GameplayMenu uiMenu;
+    [Header("Animation Fields")]
+    [SerializeField] public GameObject cameraPosition;
     CraftingRecipe currentRecipe;
     List<ItemData> acceptedItems;
     List<ItemData> productedItems;
@@ -24,7 +26,9 @@ public class MenuMachine : Machine
         if (heldItem.id != "" && AttemptToMove(DataManager.instance.manifest[heldItem.id].itemType))
             return "Hit";
         if (state == MachineState.ready)
-            uiMenu.Open();
+        {
+            uiMenu.Open();    
+        }
         else if (state == MachineState.produced)
             TakeProducedItem();
         return "";

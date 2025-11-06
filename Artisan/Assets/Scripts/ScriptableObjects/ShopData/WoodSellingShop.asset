@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3965a526af6dfd34d9ea36bc3b2266b5, type: 3}
   m_Name: WoodSellingShop
   m_EditorClassIdentifier: 
+  shopName: Wood Selling
   scriptableItems:
   - {fileID: 11400000, guid: 06883d78b70aad64e9ff5653689f27fc, type: 2}
-  shopName: Wood Selling
+  - {fileID: 11400000, guid: 7cad2176f6a5f6645bb0bc2bcba32197, type: 2}

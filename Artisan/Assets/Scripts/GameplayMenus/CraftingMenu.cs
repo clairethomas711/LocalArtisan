@@ -203,45 +203,6 @@ public class CraftingMenu : GameplayMenu
         InventoryItem recipeProduct = new InventoryItem(recipeProductId, recipeProductQuantity, serializedData);
         return recipeProduct;
     }
-    
-    /*private CustomInventoryItemData GenerateItemFromAddOns(List<InventoryItem> addOns)
-    {
-        //addOns.Sort();
-        CustomInventoryItemData data = new CustomInventoryItemData();
-        string customName = "";
-        int additionalValue = 0;
-        float red = 0; float green = 0; float blue = 0;
-        int numberOfSamples = 0;
-        for (int i = 0; i < addOns.Count; i++)
-        {
-            CustomInventoryItemData ingData = addOns[i].GetCustomData();
-            if (ingData == null)
-            {
-                string item = addOns[i].id;
-                print("appending " + DataManager.instance.manifest[item].displayName);
-                customName += DataManager.instance.manifest[item].displayName + " ";
-                additionalValue += DataManager.instance.manifest[item].value;
-                red += DataManager.instance.manifest[item].color.r;
-                green += DataManager.instance.manifest[item].color.g;
-                blue += DataManager.instance.manifest[item].color.b;
-            }
-            else
-            {
-                print("appending custom item " + ingData.customName);
-                customName += ingData.customName + " ";
-                additionalValue += ingData.additionalValue;
-                red += ingData.customColor.x;
-                green += ingData.customColor.y;
-                blue += ingData.customColor.z;
-            }
-            numberOfSamples++;
-        }
-        Vector3 newColor = new Vector3(red / numberOfSamples, green / numberOfSamples, blue / numberOfSamples);
-        data.customName = customName;
-        data.additionalValue = additionalValue;
-        data.customColor = newColor;
-        return data;
-    }*/
 
     InventoryItem AttemptToTakeItem(HashSet<InventoryItem> itemsUnchecked, string id)
     {
@@ -274,6 +235,7 @@ public class CraftingMenu : GameplayMenu
     public override void Open(List<InventoryItem> inventory)
     {
         PausePlayer();
+        AnimateIn();
         Inventory inv = DataManager.instance.player.GetComponent<Inventory>();
         inv.OpenExpandedInventory(true);
         gameObject.SetActive(true);
@@ -300,7 +262,33 @@ public class CraftingMenu : GameplayMenu
         Inventory inv = DataManager.instance.player.GetComponent<Inventory>();
         inv.CloseExpandedInventory();
         gameObject.SetActive(false);
+        AnimateOut();
         UnpausePlayer();
+    }
+
+    //Triggers any visual animations / camera movements we have given it
+    public void AnimateIn()
+    {
+        if (machine.cameraPosition)
+        {
+            machine.cameraPosition.SetActive(true);
+        }
+        if (machine.GetComponent<Animator>())
+        {
+            machine.GetComponent<Animator>().SetBool("Active", true);
+        }      
+    }
+    
+    public void AnimateOut()
+    {
+        if (machine.cameraPosition)
+        {
+            machine.cameraPosition.SetActive(false);
+        }
+        if (machine.GetComponent<Animator>())
+        {
+            machine.GetComponent<Animator>().SetBool("Active", false);
+        }           
     }
 }
 

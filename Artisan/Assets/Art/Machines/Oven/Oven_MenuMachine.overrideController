@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Oven_MenuMachine
+  m_Controller: {fileID: 9100000, guid: 678ad90e5df97df42ac4b76648f7fa06, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: d939f8d0dd53b314cbee086806f86114, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a900065fd96a2f94192f5f9f158ed9cd, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 3502f38c3758c48439f6bc7ffd60abfc, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d514b6c4278d0d84682bd07c88afa66e, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 4b369f2b83adff542afe3f96cf19e6e2, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6038fc81b43d09448834e29ab9a4ddd0, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 34590ec8c38c1094386eb1ddee7c4a86, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 980dc00de65acb04c890cc2e0fb34fdb, type: 2}
