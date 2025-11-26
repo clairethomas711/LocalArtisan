@@ -49,19 +49,29 @@ public class PlayerStateManager : MonoBehaviour
     // Camera Triggers //
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("CameraZones"))
+        CameraZone c;
+        if (c = other.gameObject.GetComponent<CameraZone>())
         {
             cameraZones.transform.GetChild(0).gameObject.SetActive(false); //Disable the default camera
             other.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+            if (c.requiresInteriorTransition)
+            {
+                c.OpenModelInterior();        
+            }
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("CameraZones"))
+        CameraZone c;
+        if (c = other.gameObject.GetComponent<CameraZone>())
         {
             other.gameObject.transform.GetChild(0).gameObject.SetActive(false);
             cameraZones.transform.GetChild(0).gameObject.SetActive(true); //Enable the default camera
+            if (c.requiresInteriorTransition)
+            {
+                c.CloseModelInterior();        
+            }
         }
     }
 
@@ -146,6 +156,10 @@ public class PlayerStateManager : MonoBehaviour
             {
                 //target.GetComponent<MeshRenderer>().material.color = Color.white;
                 target.layer = 3;
+                for (int i = 0; i < target.transform.childCount; i++)
+                {
+                    target.transform.GetChild(i).gameObject.layer = 3;         
+                }
             }
             target = gameHit;
             if (target)
@@ -155,6 +169,10 @@ public class PlayerStateManager : MonoBehaviour
                 //{
                     //targetMesh.material.color = Color.red;
                 target.layer = 6;
+                for (int i = 0; i < target.transform.childCount; i++)
+                {
+                    target.transform.GetChild(i).gameObject.layer = 6;         
+                }
                 //}
             }
 
