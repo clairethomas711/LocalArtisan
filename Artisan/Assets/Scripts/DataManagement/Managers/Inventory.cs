@@ -60,21 +60,15 @@ public class Inventory : MonoBehaviour
     // HOT BAR DISPLAY //
     void GenerateHotBar()
     {
-        //Clear the existing panel (if there is one)
         for (int i = 0; i < hotbarPanel.transform.childCount; i++)
         {
-            Destroy(hotbarPanel.transform.GetChild(i).gameObject);
-        }
-        //Generate a new one
-        for (int i = 0; i < hotbarCapacity; i++)
-        {
-            GameObject hotbarSlot = Instantiate(hotbarSlotPrefab, hotbarPanel.transform, hotbarPanel.transform);
-            //Data Transfer
+            GameObject hotbarSlot = hotbarPanel.transform.GetChild(i).gameObject;
             InventorySlotData hotbarInvSlot = hotbarSlot.GetComponent<InventorySlotData>();
-            hotbarInvSlot.currentItem = inventoryList[i].currentItem;
+            //Clear the existing data
+            hotbarInvSlot.currentItem = inventoryList[i].currentItem;;
             hotbarInvSlot.index = i;
             hotbarInvSlot.UpdateDisplay();
-            //Add listener
+            //Add listener - PROBABLY SHOULD GET RID OF THIS EVENTUALLY
             Button b = hotbarSlot.GetComponent<Button>();
             b.onClick.AddListener(() => ClickHotbarItem(hotbarInvSlot));
         }
@@ -84,19 +78,14 @@ public class Inventory : MonoBehaviour
 
     void ClearHighlight()
     {
-        //if (hotbarPanel.transform.childCount > 0) {
-            InventorySlotData slot = hotbarPanel.transform.GetChild(selectedItemLookup).gameObject.GetComponent<InventorySlotData>();
-            slot.ClearHighlight();
-        //}
+        InventorySlotData slot = hotbarPanel.transform.GetChild(selectedItemLookup).gameObject.GetComponent<InventorySlotData>();
+        slot.ClearHighlight();
     }
 
     void DisplayHighlight()
     {
-        print("Displaying highlight on hotbar item " + selectedItemLookup.ToString());
-        //if (hotbarPanel.transform.childCount > 0) {
-            InventorySlotData slot = hotbarPanel.transform.GetChild(selectedItemLookup).gameObject.GetComponent<InventorySlotData>();
-            slot.ShowHighlight();
-        //}
+        InventorySlotData slot = hotbarPanel.transform.GetChild(selectedItemLookup).gameObject.GetComponent<InventorySlotData>();
+        slot.ShowHighlight();
     }
 
     void OnScrollWheel(InputValue scrollValue) // CONNECTED TO INPUT MANAGER //
@@ -207,11 +196,6 @@ public class Inventory : MonoBehaviour
         //Change the bools
         menuOpen = isMenuOpen;
         inventoryExpanded = true;
-        //Destroy our current hotbar
-        for (int i = 0; i < hotbarPanel.transform.childCount; i++)
-        {
-            Destroy(hotbarPanel.transform.GetChild(i).gameObject);    
-        }
         //Swap the panels
         hotbarPanel.SetActive(false);
         expandedInventoryPanel.SetActive(true);
