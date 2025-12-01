@@ -9,12 +9,17 @@ public class InventorySlotData : MonoBehaviour
     public itemType requiredType = itemType.Ingredient;
     public int index;
     [Header("References")]
-    [SerializeField] Animator animatorController;
     [SerializeField] UnityEngine.UI.Image defaultSprite;
     [SerializeField] UnityEngine.UI.Image secondarySpriteDisplay;
     [SerializeField] TextMeshProUGUI nameDisplay;
     [SerializeField] GameObject quantityDisplay;
     [SerializeField] GameObject artisanIndicator;
+    Animator animatorController;
+
+    void Awake()
+    {
+        animatorController = GetComponent<Animator>();      
+    }
 
     public void ClickItem()
     {
@@ -66,7 +71,14 @@ public class InventorySlotData : MonoBehaviour
             if (DataManager.instance.manifest[currentItem.id].decorativeSprite != null)
             {
                 secondarySpriteDisplay.gameObject.SetActive(true); 
-                secondarySpriteDisplay.sprite = DataManager.instance.manifest[currentItem.id].decorativeSprite;     
+                secondarySpriteDisplay.sprite = DataManager.instance.manifest[currentItem.id].decorativeSprite;
+                if (DataManager.instance.manifest[currentItem.id].itemType == itemType.Seed)
+                {
+                    secondarySpriteDisplay.GetComponent<RectTransform>().localScale = new Vector3(0.5f, 0.5f, 0.5f);             
+                } else
+                {
+                    secondarySpriteDisplay.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
+                }     
             } else
             {
                 secondarySpriteDisplay.gameObject.SetActive(false);        

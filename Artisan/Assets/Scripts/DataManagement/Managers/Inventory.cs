@@ -33,6 +33,7 @@ public class Inventory : MonoBehaviour
             GameObject invSlot = Instantiate(inventorySlotPrefab, expandedInventoryPanel.transform, expandedInventoryPanel.transform);
             inventoryList.Add(invSlot.GetComponent<InventorySlotData>());
         }
+        selectedItemLookup = 0;
     }
 
     // SAVE DATA STUFF //
@@ -83,19 +84,24 @@ public class Inventory : MonoBehaviour
 
     void ClearHighlight()
     {
-        InventorySlotData slot = hotbarPanel.transform.GetChild(selectedItemLookup).gameObject.GetComponent<InventorySlotData>();
-        slot.ClearHighlight();
+        //if (hotbarPanel.transform.childCount > 0) {
+            InventorySlotData slot = hotbarPanel.transform.GetChild(selectedItemLookup).gameObject.GetComponent<InventorySlotData>();
+            slot.ClearHighlight();
+        //}
     }
 
     void DisplayHighlight()
     {
-        InventorySlotData slot = hotbarPanel.transform.GetChild(selectedItemLookup).gameObject.GetComponent<InventorySlotData>();
-        slot.ShowHighlight();
+        print("Displaying highlight on hotbar item " + selectedItemLookup.ToString());
+        //if (hotbarPanel.transform.childCount > 0) {
+            InventorySlotData slot = hotbarPanel.transform.GetChild(selectedItemLookup).gameObject.GetComponent<InventorySlotData>();
+            slot.ShowHighlight();
+        //}
     }
 
     void OnScrollWheel(InputValue scrollValue) // CONNECTED TO INPUT MANAGER //
     {
-        if (menuOpen) return;
+        if (inventoryExpanded) return;
         ClearHighlight();
         //Extract the direction of movement on the hotbar
         Vector2 scrollVector = scrollValue.Get<Vector2>();
@@ -217,11 +223,11 @@ public class Inventory : MonoBehaviour
         //Change the bools
         if (menuOpen) { menuOpen = false; }
         inventoryExpanded = false;
-        //Generate the hotbar preview
-        GenerateHotBar();
         //Swap over the panels
         hotbarPanel.SetActive(true);
         expandedInventoryPanel.SetActive(false);
+        //Generate the hotbar preview
+        GenerateHotBar();
         //Free the player
         PlayerStateManager p = DataManager.instance.player.GetComponent<PlayerStateManager>();
         p.SwitchState(p.idleState);

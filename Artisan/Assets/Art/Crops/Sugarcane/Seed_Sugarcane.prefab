@@ -42,7 +42,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7557937650634401355, guid: ddc9091067c74cd43948ab0e7680fdcb, type: 3}
       propertyPath: plantStages.Array.size
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7557937650634401355, guid: ddc9091067c74cd43948ab0e7680fdcb, type: 3}
       propertyPath: 'plantStages.Array.data[0]'
@@ -63,7 +63,7 @@ PrefabInstance:
     - target: {fileID: 7557937650634401355, guid: ddc9091067c74cd43948ab0e7680fdcb, type: 3}
       propertyPath: 'plantStages.Array.data[4]'
       value: 
-      objectReference: {fileID: 919132149155446097, guid: 27dd80714ef55604081f5862a586dc7d, type: 3}
+      objectReference: {fileID: 919132149155446097, guid: 9b7b3cb10ff636046a77e6fba85e3b2d, type: 3}
     - target: {fileID: 7557937650634401355, guid: ddc9091067c74cd43948ab0e7680fdcb, type: 3}
       propertyPath: 'plantStages.Array.data[5]'
       value: 

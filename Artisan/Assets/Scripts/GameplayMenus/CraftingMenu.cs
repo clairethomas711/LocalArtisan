@@ -232,18 +232,16 @@ public class CraftingMenu : GameplayMenu
         return null;   
     }
 
-    public override void Open(List<InventoryItem> inventory)
+    public override void CustomOpen(List<InventoryItem> inventory)
     {
-        PausePlayer();
         AnimateIn();
         Inventory inv = DataManager.instance.player.GetComponent<Inventory>();
         inv.OpenExpandedInventory(true);
-        gameObject.SetActive(true);
         if (recipeBookDisplay) { recipeBookDisplay.OpenRecipeBook(machine); }
         UpdateDisplay();
     }
 
-    public override void Close()
+    public override void CustomClose()
     {
         //For each item on the crafting table
         for (int i = 0; i < tableSlots.Count; i++)
@@ -261,9 +259,7 @@ public class CraftingMenu : GameplayMenu
         UpdateDisplay();
         Inventory inv = DataManager.instance.player.GetComponent<Inventory>();
         inv.CloseExpandedInventory();
-        gameObject.SetActive(false);
         AnimateOut();
-        UnpausePlayer();
     }
 
     //Triggers any visual animations / camera movements we have given it

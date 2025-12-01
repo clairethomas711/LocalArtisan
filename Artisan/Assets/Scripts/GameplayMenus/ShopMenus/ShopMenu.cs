@@ -16,7 +16,7 @@ public class ShopMenu : GameplayMenu
 
     List<ItemData> shopManifest = new List<ItemData>();
 
-    public override void Open(List<InventoryItem> shopInventory)
+    public override void CustomOpen(List<InventoryItem> shopInventory)
     {
         PausePlayer();
         //Now that the shop is open, we reconstruct the shop manifest using the InventoryItems
@@ -45,7 +45,7 @@ public class ShopMenu : GameplayMenu
         gameObject.SetActive(true);
     }
 
-    public override void Close()
+    public override void CustomClose()
     {
         for (int i = 0; i < slots.transform.childCount; i++)
         {

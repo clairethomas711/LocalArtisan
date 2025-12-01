@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3515799447572123753}
   - component: {fileID: 1597051063932419855}
   - component: {fileID: 5752909069962311485}
+  - component: {fileID: 6503499484285849455}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -203,14 +204,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxCapacity: 20
+  hotbarCapacity: 10
   inventoryList: []
   menuOpen: 0
+  hotbarSlotPrefab: {fileID: 0}
+  inventorySlotPrefab: {fileID: 0}
   hotbarPanel: {fileID: 0}
   expandedInventoryPanel: {fileID: 0}
-  currentSelection:
+  currentHotbarSelection:
     id: 
     quantity: 0
     customItemData: 
+--- !u!114 &6503499484285849455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3591143578135409394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdfdc49c12b03ed498a5daf37df8d111, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 0}
 --- !u!1 &4179287669597767093
 GameObject:
   m_ObjectHideFlags: 0

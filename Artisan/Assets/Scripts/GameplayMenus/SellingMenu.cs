@@ -11,13 +11,11 @@ public class SellingMenu : GameplayMenu
         set { currentInventory = value; }
     }
 
-    public override void Open(List<InventoryItem> inventory)
+    public override void CustomOpen(List<InventoryItem> inventory)
     {
-        PausePlayer();
         //Open the player's expanded inventory
         Inventory inv = DataManager.instance.player.GetComponent<Inventory>();
         inv.OpenExpandedInventory(true);
-        gameObject.SetActive(true);
         //Add blank inventory slots
         for (int i = 0; i < inventorySlots.Count; i++)
         {
@@ -30,7 +28,7 @@ public class SellingMenu : GameplayMenu
         }
         UpdateDisplay();
     }
-    public override void Close()
+    public override void CustomClose()
     {
         for (int i = 0; i < inventorySlots.Count; i++)
         {
@@ -45,9 +43,7 @@ public class SellingMenu : GameplayMenu
         }
         UpdateDisplay();
         Inventory inv = DataManager.instance.player.GetComponent<Inventory>();
-        inv.CloseExpandedInventory();
-        gameObject.SetActive(false);
-        UnpausePlayer();    
+        inv.CloseExpandedInventory();   
     }
 
     public void Sell()

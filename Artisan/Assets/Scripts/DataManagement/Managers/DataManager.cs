@@ -22,6 +22,7 @@ public class DataManager : MonoBehaviour
     [SerializeField] public GameObject staticMachines;
     [SerializeField] public GameObject notificationManager;
     [SerializeField] SunManager sunManager;
+    [SerializeField] public GameplayMenu pauseMenu;
     [Header("Data Objects")]
     public ItemManifest itemManifest;
     public CraftingManifest craftingRecipeManifest;
@@ -33,6 +34,7 @@ public class DataManager : MonoBehaviour
     [Header("Debug Tools")]
     [SerializeField] bool resetData;
     [SerializeField] List<string> debugStartingInventory = new List<string>();
+    [SerializeField] List<int> debugStartingInventoryQuantity = new List<int>();
     [SerializeField] GameObject notification;
     //Global variables
     [HideInInspector] public int currentDay;
@@ -40,6 +42,7 @@ public class DataManager : MonoBehaviour
     [HideInInspector] public float stamina;
 
     //Manifests and large data storage
+    [HideInInspector] public GameplayMenu activeMenu;
     [HideInInspector] public Inventory playerInventory;
     [HideInInspector] public Dictionary<string, ItemData> manifest = new Dictionary<string, ItemData>();
     [HideInInspector] public Dictionary<string, CraftingRecipe> recipeManifest = new Dictionary<string, CraftingRecipe>();
@@ -98,12 +101,16 @@ public class DataManager : MonoBehaviour
         {
             recipeManifest[craftingRecipeManifest.scriptableItems[i].id] = craftingRecipeManifest.scriptableItems[i];
         }
+    }
+
+    void Start()
+    {
         playerInventory = player.GetComponent<Inventory>();
         gameTimeReal = 0;
-        gameTime.Hour = 6;
+        gameTime.Hour = 7;
 
         // DEBUG SHIT //
-        if (resetData) { GenerateNewSaveData(); }
+        if (resetData || !File.Exists(path)) { GenerateNewSaveData(); }
 
         LoadFarmLayout();
     }
@@ -260,8 +267,7 @@ public class DataManager : MonoBehaviour
         for (int i = 0; i < barnManager.animals.Count; i++)
         {
             //Convert to AnimalData object and add
-            AnimalData new_animal = new AnimalData();
-            new_animal = barnManager.animals[i];
+            AnimalData new_animal = barnManager.animals[i];
             a.Add(new_animal);
         }
 
@@ -295,10 +301,10 @@ public class DataManager : MonoBehaviour
     void LoadFarmLayout()
     {
         SendNotification("Loading...!");
-        if (!File.Exists(path))
-        {
-            GenerateNewSaveData();
-        }
+        //if (!File.Exists(path))
+        //{
+            //GenerateNewSaveData();
+        //}
         string json = File.ReadAllText(path);
         SaveData farm = JsonUtility.FromJson<SaveData>(json);
         // BASIC DATA //
@@ -352,7 +358,7 @@ public class DataManager : MonoBehaviour
         uiManager.UpdateUIVisuals();
     }
 
-    void GenerateNewSaveData()
+    public void GenerateNewSaveData()
     {
         SaveData farm = new SaveData();
         farm.date = 1;
@@ -402,7 +408,7 @@ public class DataManager : MonoBehaviour
         {
             if (i < debugStartingInventory.Count)
             {
-                farm.inv.Add(new InventoryItem(debugStartingInventory[i], 1));
+                farm.inv.Add(new InventoryItem(debugStartingInventory[i], debugStartingInventoryQuantity[i]));
             }
             else
             {
@@ -410,13 +416,25 @@ public class DataManager : MonoBehaviour
             }
         }
         //Animals
-        farm.animals = null;
+        farm.animals = new List<AnimalData>();
+        farm.animals.Add(new AnimalData("anim_chicken", true));
 
         //Progression
         farm.progression = progressionManager.NewProgressionData();
 
         string json = JsonUtility.ToJson(farm);
         File.WriteAllText(path, json);
+
+        //If this is a new data file, start the game with the pause menu open
+        activeMenu = pauseMenu;
+        pauseMenu.Open();
+        PauseGame(true);
+    }
+
+    public void DeleteData()
+    {
+        File.Delete(path);
+        Application.Quit();
     }
 
     [System.Serializable]

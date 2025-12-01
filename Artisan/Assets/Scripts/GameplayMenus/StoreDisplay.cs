@@ -18,7 +18,7 @@ public class StoreDisplay : GameplayMenu
             inventorySlots.Add(slots.transform.GetChild(i).gameObject.GetComponent<InventorySlotData>());
     }
 
-    public override void Open(List<InventoryItem> shelfInventory)
+    public override void CustomOpen(List<InventoryItem> shelfInventory)
     {
         //Pause the player (this is a UI thing, but should probably be moved!)
         PausePlayer();
@@ -30,7 +30,7 @@ public class StoreDisplay : GameplayMenu
         UpdateDisplay();
     }
 
-    public override void Close()
+    public override void CustomClose()
     {
         UpdateShelfDisplay();
         //Close the inventory UI and release the player

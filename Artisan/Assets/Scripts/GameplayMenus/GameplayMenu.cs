@@ -17,10 +17,6 @@ public abstract class GameplayMenu : MonoBehaviour
         }
     }
 
-    public void OnCancel(InputAction.CallbackContext ctx) //WHY DOESN'T THIS WORK. FIGURE IT OUT LATER
-    {
-        print("I hit escape!!");
-    }
     public void PausePlayer()
     {
         PlayerStateManager p = DataManager.instance.player.GetComponent<PlayerStateManager>();
@@ -33,7 +29,21 @@ public abstract class GameplayMenu : MonoBehaviour
         p.SwitchState(p.idleState);
         DataManager.instance.PauseGame(false);
     }
-    public abstract void Open(List<InventoryItem> inventory = null);
-    public abstract void Close();
+    public void Open(List<InventoryItem> inventory = null)
+    {
+        PausePlayer();
+        gameObject.SetActive(true);
+        DataManager.instance.activeMenu = this;
+        CustomOpen(inventory);      
+    }
+    public void Close()
+    {
+        DataManager.instance.activeMenu = null;
+        CustomClose(); 
+        gameObject.SetActive(false);
+        UnpausePlayer();     
+    }
+    public abstract void CustomOpen(List<InventoryItem> inventory = null);
+    public abstract void CustomClose();
 
 }

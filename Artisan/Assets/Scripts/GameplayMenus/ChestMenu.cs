@@ -12,12 +12,10 @@ public class ChestMenu : GameplayMenu
         set { chestSlots = value; }
     }
 
-    public override void Open(List<InventoryItem> chestInventory)
+    public override void CustomOpen(List<InventoryItem> chestInventory)
     {
-        PausePlayer();
         Inventory inv = DataManager.instance.player.GetComponent<Inventory>();
         inv.OpenExpandedInventory(true);
-        gameObject.SetActive(true);
 
         //Generate a set of slot data based on inventory from the manifest
         for (int i = 0; i < chestInventory.Count; i++)
@@ -31,7 +29,7 @@ public class ChestMenu : GameplayMenu
         UpdateDisplay();
     }
 
-    public override void Close()
+    public override void CustomClose()
     {
         //Save the item list into the manifest
         List<InventoryItem> currentChestInventory = DataManager.instance.chestManager.chestManifest[currentChest];
@@ -50,8 +48,6 @@ public class ChestMenu : GameplayMenu
         //Close the chest UI
         Inventory inv = DataManager.instance.player.GetComponent<Inventory>();
         inv.CloseExpandedInventory();
-        gameObject.SetActive(false);
-        UnpausePlayer();
     }
 
     public void ConnectChest(string c)
