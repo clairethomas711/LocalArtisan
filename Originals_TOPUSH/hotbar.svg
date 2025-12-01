@@ -28,7 +28,7 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
      inkscape:zoom="0.24661688"
-     inkscape:cx="1319.861"
+     inkscape:cx="1321.8884"
      inkscape:cy="1279.3123"
      inkscape:window-width="1920"
      inkscape:window-height="1001"
@@ -37,7 +37,7 @@
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1" /><defs
      id="defs1"><filter
-       inkscape:label="Film Grain"
+       inkscape:label="Vintage Cardboard"
        inkscape:menu="Image Effects"
        inkscape:menu-tooltip="Adds a small scale graininess"
        style="color-interpolation-filters:sRGB"
@@ -48,7 +48,7 @@
        height="1.1306678"><feTurbulence
          type="fractalNoise"
          numOctaves="1"
-         baseFrequency="0.21899999999999992"
+         baseFrequency="3.7754569536423839"
          seed="0"
          result="result0"
          id="feTurbulence3" /><feColorMatrix

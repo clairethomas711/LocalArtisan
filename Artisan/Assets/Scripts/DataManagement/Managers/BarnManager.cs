@@ -17,8 +17,7 @@ public class BarnManager : MonoBehaviour
             return false;
         }
         //Add the data to the list
-        AnimalData newAnimal = new AnimalData();
-        newAnimal.id = animalToBuy.id;
+        AnimalData newAnimal = new AnimalData(animalToBuy.id, true);
         animals.Add(newAnimal);
         //Update the barn population
         UpdateBarn();
