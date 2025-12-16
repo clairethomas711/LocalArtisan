@@ -761,8 +761,8 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 1
-  m_CellSize: {x: 500, y: 100}
-  m_Spacing: {x: 1, y: 5}
+  m_CellSize: {x: 480, y: 100}
+  m_Spacing: {x: 0, y: 1}
   m_Constraint: 1
   m_ConstraintCount: 1
 --- !u!114 &873451626691130074
@@ -870,4 +870,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slots: {fileID: 7000118127585554077}
+  shopData: {fileID: 0}
   shopOfferingPrefab: {fileID: 0}

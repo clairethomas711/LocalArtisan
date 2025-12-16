@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79779cfed7cbb37478520cca3ff10b48, type: 3}
   m_Name: seed_basil
   m_EditorClassIdentifier: 
-  displayName: Basil Seeds
-  description: 
+  displayName: Basil Seed
+  description: Grows into Basil after 4 days. Regrows after harvest. Used to add
+    flavor.
   id: seed_basil
   itemType: 3
   primarySprite: {fileID: 21300000, guid: 0ce91ad751a4dd045bdbcbcb1ee80d82, type: 3}

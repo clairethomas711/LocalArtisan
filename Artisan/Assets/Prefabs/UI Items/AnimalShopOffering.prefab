@@ -144,8 +144,20 @@ MonoBehaviour:
   itemName: {fileID: 8493025884812177789}
   itemDescription: {fileID: 4790270475448030464}
   itemPrice: {fileID: 2677743755532390643}
-  sprite: {fileID: 42542890631279501}
-  offeringData: {fileID: 0}
+  primarySprite: {fileID: 42542890631279501}
+  decorativeSprite: {fileID: 1061585881022819576}
+  offeringData: 
+--- !u!114 &1061585881022819576 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7169310728267111588, guid: 25b996448de1a2348a8c7dbba4ce94e2, type: 3}
+  m_PrefabInstance: {fileID: 7909729027373232220}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2677743755532390643 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5254646774633210031, guid: 25b996448de1a2348a8c7dbba4ce94e2, type: 3}

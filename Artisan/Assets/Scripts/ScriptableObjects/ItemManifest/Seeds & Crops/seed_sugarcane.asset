@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79779cfed7cbb37478520cca3ff10b48, type: 3}
   m_Name: seed_sugarcane
   m_EditorClassIdentifier: 
-  displayName: Sugarcane Seeds
+  displayName: Sugarcane Seed
   description: Grows into Sugarcane after 5 days, which can be milled into Sugar.
-    Sugar can combined with other items.
+    Regrows after harvest. Sugar can combined with other items.
   id: seed_sugarcane
   itemType: 3
   primarySprite: {fileID: 21300000, guid: 0ce91ad751a4dd045bdbcbcb1ee80d82, type: 3}

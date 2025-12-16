@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79779cfed7cbb37478520cca3ff10b48, type: 3}
   m_Name: seed_beet
   m_EditorClassIdentifier: 
-  displayName: Beet Seeds
-  description: 
+  displayName: Beet Seed
+  description: Grows into a Beet after 3 days. Used to add flavor.
   id: seed_beet
   itemType: 3
   primarySprite: {fileID: 21300000, guid: deb6fbf2d9a776244bb0a7340ac2ff06, type: 3}

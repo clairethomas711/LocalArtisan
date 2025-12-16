@@ -6,7 +6,9 @@ using UnityEngine.UI;
 
 public class ShopMenu : GameplayMenu
 {
+    [SerializeField] ShopData shopData;
     [SerializeField] GameObject shopOfferingPrefab;
+    List<InventoryItem> shopInventory = new List<InventoryItem>();
     List<InventorySlotData> listingSlots = new List<InventorySlotData>();
     public override List<InventorySlotData> inventorySlots
     {
@@ -16,9 +18,15 @@ public class ShopMenu : GameplayMenu
 
     List<ItemData> shopManifest = new List<ItemData>();
 
-    public override void CustomOpen(List<InventoryItem> shopInventory)
+    public override void CustomOpen(List<InventoryItem> inv)
     {
         PausePlayer();
+        //This is not a good method and I'm sorry
+        for (int i = 0; i < shopData.scriptableItems.Count; i++)
+        {
+            //The open function needs InventoryItems, so we create those from the ItemData
+            shopInventory.Add(new InventoryItem(shopData.scriptableItems[i].id, 1));
+        }
         //Now that the shop is open, we reconstruct the shop manifest using the InventoryItems
         for (int i = 0; i < shopInventory.Count; i++)
         {
@@ -43,6 +51,7 @@ public class ShopMenu : GameplayMenu
 
         UpdateShopDisplay();
         gameObject.SetActive(true);
+        shopInventory.Clear();
     }
 
     public override void CustomClose()
