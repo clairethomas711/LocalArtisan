@@ -75867,6 +75867,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d89988392ef53174e98cb28a924467de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  questPanel: {fileID: 849693787}
+  questHintPrefab: {fileID: 1720362694477194355, guid: e5a95339b685f6744a7d265710a77bba, type: 3}
 --- !u!4 &527536544
 Transform:
   m_ObjectHideFlags: 0
@@ -122469,6 +122471,108 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6048466025052495949, guid: 00a256223680fe245847fedeec853b86, type: 3}
   m_PrefabInstance: {fileID: 848198970}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &849693787
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 849693788}
+  - component: {fileID: 849693790}
+  - component: {fileID: 849693789}
+  - component: {fileID: 849693791}
+  m_Layer: 5
+  m_Name: QuestsPanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &849693788
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849693787}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2145720475}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 250, y: 400}
+  m_Pivot: {x: 1, y: 1}
+--- !u!114 &849693789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849693787}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &849693790
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849693787}
+  m_CullTransparentMesh: 1
+--- !u!114 &849693791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849693787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 2
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 1
+  m_ChildScaleHeight: 1
+  m_ReverseArrangement: 0
 --- !u!1001 &850926899
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -189585,6 +189689,7 @@ MonoBehaviour:
   uiManager: {fileID: 2145720477}
   player: {fileID: 79675357}
   grab: {fileID: 1476573452}
+  notification: {fileID: 4297460580870484600, guid: 01204682542a84e45a135616b22d5fe5, type: 3}
   barnManager: {fileID: 625235362}
   chestManager: {fileID: 725824862}
   progressionManager: {fileID: 527536543}
@@ -189594,21 +189699,36 @@ MonoBehaviour:
   pauseMenu: {fileID: 332760260}
   itemManifest: {fileID: 11400000, guid: 4faf4dc7ec07d4a48a182d5cf973f9e8, type: 2}
   craftingRecipeManifest: {fileID: 11400000, guid: 69f38326b7bf054429f7f0058f10db61, type: 2}
+  allQuestsManifest: {fileID: 11400000, guid: e309e06f0fdb3cf42a1149c7eca0c8d3, type: 2}
   path: savegame.json
   respawnPoint: {fileID: 527637402}
   maxStamina: 0
   startingGold: 10
   resetData: 1
   debugStartingInventory:
-  - tool_hatchet
-  - tool_hoe
-  - tool_wateringcan
-  - tool_pail
-  - seed_wheat
-  - seed_sugarcane
-  - seed_beet
-  debugStartingInventoryQuantity: 01000000010000000100000001000000050000000300000003000000
-  notification: {fileID: 4297460580870484600, guid: 01204682542a84e45a135616b22d5fe5, type: 3}
+  - id: tool_hatchet
+    quantity: 1
+    customItemData: 
+  - id: tool_hoe
+    quantity: 2
+    customItemData: 
+  - id: tool_wateringcan
+    quantity: 1
+    customItemData: 
+  - id: tool_pail
+    quantity: 1
+    customItemData: 
+  - id: seed_wheat
+    quantity: 5
+    customItemData: 
+  - id: seed_sugarcane
+    quantity: 3
+    customItemData: 
+  - id: seed_beet
+    quantity: 3
+    customItemData: 
+  debugStartingQuests:
+  - upgrade_mill
   currentDay: 0
   money: 0
   stamina: 0
@@ -304583,6 +304703,7 @@ RectTransform:
   - {fileID: 255264090}
   - {fileID: 522079317}
   - {fileID: 941437466}
+  - {fileID: 849693788}
   - {fileID: 1022199075}
   - {fileID: 983596637}
   - {fileID: 231093898}

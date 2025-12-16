@@ -16,6 +16,7 @@ public class DataManager : MonoBehaviour
     [SerializeField] public InterfaceManager uiManager;
     [SerializeField] public GameObject player;
     [SerializeField] public CursorGrab grab;
+    [SerializeField] GameObject notification;
     [SerializeField] public BarnManager barnManager;
     [SerializeField] public ChestManager chestManager;
     [SerializeField] public ProgressionManager progressionManager;
@@ -26,6 +27,7 @@ public class DataManager : MonoBehaviour
     [Header("Data Objects")]
     public ItemManifest itemManifest;
     public CraftingManifest craftingRecipeManifest;
+    public QuestManifest allQuestsManifest;
     [Header("Game Settings")]
     [SerializeField] string path;
     [SerializeField] Transform respawnPoint;
@@ -33,9 +35,9 @@ public class DataManager : MonoBehaviour
     [SerializeField] int startingGold;
     [Header("Debug Tools")]
     [SerializeField] bool resetData;
-    [SerializeField] List<string> debugStartingInventory = new List<string>();
-    [SerializeField] List<int> debugStartingInventoryQuantity = new List<int>();
-    [SerializeField] GameObject notification;
+    [SerializeField] List<InventoryItem> debugStartingInventory = new List<InventoryItem>();
+    [SerializeField] List<string> debugStartingQuests = new List<string>();
+    
     //Global variables
     [HideInInspector] public int currentDay;
     [HideInInspector] public float money;
@@ -46,6 +48,7 @@ public class DataManager : MonoBehaviour
     [HideInInspector] public Inventory playerInventory;
     [HideInInspector] public Dictionary<string, ItemData> manifest = new Dictionary<string, ItemData>();
     [HideInInspector] public Dictionary<string, CraftingRecipe> recipeManifest = new Dictionary<string, CraftingRecipe>();
+    [HideInInspector] public Dictionary<string, QuestData> questManifest = new Dictionary<string, QuestData>();
     [HideInInspector] public Dictionary<Vector2, Tile> tileManifest = new Dictionary<Vector2, Tile>();
     
     //Game Clock stuff
@@ -97,9 +100,15 @@ public class DataManager : MonoBehaviour
         {
             manifest[itemManifest.toolItems[i].id] = itemManifest.toolItems[i];
         }
+        //Crafting Recipe Manifest
         for (int i = 0; i < craftingRecipeManifest.scriptableItems.Count; i++)
         {
             recipeManifest[craftingRecipeManifest.scriptableItems[i].id] = craftingRecipeManifest.scriptableItems[i];
+        }
+        //Quest Manifest
+        for (int i = 0; i < allQuestsManifest.quests.Count; i++)
+        {
+            questManifest[allQuestsManifest.quests[i].id] = allQuestsManifest.quests[i];
         }
     }
 
@@ -408,7 +417,7 @@ public class DataManager : MonoBehaviour
         {
             if (i < debugStartingInventory.Count)
             {
-                farm.inv.Add(new InventoryItem(debugStartingInventory[i], debugStartingInventoryQuantity[i]));
+                farm.inv.Add(debugStartingInventory[i].Copy());
             }
             else
             {
@@ -421,6 +430,12 @@ public class DataManager : MonoBehaviour
 
         //Progression
         farm.progression = progressionManager.NewProgressionData();
+        //Activate our debug starting quests
+        for (int i = 0; i < debugStartingQuests.Count; i++)
+        {
+            progressionManager.ActivateQuest(debugStartingQuests[i]);
+        }
+        farm.progression = progressionManager.GetProgressionData();
 
         string json = JsonUtility.ToJson(farm);
         File.WriteAllText(path, json);

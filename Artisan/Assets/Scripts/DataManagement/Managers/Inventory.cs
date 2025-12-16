@@ -145,6 +145,7 @@ public class Inventory : MonoBehaviour
                 inventoryList[j].currentItem.quantity += itemToAdd.quantity;
                 inventoryList[j].UpdateDisplay();
                 if (!menuOpen) { GenerateHotBar(); }
+                DataManager.instance.progressionManager.CollectItem(itemToAdd.id, itemToAdd.quantity);
                 return;
             }
         }
@@ -156,6 +157,7 @@ public class Inventory : MonoBehaviour
                 inventoryList[j].currentItem = itemToAdd;
                 inventoryList[j].UpdateDisplay();
                 if (!menuOpen) { GenerateHotBar(); }
+                DataManager.instance.progressionManager.CollectItem(itemToAdd.id, itemToAdd.quantity);
                 return;
             }
         }
