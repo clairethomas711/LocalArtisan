@@ -91,6 +91,10 @@ public class Crop : Interactable
 
     public string UseWateringCan()
     {
+        if (state != PlantState.Watered)
+        {
+            DataManager.instance.progressionManager.QuestSignal(taskType.WaterCrop, product, 1);
+        }
         state = PlantState.Watered;
         return currentTile.UseWateringCan();
     }
@@ -99,6 +103,7 @@ public class Crop : Interactable
     {
         //Give the player the product
         DataManager.instance.playerInventory.AddInventoryItem(new InventoryItem(product, 1));
+        DataManager.instance.progressionManager.QuestSignal(taskType.HarvestCrop, product, 1);
         //If this is a regrowable crop, then reset it's state and display
         if (regrows)
         {

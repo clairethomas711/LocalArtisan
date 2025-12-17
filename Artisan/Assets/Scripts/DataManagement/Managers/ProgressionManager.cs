@@ -9,6 +9,7 @@ public class ProgressionManager : MonoBehaviour
     public Dictionary<string, int> knownSpecializations = new Dictionary<string, int>(); //All the specializations and how many hours we have in each
     public Dictionary<string, int> knownRecipes = new Dictionary<string, int>(); //All recipes we've made and how many times we've made it
     public List<ActiveQuest> activeQuests = new List<ActiveQuest>(); //List of active quests
+    public List<string> completedQuests = new List<string>(); //List of previously completed quests
     public Dictionary<string, bool> flags = new Dictionary<string, bool>();
 
     //Large Progression Data Struct
@@ -18,6 +19,7 @@ public class ProgressionManager : MonoBehaviour
         public List<SpecializationProgressionData> knownSpecializations;
         public List<RecipeProgressionData> knownRecipes;
         public List<QuestProgressionData> activeQuests;
+        public List<string> completedQuestIds;
         public List<FlagData> flags;
     }
     //Recipe Progression Save Data
@@ -56,6 +58,7 @@ public class ProgressionManager : MonoBehaviour
         saveData.knownSpecializations = new List<SpecializationProgressionData>();
         saveData.knownRecipes = new List<RecipeProgressionData>();
         saveData.activeQuests = new List<QuestProgressionData>();
+        saveData.completedQuestIds = new List<string>();
         saveData.flags = new List<FlagData>();
         return JsonUtility.ToJson(saveData);      
     }
@@ -93,6 +96,7 @@ public class ProgressionManager : MonoBehaviour
             q.tasksProgression = activeQuests[i].GetTaskSaveData();
             saveData.activeQuests.Add(q);
         }
+        saveData.completedQuestIds = new List<string>(completedQuests);
         //Serialize flags
         saveData.flags = new List<FlagData>();
         Dictionary<string, bool>.KeyCollection flagKeys = flags.Keys;
@@ -133,6 +137,7 @@ public class ProgressionManager : MonoBehaviour
             ActiveQuest q = ActivateQuest(loadedData.activeQuests[i].questId);
             q.SetTaskData(loadedData.activeQuests[i].tasksProgression);
         }
+        completedQuests = new List<string>(loadedData.completedQuestIds);
         //Set flag data
         for (int i = 0; i < loadedData.flags.Count; i++)
         {
@@ -165,6 +170,10 @@ public class ProgressionManager : MonoBehaviour
     
     public ActiveQuest ActivateQuest(string questId)
     {
+        //Is this quest already complete?
+        if (completedQuests.Contains(questId))
+            return null;
+        //Is this quest already active?
         for (int i = 0; i < activeQuests.Count; i++)
         {
             if (activeQuests[i].questId == questId)
@@ -188,30 +197,101 @@ public class ProgressionManager : MonoBehaviour
         return newQuest;
     }
 
-
-
-    public void CollectItem(string itemId, int quantity = 1)
+    public void UpdateQuest(ActiveQuest quest)
     {
+        //If we still have tasks uncompleted, then just update the visual
+        for (int i = 0; i < quest.tasks.Count; i++)
+        {
+            if (!quest.tasks[i].completed)
+            {
+                quest.activeQuestUIObject.UpdateActiveQuestHint(quest);
+                return;
+            }
+        }
+        //If all tasks are completed, then we should mark the quest complete
+        CompleteQuest(quest);
+    }
+
+    public void CompleteQuest(ActiveQuest quest)
+    {
+        //Give the player the rewards
+        List<QuestReward> rewardsToGive = DataManager.instance.questManifest[quest.questId].questRewards;
+        for (int i = 0; i < rewardsToGive.Count; i++)
+        {
+            QuestReward reward = rewardsToGive[i];
+            switch(reward.rewardType)
+            {
+                // MONEY //
+                case (rewardType.Money):
+                    DataManager.instance.AddMoney(reward.rewardQuantity);
+                    break;
+                // QUEST //
+                case (rewardType.Quest):
+                    ActivateQuest(reward.rewardId);
+                    break;
+            }
+
+        }
+        //Update the quest visuals
+        quest.activeQuestUIObject.UpdateActiveQuestHint(quest, true);
+        //Remove from the active list and add to the completed list
+        completedQuests.Add(quest.questId);
+        activeQuests.Remove(quest);
+    }
+
+    public void QuestSignal(taskType taskType, string itemId, int quantity)
+    {
+        bool dataChanged = false;
         //For each task that exists in our active quests
         for (int i = 0; i < activeQuests.Count; i++)
         {
             for (int j = 0; j < activeQuests[i].tasks.Count; j++)
             {
-                //Are we trying to collect items of this type?
-                if (activeQuests[i].tasks[j].taskType == taskType.CollectItem && activeQuests[i].tasks[j].requiredItemId == itemId)
+                if (activeQuests[i].tasks[j].completed)
+                    continue;
+                //Are we paying attention to this task type?
+                if (activeQuests[i].tasks[j].taskType == taskType)
                 {
                     ActiveQuestTaskData relevantTask = activeQuests[i].tasks[j];
-                    relevantTask.currentQuantity += quantity;
-                    if (relevantTask.currentQuantity >= relevantTask.requiredQuantity)
+                    //Now our reaction is based on the task type (might not need this???)
+                    switch(taskType)
                     {
-                        relevantTask.completed = true;
-                    }
-                    activeQuests[i].activeQuestUIObject.UpdateActiveQuestHint(activeQuests[i]);
+                        case (taskType.CollectItem):
+                        case (taskType.WaterCrop):
+                        case (taskType.PlaceItem):
+                        case (taskType.HarvestCrop):
+                            if (itemId == relevantTask.requiredItemId) //Is this the item we're looking for?
+                            {
+                                relevantTask.currentQuantity += quantity; //Update the quantity
+                                dataChanged = true;
+                                if (relevantTask.currentQuantity >= relevantTask.requiredQuantity)
+                                {
+                                    relevantTask.completed = true;
+                                }    
+                            }
+                            break;
+                        case (taskType.StockGood):
+                            dataChanged = true;
+                            if (DataManager.instance.store.goodsManifest.ContainsKey(relevantTask.requiredItemId))
+                            {
+                                relevantTask.currentQuantity = DataManager.instance.store.goodsManifest[relevantTask.requiredItemId];
+                                if (relevantTask.currentQuantity >= relevantTask.requiredQuantity)
+                                {
+                                    relevantTask.completed = true;
+                                } 
+                            }
+                            else
+                            {
+                                relevantTask.currentQuantity = 0;
+                            }
+                            break;
+                    }   
                 }
             }
+            if (dataChanged)
+                UpdateQuest(activeQuests[i]);
         }
     }
-
 }
 
 public class ActiveQuest
@@ -244,7 +324,7 @@ public class ActiveQuest
             if (tasks[i].requiredQuantity != 0) //If we have a required quantity, then we are tracking a value
             {
                 tasks[i].currentQuantity = progressData[i];
-                if (tasks[i].currentQuantity > tasks[i].requiredQuantity)
+                if (tasks[i].currentQuantity >= tasks[i].requiredQuantity)
                 {
                     tasks[i].completed = true;
                 } else

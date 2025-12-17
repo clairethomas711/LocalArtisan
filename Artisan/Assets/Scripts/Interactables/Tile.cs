@@ -93,6 +93,7 @@ public class Tile : Interactable
         {
             tileInventory.Initialize(this); //Initialize the new object
             DataManager.instance.playerInventory.RemoveInventoryItem(currentItem); //Remove that item from the inventory
+            DataManager.instance.progressionManager.QuestSignal(taskType.PlaceItem, currentItem, 1);
         }
         else
         {
@@ -293,6 +294,7 @@ public class Tile : Interactable
                     }
                 }
             }
+            DataManager.instance.progressionManager.QuestSignal(taskType.PlaceItem, tileInventoryId, -1);
         }
         if (isStatic) { state = TileState.Static; }
         else { state = TileState.Untilled; }

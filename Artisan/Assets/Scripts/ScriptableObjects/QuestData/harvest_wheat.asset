@@ -10,23 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a776f90b25186684db5133d0cbe543ba, type: 3}
-  m_Name: upgrade_mill
+  m_Name: harvest_wheat
   m_EditorClassIdentifier: 
-  questTitle: Repair the Mill
-  id: upgrade_mill
+  questTitle: Grow A Crop
+  id: harvest_wheat
   questTasks:
-  - taskType: 0
-    taskQuantity: 50
-    taskItemId: res_wood
-    description: Collect 50 wood
-  - taskType: 0
-    taskQuantity: 50
-    taskItemId: res_stone
-    description: Collect 50 stone
+  - taskType: 1
+    taskQuantity: 5
+    taskItemId: seed_wheat
+    description: Plant 5 Wheat
+  - taskType: 2
+    taskQuantity: 5
+    taskItemId: crop_wheat
+    description: Water 5 Wheat
+  - taskType: 3
+    taskQuantity: 5
+    taskItemId: crop_wheat
+    description: Harvest 5 Wheat
   questRewards:
   - rewardType: 0
     rewardQuantity: 100
     rewardId: 
   - rewardType: 1
     rewardQuantity: 0
-    rewardId: harvest_wheat
+    rewardId: craft_bread

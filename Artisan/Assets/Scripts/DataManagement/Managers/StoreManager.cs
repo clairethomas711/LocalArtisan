@@ -11,6 +11,7 @@ public class StoreManager : Interactable
     [SerializeField] int maxCustomerPurchase = 50;
     Dictionary<StoreDisplay, List<InventoryItem>> storeInventory = new Dictionary<StoreDisplay, List<InventoryItem>>(); //Contains all shelf slots
     Dictionary<StoreDisplay, List<InventoryItem>> sellableInventory = new Dictionary<StoreDisplay, List<InventoryItem>>(); //Contains ONLY shelves with things to sell and those items within
+    public Dictionary<string, int> goodsManifest = new Dictionary<string, int>(); //All items for sale and how many we have (for quests)
     int timeOfLastSale;
 
     void Start()
@@ -70,6 +71,7 @@ public class StoreManager : Interactable
     //Updates the DATA of the inventory of the shop.
     public void UpdateInventoryData()
     {
+        goodsManifest = new Dictionary<string, int>();
         //For each store shelf
         for (int i = 0; i < knownStoreDisplays.Count; i++)
         {
@@ -85,6 +87,10 @@ public class StoreManager : Interactable
                 {
                     sellableInventory[knownStoreDisplays[i]].Add(knownStoreDisplays[i].inventorySlots[j].currentItem);
                 }
+                if (goodsManifest.ContainsKey(knownStoreDisplays[i].inventorySlots[j].currentItem.id))
+                    goodsManifest[knownStoreDisplays[i].inventorySlots[j].currentItem.id] += knownStoreDisplays[i].inventorySlots[j].currentItem.quantity;
+                else
+                    goodsManifest[knownStoreDisplays[i].inventorySlots[j].currentItem.id] = knownStoreDisplays[i].inventorySlots[j].currentItem.quantity;
             }
             //When we are done going through a shelf, check if any of it was sellable. If not, remove that shelf from the sellable dictionary
             if (sellableInventory[knownStoreDisplays[i]].Count <= 0)
@@ -92,6 +98,7 @@ public class StoreManager : Interactable
                 sellableInventory.Remove(knownStoreDisplays[i]);
             }
         }
+        DataManager.instance.progressionManager.QuestSignal(taskType.StockGood, "", 0);
     }
 
     //Updates the VISUALS of the inventory of the shop

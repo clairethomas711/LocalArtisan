@@ -7,7 +7,7 @@ public class QuestData : ScriptableObject
     public string questTitle;
     public string id;
     public List<QuestTask> questTasks;
-
+    public List<QuestReward> questRewards;
 }
 
 [System.Serializable]
@@ -19,4 +19,13 @@ public class QuestTask
     public string description;
 }
 
-public enum taskType { CollectItem }
+[System.Serializable]
+public class QuestReward
+{
+    public rewardType rewardType;
+    public int rewardQuantity;
+    public string rewardId;
+}
+
+public enum taskType { CollectItem, PlaceItem, WaterCrop, HarvestCrop, StockGood }
+public enum rewardType { Money, Quest }

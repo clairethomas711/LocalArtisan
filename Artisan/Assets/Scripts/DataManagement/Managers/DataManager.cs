@@ -12,7 +12,7 @@ public class DataManager : MonoBehaviour
     public static DataManager instance;
 
     [Header("Manager References")]
-    [SerializeField] StoreManager store;
+    [SerializeField] public StoreManager store;
     [SerializeField] public InterfaceManager uiManager;
     [SerializeField] public GameObject player;
     [SerializeField] public CursorGrab grab;

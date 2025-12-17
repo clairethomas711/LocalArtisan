@@ -10,23 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a776f90b25186684db5133d0cbe543ba, type: 3}
-  m_Name: upgrade_mill
+  m_Name: craft_bread
   m_EditorClassIdentifier: 
-  questTitle: Repair the Mill
-  id: upgrade_mill
+  questTitle: Baking Bread
+  id: craft_bread
   questTasks:
   - taskType: 0
-    taskQuantity: 50
-    taskItemId: res_wood
-    description: Collect 50 wood
+    taskQuantity: 1
+    taskItemId: ing_flour
+    description: Mill Wheat Crop into Flour
   - taskType: 0
-    taskQuantity: 50
-    taskItemId: res_stone
-    description: Collect 50 stone
+    taskQuantity: 1
+    taskItemId: ing_breaddough
+    description: Mix Flour in the Mixer
+  - taskType: 0
+    taskQuantity: 1
+    taskItemId: artisan_baguette
+    description: Bake Bread Dough in the Oven
   questRewards:
-  - rewardType: 0
-    rewardQuantity: 100
-    rewardId: 
   - rewardType: 1
     rewardQuantity: 0
-    rewardId: harvest_wheat
+    rewardId: stock_bread
