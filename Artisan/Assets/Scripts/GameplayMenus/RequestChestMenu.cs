@@ -5,6 +5,7 @@ public class RequestChestMenu : GameplayMenu
 {
     public GameObject slotPrefab;
     string currentChest;
+    GameObject currentChestObject;
     List<InventoryItem> currentRequest;
     GameObject objectToBuild;
     List<InventorySlotData> chestSlots = new List<InventorySlotData>();
@@ -52,9 +53,10 @@ public class RequestChestMenu : GameplayMenu
         inv.CloseExpandedInventory();
     }
 
-    public void ConnectChest(string c, List<InventoryItem> request, GameObject o)
+    public void ConnectChest(string c, GameObject chestObject, List<InventoryItem> request, GameObject o)
     {
         currentChest = c;
+        currentChestObject = chestObject;
         currentRequest = request;
         objectToBuild = o;
     }
@@ -113,6 +115,7 @@ public class RequestChestMenu : GameplayMenu
           Close();
           //Make that machine ready!
           DataManager.instance.progressionManager.QuestSignal(taskType.PlaceItem, objectToBuild.transform.name, 1);
-          objectToBuild.GetComponent<Machine>().state = Machine.MachineState.ready;          
+          objectToBuild.GetComponent<Machine>().state = Machine.MachineState.ready;  
+          currentChestObject.SetActive(false);        
      }
 }

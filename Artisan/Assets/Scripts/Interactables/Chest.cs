@@ -62,7 +62,7 @@ public class Chest : Interactable
         }
         else
         {
-            DataManager.instance.chestManager.requestChestMenu.ConnectChest(uniqueChestId, request, objectToBuild);
+            DataManager.instance.chestManager.requestChestMenu.ConnectChest(uniqueChestId, gameObject, request, objectToBuild);
             DataManager.instance.chestManager.requestChestMenu.Open(chestInventory);
         }
         
