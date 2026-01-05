@@ -23,6 +23,10 @@ MonoBehaviour:
     taskQuantity: 50
     taskItemId: res_stone
     description: Collect 50 stone
+  - taskType: 1
+    taskQuantity: 1
+    taskItemId: Mill
+    description: Use Items to Repair the Mill
   questRewards:
   - rewardType: 0
     rewardQuantity: 100

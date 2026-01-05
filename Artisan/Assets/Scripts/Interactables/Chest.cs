@@ -5,7 +5,9 @@ using System.Collections.Generic;
 public class Chest : Interactable
 {
     public int chestCapacity;
-    //ChestMenu chestMenu;
+    public bool isRequestChest;
+    public GameObject objectToBuild;
+    public List<InventoryItem> request;
     string uniqueChestId;
     
     public override void Initialize(Tile t)
@@ -50,11 +52,21 @@ public class Chest : Interactable
                 return ""; 
             }
         }
-        //Let the menu know that this is the game object we're interacting with 
-        DataManager.instance.chestManager.defaultChestMenu.ConnectChest(uniqueChestId);
         //Grab the chest inventory from the manifest
         List<InventoryItem> chestInventory = DataManager.instance.chestManager.chestManifest[uniqueChestId];
-        DataManager.instance.chestManager.defaultChestMenu.Open(chestInventory);
+        //Let the menu know that this is the game object we're interacting with
+        if (!isRequestChest)
+        { 
+            DataManager.instance.chestManager.defaultChestMenu.ConnectChest(uniqueChestId);
+            DataManager.instance.chestManager.defaultChestMenu.Open(chestInventory);
+        }
+        else
+        {
+            DataManager.instance.chestManager.requestChestMenu.ConnectChest(uniqueChestId, request, objectToBuild);
+            DataManager.instance.chestManager.requestChestMenu.Open(chestInventory);
+        }
+        
+        
         return "";
     }
 

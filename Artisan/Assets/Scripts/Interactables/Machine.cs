@@ -3,6 +3,10 @@ using System.Collections.Generic;
 
 public abstract class Machine : Interactable
 {
+    [Header ("Machine Settings")]
+    [SerializeField] bool initializeBroken = false;
+    [SerializeField] GameObject requestChest;
+    GameObject currentRequestChest;
     public GameObject indicator;
     [SerializeField] AudioClip doneSound;
     UnityEngine.UI.Slider indicatorTimer;
@@ -14,7 +18,7 @@ public abstract class Machine : Interactable
     public abstract List<ItemData> AcceptedItems { get; set; }
     public abstract List<ItemData> ProducedItems { get; set; }
     public MachineState state;
-    public enum MachineState { ready, processing, produced };
+    public enum MachineState { ready, processing, produced, broken };
 
     private class MachineDataPacket
     {
@@ -27,7 +31,13 @@ public abstract class Machine : Interactable
 
     public override void Initialize(Tile t)
     {
-        state = MachineState.ready;      
+        if (initializeBroken)
+        {
+            state = MachineState.broken;
+            requestChest.SetActive(true);   
+        }
+        else
+            state = MachineState.ready;      
     }
 
     public override string GetSaveData()
@@ -48,6 +58,10 @@ public abstract class Machine : Interactable
     {
         MachineDataPacket loadedData = JsonUtility.FromJson<MachineDataPacket>(saveData);
         state = loadedData.state;
+        if (state == MachineState.broken)
+        {
+            requestChest.SetActive(true);
+        }
         minutesSeen = loadedData.minutesSeen;
         minutesRequired = loadedData.minutesRequired;
         activelyProducing.Clear();
