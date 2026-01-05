@@ -6,10 +6,11 @@ public class ProgressionManager : MonoBehaviour
 {
     [SerializeField] GameObject questPanel;
     [SerializeField] GameObject questHintPrefab;
+    [SerializeField] List<string> knownFlags; //all start false
     public Dictionary<string, int> knownSpecializations = new Dictionary<string, int>(); //All the specializations and how many hours we have in each
     public Dictionary<string, int> knownRecipes = new Dictionary<string, int>(); //All recipes we've made and how many times we've made it
     public List<ActiveQuest> activeQuests = new List<ActiveQuest>(); //List of active quests
-    public List<string> completedQuests = new List<string>(); //List of previously completed quests
+    [HideInInspector] public List<string> completedQuests = new List<string>(); //List of previously completed quests
     public Dictionary<string, bool> flags = new Dictionary<string, bool>();
 
     //Large Progression Data Struct
@@ -60,6 +61,15 @@ public class ProgressionManager : MonoBehaviour
         saveData.activeQuests = new List<QuestProgressionData>();
         saveData.completedQuestIds = new List<string>();
         saveData.flags = new List<FlagData>();
+        //Load all flags as false
+        for (int i = 0; i < knownFlags.Count; i++)
+        {
+            FlagData f = new FlagData();
+            f.flagName = knownFlags[i];
+            f.flagState = false;
+            saveData.flags.Add(f);
+            flags[knownFlags[i]] = false; //Add it to the active data too
+        }
         return JsonUtility.ToJson(saveData);      
     }
 
@@ -229,6 +239,10 @@ public class ProgressionManager : MonoBehaviour
                 case (rewardType.Quest):
                     ActivateQuest(reward.rewardId);
                     break;
+                // FLAG //
+                case (rewardType.Flag):
+                    flags[reward.rewardId] = true;
+                    break;
             }
 
         }
@@ -260,6 +274,7 @@ public class ProgressionManager : MonoBehaviour
                         case (taskType.WaterCrop):
                         case (taskType.PlaceItem):
                         case (taskType.HarvestCrop):
+                        case (taskType.InteractItem):
                             if (itemId == relevantTask.requiredItemId) //Is this the item we're looking for?
                             {
                                 relevantTask.currentQuantity += quantity; //Update the quantity

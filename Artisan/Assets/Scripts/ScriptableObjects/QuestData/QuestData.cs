@@ -27,5 +27,5 @@ public class QuestReward
     public string rewardId;
 }
 
-public enum taskType { CollectItem, PlaceItem, WaterCrop, HarvestCrop, StockGood }
-public enum rewardType { Money, Quest }
+public enum taskType { CollectItem, PlaceItem, WaterCrop, HarvestCrop, StockGood, InteractItem }
+public enum rewardType { Money, Quest, Flag }

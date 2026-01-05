@@ -12,6 +12,7 @@ public class StoreManager : Interactable
     Dictionary<StoreDisplay, List<InventoryItem>> storeInventory = new Dictionary<StoreDisplay, List<InventoryItem>>(); //Contains all shelf slots
     Dictionary<StoreDisplay, List<InventoryItem>> sellableInventory = new Dictionary<StoreDisplay, List<InventoryItem>>(); //Contains ONLY shelves with things to sell and those items within
     public Dictionary<string, int> goodsManifest = new Dictionary<string, int>(); //All items for sale and how many we have (for quests)
+    public bool isOpen = false;
     int timeOfLastSale;
 
     void Start()
@@ -110,6 +111,35 @@ public class StoreManager : Interactable
         }
     }
 
+    public void OpenStore()
+    {
+        if (isOpen)
+            return;
+        if (!DataManager.instance.progressionManager.flags["canStoreOpen"])
+        {
+            DataManager.instance.SendNotification("You aren't ready to open your store yet.");
+            return;
+        }
+        if (sellableInventory.Count <= 0)
+        {
+            DataManager.instance.SendNotification("Unable to open store - you have nothing in stock!");
+            return;
+        }
+
+        
+        isOpen = true;
+        DataManager.instance.SendNotification("Your store is now open!");
+    }
+
+    public void CloseStore()
+    {
+        if (!isOpen)
+            return;
+        
+        isOpen = false;
+        DataManager.instance.SendNotification("Your store is now closed.");
+    }
+
     float SellRandomItem() //check Time Since Last Sale, if above a threshold then sell a random item.
     {
         if (sellableInventory.Count > 0)
@@ -146,7 +176,8 @@ public class StoreManager : Interactable
         }
         else
         {
-            DataManager.instance.SendNotification("Your store is open, but you are out of products.");
+            DataManager.instance.SendNotification("Your store is open, but you are out of products. Closing the store.");
+            CloseStore();
             return 0;
         }
 
@@ -154,6 +185,8 @@ public class StoreManager : Interactable
     
     public void GenerateCustomer()
     {
+        if (!isOpen)
+            return;
         //Generate the number of buttons that customer is looking to spend
         int customerBudget = Random.Range(1, maxCustomerPurchase); //EVENTUALLY - MULTIPLY BY SHOP REPUTATION
         //Customer buys items until they run out of money

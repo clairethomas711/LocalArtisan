@@ -10,19 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a776f90b25186684db5133d0cbe543ba, type: 3}
-  m_Name: stock_bread
+  m_Name: interact_storesign
   m_EditorClassIdentifier: 
-  questTitle: Stock Your Store
-  id: stock_bread
+  questTitle: Open the Store
+  id: interact_storesign
   questTasks:
-  - taskType: 4
-    taskQuantity: 10
-    taskItemId: artisan_baguette
-    description: Stock your store with Bread
-  questRewards:
-  - rewardType: 2
-    rewardQuantity: 0
-    rewardId: canStoreOpen
-  - rewardType: 1
-    rewardQuantity: 0
-    rewardId: interact_storesign
+  - taskType: 5
+    taskQuantity: 1
+    taskItemId: storeSign
+    description: Click on the Store Sign to Open the Store
+  questRewards: []
